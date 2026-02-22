@@ -1,0 +1,66 @@
+MDKeyChunker/
+├── README.md                          # Main documentation (14KB)
+├── LICENSE                            # MIT License
+├── CONTRIBUTING.md                    # Development guidelines
+├── IMPLEMENTATION_SUMMARY.md          # Complete delivery summary
+├── PROJECT_OVERVIEW.md                # Architecture overview
+├── pyproject.toml                     # Package configuration
+├── setup.sh                           # Setup script
+├── verify_install.py                  # Installation verification
+├── MANIFEST.in                        # Distribution files
+├── .env.sample                        # Config template
+├── .gitignore                         # Git exclusions
+├── demo.md                            # Example document (8KB)
+├── examples.py                        # Usage examples (6KB)
+│
+├── mdkeychunker/                      # Main package
+│   ├── __init__.py                    # Package exports
+│   ├── cli.py                         # Command-line interface
+│   │
+│   ├── models/                        # Data models
+│   │   ├── __init__.py
+│   │   └── chunk.py                   # Chunk, Entity, NumericValue
+│   │
+│   ├── chunkers/                      # Markdown chunking
+│   │   ├── __init__.py
+│   │   └── markdown_chunker.py        # Structural parser (450 lines)
+│   │
+│   ├── metadata/                      # Metadata extraction
+│   │   ├── __init__.py
+│   │   ├── entity_extractor.py        # spaCy NER
+│   │   ├── keyword_extractor.py       # RAKE algorithm
+│   │   ├── numeric_extractor.py       # Numeric + units
+│   │   └── text_cleaner.py            # Text normalization
+│   │
+│   ├── linking/                       # Pass-keys-forward
+│   │   ├── __init__.py
+│   │   └── key_linker.py              # Semantic linking (320 lines)
+│   │
+│   ├── llm/                           # LLM integration
+│   │   ├── __init__.py
+│   │   ├── llm_client.py              # Multi-provider client
+│   │   └── prompt_templates.py        # Engineered prompts
+│   │
+│   ├── pipeline/                      # Orchestration
+│   │   ├── __init__.py
+│   │   └── processor.py               # DocumentProcessor
+│   │
+│   └── utils/                         # Utilities
+│       ├── __init__.py
+│       ├── config.py                  # Configuration
+│       └── logger.py                  # Logging
+│
+└── tests/                             # Test suite (~85% coverage)
+    ├── __init__.py
+    ├── test_chunker.py                # Chunking tests
+    ├── test_metadata.py               # Metadata tests
+    ├── test_linking.py                # Linking tests
+    ├── test_llm.py                    # LLM tests
+    └── test_integration.py            # E2E tests
+
+Statistics:
+- 24 Python modules
+- ~3,300 lines of code
+- 6 test files
+- 5 documentation files
+- 30+ configuration parameters

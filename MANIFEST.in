@@ -1,0 +1,14 @@
+# Manifest file for package distribution
+
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include .env.sample
+include demo.md
+include examples.py
+
+recursive-include mdkeychunker *.py
+recursive-include tests *.py
+
+exclude .gitignore
+exclude setup.sh
