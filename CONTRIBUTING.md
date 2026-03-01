@@ -22,7 +22,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 ```bash
 pip install -e ".[dev]"
-python -m spacy download en_core_web_sm
 ```
 
 4. **Run tests to verify setup**
@@ -58,25 +57,25 @@ mypy mdkeychunker/
 ### Example Function
 
 ```python
-def extract_entities(text: str, config: Config) -> List[Entity]:
+def process_chunks(text: str, config: Config) -> list[Chunk]:
     """
-    Extract named entities from text.
-    
+    Process markdown text into enriched chunks.
+
     Args:
-        text: Input text to process
+        text: Input markdown text to process
         config: Configuration object
-        
+
     Returns:
-        List of Entity objects with name, type, and span positions
-        
+        List of enriched Chunk objects
+
     Raises:
         ValueError: If text is empty
     """
     if not text:
         raise ValueError("Text cannot be empty")
-    
-    # Implementation...
-    return entities
+
+    pipeline = Pipeline(config)
+    return pipeline.process_text(text)
 ```
 
 ## Testing
@@ -104,7 +103,7 @@ def test_basic_functionality(config):
     """Test basic behavior."""
     result = Function(config)
     assert result == expected
-    
+
 def test_edge_case():
     """Test edge case handling."""
     with pytest.raises(ValueError):
@@ -161,6 +160,7 @@ git push origin feature/your-feature-name
 ```
 
 Then create a pull request on GitHub with:
+
 - Clear title describing the change
 - Description of what was changed and why
 - Link to any related issues
@@ -170,10 +170,10 @@ Then create a pull request on GitHub with:
 
 ### High Priority
 
-- **Multi-language support**: Add spaCy models for other languages
-- **Performance optimization**: Profile and optimize bottlenecks
+- **Performance optimization**: Profile and optimize bottlenecks for large documents
 - **Additional LLM providers**: Add support for Cohere, Mistral, etc.
 - **Documentation**: Improve examples, tutorials, API docs
+- **Streaming support**: Process very large documents chunk-by-chunk
 
 ### Medium Priority
 

@@ -1,13 +1,7 @@
-"""
-MDKeyChunker - Markdown-only document chunking with metadata enrichment.
+"""MDKeyChunker — Markdown chunking with LLM enrichment for RAG."""
+__version__ = "0.2.0"
+from .pipeline import Pipeline
+from .models import Chunk
+from .config import Config
 
-A production-ready package for chunking Markdown documents while preserving
-structure and extracting rich metadata for RAG pipelines.
-"""
-
-__version__ = "0.1.0"
-
-from .pipeline.processor import DocumentProcessor
-from .models.chunk import Chunk, ChunkMetadata
-
-__all__ = ["DocumentProcessor", "Chunk", "ChunkMetadata"]
+__all__ = ["Pipeline", "Chunk", "Config"]

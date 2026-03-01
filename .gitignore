@@ -6,6 +6,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 build/
 develop-eggs/
@@ -36,6 +37,9 @@ htmlcov/
 *.swo
 *~
 
+# macOS
+.DS_Store
+
 # Environment
 .env
 *.log
@@ -44,3 +48,26 @@ htmlcov/
 chunks.jsonl
 summary.txt
 *.jsonl
+
+# Paper / LaTeX (not for GitHub)
+paper.tex
+references.bib
+researchpaper.md
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+figures/
+
+# Internal planning / prompt files
+OPTIMIZATION_PROMPT.md
+RESTRUCTURE_PROMPT.md
+PENDING_TASKS.md
+
+# Experiments (raw data, not for public repo)
+experiments/
