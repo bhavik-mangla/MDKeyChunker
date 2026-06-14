@@ -29,13 +29,14 @@ Or programmatically:
 ```python
 from mdkeychunker import Pipeline, Config
 
+# High-fidelity mode (GPT-4o-mini)
 config = Config.from_env()
-pipeline = Pipeline(config)
+pipeline = Pipeline(config, enricher_mode="llm")
 chunks = pipeline.process_file("document.md")
 
-for chunk in chunks:
-    print(chunk.key, chunk.title)
-    print(chunk.summary)
+# Ultra-fast / Free mode (spaCy)
+pipeline_fast = Pipeline(config, enricher_mode="spacy")
+chunks_fast = pipeline_fast.process_file("document.md")
 ```
 
 ## CLI
@@ -143,7 +144,10 @@ MDKeyChunker is rigorously evaluated on the **SciFact** dataset (5,183 scientifi
 | [Semantic Chunker](https://github.com/langchain-ai/langchain-experimental) | LangChain | **0.775** | 0.681 | 2.03 | 2x |
 | Fixed Token (512) | Standard | 0.762 | 0.681 | 1.05 | 1.1x |
 
-**Key Research Takeaway**: MDKeyChunker achieves state-of-the-art ranking precision while being **70% more efficient** than standard Recursive splitting. By merging related blocks into high-density semantic units, we eliminate context fragmentation and significantly reduce Vector DB storage and LLM inference costs.
+> **Scientific Note**: Standard "Semantic Chunkers" often over-fragment dense technical text into small sentence clusters, leading to a high chunk ratio (2.03x in our tests). MDKeyChunker uses **Structural-Semantic Merging**, grouping disparate blocks (like Code + Paragraphs) into single high-density units, achieving peak accuracy with significantly fewer total chunks.
+
+**Key Research Takeaway**: MDKeyChunker achieves state-of-the-art ranking precision while being **70% more efficient** than standard Recursive splitting.
+ By merging related blocks into high-density semantic units, we eliminate context fragmentation and significantly reduce Vector DB storage and LLM inference costs.
 
 ## API
 
