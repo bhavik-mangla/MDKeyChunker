@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 from .config import Config
 from .chunker import MarkdownChunker
-from .enricher import Enricher
+from .enricher import LLMEnricher, SpacyEnricher, Enricher
 from .llm_client import LLMClient
 from .restructurer import Restructurer
 
@@ -11,12 +11,18 @@ log = logging.getLogger(__name__)
 
 
 class Pipeline:
-    def __init__(self, config: Config | None = None):
+    def __init__(self, config: Config | None = None, enricher_mode: str = "llm"):
         self.config = config or Config.from_env()
         logging.basicConfig(level=getattr(logging, self.config.log_level))
         self.chunker = MarkdownChunker(self.config)
         self.llm = LLMClient(self.config)
-        self.enricher = Enricher(self.llm)
+        
+        # Select Enricher
+        if enricher_mode == "spacy":
+            self.enricher: Enricher = SpacyEnricher()
+        else:
+            self.enricher = LLMEnricher(self.llm)
+            
         self.restructurer = Restructurer(self.config)
 
     def process_file(self, filepath: str) -> list:

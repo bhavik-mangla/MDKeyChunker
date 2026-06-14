@@ -28,6 +28,7 @@ dependencies = [
     "anthropic>=0.18.0",    # Native Anthropic support
     "python-dotenv>=1.0.0", # .env config
     "tiktoken>=0.5.0",      # Token counting
+    "spacy>=3.0.0",         # Local semantic enrichment
 ]
 
 [project.optional-dependencies]
@@ -37,6 +38,15 @@ dev = [
     "black>=23.0.0",
     "mypy>=1.5.0",
     "ruff>=0.1.0",
+]
+benchmark = [
+    "sentence-transformers>=2.2.0",
+    "scikit-learn>=1.2.0",
+    "langchain-text-splitters>=0.0.1",
+    "pandas>=2.0.0",
+    "tqdm>=4.66.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
 ]
 
 [project.scripts]
