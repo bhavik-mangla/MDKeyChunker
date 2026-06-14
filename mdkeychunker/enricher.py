@@ -74,35 +74,42 @@ class SpacyEnricher(Enricher):
         super().__init__()
         try:
             import spacy
-            self.nlp = spacy.load(f"en_core_web_{model_size}", disable=["parser", "packer"])
+            self.nlp = spacy.load(f"en_core_web_{model_size}")
         except ImportError:
             raise ImportError("spaCy is required for SpacyEnricher. Install with: pip install spacy")
 
     def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
         for i, chunk in enumerate(chunks):
-            doc = self.nlp(chunk.text[:1000])
-            
-            # 1. Extract Entities (Standard NLP types)
-            chunk.entities = [{"name": ent.text, "type": ent.label_} for ent in doc.ents]
-            
-            # 2. Extract Keywords (Nouns/Proper Nouns)
-            nouns = [token.text.lower() for token in doc if token.pos_ in ("NOUN", "PROPN") and len(token.text) > 3]
-            chunk.keywords = list(set(nouns))[:8]
-            
-            # 3. Rolling Key Discovery (The Differentiator)
-            potential_keys = [ent.text.lower() for ent in doc.ents if ent.label_ in ("ORG", "PRODUCT", "TECH", "GPE")]
-            if not potential_keys: potential_keys = nouns
+            # Limit doc for speed, but ensure enough context
+            doc = self.nlp(chunk.text[:1500])
 
-            # Reuse existing keys if present in this chunk's text (Rolling Context)
+            # 1. Extract Entities
+            chunk.entities = [{"name": ent.text, "type": ent.label_} for ent in doc.ents]
+
+            # 2. Extract Keywords (Noun chunks are more stable than single nouns)
+            noun_chunks = [nc.text.lower() for nc in doc.noun_chunks if len(nc.text) > 3]
+            chunk.keywords = list(set(noun_chunks))[:8]
+
+            # 3. Rolling Key Discovery (The Differentiator)
+            # Prioritize: (1) Technical Entities, (2) Most common noun chunk
+            tech_entities = [ent.text.lower() for ent in doc.ents if ent.label_ in ("ORG", "PRODUCT", "TECH", "GPE")]
+
+            # Rolling logic: Prefer re-using a key from the document's history 
+            # if it appears in the current text.
             chunk.key = ""
+            text_lower = chunk.text.lower()
             for seen_key in self.rolling_keys.keys():
-                if seen_key in chunk.text.lower():
+                if seen_key in text_lower:
                     chunk.key = seen_key
                     break
-            
-            # If no existing key fits, pick the most frequent new one
-            if not chunk.key and potential_keys:
-                chunk.key = Counter(potential_keys).most_common(1)[0][0]
-            
+
+            # If no history match, select best new key from current chunk
+            if not chunk.key:
+                candidates = tech_entities if tech_entities else noun_chunks
+                if candidates:
+                    # Prefer the most frequent candidate
+                    chunk.key = Counter(candidates).most_common(1)[0][0]
+
             self._update_rolling_keys(chunk.key, i)
         return chunks
+
