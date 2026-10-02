@@ -239,3 +239,54 @@ def test_string_keywords_are_split():
     enricher = LLMEnricher(_mock_llm({**SAMPLE_RESULT, "keywords": "bm25, faiss"}))
     chunk = enricher.enrich_chunks([_make_chunk()])[0]
     assert chunk.keywords == ["bm25", "faiss"]
+
+
+def test_string_question_is_not_split_on_commas():
+    q = "How does BM25 rank documents, and why does it beat TF-IDF?"
+    enricher = LLMEnricher(_mock_llm({**SAMPLE_RESULT, "questions": q}))
+    assert enricher.enrich_chunks([_make_chunk()])[0].questions == [q]
+
+
+def test_related_keys_are_normalised_and_restricted_to_rolling_keys():
+    llm = MagicMock()
+    llm.call_json.side_effect = [
+        {**SAMPLE_RESULT, "key": "oauth token flow"},
+        {**SAMPLE_RESULT, "key": "refresh tokens",
+         "related_keys": ["OAuth Token Flow", "invented key"]},
+    ]
+    chunks = LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    assert chunks[1].related_keys == ["oauth token flow"]
+
+
+def test_fatal_llm_error_is_raised_not_swallowed():
+    class AuthenticationError(Exception):
+        pass
+    llm = MagicMock()
+    llm.call_json.side_effect = AuthenticationError("bad key")
+    with pytest.raises(AuthenticationError):
+        LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    assert llm.call_json.call_count == 1
+
+
+def test_failed_previous_chunk_is_not_called_first_chunk():
+    llm = MagicMock()
+    llm.call_json.side_effect = [None, SAMPLE_RESULT]
+    LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    second_prompt = llm.call_json.call_args_list[1].args[0]
+    assert "(unavailable)" in second_prompt
+
+
+def test_spacy_key_reuse_matches_keys_with_symbols():
+    from mdkeychunker.enricher import SpacyEnricher
+
+    class _Doc:
+        ents = []
+        noun_chunks = []
+
+    enricher = SpacyEnricher.__new__(SpacyEnricher)
+    enricher.rolling_keys = {"c++": {"first_chunk": 0, "last_chunk": 0, "count": 1}}
+    enricher.nlp = lambda text: _Doc()
+    chunk = enricher.enrich_chunks([_make_chunk("We use c++ here.")])[0]
+    assert chunk.key == "c++"
+    chunk = enricher.enrich_chunks([_make_chunk("We maintain abc++x.")])[0]
+    assert chunk.key == ""
