@@ -13,6 +13,22 @@ from .models import Chunk
 from .config import Config
 
 
+_THEMATIC_BREAK = re.compile(r"^ {0,3}(?:(?:\*[ \t]*){3,}|(?:-[ \t]*){3,}|(?:_[ \t]*){3,})$")
+_FENCE_OPEN = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
+
+
+def _is_thematic_break(line: str) -> bool:
+    return bool(_THEMATIC_BREAK.match(line))
+
+
+def _fence_open(line: str) -> Optional[re.Match]:
+    """A fence opener; a backtick fence's info string may not contain backticks."""
+    m = _FENCE_OPEN.match(line)
+    if m and m.group(1)[0] == "`" and "`" in m.group(2):
+        return None
+    return m
+
+
 @dataclass
 class _Block:
     """Internal structural block in Markdown."""
@@ -72,8 +88,7 @@ class MarkdownChunker:
                     continue
 
             # Fenced code blocks (a backtick info string may not contain backticks)
-            fence_open = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
-            if fence_open and not (fence_open.group(1)[0] == "`" and "`" in fence_open.group(2)):
+            if _fence_open(line):
                 block, consumed = self._parse_code_block(lines, i)
                 block.section_title = current_section
                 blocks.append(block)
@@ -87,7 +102,7 @@ class MarkdownChunker:
                 and line.strip()
                 and i + 1 < len(lines)
                 and re.match(r"^ {0,3}(=+|-+)\s*$", lines[i + 1])
-                and not re.match(r"^(\*\*\*+|---+|___+)\s*$", line)
+                and not _is_thematic_break(line)
                 and not self._is_list_line(line)
                 and not line.strip().startswith(">")
             )
@@ -138,7 +153,7 @@ class MarkdownChunker:
                 continue
 
             # Horizontal rules
-            if re.match(r"^(\*\*\*+|---+|___+)\s*$", line):
+            if _is_thematic_break(line):
                 blocks.append(_Block(
                     type="horizontal_rule",
                     content=line,
@@ -268,8 +283,7 @@ class MarkdownChunker:
                 break
             if end > start and (
                 line.strip().startswith("#")
-                or line.strip().startswith("```")
-                or line.strip().startswith("~~~")
+                or _fence_open(line)
                 or self._is_list_line(line)
                 or line.strip().startswith(">")
                 or "|" in line
@@ -298,11 +312,16 @@ class MarkdownChunker:
     # ------------------------------------------------------------------ #
 
     def _group_blocks(self, blocks: List[_Block]) -> List[Chunk]:
-        """Group blocks into chunks respecting size constraints."""
+        """Group blocks into chunks respecting structure and size.
+
+        Rules: every header starts a new chunk once the current chunk has body
+        text; a chunk holding only headers is never flushed for size, so headers
+        always travel with their content; atomic blocks are never split.
+        """
         chunks: List[Chunk] = []
         current: List[_Block] = []
         current_size = 0
-        has_body = False  # current holds something other than headers
+        has_body = False
         ATOMIC = {"code", "table", "yaml_front_matter", "blockquote"}
 
         def flush() -> None:
@@ -312,38 +331,35 @@ class MarkdownChunker:
 
         for block in blocks:
             bsize = len(block.content)
-
             if block.type == "header":
-                # A header starts a new chunk once the current one has enough body,
-                # so headers never dangle at the end of the previous chunk.
-                if has_body and current_size >= self.min_chunk_size:
+                if has_body:
                     flush()
-                current.append(block)
-                current_size += bsize
-                continue
-
-            # Size-based flush, but never strand headers without their content.
-            if has_body and current_size + bsize > self.max_chunk_size:
+            elif has_body and current_size + bsize > self.max_chunk_size:
                 flush()
 
             current.append(block)
             current_size += bsize
-            has_body = True
-
-            # Flush after an atomic block that fills the chunk
-            if block.type in ATOMIC and current_size >= self.max_chunk_size:
-                flush()
+            if block.type != "header":
+                has_body = True
+                if block.type in ATOMIC and current_size >= self.max_chunk_size:
+                    flush()
 
         if current:
-            chunks.append(self._make_chunk(current))
+            tail = self._make_chunk(current)
+            if not has_body and chunks:
+                # Trailing headers with no content (e.g. an empty last section)
+                chunks[-1] = self._join(chunks[-1], tail)
+            else:
+                chunks.append(tail)
 
         return self._merge_small_chunks(chunks)
 
     def _make_chunk(self, blocks: List[_Block]) -> Chunk:
         text = "\n\n".join(b.content for b in blocks)
-        # Section of the content, not of a trailing header
+        # Section of the content; preamble or front matter falls back to the first header's
         section_title = next(
-            (b.section_title for b in blocks if b.type != "header"), blocks[-1].section_title
+            (b.section_title for b in blocks if b.type != "header" and b.section_title),
+            next((b.section_title for b in blocks if b.section_title), ""),
         )
         content_types = list(set(b.type for b in blocks))
         return Chunk(
@@ -354,37 +370,33 @@ class MarkdownChunker:
             content_types=content_types,
         )
 
+    @staticmethod
+    def _join(a: Chunk, b: Chunk) -> Chunk:
+        """Concatenate two adjacent chunks; the larger part names the section."""
+        major = a if len(a.text) >= len(b.text) else b
+        return Chunk(
+            text=a.text + "\n\n" + b.text,
+            section_title=major.section_title or a.section_title or b.section_title,
+            start_line=a.start_line,
+            end_line=b.end_line,
+            content_types=list(set(a.content_types + b.content_types)),
+        )
+
     def _merge_small_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
-        if not chunks:
-            return chunks
+        """Merge chunks below min_chunk_size forward (repeatedly), capped at 2x max."""
+        cap = self.max_chunk_size * 2
         merged: List[Chunk] = []
-        i = 0
-        while i < len(chunks):
-            c = chunks[i]
-            if len(c.text) < self.min_chunk_size and i + 1 < len(chunks):
-                nxt = chunks[i + 1]
-                if len(c.text) + len(nxt.text) <= self.max_chunk_size * 2:
-                    merged.append(Chunk(
-                        text=c.text + "\n\n" + nxt.text,
-                        section_title=c.section_title or nxt.section_title,
-                        start_line=c.start_line,
-                        end_line=nxt.end_line,
-                        content_types=list(
-                            set(c.content_types + nxt.content_types)),
-                    ))
-                    i += 2
-                    continue
-            merged.append(c)
-            i += 1
-        merged = [c for c in merged if c.text.strip()]
-        # A too-small final chunk (e.g. an empty trailing section) joins the previous one
-        if len(merged) >= 2 and len(merged[-1].text) < self.min_chunk_size:
-            last, prev = merged.pop(), merged.pop()
-            merged.append(Chunk(
-                text=prev.text + "\n\n" + last.text,
-                section_title=prev.section_title or last.section_title,
-                start_line=prev.start_line,
-                end_line=last.end_line,
-                content_types=list(set(prev.content_types + last.content_types)),
-            ))
+        for c in chunks:
+            if not c.text.strip():
+                continue
+            if merged and len(merged[-1].text) < self.min_chunk_size \
+                    and len(merged[-1].text) + len(c.text) <= cap:
+                merged[-1] = self._join(merged[-1], c)
+            else:
+                merged.append(c)
+        # A too-small final chunk joins the previous one, within the same cap
+        if len(merged) >= 2 and len(merged[-1].text) < self.min_chunk_size \
+                and len(merged[-2].text) + len(merged[-1].text) <= cap:
+            last = merged.pop()
+            merged[-1] = self._join(merged[-1], last)
         return merged
