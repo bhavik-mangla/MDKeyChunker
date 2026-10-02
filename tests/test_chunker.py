@@ -219,11 +219,54 @@ def test_short_sections_are_grouped_and_labelled_by_first_section():
     assert chunks[0].section_title == "S0"
 
 
-def test_merged_small_chunk_keeps_its_own_section_label():
-    big = "```\n" + "y = 2\n" * 400 + "```"
+def test_small_section_merged_into_big_one_takes_the_big_label():
+    big = "```\n" + "y = 2\n" * 200 + "```"
     chunks = _chunk(f"## S0\n\nshort body.\n\n## S1\n\n{big}", max_size=1500, min_size=100)
     first = chunks[0]
-    assert first.text.startswith("## S0") and first.section_title == "S0"
+    assert first.text.startswith("## S0") and first.section_title == "S1"
+
+
+def test_short_body_then_header_then_oversized_block():
+    big = "```\n" + "z = 3\n" * 800 + "```"
+    chunks = _chunk(f"# A\n\nshort body text.\n\n## B\n\n{big}", max_size=1500, min_size=100)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    assert any(c.text.startswith("## B") and "code" in c.content_types for c in chunks)
+
+
+def test_preamble_and_front_matter_take_first_section():
+    fm = _chunk("---\ntitle: x\n---\n\n# H\n\n" + "body " * 100, min_size=100)
+    pre = _chunk("Intro line.\n\n# Guide\n\n" + "body " * 100, min_size=100)
+    assert fm[0].section_title == "H"
+    assert pre[0].section_title == "Guide"
+
+
+def test_big_section_after_stubs_is_labelled_by_itself():
+    stubs = "\n\n".join(f"# T{i}\n\nb{i}" for i in range(5))
+    chunks = _chunk(stubs + "\n\n# Big\n\n" + "content " * 100, max_size=1500, min_size=100)
+    assert any(c.section_title == "Big" and "content" in c.text for c in chunks)
+
+
+def test_trailing_fold_respects_cap():
+    big = "```\n" + "w = 4\n" * 800 + "```"
+    chunks = _chunk(f"{big}\n\nend.", max_size=1500, min_size=100)
+    assert len(chunks) == 2
+
+
+def test_trailing_long_header_only_chunk_is_folded():
+    head = "## Appendix " + "Appendix " * 15
+    chunks = _chunk("# P\n\n" + "x" * 185 + "\n\n" + head, min_size=100)
+    assert len(chunks) == 1
+
+
+def test_inline_triple_backticks_do_not_split_paragraph():
+    blocks = _blocks("line one\n```js``` inline mention\nline three")
+    assert [b.type for b in blocks] == ["paragraph"]
+
+
+def test_indented_or_spaced_thematic_break_is_not_setext():
+    assert "header" not in [b.type for b in _blocks("Intro\n\n  ***\n---\n\nbody")]
+    assert "header" not in [b.type for b in _blocks("Intro\n\n_ _ _\n---\n\nbody")]
 
 
 def test_backtick_info_string_with_backticks_is_not_a_fence():
