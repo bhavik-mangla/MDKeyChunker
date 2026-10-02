@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verification script for MDKeyChunker v2 installation."""
+"""Verification script for MDKeyChunker installation."""
 import sys
 
 
@@ -87,7 +87,7 @@ def check_cli():
 
 def main():
     print("=" * 50)
-    print("MDKeyChunker v2 — Installation Verification")
+    print("MDKeyChunker — Installation Verification")
     print("=" * 50 + "\n")
 
     checks = [check_imports, check_config, check_chunker,

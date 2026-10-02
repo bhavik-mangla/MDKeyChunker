@@ -1,4 +1,4 @@
-"""Example usage of MDKeyChunker v2."""
+"""Example usage of MDKeyChunker."""
 
 import json
 from mdkeychunker import Pipeline, Config

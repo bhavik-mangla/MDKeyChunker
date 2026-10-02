@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "===== MDKeyChunker v2 Setup ====="
+echo "===== MDKeyChunker Setup ====="
 
 python3 --version
 
