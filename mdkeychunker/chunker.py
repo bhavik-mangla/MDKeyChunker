@@ -55,7 +55,7 @@ class MarkdownChunker:
     def _parse_blocks(self, text: str) -> List[_Block]:
         """Parse Markdown into structural blocks."""
         blocks: List[_Block] = []
-        lines = text.split("\n")
+        lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
         i = 0
         current_section = ""
         self._header_stack = []
@@ -80,21 +80,35 @@ class MarkdownChunker:
                 continue
 
             # Headers
-            header_match = re.match(r"^(#{1,6})\s+(.+)$", line)
-            if header_match:
-                level = len(header_match.group(1))
-                title = header_match.group(2).strip()
+            header_match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$", line)
+            setext_match = (
+                not header_match
+                and line.strip()
+                and i + 1 < len(lines)
+                and re.match(r"^(=+|-+)\s*$", lines[i + 1])
+                and not self._is_list_line(line)
+                and not line.strip().startswith(">")
+            )
+            if header_match or setext_match:
+                if header_match:
+                    level = len(header_match.group(1))
+                    title = header_match.group(2).strip()
+                    content, end = line, i
+                else:
+                    level = 1 if lines[i + 1].strip().startswith("=") else 2
+                    title = line.strip()
+                    content, end = line + "\n" + lines[i + 1], i + 1
                 self._update_header_stack(level, title)
                 current_section = self._get_current_section()
                 blocks.append(_Block(
                     type="header",
-                    content=line,
+                    content=content,
                     start_line=i,
-                    end_line=i,
+                    end_line=end,
                     level=level,
                     section_title=current_section,
                 ))
-                i += 1
+                i = end + 1
                 continue
 
             # Tables
@@ -166,10 +180,14 @@ class MarkdownChunker:
         ), end - start + 1
 
     def _parse_code_block(self, lines: List[str], start: int) -> Tuple[_Block, int]:
-        fence = lines[start].strip()[:3]
+        opener = lines[start].strip()
+        fence_char = opener[0]
+        fence_len = len(opener) - len(opener.lstrip(fence_char))
+        # CommonMark: closes only on a line of the same char, at least as long, nothing else
+        closer = re.compile(rf"^{re.escape(fence_char)}{{{fence_len},}}\s*$")
         end = start + 1
         while end < len(lines):
-            if lines[end].strip().startswith(fence):
+            if closer.match(lines[end].strip()):
                 end += 1
                 break
             end += 1
@@ -200,7 +218,7 @@ class MarkdownChunker:
         stripped = line.strip()
         return bool(
             re.match(r"^[\*\-\+]\s+",
-                     stripped) or re.match(r"^\d+\.\s+", stripped)
+                     stripped) or re.match(r"^\d+[.)]\s+", stripped)
         )
 
     def _parse_list(self, lines: List[str], start: int) -> Tuple[_Block, int]:
@@ -286,6 +304,12 @@ class MarkdownChunker:
         for block in blocks:
             bsize = len(block.content)
 
+            # A header starts a new chunk so it never dangles at the end of the
+            # previous one (consecutive headers stay together with their body).
+            if block.type == "header" and any(b.type != "header" for b in current):
+                chunks.append(self._make_chunk(current))
+                current, current_size = [], 0
+
             if block.type in ATOMIC:
                 # Flush if adding would exceed max (but always include atomic blocks)
                 if current and current_size + bsize > self.max_chunk_size:
@@ -313,7 +337,10 @@ class MarkdownChunker:
 
     def _make_chunk(self, blocks: List[_Block]) -> Chunk:
         text = "\n\n".join(b.content for b in blocks)
-        section_title = blocks[-1].section_title or blocks[0].section_title
+        # Section of the content, not of a trailing header
+        section_title = next(
+            (b.section_title for b in blocks if b.type != "header"), blocks[-1].section_title
+        )
         content_types = list(set(b.type for b in blocks))
         return Chunk(
             text=text,

@@ -138,3 +138,61 @@ def test_real_table_is_detected(chunker):
     chunks = chunker.chunk(md)
     all_content_types = [ct for c in chunks for ct in c.content_types]
     assert "table" in all_content_types
+
+
+# ─── Structural regressions ────────────────────────────────────────────────
+
+
+def _chunk(md, max_size=500, min_size=50):
+    return MarkdownChunker(Config(min_chunk_size=min_size, max_chunk_size=max_size)).chunk(md)
+
+
+def test_header_never_dangles_at_end_of_chunk():
+    para = "word " * 50
+    md = f"# A\n\n{para}\n\n# B\n\n{para}\n\n# C\n\n{para}"
+    chunks = _chunk(md, max_size=300)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    by_head = {c.text.splitlines()[0]: c.section_title for c in chunks}
+    assert by_head == {"# A": "A", "# B": "B", "# C": "C"}
+
+
+def test_consecutive_headers_stay_with_their_body():
+    md = "# Guide\n\n## Install\n\n" + "Run the installer. " * 5
+    chunks = _chunk(md)
+    assert len(chunks) == 1
+    assert chunks[0].section_title == "Guide > Install"
+
+
+def _blocks(md):
+    return MarkdownChunker(Config())._parse_blocks(md)
+
+
+def test_longer_fence_containing_shorter_fence_is_one_block():
+    md = "````markdown\n```python\nx = 1\n```\n````\n\nAfter."
+    blocks = _blocks(md)
+    assert [b.type for b in blocks] == ["code", "paragraph"]
+    assert blocks[0].content.endswith("````")
+
+
+def test_info_string_line_does_not_close_fence():
+    blocks = _blocks("```\nfirst\n```python\nsecond\n```\n\nAfter.")
+    assert [b.type for b in blocks] == ["code", "paragraph"]
+    assert "second" in blocks[0].content
+
+
+def test_setext_headers_are_detected():
+    md = "Title\n=====\n\n" + "Body text. " * 10 + "\n\nSub\n---\n\n" + "More text. " * 10
+    chunks = _chunk(md, max_size=150, min_size=1)
+    assert {c.section_title for c in chunks} == {"Title", "Title > Sub"}
+
+
+def test_crlf_and_trailing_hashes():
+    chunks = _chunk("## Setup ##\r\n\r\n" + "Configure it. " * 6, min_size=1)
+    assert chunks[0].section_title == "Setup"
+    assert "\r" not in chunks[0].text
+
+
+def test_paren_ordered_list_is_a_list():
+    chunks = _chunk("1) first item\n2) second item\n3) third item", min_size=1)
+    assert "list" in chunks[0].content_types
