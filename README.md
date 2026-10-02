@@ -5,7 +5,7 @@
 [![Research Paper](https://img.shields.io/badge/Research-ArXiv-red.svg)](https://arxiv.org/abs/2603.23533)
 
 Markdown chunking with single-call LLM enrichment or ultra-fast spaCy processing for RAG pipelines. 
-Read the full research paper: **[MDKeyChunker: Semantic Block Restructuring for Efficient RAG](https://arxiv.org/abs/2603.23533)**
+Paper: **[MDKeyChunker: Single-Call LLM Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy RAG](https://arxiv.org/abs/2603.23533)** (arXiv:2603.23533)
 
 ## What It Does
 
@@ -19,10 +19,14 @@ Read the full research paper: **[MDKeyChunker: Semantic Block Restructuring for 
 ## Quick Start
 
 ```bash
-pip install mdkeychunker
-cp .env.sample .env   # then edit .env with your API key
+git clone https://github.com/bhavik-mangla/MDKeyChunker.git
+cd MDKeyChunker
+pip install -e .              # add [anthropic] or [spacy] extras as needed
+cp .env.sample .env           # then edit .env with your API key
 mdkeychunker demo.md
 ```
+
+spaCy mode needs the extra and a model: `pip install -e ".[spacy]" && python -m spacy download en_core_web_md`.
 
 Or programmatically:
 
@@ -131,23 +135,20 @@ Markdown → Chunker → Enricher (1 LLM call/chunk) → Restructurer → Enrich
 
 ## Benchmarks
 
-MDKeyChunker is rigorously evaluated on the **SciFact** dataset (5,183 scientific papers) using industry-standard Information Retrieval (IR) metrics. We isolate chunking as the only variable while keeping embeddings ([BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)) and retrieval (FAISS) constant.
+The paper's evaluation (30 queries over an 18-document Markdown corpus, Configs A–D) is described in [arXiv:2603.23533](https://arxiv.org/abs/2603.23533). The code version used in the paper is commit `e3e1b86`.
+
+`benchmarks/scifact.py` runs a SciFact sanity check in spaCy mode (`pip install -e ".[benchmark,spacy]"`, then `python benchmarks/scifact.py`). Embeddings are [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) with exact cosine search.
 
 ![SciFact Benchmark Results](figures/scifact_benchmark.png)
 
-### Performance Comparison
+| Strategy | Library | Recall@5 | nDCG@5 | Chunks/Doc |
+| :--- | :--- | :--- | :--- | :--- |
+| MDKeyChunker (spaCy mode) | — | 0.762 | 0.681 | 1.00 |
+| [Recursive Character](https://github.com/langchain-ai/langchain) | LangChain | 0.760 | 0.678 | 3.43 |
+| [Semantic Chunker](https://github.com/langchain-ai/langchain-experimental) | LangChain | 0.775 | 0.681 | 2.03 |
+| Fixed Token (512) | Standard | 0.762 | 0.681 | 1.05 |
 
-| Strategy | Library | Recall@5 | nDCG@5 | Chunks/Doc | Cost Ratio |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **MDKeyChunker** | — | 0.762 | **0.681** | **1.00** | **1x** |
-| [Recursive Character](https://github.com/langchain-ai/langchain) | LangChain | 0.760 | 0.678 | 3.43 | 3.4x |
-| [Semantic Chunker](https://github.com/langchain-ai/langchain-experimental) | LangChain | **0.775** | 0.681 | 2.03 | 2x |
-| Fixed Token (512) | Standard | 0.762 | 0.681 | 1.05 | 1.1x |
-
-> **Scientific Note**: Standard "Semantic Chunkers" often over-fragment dense technical text into small sentence clusters, leading to a high chunk ratio (2.03x in our tests). MDKeyChunker uses **Structural-Semantic Merging**, grouping disparate blocks (like Code + Paragraphs) into single high-density units, achieving peak accuracy with significantly fewer total chunks.
-
-**Key Research Takeaway**: MDKeyChunker achieves state-of-the-art ranking precision while being **70% more efficient** than standard Recursive splitting.
- By merging related blocks into high-density semantic units, we eliminate context fragmentation and significantly reduce Vector DB storage and LLM inference costs.
+**Read this table with care.** SciFact abstracts are short single-paragraph plain text, so MDKeyChunker emits one chunk per abstract and this run effectively measures whole-abstract retrieval. It does not exercise Markdown structure, LLM enrichment, or key-based restructuring, and it is not evidence for those stages. The baseline rows were produced with scripts that are not yet in this repository.
 
 ## API
 
@@ -173,6 +174,24 @@ pipeline.save_summary(chunks, "summary.txt")
 pip install -e ".[dev]"
 pytest tests/ -v
 ```
+
+## Citation
+
+If you use MDKeyChunker, please cite:
+
+```bibtex
+@misc{mangla2026mdkeychunker,
+  title         = {{MDKeyChunker}: Single-Call {LLM} Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy {RAG}},
+  author        = {Mangla, Bhavik},
+  year          = {2026},
+  eprint        = {2603.23533},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2603.23533}
+}
+```
+
+GitHub's "Cite this repository" button uses [`CITATION.cff`](CITATION.cff).
 
 ## License
 

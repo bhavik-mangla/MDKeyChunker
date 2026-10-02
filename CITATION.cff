@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "MDKeyChunker"
+type: software
+authors:
+  - family-names: Mangla
+    given-names: Bhavik
+license: MIT
+repository-code: "https://github.com/bhavik-mangla/MDKeyChunker"
+version: 0.2.1
+keywords:
+  - markdown
+  - chunking
+  - retrieval-augmented generation
+preferred-citation:
+  type: article
+  title: "MDKeyChunker: Single-Call LLM Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy RAG"
+  authors:
+    - family-names: Mangla
+      given-names: Bhavik
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.23533"
+  doi: "10.48550/arXiv.2603.23533"
+  url: "https://arxiv.org/abs/2603.23533"

@@ -7,7 +7,7 @@ Thank you for considering contributing to MDKeyChunker! This document provides g
 1. **Fork and clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/MDKeyChunker.git
+git clone https://github.com/bhavik-mangla/MDKeyChunker.git
 cd MDKeyChunker
 ```
 
@@ -45,7 +45,7 @@ We use automated tools for code quality:
 
 ```bash
 # Format code
-black mdkeychunker/
+ruff format mdkeychunker/
 
 # Lint
 ruff check mdkeychunker/
@@ -144,7 +144,7 @@ git checkout -b feature/your-feature-name
 ```bash
 pytest
 mypy mdkeychunker/
-black mdkeychunker/ --check
+ruff format --check mdkeychunker/
 ```
 
 4. **Commit with clear messages**
