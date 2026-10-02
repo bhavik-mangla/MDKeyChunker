@@ -240,3 +240,8 @@ def test_deeply_indented_fence_does_not_close_block():
 def test_thematic_break_is_not_a_setext_header():
     blocks = _blocks("Intro\n\n***\n---\n\nbody")
     assert "header" not in [b.type for b in blocks]
+
+
+def test_small_trailing_section_joins_previous_chunk():
+    chunks = _chunk("# Paper\n\n" + "Body text. " * 30 + "\n\n## Acronyms\n", max_size=1500, min_size=100)
+    assert len(chunks) == 1 and chunks[0].text.rstrip().endswith("## Acronyms")

@@ -376,4 +376,15 @@ class MarkdownChunker:
                     continue
             merged.append(c)
             i += 1
-        return [c for c in merged if c.text.strip()]
+        merged = [c for c in merged if c.text.strip()]
+        # A too-small final chunk (e.g. an empty trailing section) joins the previous one
+        if len(merged) >= 2 and len(merged[-1].text) < self.min_chunk_size:
+            last, prev = merged.pop(), merged.pop()
+            merged.append(Chunk(
+                text=prev.text + "\n\n" + last.text,
+                section_title=prev.section_title or last.section_title,
+                start_line=prev.start_line,
+                end_line=last.end_line,
+                content_types=list(set(prev.content_types + last.content_types)),
+            ))
+        return merged
