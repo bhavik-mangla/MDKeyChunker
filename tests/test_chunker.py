@@ -138,3 +138,153 @@ def test_real_table_is_detected(chunker):
     chunks = chunker.chunk(md)
     all_content_types = [ct for c in chunks for ct in c.content_types]
     assert "table" in all_content_types
+
+
+# ─── Structural regressions ────────────────────────────────────────────────
+
+
+def _chunk(md, max_size=500, min_size=50):
+    return MarkdownChunker(Config(min_chunk_size=min_size, max_chunk_size=max_size)).chunk(md)
+
+
+def test_header_never_dangles_at_end_of_chunk():
+    para = "word " * 50
+    md = f"# A\n\n{para}\n\n# B\n\n{para}\n\n# C\n\n{para}"
+    chunks = _chunk(md, max_size=300)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    by_head = {c.text.splitlines()[0]: c.section_title for c in chunks}
+    assert by_head == {"# A": "A", "# B": "B", "# C": "C"}
+
+
+def test_consecutive_headers_stay_with_their_body():
+    md = "# Guide\n\n## Install\n\n" + "Run the installer. " * 5
+    chunks = _chunk(md)
+    assert len(chunks) == 1
+    assert chunks[0].section_title == "Guide > Install"
+
+
+def _blocks(md):
+    return MarkdownChunker(Config())._parse_blocks(md)
+
+
+def test_longer_fence_containing_shorter_fence_is_one_block():
+    md = "````markdown\n```python\nx = 1\n```\n````\n\nAfter."
+    blocks = _blocks(md)
+    assert [b.type for b in blocks] == ["code", "paragraph"]
+    assert blocks[0].content.endswith("````")
+
+
+def test_info_string_line_does_not_close_fence():
+    blocks = _blocks("```\nfirst\n```python\nsecond\n```\n\nAfter.")
+    assert [b.type for b in blocks] == ["code", "paragraph"]
+    assert "second" in blocks[0].content
+
+
+def test_setext_headers_are_detected():
+    md = "Title\n=====\n\n" + "Body text. " * 10 + "\n\nSub\n---\n\n" + "More text. " * 10
+    chunks = _chunk(md, max_size=150, min_size=1)
+    assert {c.section_title for c in chunks} == {"Title", "Title > Sub"}
+
+
+def test_crlf_and_trailing_hashes():
+    chunks = _chunk("## Setup ##\r\n\r\n" + "Configure it. " * 6, min_size=1)
+    assert chunks[0].section_title == "Setup"
+    assert "\r" not in chunks[0].text
+
+
+def test_paren_ordered_list_is_a_list():
+    chunks = _chunk("1) first item\n2) second item\n3) third item", min_size=1)
+    assert "list" in chunks[0].content_types
+
+
+def test_header_before_oversized_block_stays_with_it():
+    code = "```\n" + "x = 1\n" * 400 + "```"
+    chunks = _chunk(f"# A\n\nintro text here\n\n## B\n\n{code}", max_size=1500, min_size=10)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    code_chunk = next(c for c in chunks if "code" in c.content_types)
+    assert code_chunk.text.startswith("## B") and code_chunk.section_title == "A > B"
+
+
+def test_header_is_never_a_chunk_on_its_own():
+    chunks = _chunk("# A\n\n" + "word " * 1000, max_size=1500, min_size=100)
+    assert len(chunks) == 1 and chunks[0].text.startswith("# A")
+
+
+def test_short_sections_are_grouped_and_labelled_by_first_section():
+    md = "\n\n".join(f"## S{i}\n\nshort body {i}." for i in range(6))
+    chunks = _chunk(md, max_size=1500, min_size=100)
+    assert len(chunks) == 1
+    assert chunks[0].section_title == "S0"
+
+
+def test_small_section_merged_into_big_one_takes_the_big_label():
+    big = "```\n" + "y = 2\n" * 200 + "```"
+    chunks = _chunk(f"## S0\n\nshort body.\n\n## S1\n\n{big}", max_size=1500, min_size=100)
+    first = chunks[0]
+    assert first.text.startswith("## S0") and first.section_title == "S1"
+
+
+def test_short_body_then_header_then_oversized_block():
+    big = "```\n" + "z = 3\n" * 800 + "```"
+    chunks = _chunk(f"# A\n\nshort body text.\n\n## B\n\n{big}", max_size=1500, min_size=100)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    assert any(c.text.startswith("## B") and "code" in c.content_types for c in chunks)
+
+
+def test_preamble_and_front_matter_take_first_section():
+    fm = _chunk("---\ntitle: x\n---\n\n# H\n\n" + "body " * 100, min_size=100)
+    pre = _chunk("Intro line.\n\n# Guide\n\n" + "body " * 100, min_size=100)
+    assert fm[0].section_title == "H"
+    assert pre[0].section_title == "Guide"
+
+
+def test_big_section_after_stubs_is_labelled_by_itself():
+    stubs = "\n\n".join(f"# T{i}\n\nb{i}" for i in range(5))
+    chunks = _chunk(stubs + "\n\n# Big\n\n" + "content " * 100, max_size=1500, min_size=100)
+    assert any(c.section_title == "Big" and "content" in c.text for c in chunks)
+
+
+def test_trailing_fold_respects_cap():
+    big = "```\n" + "w = 4\n" * 800 + "```"
+    chunks = _chunk(f"{big}\n\nend.", max_size=1500, min_size=100)
+    assert len(chunks) == 2
+
+
+def test_trailing_long_header_only_chunk_is_folded():
+    head = "## Appendix " + "Appendix " * 15
+    chunks = _chunk("# P\n\n" + "x" * 185 + "\n\n" + head, min_size=100)
+    assert len(chunks) == 1
+
+
+def test_inline_triple_backticks_do_not_split_paragraph():
+    blocks = _blocks("line one\n```js``` inline mention\nline three")
+    assert [b.type for b in blocks] == ["paragraph"]
+
+
+def test_indented_or_spaced_thematic_break_is_not_setext():
+    assert "header" not in [b.type for b in _blocks("Intro\n\n  ***\n---\n\nbody")]
+    assert "header" not in [b.type for b in _blocks("Intro\n\n_ _ _\n---\n\nbody")]
+
+
+def test_backtick_info_string_with_backticks_is_not_a_fence():
+    blocks = _blocks("```js``` is inline\n\n# H\n\nbody")
+    assert [b.type for b in blocks] == ["paragraph", "header", "paragraph"]
+
+
+def test_deeply_indented_fence_does_not_close_block():
+    blocks = _blocks("```\n    ```\nstill code\n```\n\n# After")
+    assert [b.type for b in blocks] == ["code", "header"]
+    assert "still code" in blocks[0].content
+
+
+def test_thematic_break_is_not_a_setext_header():
+    blocks = _blocks("Intro\n\n***\n---\n\nbody")
+    assert "header" not in [b.type for b in blocks]
+
+
+def test_small_trailing_section_joins_previous_chunk():
+    chunks = _chunk("# Paper\n\n" + "Body text. " * 30 + "\n\n## Acronyms\n", max_size=1500, min_size=100)
+    assert len(chunks) == 1 and chunks[0].text.rstrip().endswith("## Acronyms")
