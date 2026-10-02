@@ -39,3 +39,23 @@ measured under 4-way concurrency with a shared GPU.
 ## Things we will not do
 No change of primary metric, budget, retriever, or question filter after
 seeing results. Any post-hoc analysis is labelled exploratory.
+
+## Amendments before results (2026-10-02 16:05 IST)
+A harness audit found bugs; all were fixed before any full-run result was
+computed or viewed. No metric, budget, retriever or comparison was changed.
+1. Paired CIs are now computed for every pre-specified comparison (previously
+   only differences against struct/text were computed).
+2. Budgeted and top-k metrics take n-grams per retrieved chunk; concatenation
+   created boundary n-grams that penalised small chunks (up to 20 points on
+   all-gold 20-word chunks).
+3. Qasper evidence strings that are section names ("A ::: B") are dropped; short
+   evidence (< 5 words) must match as a contiguous word sequence (it was
+   bag-of-words).
+4. Key-reuse rate is computed over chunks that received a key, on documents
+   that have every ablation variant (paired).
+5. The rolling-key ablation prompt said "(none yet — this is the first chunk)",
+   contradicting the chunk position; it now says "(not provided)". enr_nork and
+   merged_nork were rebuilt. All later LLM calls use seed 0 (temperature was
+   already 0).
+6. Correction: RQ4 is evaluated on Qasper only (the ablation is not built for
+   FreshStack), so the false-positive estimate is ~0.6, not ~0.8.

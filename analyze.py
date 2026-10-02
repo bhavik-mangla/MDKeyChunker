@@ -35,14 +35,19 @@ def chunk_stats(ids: list[str], variants: list[str]) -> list[dict]:
 
 
 def key_stats(ids: list[str], variant: str, merged: str) -> dict:
-    """Key reuse within each document: what the rolling dictionary is supposed to raise."""
+    """Key reuse within each document: what the rolling dictionary is supposed to raise.
+
+    `ids` must be the same for every variant compared (paired); reuse is
+    computed over chunks that received a key.
+    """
     enr, mer = load(variant, ids), load(merged, ids)
-    n = uniq = shared_chunks = adjacent_same = adjacent_pairs = 0
+    n = n_keyed = uniq = shared_chunks = adjacent_same = adjacent_pairs = 0
     related = related_nonempty = 0
     for d in enr.values():
         keys = [c["key"] for c in d["chunks"]]
         cnt = Counter(k for k in keys if k)
         n += len(keys)
+        n_keyed += sum(cnt.values())
         uniq += len(cnt)
         shared_chunks += sum(c for c in cnt.values() if c > 1)
         adjacent_pairs += max(len(keys) - 1, 0)
@@ -50,13 +55,15 @@ def key_stats(ids: list[str], variant: str, merged: str) -> dict:
         related += sum(len(c["related_keys"]) for c in d["chunks"])
         related_nonempty += sum(1 for c in d["chunks"] if c["related_keys"])
     after = sum(len(d["chunks"]) for d in mer.values())
-    return {"variant": variant, "chunks": n, "unique_keys": uniq,
-            "key_reuse_rate": round(1 - uniq / n, 3) if n else None,
+    return {"variant": variant, "docs": len(enr), "chunks": n, "keyed_chunks": n_keyed, "unique_keys": uniq,
+            "key_reuse_rate": round(1 - uniq / n_keyed, 3) if n_keyed else None,
             "chunks_sharing_a_key": shared_chunks,
             "adjacent_same_key": round(adjacent_same / adjacent_pairs, 3) if adjacent_pairs else None,
             "chunks_after_merge": after, "removed_by_merge": n - after,
-            "related_keys_per_chunk": round(related / n, 2) if n else None,
-            "chunks_with_related_keys": round(related_nonempty / n, 3) if n else None}
+            # related_keys are only meaningful when the prompt shows the dictionary
+            **({} if "nork" in variant else {
+                "related_keys_per_chunk": round(related / n, 2) if n else None,
+                "chunks_with_related_keys": round(related_nonempty / n, 3) if n else None})}
 
 
 def cost_stats(ids: list[str], variant: str) -> dict:
@@ -74,7 +81,7 @@ def cost_stats(ids: list[str], variant: str) -> dict:
 
 
 def latex_grid(results: list[dict], metric: str, caption: str, label: str) -> str:
-    rows = [r for r in results if r["metric"] == metric]
+    rows = [r for r in results if r.get("kind") == "system" and r["metric"] == metric]
     rets = sorted({r["retriever"] for r in rows})
     syss = list(dict.fromkeys(r["system"] for r in rows))
     out = ["\\begin{table*}[t]", "\\centering\\small", f"\\caption{{{caption}}}", f"\\label{{{label}}}",
@@ -104,11 +111,15 @@ def main() -> None:
     else:
         ids = [d["id"] for d in json.loads((ROOT / "data" / "freshstack_docs.json").read_text())]
         res_path, variants = ROOT / "results" / "freshstack.json", \
-            ["fixed512", "fixedtok", "struct", "enr_rk", "merged_rk"]
+            ["fixed512", "fixedtok", "struct", "enr_rk", "merged_rk", "cr"]
         ablation = [("enr_rk", "merged_rk")]
 
-    report = {"chunk_stats": chunk_stats(ids, variants),
-              "key_stats": [key_stats(ids, e, m) for e, m in ablation],
+    # Pair the ablation: only documents that have every enrichment/merge variant
+    needed = [v for pair in ablation for v in pair]
+    paired_ids = [i for i in ids if all((CACHE / v / f"{i}.json").exists() for v in needed)]
+    report = {"paired_docs_for_key_stats": len(paired_ids),
+              "chunk_stats": chunk_stats(ids, variants),
+              "key_stats": [key_stats(paired_ids, e, m) for e, m in ablation],
               "cost": [cost_stats(ids, v) for v in ("enr_rk", "enr_nork", "cr")]}
     out = ROOT / "results" / f"{args.dataset}_analysis.json"
     out.write_text(json.dumps(report, indent=1))

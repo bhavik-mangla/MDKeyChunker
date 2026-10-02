@@ -11,8 +11,8 @@ import argparse
 import json
 from pathlib import Path
 
-from evaluate import (BASELINE, CACHE, ENC, SYSTEMS, cluster_bootstrap, ngrams, print_table,
-                      rank, render, words)
+from evaluate import (CACHE, SYSTEMS, ngrams, print_comparisons, print_table, rank, render,
+                      retrieved_units, summarize, unit_grams, words)
 
 ROOT = Path(__file__).parent
 
@@ -31,12 +31,7 @@ def question_metrics(order: list[int], chunks: list[dict], gold_grams: set) -> d
     m = {f"hit@{k}": float(any(rel[:k])) for k in (1, 3, 5, 10)}
     m["mrr@10"] = next((1.0 / (r + 1) for r, x in enumerate(rel) if x), 0.0)
     for budget in (512, 1024, 2048):
-        toks: list[int] = []
-        for i in order:
-            toks += ENC.encode(chunks[i]["text"] + "\n")
-            if len(toks) >= budget:
-                break
-        got = ngrams(words(ENC.decode(toks[:budget])))
+        got = unit_grams(retrieved_units(order, chunks, budget=budget))  # per-chunk grams
         inter = len(got & gold_grams)
         m[f"prec@{budget}t"] = inter / len(got) if got else 0.0
         m[f"rec@{budget}t"] = inter / len(gold_grams) if gold_grams else 0.0
@@ -67,18 +62,11 @@ def main() -> None:
                     # Questions are independent here; cluster = question
                     per.setdefault((r, f"{cs}/{mode}", metric), {})[q["qid"]] = [v]
 
-    results = []
-    base = f"{BASELINE[0]}/{BASELINE[1]}"
-    for (r, sysname, metric), pp in per.items():
-        mean, lo, hi = cluster_bootstrap(pp)
-        bp = per[(r, base, metric)]
-        diff = {k: [a - b for a, b in zip(pp[k], bp[k])] for k in pp}
-        dmean, dlo, dhi = cluster_bootstrap(diff)
-        results.append({"retriever": r, "system": sysname, "metric": metric, "mean": mean,
-                        "ci": [lo, hi], "diff_vs_struct": dmean, "diff_ci": [dlo, dhi]})
+    results = summarize(per)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1))
-    for metric in ("hit@5", "mrr@10", "prec@1024t", "rec@1024t"):
+    print_comparisons(results, "prec@1024t")
+    for metric in ("prec@1024t", "rec@1024t", "hit@5", "mrr@10"):
         print_table(results, metric)
 
 

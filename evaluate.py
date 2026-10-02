@@ -44,6 +44,37 @@ SYSTEMS = [
     ("merged_nork", "meta"),
 ]
 BASELINE = ("struct", "text")
+# Pre-registered paired comparisons (ANALYSIS_PLAN.md): (system A, system B), reported as A - B
+COMPARISONS = [
+    ("struct/text", "fixedtok/text"), ("struct/text", "fixed512/text"),      # RQ1
+    ("enr_rk/meta", "struct/tc"),                                          # RQ2
+    ("enr_rk/meta", "cr/cr"),                                              # RQ3
+    ("merged_rk/meta", "merged_nork/meta"), ("merged_rk/meta", "enr_rk/meta"),  # RQ4b
+]
+
+
+def summarize(per: dict) -> list[dict]:
+    """Per-system means and paired comparison CIs from per[(retriever, system, metric)][cluster]."""
+    results = []
+    base = f"{BASELINE[0]}/{BASELINE[1]}"
+    for (r, sysname, metric), pp in per.items():
+        mean, lo, hi = cluster_bootstrap(pp)
+        dmean, dlo, dhi = cluster_bootstrap(paired(pp, per[(r, base, metric)]))
+        results.append({"kind": "system", "retriever": r, "system": sysname, "metric": metric,
+                        "mean": mean, "ci": [lo, hi], "diff_vs_struct": dmean, "diff_ci": [dlo, dhi]})
+    for a, b in COMPARISONS:
+        for (r, sysname, metric), pa in per.items():
+            if sysname != a or (r, b, metric) not in per:
+                continue
+            dmean, dlo, dhi = cluster_bootstrap(paired(pa, per[(r, b, metric)]))
+            results.append({"kind": "comparison", "retriever": r, "a": a, "b": b, "metric": metric,
+                            "diff": dmean, "ci": [dlo, dhi], "excludes_zero": dlo > 0 or dhi < 0})
+    return results
+
+
+def paired(pa: dict, pb: dict) -> dict:
+    assert pa.keys() == pb.keys() and all(len(pa[k]) == len(pb[k]) for k in pa), "unpaired lists"
+    return {k: [x - y for x, y in zip(pa[k], pb[k])] for k in pa}
 TOKEN = re.compile(r"[a-z0-9]+")
 
 
@@ -67,12 +98,38 @@ def ngrams(ws: list[str], n: int = 5) -> set:
     return {tuple(ws[i:i + n]) for i in range(len(ws) - n + 1)} if len(ws) >= n else {tuple(ws)}
 
 
-def covered(evidence: str, retrieved_ngrams: set, retrieved_words: set) -> bool:
+def retrieved_units(order: list[int], chunks: list[dict], k: int | None = None,
+                    budget: int | None = None) -> list[list[str]]:
+    """Word lists of the retrieved chunks, in rank order.
+
+    With a token budget, chunks are taken in order and the last one is cut at
+    the budget. Keeping chunks separate (rather than concatenating) avoids
+    counting n-grams that straddle a chunk boundary, which would otherwise
+    penalise systems with many small chunks.
+    """
+    units, used = [], 0
+    for i in (order[:k] if k else order):
+        toks = ENC.encode(chunks[i]["text"])
+        if budget is not None:
+            toks = toks[: budget - used]
+            used += len(toks)
+        units.append(words(ENC.decode(toks)))
+        if budget is not None and used >= budget:
+            break
+    return units
+
+
+def unit_grams(units: list[list[str]]) -> set:
+    return set().union(*(ngrams(u) for u in units if u)) if units else set()
+
+
+def covered(evidence: str, units: list[list[str]], grams: set) -> bool:
     ws = words(evidence)
-    if len(ws) < 5:
-        return bool(ws) and all(w in retrieved_words for w in ws)
-    grams = ngrams(ws)
-    return sum(g in retrieved_ngrams for g in grams) / len(grams) >= 0.5
+    if len(ws) < 5:  # short evidence must appear as a contiguous word sequence in one chunk
+        n = len(ws)
+        return bool(ws) and any(u[i:i + n] == ws for u in units for i in range(len(u) - n + 1))
+    eg = ngrams(ws)
+    return sum(g in grams for g in eg) / len(eg) >= 0.5
 
 
 def embed(model_key: str, texts: list[str], is_query: bool) -> np.ndarray:
@@ -125,21 +182,15 @@ def rank(retriever: str, docs: list[str], queries: list[str]) -> list[list[int]]
 def question_metrics(order: list[int], chunks: list[dict], evidence: list[str]) -> dict:
     m = {}
     for k in (1, 3, 5):
-        text = "\n".join(chunks[i]["text"] for i in order[:k])
-        ws = words(text)
-        g, wset = ngrams(ws), set(ws)
-        cov = [covered(e, g, wset) for e in evidence]
+        units = retrieved_units(order, chunks, k=k)
+        g = unit_grams(units)
+        cov = [covered(e, units, g) for e in evidence]
         m[f"hit@{k}"] = float(any(cov))
         m[f"rec@{k}"] = sum(cov) / len(cov)
     for budget in (256, 512, 1024):
-        toks: list[int] = []
-        for i in order:
-            toks += ENC.encode(chunks[i]["text"] + "\n")
-            if len(toks) >= budget:
-                break
-        ws = words(ENC.decode(toks[:budget]))
-        g, wset = ngrams(ws), set(ws)
-        cov = [covered(e, g, wset) for e in evidence]
+        units = retrieved_units(order, chunks, budget=budget)
+        g = unit_grams(units)
+        cov = [covered(e, units, g) for e in evidence]
         m[f"rec@{budget}t"] = sum(cov) / len(cov)
     return m
 
@@ -171,6 +222,11 @@ def main() -> None:
     if len(complete) < len(papers):
         print(f"evaluating {len(complete)}/{len(papers)} papers complete for all systems; "
               f"excluded: {sorted(set(p['id'] for p in papers) - set(p['id'] for p in complete))}")
+    # Qasper sometimes marks a section name ("A ::: B") as evidence; no chunk text can contain it
+    for p in complete:
+        for q in p["questions"]:
+            q["evidence"] = [e for e in q["evidence"] if ":::" not in e]
+        p["questions"] = [q for q in p["questions"] if q["evidence"]]
     papers = complete
     print(f"{len(papers)} papers, {sum(len(p['questions']) for p in papers)} questions")
 
@@ -186,24 +242,24 @@ def main() -> None:
                     for metric, v in question_metrics(order, chunks, q["evidence"]).items():
                         per.setdefault((r, f"{cs}/{mode}", metric), {}).setdefault(p["id"], []).append(v)
 
-    results = []
-    base = f"{BASELINE[0]}/{BASELINE[1]}"
-    for (r, sysname, metric), pp in per.items():
-        mean, lo, hi = cluster_bootstrap(pp)
-        bp = per[(r, base, metric)]
-        diff = {pid: [a - b for a, b in zip(pp[pid], bp[pid])] for pid in pp}
-        dmean, dlo, dhi = cluster_bootstrap(diff)
-        results.append({"retriever": r, "system": sysname, "metric": metric, "mean": mean,
-                        "ci": [lo, hi], "diff_vs_struct": dmean, "diff_ci": [dlo, dhi]})
-
+    results = summarize(per)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1))
+    print_comparisons(results, "rec@512t")
     print_table(results, "rec@512t")
     print_table(results, "hit@5")
 
 
+def print_comparisons(results: list[dict], metric: str) -> None:
+    print(f"\nPre-registered comparisons on {metric} (A - B, 95% CI; * = excludes 0)")
+    for c in (r for r in results if r.get("kind") == "comparison" and r["metric"] == metric):
+        star = "*" if c["excludes_zero"] else " "
+        print(f"  {c['retriever']:7} {c['a']:18} - {c['b']:18} {c['diff']:+.3f} "
+              f"[{c['ci'][0]:+.3f},{c['ci'][1]:+.3f}]{star}")
+
+
 def print_table(results: list[dict], metric: str) -> None:
-    rows = [r for r in results if r["metric"] == metric]
+    rows = [r for r in results if r.get("kind") == "system" and r["metric"] == metric]
     rets = sorted({r["retriever"] for r in rows})
     syss = list(dict.fromkeys(r["system"] for r in rows))
     print(f"\n{metric}  (mean [95% CI]; * = CI of difference vs struct/text excludes 0)")

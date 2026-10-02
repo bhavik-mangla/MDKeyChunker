@@ -45,10 +45,14 @@ Please give a short succinct context to situate this chunk within the overall do
 
 
 class NoRollingKeysEnricher(LLMEnricher):
-    """Ablation A1: the prompt never sees prior keys. Everything else is identical."""
+    """Ablation A1: the prompt never sees prior keys. Everything else is identical.
+
+    Says "(not provided)" rather than the first-chunk placeholder, which would
+    contradict the chunk position and previous summary in the same prompt.
+    """
 
     def _format_rolling_keys(self) -> str:
-        return "(none yet — this is the first chunk)"
+        return "(not provided)"
 
 
 class OllamaJSON:
@@ -72,7 +76,7 @@ class OllamaJSON:
             r = post_with_retry(f"{OLLAMA}/api/chat", {
                 "model": self.model, "stream": False, "format": "json", "think": False,
                 "messages": [{"role": "user", "content": prompt}],
-                "options": {"temperature": 0, "num_predict": max_tokens, "num_ctx": NUM_CTX},
+                "options": {"temperature": 0, "seed": 0, "num_predict": max_tokens, "num_ctx": NUM_CTX},
             })
         except Exception:
             self.failures += 1  # the enricher swallows this; build_paper refuses to cache
@@ -129,7 +133,7 @@ def contextual_prefixes(md: str, chunks: list[dict], model: str) -> tuple[list[d
             "model": model, "stream": False,
             "messages": [{"role": "user", "content": prompt}],
             "think": False,
-            "options": {"num_ctx": NUM_CTX, "temperature": 0, "num_predict": 120},
+            "options": {"num_ctx": NUM_CTX, "temperature": 0, "seed": 0, "num_predict": 120},
         })
         ctx = r["message"]["content"].strip()
         in_tok += r.get("prompt_eval_count", 0)
