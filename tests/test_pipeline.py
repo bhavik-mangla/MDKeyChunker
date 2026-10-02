@@ -50,7 +50,7 @@ def _make_pipeline(mock_result=None) -> Pipeline:
     pipeline.config = config
 
     from mdkeychunker.chunker import MarkdownChunker
-    from mdkeychunker.enricher import Enricher
+    from mdkeychunker.enricher import LLMEnricher
     from mdkeychunker.restructurer import Restructurer
 
     pipeline.chunker = MarkdownChunker(config)
@@ -59,7 +59,7 @@ def _make_pipeline(mock_result=None) -> Pipeline:
     mock_llm = MagicMock()
     mock_llm.call_json.return_value = mock_result or MOCK_LLM_RESULT
     pipeline.llm = mock_llm
-    pipeline.enricher = Enricher(mock_llm)
+    pipeline.enricher = LLMEnricher(mock_llm)
 
     return pipeline
 
@@ -120,14 +120,14 @@ def test_pipeline_merge_same_key():
     config = Config(merge_by_keys=True, max_merged_size=3000)
 
     from mdkeychunker.chunker import MarkdownChunker
-    from mdkeychunker.enricher import Enricher
+    from mdkeychunker.enricher import LLMEnricher
     from mdkeychunker.restructurer import Restructurer
 
     pipeline = Pipeline.__new__(Pipeline)
     pipeline.config = config
     pipeline.chunker = MarkdownChunker(config)
     pipeline.llm = mock_llm
-    pipeline.enricher = Enricher(mock_llm)
+    pipeline.enricher = LLMEnricher(mock_llm)
     pipeline.restructurer = Restructurer(config)
 
     chunks = pipeline.process_text(SAMPLE_MD)
@@ -219,14 +219,14 @@ def test_pipeline_survives_llm_exception():
     pipeline.config = config
 
     from mdkeychunker.chunker import MarkdownChunker
-    from mdkeychunker.enricher import Enricher
+    from mdkeychunker.enricher import LLMEnricher
     from mdkeychunker.restructurer import Restructurer
 
     mock_llm = MagicMock()
     mock_llm.call_json.side_effect = ConnectionError("Network down")
     pipeline.chunker = MarkdownChunker(config)
     pipeline.llm = mock_llm
-    pipeline.enricher = Enricher(mock_llm)
+    pipeline.enricher = LLMEnricher(mock_llm)
     pipeline.restructurer = Restructurer(config)
 
     # Should not raise — gracefully returns unenriched chunks
