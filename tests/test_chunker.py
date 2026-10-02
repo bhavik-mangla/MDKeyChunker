@@ -196,3 +196,47 @@ def test_crlf_and_trailing_hashes():
 def test_paren_ordered_list_is_a_list():
     chunks = _chunk("1) first item\n2) second item\n3) third item", min_size=1)
     assert "list" in chunks[0].content_types
+
+
+def test_header_before_oversized_block_stays_with_it():
+    code = "```\n" + "x = 1\n" * 400 + "```"
+    chunks = _chunk(f"# A\n\nintro text here\n\n## B\n\n{code}", max_size=1500, min_size=10)
+    for c in chunks:
+        assert not c.text.rstrip().splitlines()[-1].startswith("#")
+    code_chunk = next(c for c in chunks if "code" in c.content_types)
+    assert code_chunk.text.startswith("## B") and code_chunk.section_title == "A > B"
+
+
+def test_header_is_never_a_chunk_on_its_own():
+    chunks = _chunk("# A\n\n" + "word " * 1000, max_size=1500, min_size=100)
+    assert len(chunks) == 1 and chunks[0].text.startswith("# A")
+
+
+def test_short_sections_are_grouped_and_labelled_by_first_section():
+    md = "\n\n".join(f"## S{i}\n\nshort body {i}." for i in range(6))
+    chunks = _chunk(md, max_size=1500, min_size=100)
+    assert len(chunks) == 1
+    assert chunks[0].section_title == "S0"
+
+
+def test_merged_small_chunk_keeps_its_own_section_label():
+    big = "```\n" + "y = 2\n" * 400 + "```"
+    chunks = _chunk(f"## S0\n\nshort body.\n\n## S1\n\n{big}", max_size=1500, min_size=100)
+    first = chunks[0]
+    assert first.text.startswith("## S0") and first.section_title == "S0"
+
+
+def test_backtick_info_string_with_backticks_is_not_a_fence():
+    blocks = _blocks("```js``` is inline\n\n# H\n\nbody")
+    assert [b.type for b in blocks] == ["paragraph", "header", "paragraph"]
+
+
+def test_deeply_indented_fence_does_not_close_block():
+    blocks = _blocks("```\n    ```\nstill code\n```\n\n# After")
+    assert [b.type for b in blocks] == ["code", "header"]
+    assert "still code" in blocks[0].content
+
+
+def test_thematic_break_is_not_a_setext_header():
+    blocks = _blocks("Intro\n\n***\n---\n\nbody")
+    assert "header" not in [b.type for b in blocks]
