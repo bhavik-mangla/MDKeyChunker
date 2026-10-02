@@ -70,3 +70,6 @@ PENDING_TASKS.md
 
 # Experiments (raw data, not for public repo)
 experiments/
+
+# Chunking study: datasets, caches and logs are rebuilt locally
+benchmarks/chunking_study/data/
