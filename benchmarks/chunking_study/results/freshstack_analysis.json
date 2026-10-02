@@ -1,0 +1,84 @@
+{
+ "paired_docs_for_key_stats": 24,
+ "chunk_stats": [
+  {
+   "variant": "fixed512",
+   "docs": 24,
+   "chunks": 1178,
+   "median_chars": 512.0,
+   "mean_chars": 506
+  },
+  {
+   "variant": "fixedtok",
+   "docs": 24,
+   "chunks": 592,
+   "median_chars": 1163.0,
+   "mean_chars": 1148
+  },
+  {
+   "variant": "struct",
+   "docs": 24,
+   "chunks": 742,
+   "median_chars": 726.5,
+   "mean_chars": 803
+  },
+  {
+   "variant": "enr_rk",
+   "docs": 24,
+   "chunks": 742,
+   "median_chars": 726.5,
+   "mean_chars": 803
+  },
+  {
+   "variant": "merged_rk",
+   "docs": 24,
+   "chunks": 686,
+   "median_chars": 759.5,
+   "mean_chars": 868
+  },
+  {
+   "variant": "cr",
+   "docs": 24,
+   "chunks": 742,
+   "median_chars": 726.5,
+   "mean_chars": 803
+  }
+ ],
+ "key_stats": [
+  {
+   "variant": "enr_rk",
+   "docs": 24,
+   "chunks": 742,
+   "keyed_chunks": 742,
+   "unique_keys": 678,
+   "key_reuse_rate": 0.086,
+   "chunks_sharing_a_key": 116,
+   "adjacent_same_key": 0.053,
+   "chunks_after_merge": 686,
+   "removed_by_merge": 56,
+   "related_keys_per_chunk": 1.11,
+   "chunks_with_related_keys": 0.854
+  }
+ ],
+ "cost": [
+  {
+   "variant": "enr_rk",
+   "model": "qwen2.5:7b",
+   "calls": 742,
+   "sec_per_call_wall": 36.0,
+   "in_tokens_per_call": 1065,
+   "out_tokens_per_call": 168
+  },
+  {
+   "variant": "enr_nork"
+  },
+  {
+   "variant": "cr",
+   "model": "qwen2.5:7b",
+   "calls": 742,
+   "sec_per_call_wall": 12.0,
+   "in_tokens_per_call": 9825,
+   "out_tokens_per_call": 48
+  }
+ ]
+}
