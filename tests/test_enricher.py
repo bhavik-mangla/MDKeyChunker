@@ -1,7 +1,7 @@
 """Tests for Enricher."""
 import pytest
 from unittest.mock import MagicMock
-from mdkeychunker.enricher import Enricher
+from mdkeychunker.enricher import LLMEnricher
 from mdkeychunker.models import Chunk
 
 
@@ -28,7 +28,7 @@ SAMPLE_RESULT = {
 
 def test_enrich_single_chunk():
     llm = _mock_llm(SAMPLE_RESULT)
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunks = [_make_chunk()]
     result = enricher.enrich_chunks(chunks)
 
@@ -42,7 +42,7 @@ def test_enrich_single_chunk():
 
 def test_rolling_keys_accumulate():
     llm = _mock_llm(SAMPLE_RESULT)
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
 
     chunks = [_make_chunk() for _ in range(3)]
     enricher.enrich_chunks(chunks)
@@ -56,7 +56,7 @@ def test_rolling_keys_passed_to_prompt():
     llm = MagicMock()
     llm.call_json.return_value = {**SAMPLE_RESULT, "key": "deep learning"}
 
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunks = [_make_chunk("Chunk 1"), _make_chunk("Chunk 2")]
     enricher.enrich_chunks(chunks)
 
@@ -68,7 +68,7 @@ def test_rolling_keys_passed_to_prompt():
 
 def test_llm_failure_leaves_chunk_intact():
     llm = _mock_llm(None)  # LLM returns None
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunk = _make_chunk("Some text")
     result = enricher.enrich_chunks([chunk])
 
@@ -90,7 +90,7 @@ def test_related_keys_populated():
     llm = MagicMock()
     llm.call_json.side_effect = [first_result, second_result]
 
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunks = [_make_chunk("Chunk A"), _make_chunk("Chunk B")]
     result = enricher.enrich_chunks(chunks)
 
@@ -100,7 +100,7 @@ def test_related_keys_populated():
 def test_first_chunk_prompt_has_no_rolling_keys():
     llm = MagicMock()
     llm.call_json.return_value = SAMPLE_RESULT
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     enricher.enrich_chunks([_make_chunk()])
 
     prompt = llm.call_json.call_args_list[0][0][0]
@@ -114,17 +114,17 @@ def test_rolling_keys_track_first_and_last_chunk():
         {**SAMPLE_RESULT, "key": "topic B"},
         {**SAMPLE_RESULT, "key": "topic A"},
     ]
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     enricher.enrich_chunks([_make_chunk() for _ in range(3)])
 
-    assert enricher.rolling_keys["topic A"]["first_chunk"] == 0
-    assert enricher.rolling_keys["topic A"]["last_chunk"] == 2
-    assert enricher.rolling_keys["topic A"]["count"] == 2
+    assert enricher.rolling_keys["topic a"]["first_chunk"] == 0
+    assert enricher.rolling_keys["topic a"]["last_chunk"] == 2
+    assert enricher.rolling_keys["topic a"]["count"] == 2
 
 
 def test_enrich_empty_list():
     llm = _mock_llm(SAMPLE_RESULT)
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     result = enricher.enrich_chunks([])
     assert result == []
 
@@ -135,7 +135,7 @@ def test_enrich_empty_list():
 def test_reset_clears_rolling_keys():
     """reset() must clear rolling keys so documents don't leak into each other."""
     llm = _mock_llm(SAMPLE_RESULT)
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     enricher.enrich_chunks([_make_chunk()])
     assert len(enricher.rolling_keys) > 0
     enricher.reset()
@@ -151,7 +151,7 @@ def test_rolling_keys_pruned_at_limit():
         for i in range(60)
     ]
     llm.call_json.side_effect = results
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     enricher.enrich_chunks([_make_chunk() for _ in range(60)])
     assert len(enricher.rolling_keys) <= MAX_ROLLING_KEYS
 
@@ -164,19 +164,19 @@ def test_format_rolling_keys_shows_counts():
         {**SAMPLE_RESULT, "key": "topic B"},
         {**SAMPLE_RESULT, "key": "topic A"},
     ]
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     enricher.enrich_chunks([_make_chunk() for _ in range(3)])
     formatted = enricher._format_rolling_keys()
-    assert "topic A" in formatted
+    assert "topic a" in formatted
     assert "2x" in formatted  # topic A seen twice
-    assert "topic B" in formatted
+    assert "topic b" in formatted
 
 
 def test_llm_exception_does_not_crash_pipeline():
     """If LLM throws an exception, the chunk should be returned unenriched."""
     llm = MagicMock()
     llm.call_json.side_effect = ConnectionError("Network error")
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunk = _make_chunk("Some text")
     result = enricher.enrich_chunks([chunk])
     assert result[0].text == "Some text"
@@ -187,7 +187,7 @@ def test_prompt_includes_position_and_prev_summary():
     """Prompt must include chunk position and previous chunk summary."""
     llm = MagicMock()
     llm.call_json.return_value = SAMPLE_RESULT
-    enricher = Enricher(llm)
+    enricher = LLMEnricher(llm)
     chunks = [_make_chunk("First"), _make_chunk("Second")]
     chunks[0].summary = ""  # first chunk has no prior summary
     enricher.enrich_chunks(chunks)
@@ -200,3 +200,93 @@ def test_prompt_includes_position_and_prev_summary():
     # Second chunk prompt should mention position 2 of 2
     second_prompt = llm.call_json.call_args_list[1][0][0]
     assert "2 of 2" in second_prompt
+
+
+# ─── Regression tests: prompt content and malformed LLM output ─────────────
+
+
+def test_prompt_contains_chunk_text_and_rolling_keys():
+    """The prompt sent to the LLM must carry the chunk text and prior keys."""
+    llm = MagicMock()
+    llm.call_json.side_effect = [
+        {**SAMPLE_RESULT, "key": "oauth token flow"},
+        SAMPLE_RESULT,
+    ]
+    enricher = LLMEnricher(llm)
+    enricher.enrich_chunks([_make_chunk("First chunk body."), _make_chunk("Second chunk body.")])
+    second_prompt = llm.call_json.call_args_list[1].args[0]
+    assert "Second chunk body." in second_prompt
+    assert "oauth token flow" in second_prompt
+    assert "JSON" in second_prompt  # required by OpenAI json_object mode
+
+
+@pytest.mark.parametrize("bad", [
+    {"key": None},
+    {"key": 5},
+    {"keywords": "a, b", "entities": ["Python"], "questions": None},
+    ["not", "a", "dict"],
+])
+def test_malformed_llm_output_is_coerced(bad):
+    enricher = LLMEnricher(_mock_llm(bad))
+    chunk = enricher.enrich_chunks([_make_chunk()])[0]
+    assert isinstance(chunk.key, str)
+    assert all(isinstance(k, str) for k in chunk.keywords)
+    assert all(isinstance(e, dict) and "name" in e for e in chunk.entities)
+    assert isinstance(chunk.questions, list)
+
+
+def test_string_keywords_are_split():
+    enricher = LLMEnricher(_mock_llm({**SAMPLE_RESULT, "keywords": "bm25, faiss"}))
+    chunk = enricher.enrich_chunks([_make_chunk()])[0]
+    assert chunk.keywords == ["bm25", "faiss"]
+
+
+def test_string_question_is_not_split_on_commas():
+    q = "How does BM25 rank documents, and why does it beat TF-IDF?"
+    enricher = LLMEnricher(_mock_llm({**SAMPLE_RESULT, "questions": q}))
+    assert enricher.enrich_chunks([_make_chunk()])[0].questions == [q]
+
+
+def test_related_keys_are_normalised_and_restricted_to_rolling_keys():
+    llm = MagicMock()
+    llm.call_json.side_effect = [
+        {**SAMPLE_RESULT, "key": "oauth token flow"},
+        {**SAMPLE_RESULT, "key": "refresh tokens",
+         "related_keys": ["OAuth Token Flow", "invented key"]},
+    ]
+    chunks = LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    assert chunks[1].related_keys == ["oauth token flow"]
+
+
+def test_fatal_llm_error_is_raised_not_swallowed():
+    class AuthenticationError(Exception):
+        pass
+    llm = MagicMock()
+    llm.call_json.side_effect = AuthenticationError("bad key")
+    with pytest.raises(AuthenticationError):
+        LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    assert llm.call_json.call_count == 1
+
+
+def test_failed_previous_chunk_is_not_called_first_chunk():
+    llm = MagicMock()
+    llm.call_json.side_effect = [None, SAMPLE_RESULT]
+    LLMEnricher(llm).enrich_chunks([_make_chunk(), _make_chunk()])
+    second_prompt = llm.call_json.call_args_list[1].args[0]
+    assert "(unavailable)" in second_prompt
+
+
+def test_spacy_key_reuse_matches_keys_with_symbols():
+    from mdkeychunker.enricher import SpacyEnricher
+
+    class _Doc:
+        ents = []
+        noun_chunks = []
+
+    enricher = SpacyEnricher.__new__(SpacyEnricher)
+    enricher.rolling_keys = {"c++": {"first_chunk": 0, "last_chunk": 0, "count": 1}}
+    enricher.nlp = lambda text: _Doc()
+    chunk = enricher.enrich_chunks([_make_chunk("We use c++ here.")])[0]
+    assert chunk.key == "c++"
+    chunk = enricher.enrich_chunks([_make_chunk("We maintain abc++x.")])[0]
+    assert chunk.key == ""

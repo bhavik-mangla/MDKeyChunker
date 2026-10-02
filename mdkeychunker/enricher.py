@@ -9,14 +9,51 @@ from .models import Chunk
 log = logging.getLogger(__name__)
 
 MAX_ROLLING_KEYS = 40  # hard cap — keeps prompt tokens manageable
+MAX_FIELD_LEN = 1000  # caps runaway LLM output that would otherwise grow later prompts
+MAX_KEY_LEN = 80
+# Errors that will fail identically on every chunk; retrying the rest is pointless
+FATAL_LLM_ERRORS = ("AuthenticationError", "PermissionDeniedError", "NotFoundError")
 
 ENRICH_PROMPT = '''You are a document analysis expert. Analyze this text chunk from a Markdown document and extract structured metadata for a RAG (Retrieval-Augmented Generation) system.
-...''' # (truncated for brevity in replace call, keeping existing constant)
+
+**Section Path:** {section_title}
+**Chunk Position:** {position} of {total} chunks
+**Previous Chunk Summary:** {prev_summary}
+
+**Chunk Text:**
+{chunk_text}
+
+**Rolling Keys (specific subtopics seen in previous chunks):**
+{rolling_keys}
+
+Extract the following in a single JSON response:
+
+{{
+  "title": "A short descriptive title for this chunk (3-8 words)",
+  "summary": "A 1-2 sentence summary (30-60 words) capturing the key information. Do NOT just repeat the first sentence. Focus on what makes this chunk UNIQUE — what would a search engine snippet show?",
+  "keywords": ["5-8 salient terms or phrases, domain-specific preferred"],
+  "entities": [
+    {{"name": "entity name", "type": "PERSON|ORG|LOC|TECH|CONCEPT|EVENT|METRIC"}}
+  ],
+  "questions": ["2-3 specific questions this chunk can answer"],
+  "key": "The SPECIFIC subtopic that makes this chunk UNIQUE within the document. 2-5 words, lowercase. CRITICAL RULES: (1) Must DISTINGUISH this chunk from other chunks about the same broad topic. (2) Think: if someone asked what SPECIFIC ASPECT this chunk covers, what would you say? (3) Examples: admissions process, gradient descent optimization, oauth token flow, q3 revenue breakdown. (4) Two chunks should share a key ONLY if they cover the EXACT same specific aspect and would make a coherent single piece when combined. (5) REUSE a key from the rolling keys list if this chunk CONTINUES the same specific discussion. (6) A key should NOT be the document broad topic — it must be more specific than that. (7) NEVER use a 1-word key that could describe the whole document.",
+  "related_keys": ["From the rolling keys above, pick 0-3 keys that this chunk DIRECTLY discusses or depends on. Err on the side of fewer. Ask: would a reader need to read the related-key chunk to understand THIS chunk? If not, do not include it. An empty list is perfectly fine."]
+}}
+
+Rules:
+- "related_keys" must be a SUBSET of the rolling keys provided — only include genuinely relevant ones
+- "entities" should include technical terms, proper nouns, and domain concepts with types: PERSON (people), ORG (organizations), LOC (locations), TECH (technologies/tools), CONCEPT (abstract concepts), EVENT (events/dates), METRIC (measurements/KPIs)
+- "keywords" should be specific and domain-relevant (not generic words like "system", "data", "process")
+- "questions" should be natural questions a user would ask that this chunk answers
+- Return ONLY valid JSON, no extra text'''
 
 class Enricher:
     """Base class for enrichment strategies."""
-    def __init__(self):
+    def __init__(self) -> None:
         self.rolling_keys: dict[str, dict] = {}
+
+    def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
+        raise NotImplementedError
 
     def reset(self) -> None:
         self.rolling_keys.clear()
@@ -47,7 +84,11 @@ class LLMEnricher(Enricher):
     def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
         total = len(chunks)
         for i, chunk in enumerate(chunks):
-            prev_summary = chunks[i-1].summary if i > 0 and chunks[i-1].summary else "(first chunk)"
+            if i == 0:
+                prev_summary = "(first chunk)"
+            else:
+                prev_summary = chunks[i-1].summary or "(unavailable)"
+            known_keys = set(self.rolling_keys)
             prompt = ENRICH_PROMPT.format(
                 section_title=chunk.section_title or "(no section)",
                 position=i + 1,
@@ -56,17 +97,55 @@ class LLMEnricher(Enricher):
                 chunk_text=chunk.text,
                 rolling_keys=self._format_rolling_keys(),
             )
-            result = self.llm.call_json(prompt)
-            if result:
-                chunk.title = result.get("title", "")
-                chunk.summary = result.get("summary", "")
-                chunk.keywords = result.get("keywords", [])
-                chunk.entities = result.get("entities", [])
-                chunk.questions = result.get("questions", [])
-                chunk.key = result.get("key", "").lower()
-                chunk.related_keys = result.get("related_keys", [])
+            try:
+                result = self.llm.call_json(prompt, max_tokens=1000)
+            except Exception as e:
+                if type(e).__name__ in FATAL_LLM_ERRORS:
+                    raise
+                log.warning("LLM call failed for chunk %d: %s", i, e)
+                result = None
+
+            if isinstance(result, dict):
+                chunk.title = _as_str(result.get("title"))
+                chunk.summary = _as_str(result.get("summary"))
+                chunk.keywords = _as_str_list(result.get("keywords"), split_commas=True)
+                chunk.entities = _as_entities(result.get("entities"))
+                chunk.questions = _as_str_list(result.get("questions"), split_commas=False)
+                chunk.key = _as_str(result.get("key"), MAX_KEY_LEN).lower()
+                # The prompt requires a subset of the rolling keys; drop anything else
+                chunk.related_keys = [
+                    k for k in (r.lower() for r in _as_str_list(result.get("related_keys"), split_commas=False))
+                    if k in known_keys
+                ]
+            else:
+                log.warning("LLM enrichment failed for chunk %d", i)
             self._update_rolling_keys(chunk.key, i)
         return chunks
+
+
+
+def _as_str(value: object, limit: int = MAX_FIELD_LEN) -> str:
+    return value.strip()[:limit] if isinstance(value, str) else ""
+
+
+def _as_str_list(value: object, split_commas: bool) -> list:
+    if isinstance(value, str):
+        value = value.split(",") if split_commas else [value]
+    if not isinstance(value, list):
+        return []
+    return [s for s in (_as_str(v) for v in value) if s]
+
+
+def _as_entities(value: object) -> list:
+    if not isinstance(value, list):
+        return []
+    out = []
+    for e in value:
+        if isinstance(e, dict) and _as_str(e.get("name")):
+            out.append({"name": _as_str(e.get("name")), "type": _as_str(e.get("type")) or "CONCEPT"})
+        elif isinstance(e, str) and e.strip():
+            out.append({"name": _as_str(e), "type": "CONCEPT"})
+    return out
 
 class SpacyEnricher(Enricher):
     """Lightweight, free enrichment using spaCy for high-speed local processing."""
@@ -75,8 +154,15 @@ class SpacyEnricher(Enricher):
         try:
             import spacy
             self.nlp = spacy.load(f"en_core_web_{model_size}")
-        except ImportError:
-            raise ImportError("spaCy is required for SpacyEnricher. Install with: pip install spacy")
+        except ImportError as e:
+            raise ImportError(
+                "spaCy is required for SpacyEnricher. Install with: pip install 'mdkeychunker[spacy]'"
+            ) from e
+        except OSError as e:
+            raise OSError(
+                f"Could not load spaCy model en_core_web_{model_size} ({e}). If it is not "
+                f"installed, run: python -m spacy download en_core_web_{model_size}"
+            ) from e
 
     def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
         for i, chunk in enumerate(chunks):
@@ -99,7 +185,7 @@ class SpacyEnricher(Enricher):
             chunk.key = ""
             text_lower = chunk.text.lower()
             for seen_key in self.rolling_keys.keys():
-                if seen_key in text_lower:
+                if re.search(rf"(?<!\w){re.escape(seen_key)}(?!\w)", text_lower):
                     chunk.key = seen_key
                     break
 

@@ -187,3 +187,8 @@ def test_call_retries_on_failure():
 
     # Should have been called 2 times (1 initial + 1 retry)
     assert mock_openai.chat.completions.create.call_count == 2
+
+
+def test_unknown_provider_fails_at_construction():
+    with pytest.raises(ValueError, match="Unknown LLM provider"):
+        LLMClient(_config(llm_provider="typo"))

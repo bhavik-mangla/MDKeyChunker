@@ -62,7 +62,6 @@ researchpaper.md
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-figures/
 
 # Internal planning / prompt files
 OPTIMIZATION_PROMPT.md

@@ -25,9 +25,17 @@ class LLMClient:
             self._client = OpenAI(**kwargs)
             return
         if self.provider == "anthropic":
-            from anthropic import Anthropic
+            try:
+                from anthropic import Anthropic
+            except ImportError as e:
+                raise ImportError(
+                    "The anthropic provider needs: pip install 'mdkeychunker[anthropic]'"
+                ) from e
             self._client = Anthropic(api_key=self.config.llm_api_key)
             return
+        raise ValueError(
+            f"Unknown LLM provider {self.provider!r}; use openai, openai_compatible, or anthropic"
+        )
 
     def call(self, prompt: str, max_tokens: int = 1000, retries: int = 4) -> str:
         """Make a single LLM call with exponential-backoff retries. Returns raw text."""

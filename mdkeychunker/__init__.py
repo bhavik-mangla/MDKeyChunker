@@ -1,5 +1,5 @@
 """MDKeyChunker — Markdown chunking with LLM enrichment for RAG."""
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 from .pipeline import Pipeline
 from .models import Chunk
 from .config import Config

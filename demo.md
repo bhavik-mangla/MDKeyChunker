@@ -1,3 +1,5 @@
+> **Sample input for the CLI demo.** This is synthetic text used to exercise the chunker. Any numbers in it are illustrative placeholders, not measured results. For the paper's evaluation see https://arxiv.org/abs/2603.23533.
+
 # Advanced RAG Techniques: A Comprehensive Guide
 
 ## Introduction
