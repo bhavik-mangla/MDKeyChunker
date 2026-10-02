@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdkeychunker"
-version = "0.2.0"
+version = "0.2.1"
 description = "Markdown chunking with LLM enrichment for RAG pipelines"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "MDKeyChunker Team"}
+    {name = "Bhavik Mangla"}
 ]
 keywords = ["markdown", "chunking", "rag", "llm", "retrieval-augmented-generation"]
 classifiers = [
@@ -21,50 +21,45 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 dependencies = [
     "openai>=1.0.0",        # Works with OpenAI, Ollama, vLLM, LM Studio, etc.
-    "anthropic>=0.18.0",    # Native Anthropic support
     "python-dotenv>=1.0.0", # .env config
     "tiktoken>=0.5.0",      # Token counting
-    "spacy>=3.0.0",         # Local semantic enrichment
 ]
 
 [project.optional-dependencies]
+anthropic = ["anthropic>=0.18.0"]  # Native Anthropic support
+spacy = ["spacy>=3.0.0"]           # Local enrichment; also run: python -m spacy download en_core_web_md
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
-    "black>=23.0.0",
     "mypy>=1.5.0",
     "ruff>=0.1.0",
 ]
 benchmark = [
     "sentence-transformers>=2.2.0",
-    "scikit-learn>=1.2.0",
-    "langchain-text-splitters>=0.0.1",
-    "pandas>=2.0.0",
+    "datasets>=2.14.0",
+    "beir>=2.0.0",
+    "torch>=2.0.0",
     "tqdm>=4.66.0",
     "matplotlib>=3.7.0",
-    "seaborn>=0.12.0",
 ]
 
 [project.scripts]
 mdkeychunker = "mdkeychunker.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/MDKeyChunker"
-Repository = "https://github.com/yourusername/MDKeyChunker"
-Issues = "https://github.com/yourusername/MDKeyChunker/issues"
-Changelog = "https://github.com/yourusername/MDKeyChunker/releases"
+Homepage = "https://github.com/bhavik-mangla/MDKeyChunker"
+Repository = "https://github.com/bhavik-mangla/MDKeyChunker"
+Issues = "https://github.com/bhavik-mangla/MDKeyChunker/issues"
+Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/releases"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["mdkeychunker*"]
-
-[tool.black]
-line-length = 100
-target-version = ["py310"]
 
 [tool.mypy]
 python_version = "3.10"
@@ -75,6 +70,8 @@ disallow_untyped_defs = true
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+
+[tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
 
 [tool.pytest.ini_options]
