@@ -71,8 +71,9 @@ class MarkdownChunker:
                     i += consumed
                     continue
 
-            # Fenced code blocks
-            if line.strip().startswith("```") or line.strip().startswith("~~~"):
+            # Fenced code blocks (a backtick info string may not contain backticks)
+            fence_open = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+            if fence_open and not (fence_open.group(1)[0] == "`" and "`" in fence_open.group(2)):
                 block, consumed = self._parse_code_block(lines, i)
                 block.section_title = current_section
                 blocks.append(block)
@@ -85,7 +86,8 @@ class MarkdownChunker:
                 not header_match
                 and line.strip()
                 and i + 1 < len(lines)
-                and re.match(r"^(=+|-+)\s*$", lines[i + 1])
+                and re.match(r"^ {0,3}(=+|-+)\s*$", lines[i + 1])
+                and not re.match(r"^(\*\*\*+|---+|___+)\s*$", line)
                 and not self._is_list_line(line)
                 and not line.strip().startswith(">")
             )
@@ -183,11 +185,12 @@ class MarkdownChunker:
         opener = lines[start].strip()
         fence_char = opener[0]
         fence_len = len(opener) - len(opener.lstrip(fence_char))
-        # CommonMark: closes only on a line of the same char, at least as long, nothing else
-        closer = re.compile(rf"^{re.escape(fence_char)}{{{fence_len},}}\s*$")
+        # CommonMark: closes only on a line of the same char, at least as long,
+        # indented at most 3 spaces, with nothing else on the line
+        closer = re.compile(rf"^ {{0,3}}{re.escape(fence_char)}{{{fence_len},}}[ \t]*$")
         end = start + 1
         while end < len(lines):
-            if closer.match(lines[end].strip()):
+            if closer.match(lines[end]):
                 end += 1
                 break
             end += 1
@@ -299,36 +302,37 @@ class MarkdownChunker:
         chunks: List[Chunk] = []
         current: List[_Block] = []
         current_size = 0
+        has_body = False  # current holds something other than headers
         ATOMIC = {"code", "table", "yaml_front_matter", "blockquote"}
+
+        def flush() -> None:
+            nonlocal current, current_size, has_body
+            chunks.append(self._make_chunk(current))
+            current, current_size, has_body = [], 0, False
 
         for block in blocks:
             bsize = len(block.content)
 
-            # A header starts a new chunk so it never dangles at the end of the
-            # previous one (consecutive headers stay together with their body).
-            if block.type == "header" and any(b.type != "header" for b in current):
-                chunks.append(self._make_chunk(current))
-                current, current_size = [], 0
-
-            if block.type in ATOMIC:
-                # Flush if adding would exceed max (but always include atomic blocks)
-                if current and current_size + bsize > self.max_chunk_size:
-                    chunks.append(self._make_chunk(current))
-                    current, current_size = [], 0
+            if block.type == "header":
+                # A header starts a new chunk once the current one has enough body,
+                # so headers never dangle at the end of the previous chunk.
+                if has_body and current_size >= self.min_chunk_size:
+                    flush()
                 current.append(block)
                 current_size += bsize
-                # Flush after atomic if over max
-                if current_size >= self.max_chunk_size:
-                    chunks.append(self._make_chunk(current))
-                    current, current_size = [], 0
                 continue
 
-            if current_size + bsize > self.max_chunk_size and current:
-                chunks.append(self._make_chunk(current))
-                current, current_size = [], 0
+            # Size-based flush, but never strand headers without their content.
+            if has_body and current_size + bsize > self.max_chunk_size:
+                flush()
 
             current.append(block)
             current_size += bsize
+            has_body = True
+
+            # Flush after an atomic block that fills the chunk
+            if block.type in ATOMIC and current_size >= self.max_chunk_size:
+                flush()
 
         if current:
             chunks.append(self._make_chunk(current))
@@ -362,7 +366,7 @@ class MarkdownChunker:
                 if len(c.text) + len(nxt.text) <= self.max_chunk_size * 2:
                     merged.append(Chunk(
                         text=c.text + "\n\n" + nxt.text,
-                        section_title=nxt.section_title or c.section_title,
+                        section_title=c.section_title or nxt.section_title,
                         start_line=c.start_line,
                         end_line=nxt.end_line,
                         content_types=list(
