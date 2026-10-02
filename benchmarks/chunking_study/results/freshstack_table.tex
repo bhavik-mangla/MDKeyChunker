@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering\small
+\caption{freshstack prec@1024t (bold: 95\% CI of difference vs. struct/text excludes 0)}
+\label{tab:freshstack}
+\begin{tabular}{lcccc}
+\toprule
+System & bm25 & hybrid & mxbai & nomic \\
+\midrule
+fixed512/text & 0.240 {\scriptsize[0.20,0.29]} & \textbf{0.309 {\scriptsize[0.26,0.36]}} & 0.348 {\scriptsize[0.29,0.41]} & \textbf{0.272 {\scriptsize[0.22,0.32]}} \\
+fixedtok/text & 0.291 {\scriptsize[0.23,0.36]} & 0.386 {\scriptsize[0.31,0.46]} & 0.392 {\scriptsize[0.32,0.46]} & 0.346 {\scriptsize[0.28,0.41]} \\
+struct/text & 0.270 {\scriptsize[0.21,0.33]} & 0.360 {\scriptsize[0.30,0.43]} & 0.382 {\scriptsize[0.31,0.46]} & 0.337 {\scriptsize[0.27,0.40]} \\
+struct/tc & 0.274 {\scriptsize[0.22,0.33]} & 0.345 {\scriptsize[0.28,0.42]} & 0.385 {\scriptsize[0.31,0.46]} & 0.320 {\scriptsize[0.26,0.39]} \\
+cr/cr & 0.279 {\scriptsize[0.22,0.34]} & 0.351 {\scriptsize[0.29,0.42]} & 0.364 {\scriptsize[0.29,0.44]} & 0.335 {\scriptsize[0.27,0.40]} \\
+enr\_rk/meta & 0.284 {\scriptsize[0.22,0.35]} & 0.368 {\scriptsize[0.30,0.44]} & \textbf{0.431 {\scriptsize[0.37,0.50]}} & 0.343 {\scriptsize[0.28,0.41]} \\
+merged\_rk/text & 0.258 {\scriptsize[0.20,0.32]} & 0.364 {\scriptsize[0.29,0.43]} & 0.387 {\scriptsize[0.31,0.46]} & 0.331 {\scriptsize[0.27,0.40]} \\
+merged\_rk/meta & 0.281 {\scriptsize[0.22,0.34]} & 0.362 {\scriptsize[0.29,0.43]} & 0.424 {\scriptsize[0.36,0.50]} & 0.339 {\scriptsize[0.27,0.40]} \\
+\bottomrule
+\end{tabular}
+\end{table*}

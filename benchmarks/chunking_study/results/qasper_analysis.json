@@ -1,0 +1,101 @@
+{
+ "paired_docs_for_key_stats": 30,
+ "chunk_stats": [
+  {
+   "variant": "fixed512",
+   "docs": 30,
+   "chunks": 1329,
+   "median_chars": 512,
+   "mean_chars": 506
+  },
+  {
+   "variant": "fixedtok",
+   "docs": 30,
+   "chunks": 644,
+   "median_chars": 1240.0,
+   "mean_chars": 1189
+  },
+  {
+   "variant": "struct",
+   "docs": 30,
+   "chunks": 715,
+   "median_chars": 978,
+   "mean_chars": 939
+  },
+  {
+   "variant": "enr_rk",
+   "docs": 30,
+   "chunks": 715,
+   "median_chars": 978,
+   "mean_chars": 939
+  },
+  {
+   "variant": "merged_rk",
+   "docs": 30,
+   "chunks": 621,
+   "median_chars": 1064,
+   "mean_chars": 1081
+  },
+  {
+   "variant": "merged_nork",
+   "docs": 30,
+   "chunks": 679,
+   "median_chars": 1010,
+   "mean_chars": 988
+  }
+ ],
+ "key_stats": [
+  {
+   "variant": "enr_rk",
+   "docs": 30,
+   "chunks": 715,
+   "keyed_chunks": 714,
+   "unique_keys": 609,
+   "key_reuse_rate": 0.147,
+   "chunks_sharing_a_key": 185,
+   "adjacent_same_key": 0.047,
+   "chunks_after_merge": 621,
+   "removed_by_merge": 94,
+   "related_keys_per_chunk": 1.38,
+   "chunks_with_related_keys": 0.902
+  },
+  {
+   "variant": "enr_nork",
+   "docs": 30,
+   "chunks": 715,
+   "keyed_chunks": 715,
+   "unique_keys": 676,
+   "key_reuse_rate": 0.055,
+   "chunks_sharing_a_key": 72,
+   "adjacent_same_key": 0.015,
+   "chunks_after_merge": 679,
+   "removed_by_merge": 36
+  }
+ ],
+ "cost": [
+  {
+   "variant": "enr_rk",
+   "model": "qwen2.5:7b",
+   "calls": 715,
+   "sec_per_call_wall": 38.5,
+   "in_tokens_per_call": 1002,
+   "out_tokens_per_call": 188
+  },
+  {
+   "variant": "enr_nork",
+   "model": "qwen2.5:7b",
+   "calls": 715,
+   "sec_per_call_wall": 32.7,
+   "in_tokens_per_call": 892,
+   "out_tokens_per_call": 188
+  },
+  {
+   "variant": "cr",
+   "model": "qwen2.5:7b",
+   "calls": 715,
+   "sec_per_call_wall": 15.8,
+   "in_tokens_per_call": 5520,
+   "out_tokens_per_call": 58
+  }
+ ]
+}

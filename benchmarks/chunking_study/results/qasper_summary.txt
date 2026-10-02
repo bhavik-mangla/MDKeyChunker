@@ -1,0 +1,53 @@
+30 papers, 79 questions
+
+Pre-registered comparisons on rec@512t (A - B, 95% CI; * = excludes 0)
+  bm25    struct/text        - fixedtok/text      +0.046 [-0.037,+0.125] 
+  mxbai   struct/text        - fixedtok/text      +0.021 [-0.067,+0.111] 
+  nomic   struct/text        - fixedtok/text      +0.104 [+0.030,+0.189]*
+  hybrid  struct/text        - fixedtok/text      +0.127 [+0.053,+0.203]*
+  bm25    struct/text        - fixed512/text      +0.099 [+0.006,+0.183]*
+  mxbai   struct/text        - fixed512/text      +0.141 [+0.051,+0.232]*
+  nomic   struct/text        - fixed512/text      +0.209 [+0.124,+0.301]*
+  hybrid  struct/text        - fixed512/text      +0.230 [+0.128,+0.335]*
+  bm25    enr_rk/meta        - struct/tc          +0.068 [-0.006,+0.150] 
+  mxbai   enr_rk/meta        - struct/tc          -0.023 [-0.120,+0.064] 
+  nomic   enr_rk/meta        - struct/tc          -0.020 [-0.109,+0.077] 
+  hybrid  enr_rk/meta        - struct/tc          -0.023 [-0.084,+0.045] 
+  bm25    enr_rk/meta        - cr/cr              +0.024 [-0.051,+0.107] 
+  mxbai   enr_rk/meta        - cr/cr              -0.045 [-0.128,+0.039] 
+  nomic   enr_rk/meta        - cr/cr              -0.009 [-0.075,+0.068] 
+  hybrid  enr_rk/meta        - cr/cr              -0.041 [-0.101,+0.023] 
+  bm25    merged_rk/meta     - merged_nork/meta   -0.060 [-0.131,-0.002]*
+  mxbai   merged_rk/meta     - merged_nork/meta   -0.013 [-0.090,+0.064] 
+  nomic   merged_rk/meta     - merged_nork/meta   -0.008 [-0.085,+0.070] 
+  hybrid  merged_rk/meta     - merged_nork/meta   -0.031 [-0.100,+0.032] 
+  bm25    merged_rk/meta     - enr_rk/meta        -0.031 [-0.096,+0.033] 
+  mxbai   merged_rk/meta     - enr_rk/meta        +0.018 [-0.034,+0.076] 
+  nomic   merged_rk/meta     - enr_rk/meta        -0.005 [-0.045,+0.036] 
+  hybrid  merged_rk/meta     - enr_rk/meta        +0.024 [-0.002,+0.058] 
+
+rec@512t  (mean [95% CI]; * = CI of difference vs struct/text excludes 0)
+system                                      bm25                    hybrid                     mxbai                     nomic
+fixed512/text            0.212 [0.12,0.31]*   0.248 [0.14,0.36]*   0.278 [0.19,0.38]*   0.285 [0.19,0.39]*
+fixedtok/text            0.265 [0.18,0.35]    0.350 [0.24,0.46]*   0.398 [0.29,0.51]    0.390 [0.29,0.49]*
+struct/text              0.311 [0.23,0.39]    0.478 [0.39,0.57]    0.419 [0.30,0.54]    0.494 [0.40,0.59] 
+struct/tc                0.324 [0.24,0.40]    0.470 [0.37,0.57]    0.419 [0.31,0.53]    0.489 [0.38,0.59] 
+cr/cr                    0.367 [0.28,0.45]    0.488 [0.40,0.58]    0.440 [0.33,0.56]    0.478 [0.37,0.58] 
+enr_rk/meta              0.391 [0.29,0.49]*   0.447 [0.35,0.55]    0.395 [0.29,0.49]    0.469 [0.36,0.58] 
+enr_nork/meta            0.416 [0.33,0.50]*   0.489 [0.40,0.58]    0.413 [0.32,0.50]    0.491 [0.39,0.59] 
+merged_rk/text           0.375 [0.29,0.47]*   0.458 [0.37,0.54]    0.434 [0.33,0.55]    0.505 [0.40,0.61] 
+merged_rk/meta           0.361 [0.27,0.45]    0.471 [0.37,0.57]    0.413 [0.31,0.52]    0.464 [0.37,0.57] 
+merged_nork/meta         0.421 [0.34,0.51]*   0.502 [0.41,0.59]    0.426 [0.34,0.51]    0.472 [0.37,0.58] 
+
+hit@5  (mean [95% CI]; * = CI of difference vs struct/text excludes 0)
+system                                      bm25                    hybrid                     mxbai                     nomic
+fixed512/text            0.304 [0.20,0.40]*   0.342 [0.23,0.45]*   0.430 [0.32,0.56]*   0.380 [0.27,0.49]*
+fixedtok/text            0.608 [0.49,0.71]    0.709 [0.59,0.81]    0.734 [0.63,0.83]    0.734 [0.64,0.82] 
+struct/text              0.633 [0.53,0.73]    0.722 [0.62,0.82]    0.709 [0.60,0.82]    0.785 [0.67,0.89] 
+struct/tc                0.608 [0.49,0.71]    0.747 [0.64,0.84]    0.684 [0.57,0.80]    0.797 [0.69,0.89] 
+cr/cr                    0.633 [0.52,0.74]    0.696 [0.59,0.79]    0.696 [0.58,0.81]    0.722 [0.61,0.83] 
+enr_rk/meta              0.684 [0.55,0.80]    0.734 [0.62,0.84]    0.709 [0.62,0.80]    0.734 [0.61,0.85] 
+enr_nork/meta            0.722 [0.60,0.83]    0.759 [0.66,0.85]    0.722 [0.62,0.82]    0.734 [0.62,0.85] 
+merged_rk/text           0.696 [0.60,0.78]*   0.759 [0.66,0.85]    0.734 [0.63,0.84]    0.797 [0.69,0.89] 
+merged_rk/meta           0.734 [0.63,0.82]*   0.772 [0.66,0.87]    0.722 [0.63,0.81]    0.772 [0.67,0.87] 
+merged_nork/meta         0.759 [0.65,0.87]*   0.797 [0.70,0.89]    0.734 [0.64,0.83]    0.747 [0.64,0.85] 
