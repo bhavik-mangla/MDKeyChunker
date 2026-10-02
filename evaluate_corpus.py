@@ -51,6 +51,7 @@ def main() -> None:
 
     per: dict = {}
     qs = data["questions"]
+    QIDS = {q["qid"]: [q["qid"]] for q in qs}
     for cs, mode in systems:
         chunks = [c for i in ids for c in json.loads((CACHE / cs / f"{i}.json").read_text())["chunks"]]
         docs = [render(c, mode) for c in chunks]
@@ -65,6 +66,10 @@ def main() -> None:
     results = summarize(per)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1))
+    # Per-question values for re-analysis: "retriever|system|metric" -> {cluster: [values in question order]}
+    per_q = {"|".join(k): v for k, v in per.items()}
+    Path(args.out.replace(".json", "_per_question.json")).write_text(json.dumps(
+        {"question_ids": QIDS, "values": per_q}))
     print_comparisons(results, "prec@1024t")
     for metric in ("prec@1024t", "rec@1024t", "hit@5", "mrr@10"):
         print_table(results, metric)

@@ -1,4 +1,9 @@
-# Analysis plan (fixed 2026-10-02 15:55 IST, before any full-run results were viewed)
+# Analysis plan (written before any full-run results were computed)
+
+Timing: the authoritative record is this file's git history (first commit
+084b45d, 2026-10-02 15:51 IST; amendments 9e37ea4 15:59 and 41eb775).
+Clock times written inside the text below were approximate. The plan was not
+registered with any external service.
 
 Only a 2-paper smoke test (6 questions) has been run; it was used to check the
 code, not to choose metrics.
@@ -40,7 +45,7 @@ measured under 4-way concurrency with a shared GPU.
 No change of primary metric, budget, retriever, or question filter after
 seeing results. Any post-hoc analysis is labelled exploratory.
 
-## Amendments before results (2026-10-02 16:05 IST)
+## Amendments before results (see commit 9e37ea4)
 A harness audit found bugs; all were fixed before any full-run result was
 computed or viewed. No metric, budget, retriever or comparison was changed.
 1. Paired CIs are now computed for every pre-specified comparison (previously

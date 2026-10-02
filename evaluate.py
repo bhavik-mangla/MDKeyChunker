@@ -229,6 +229,7 @@ def main() -> None:
         p["questions"] = [q for q in p["questions"] if q["evidence"]]
     papers = complete
     print(f"{len(papers)} papers, {sum(len(p['questions']) for p in papers)} questions")
+    QIDS = {p["id"]: [q["qid"] for q in p["questions"]] for p in papers}
 
     # per[(retriever, system, metric)][paper_id] -> list of per-question values
     per: dict = {}
@@ -245,6 +246,10 @@ def main() -> None:
     results = summarize(per)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1))
+    # Per-question values for re-analysis: "retriever|system|metric" -> {cluster: [values in question order]}
+    per_q = {"|".join(k): v for k, v in per.items()}
+    Path(args.out.replace(".json", "_per_question.json")).write_text(json.dumps(
+        {"question_ids": QIDS, "values": per_q}))
     print_comparisons(results, "rec@512t")
     print_table(results, "rec@512t")
     print_table(results, "hit@5")

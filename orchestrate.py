@@ -19,8 +19,7 @@ CACHE = DATA / "cache"
 EVENTS = DATA / "events.log"
 PY = str(ROOT / ".venv" / "bin" / "python")
 OLLAMA = "http://127.0.0.1:11435"
-OLLAMA_LOG = Path("/private/tmp/claude-501/-Users-bhavikmangla-Developer/"
-                  "954267a2-7ebc-4884-a8d4-d47aff02f41f/scratchpad/ollama2.log")
+OLLAMA_LOG = DATA / "ollama.log"
 STALL_MIN = 25
 MAX_RETRIES = 3
 
