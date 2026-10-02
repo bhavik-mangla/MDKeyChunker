@@ -64,7 +64,7 @@ def check_llm_client():
 def check_dependencies():
     print("\nChecking dependencies...")
     ok = True
-    for pkg in ["openai", "anthropic", "dotenv", "tiktoken"]:
+    for pkg in ["openai", "dotenv", "tiktoken"]:
         try:
             __import__(pkg)
             print(f"  ✓ {pkg}")

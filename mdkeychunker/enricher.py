@@ -9,6 +9,10 @@ from .models import Chunk
 log = logging.getLogger(__name__)
 
 MAX_ROLLING_KEYS = 40  # hard cap — keeps prompt tokens manageable
+MAX_FIELD_LEN = 1000  # caps runaway LLM output that would otherwise grow later prompts
+MAX_KEY_LEN = 80
+# Errors that will fail identically on every chunk; retrying the rest is pointless
+FATAL_LLM_ERRORS = ("AuthenticationError", "PermissionDeniedError", "NotFoundError")
 
 ENRICH_PROMPT = '''You are a document analysis expert. Analyze this text chunk from a Markdown document and extract structured metadata for a RAG (Retrieval-Augmented Generation) system.
 
@@ -45,8 +49,11 @@ Rules:
 
 class Enricher:
     """Base class for enrichment strategies."""
-    def __init__(self):
+    def __init__(self) -> None:
         self.rolling_keys: dict[str, dict] = {}
+
+    def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
+        raise NotImplementedError
 
     def reset(self) -> None:
         self.rolling_keys.clear()
@@ -77,7 +84,11 @@ class LLMEnricher(Enricher):
     def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
         total = len(chunks)
         for i, chunk in enumerate(chunks):
-            prev_summary = chunks[i-1].summary if i > 0 and chunks[i-1].summary else "(first chunk)"
+            if i == 0:
+                prev_summary = "(first chunk)"
+            else:
+                prev_summary = chunks[i-1].summary or "(unavailable)"
+            known_keys = set(self.rolling_keys)
             prompt = ENRICH_PROMPT.format(
                 section_title=chunk.section_title or "(no section)",
                 position=i + 1,
@@ -89,40 +100,43 @@ class LLMEnricher(Enricher):
             try:
                 result = self.llm.call_json(prompt, max_tokens=1000)
             except Exception as e:
+                if type(e).__name__ in FATAL_LLM_ERRORS:
+                    raise
                 log.warning("LLM call failed for chunk %d: %s", i, e)
                 result = None
 
             if isinstance(result, dict):
                 chunk.title = _as_str(result.get("title"))
                 chunk.summary = _as_str(result.get("summary"))
-                chunk.keywords = _as_str_list(result.get("keywords"))
+                chunk.keywords = _as_str_list(result.get("keywords"), split_commas=True)
                 chunk.entities = _as_entities(result.get("entities"))
-                chunk.questions = _as_str_list(result.get("questions"))
+                chunk.questions = _as_str_list(result.get("questions"), split_commas=False)
                 chunk.key = _as_str(result.get("key"), MAX_KEY_LEN).lower()
-                chunk.related_keys = _as_str_list(result.get("related_keys"))
+                # The prompt requires a subset of the rolling keys; drop anything else
+                chunk.related_keys = [
+                    k for k in (r.lower() for r in _as_str_list(result.get("related_keys"), split_commas=False))
+                    if k in known_keys
+                ]
             else:
                 log.warning("LLM enrichment failed for chunk %d", i)
             self._update_rolling_keys(chunk.key, i)
         return chunks
 
 
-MAX_FIELD_LEN = 1000  # caps runaway LLM output that would otherwise grow later prompts
-MAX_KEY_LEN = 80
 
-
-def _as_str(value, limit: int = MAX_FIELD_LEN) -> str:
+def _as_str(value: object, limit: int = MAX_FIELD_LEN) -> str:
     return value.strip()[:limit] if isinstance(value, str) else ""
 
 
-def _as_str_list(value) -> list:
+def _as_str_list(value: object, split_commas: bool) -> list:
     if isinstance(value, str):
-        value = value.split(",")
+        value = value.split(",") if split_commas else [value]
     if not isinstance(value, list):
         return []
     return [s for s in (_as_str(v) for v in value) if s]
 
 
-def _as_entities(value) -> list:
+def _as_entities(value: object) -> list:
     if not isinstance(value, list):
         return []
     out = []
@@ -140,15 +154,15 @@ class SpacyEnricher(Enricher):
         try:
             import spacy
             self.nlp = spacy.load(f"en_core_web_{model_size}")
-        except ImportError:
+        except ImportError as e:
             raise ImportError(
                 "spaCy is required for SpacyEnricher. Install with: pip install 'mdkeychunker[spacy]'"
-            )
-        except OSError:
+            ) from e
+        except OSError as e:
             raise OSError(
-                f"spaCy model en_core_web_{model_size} is not installed. "
-                f"Install with: python -m spacy download en_core_web_{model_size}"
-            )
+                f"Could not load spaCy model en_core_web_{model_size} ({e}). If it is not "
+                f"installed, run: python -m spacy download en_core_web_{model_size}"
+            ) from e
 
     def enrich_chunks(self, chunks: List[Chunk]) -> List[Chunk]:
         for i, chunk in enumerate(chunks):
@@ -171,7 +185,7 @@ class SpacyEnricher(Enricher):
             chunk.key = ""
             text_lower = chunk.text.lower()
             for seen_key in self.rolling_keys.keys():
-                if re.search(rf"\b{re.escape(seen_key)}\b", text_lower):
+                if re.search(rf"(?<!\w){re.escape(seen_key)}(?!\w)", text_lower):
                     chunk.key = seen_key
                     break
 
