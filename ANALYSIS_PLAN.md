@@ -59,3 +59,8 @@ computed or viewed. No metric, budget, retriever or comparison was changed.
    already 0).
 6. Correction: RQ4 is evaluated on Qasper only (the ablation is not built for
    FreshStack), so the false-positive estimate is ~0.6, not ~0.8.
+7. Disclosure: before these fixes, key-reuse statistics (RQ4a mechanism, not
+   retrieval) were viewed on ~18 partially built papers using the flawed
+   ablation prompt (reuse 15% with rolling keys vs 5% without). No retrieval
+   metric from a full run had been viewed. The RQ4a numbers reported will come
+   from the rebuilt, paired data only.
