@@ -8,8 +8,10 @@ outcomes, primary retriever, hypotheses, margins, families and Holm
 adjustments stay exactly as written.
 
 All additions below are **secondary or exploratory**, reported with unadjusted
-95% CIs and labelled as such. They respond to an external methods review and a
-literature check of 2025-2026 chunking evaluations.
+95% CIs and labelled as such. They respond to an internal, AI-assisted mock
+review of the v3 paper and a literature check of 2025-2026 chunking evaluations.
+(Correction 2026-10-06: an earlier wording of this paragraph called the mock
+review "external"; it was not.)
 
 ## A. Additional retrieval arms (secondary)
 1. **Reranking.** Qwen3-Reranker-0.6B (sentence-transformers CrossEncoder,
