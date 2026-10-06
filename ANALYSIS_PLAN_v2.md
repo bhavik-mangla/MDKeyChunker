@@ -1,9 +1,7 @@
-# Analysis plan v2: confirmatory study (DRAFT — becomes binding when pushed)
+# Analysis plan v2: confirmatory study (binding)
 
-Status: draft written 2026-10-06 before any v2 build. It becomes binding at the
-commit that removes the word DRAFT from this title; that commit is pushed to
-GitHub before the first v2 build, so GitHub's server-side push time is the
-external timestamp. The v3 study (ANALYSIS_PLAN.md) is treated as a pilot. Its
+Status: binding from this commit, which is pushed to GitHub before the first
+v2 build; GitHub's server-side push time is the external timestamp. The v3 study (ANALYSIS_PLAN.md) is treated as a pilot. Its
 data and the Phase 0 re-analyses of it (results/phase0/) informed this plan and
 are excluded from every confirmatory analysis below.
 
@@ -62,7 +60,8 @@ would give about 0.65 power at n = 235).
 ## 5. Key secondary (Holm within this family)
 - H1 and H2 with E-strong / CR-strong.
 - Qasper answer token-F1 (official evaluator, max over gold answers) from a
-  fixed local generator given exactly 512 tokens of retrieved source text.
+  fixed local generator given exactly 512 tokens of retrieved source text. Equivalence margin +/-5 F1 points
+  (E vs S+T, E vs CR, hybrid retriever, generator qwen2.5:7b local).
 - (No LLM judge is used in v2; FreshStack is evaluated at the retrieval level
   only.)
 
