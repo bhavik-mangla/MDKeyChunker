@@ -1,11 +1,12 @@
 # MDKeyChunker
 
+[![PyPI](https://img.shields.io/pypi/v/mdkeychunker.svg)](https://pypi.org/project/mdkeychunker/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Research Paper](https://img.shields.io/badge/Research-ArXiv-red.svg)](https://arxiv.org/abs/2603.23533)
 
 Markdown chunking with single-call LLM enrichment or ultra-fast spaCy processing for RAG pipelines. 
-Paper: **[MDKeyChunker: Single-Call LLM Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy RAG](https://arxiv.org/abs/2603.23533)** (arXiv:2603.23533)
+Paper: **[MDKeyChunker: What Does One LLM Call per Chunk Buy for Markdown Retrieval?](https://arxiv.org/abs/2603.23533)** (arXiv:2603.23533)
 
 ## What It Does
 
@@ -19,14 +20,13 @@ Paper: **[MDKeyChunker: Single-Call LLM Enrichment with Rolling Keys and Key-Bas
 ## Quick Start
 
 ```bash
-git clone https://github.com/bhavik-mangla/MDKeyChunker.git
-cd MDKeyChunker
-pip install -e .              # add [anthropic] or [spacy] extras as needed
-cp .env.sample .env           # then edit .env with your API key
-mdkeychunker demo.md
+pip install mdkeychunker                 # add [anthropic] or [spacy] extras as needed
+export LLM_API_KEY=...                   # or LLM_BASE_URL for Ollama/vLLM; see .env.sample
+mdkeychunker your_document.md
 ```
 
-spaCy mode needs the extra and a model: `pip install -e ".[spacy]" && python -m spacy download en_core_web_md`.
+spaCy mode needs the extra and a model: `pip install "mdkeychunker[spacy]" && python -m spacy download en_core_web_md`.
+To work on the code: `git clone https://github.com/bhavik-mangla/MDKeyChunker.git && pip install -e ".[dev]"`.
 
 Or programmatically:
 
@@ -133,6 +133,36 @@ Markdown → Chunker → Enricher (1 LLM call/chunk) → Restructurer → Enrich
 }
 ```
 
+## What the evaluation found
+
+The v3 paper evaluates each stage on two public datasets (Qasper and FreshStack
+Laravel docs) with `qwen2.5:7b`, four retrievers, and an analysis plan committed
+before results. In short:
+
+- **Structure-aware chunking (Stage 1, no LLM) is the main win**: it beats
+  512-character windows on both datasets.
+- **One LLM call per chunk (Stage 2) showed no measurable retrieval gain** over a
+  free section-path prefix or over contextual retrieval on the main retrievers;
+  it helped only with BM25 alone on Qasper and with an embedder that truncates
+  long inputs.
+- **Rolling keys make keys about 3x more consistent**, but merging on keys
+  (Stage 3) did not improve retrieval.
+
+If you only need retrieval quality, structure-aware chunking alone is the cheap
+default (no LLM calls):
+
+```python
+from mdkeychunker import Config
+from mdkeychunker.chunker import MarkdownChunker
+
+chunks = MarkdownChunker(Config()).chunk(markdown_text)
+# prefix each chunk's text with chunk.section_title for a free title-chain index
+```
+
+Enrichment is most useful when you want the metadata itself (titles, summaries,
+questions) or retrieve with BM25.
+Harness, plan and per-question results: [`benchmarks/chunking_study/`](benchmarks/chunking_study/).
+
 ## Benchmarks
 
 The paper's evaluation (30 queries over an 18-document Markdown corpus, Configs A–D) is described in [arXiv:2603.23533](https://arxiv.org/abs/2603.23533). The code version used in the paper is commit `e3e1b86`.
@@ -181,7 +211,7 @@ If you use MDKeyChunker, please cite:
 
 ```bibtex
 @misc{mangla2026mdkeychunker,
-  title         = {{MDKeyChunker}: Single-Call {LLM} Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy {RAG}},
+  title         = {{MDKeyChunker}: What Does One {LLM} Call per Chunk Buy for {Markdown} Retrieval?},
   author        = {Mangla, Bhavik},
   year          = {2026},
   eprint        = {2603.23533},
