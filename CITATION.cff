@@ -14,7 +14,7 @@ keywords:
   - retrieval-augmented generation
 preferred-citation:
   type: article
-  title: "MDKeyChunker: Single-Call LLM Enrichment with Rolling Keys and Key-Based Restructuring for High-Accuracy RAG"
+  title: "MDKeyChunker: What Does One LLM Call per Chunk Buy for Markdown Retrieval?"
   authors:
     - family-names: Mangla
       given-names: Bhavik
