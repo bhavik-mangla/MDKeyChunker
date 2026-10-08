@@ -16,8 +16,11 @@ Because it is written after H1-H3 were seen, the family is labelled
 - **M**: MDKeyChunker Stage 3 (`Restructurer`, package defaults) applied to
   the cached E chunks (local qwen2.5:7b). No new LLM calls. Index text = meta.
 - **E-noRK**: enrichment with the same prompt and model as E, but the rolling
-  key list is replaced by "(none yet — this is the first chunk)" on every
-  call (the pilot's `NoRollingKeysEnricher`). Same frozen model, options and
+  key list is replaced by "(not provided)" on every call (the pilot's
+  `NoRollingKeysEnricher`; the first-chunk placeholder would contradict the
+  chunk position and previous summary in the same prompt).
+  (Correction 2026-10-08, before any build: the first pushed wording named the
+  first-chunk placeholder; the pilot ablation and this study use "(not provided)".) Same frozen model, options and
   exclusion rules as E (plan v2 sec. 7).
 - **M-noRK**: Stage 3 applied to E-noRK.
 - **RM**: random-merge control. Per document, the same number of merges as M
