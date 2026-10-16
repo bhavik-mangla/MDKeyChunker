@@ -265,6 +265,11 @@ def main() -> None:
             put(f"lcsim-{ds_short[ds]}-{k}", f"{r[k]:.2f}")
         put(f"lcsim-{ds_short[ds]}-n", str(r["n_docs"]))
 
+    # ---------------------------------------------------------------- exploratory v4 analyses (analysis_v4.py)
+    ax = load(V2 / "analysis_v4.json")
+    if ax:
+        write_ax(ax)
+
     # ---------------------------------------------------------------- spend
     total = 0.0
     led = ROOT / "results" / "spend_ledger.jsonl"
@@ -340,6 +345,184 @@ def write_grids(out: Path, pm: dict) -> None:
               + ("; PF covers 100 papers." if ds == "qasper" else ".") + "}",
               f"\\label{{tab:grid2-{ds}}}", "\\end{table*}", ""]
     out.write_text("\n".join(L) + "\n")
+
+
+# ---------------------------------------------------------------------------- analysis_v4 (exploratory, post hoc)
+
+AX_RET = {"bm25": "bm25", "nomic": "nomic", "mxbai": "mxbai", "hybrid": "hyb", "qwen3": "q3", "hybrid-qwen3": "hq3",
+          "hybrid+rerank": "rr", "jina": "jina"}
+
+
+def axrow(prefix: str, r: dict | None) -> None:
+    """row() at 95% for analysis_v4 rows; contrast rows carry no verdict, so derive it from the CI."""
+    if r and r.get("status") == "ok" and "verdict" not in r:
+        r = {**r, "verdict": "different" if r.get("excludes_zero_95") else "no_difference_detected"}
+    row(prefix, r, "95")
+
+
+def pct(x: float | None, nd: int = 0) -> str:
+    return "--" if x is None else f"{100 * x:.{nd}f}"
+
+
+def write_ax(ax: dict) -> None:
+    """Macros with prefix ax- from results/v2/analysis_v4.json. Every number here is exploratory."""
+    d = {"qasper": "qasper", "freshstack": "fs"}
+    lx = ax.get("lexical", {})
+    for ds, k in d.items():
+        L = lx.get(ds)
+        if not L:
+            continue
+        for r, t in AX_RET.items():
+            if r in L["by_bin"]:
+                for b in ("low", "mid", "high"):
+                    axrow(f"ax-ovl-{k}-{t}-{b}", L["by_bin"][r][b])
+                axrow(f"ax-ovl-{k}-{t}-lmh", L["contrast_low_minus_high"][r])
+            B = L["bridging"]["by_retriever"].get(r)
+            if B:
+                axrow(f"ax-br-{k}-{t}-yes", B["bridged"])
+                axrow(f"ax-br-{k}-{t}-miss", B["missing_not_bridged"])
+                axrow(f"ax-br-{k}-{t}-none", B["no_missing"])
+                axrow(f"ax-br-{k}-{t}-c", B["contrast_bridged_minus_missing_not_bridged"])
+                if B.get("share_of_total_gain_bridged") is not None:
+                    put(f"ax-br-{k}-{t}-gainshare", pct(B["share_of_total_gain_bridged"]))
+            T = L["targeting"].get(r)
+            if T:
+                for b in ("low", "mid", "high"):
+                    axrow(f"ax-tg-{k}-{t}-{b}", T[b])
+                axrow(f"ax-tg-{k}-{t}-c", T["contrast_high_minus_low"])
+        put(f"ax-ovl-{k}-cut1", pct(L["overlap_cuts"][0]))
+        put(f"ax-ovl-{k}-cut2", pct(L["overlap_cuts"][1]))
+        put(f"ax-ovl-{k}-mean", pct(L["overlap_mean"]))
+        B = L["bridging"]
+        put(f"ax-br-{k}-share", pct(B["share_bridged"]))
+        put(f"ax-br-{k}-n", str(round(B["share_bridged"] * B["questions_with_gold_chunk"])))
+        put(f"ax-br-{k}-nmiss", str(B["n_missing_not_bridged"]))
+        put(f"ax-br-{k}-nnone", str(B["n_no_missing"]))
+        put(f"ax-br-{k}-missing", f"{B['missing_terms_mean']:.1f}")
+        put(f"ax-br-{k}-missbridged", pct(B["share_missing_bridged"]))
+        for o, (sh, n) in B["bridged_share_by_outcome_bm25"].items():
+            put(f"ax-br-{k}-bm25-{o}share", pct(sh))
+            put(f"ax-br-{k}-bm25-{o}n", str(n))
+        T = L["targeting"]
+        put(f"ax-tg-{k}-gold", f"{T['meta_hits_gold_mean']:.1f}")
+        put(f"ax-tg-{k}-other", f"{T['meta_hits_other_mean']:.1f}")
+        for arm, v in lx["added_tokens"][ds].items():
+            put(f"ax-add-{k}-{arm}-new", f"{v['new_types_mean']:.1f}")
+            put(f"ax-add-{k}-{arm}-newc", f"{v['new_content_types_mean']:.1f}")
+            put(f"ax-add-{k}-{arm}-text", f"{v['text_types_mean']:.0f}")
+
+    fr = ax.get("frontier", {})
+    for ds, k in d.items():
+        F = fr.get(ds)
+        if not F:
+            continue
+        for name, r in F["comparisons"].items():
+            if r.get("status") == "ok":
+                axrow(f"ax-fr-{k}-{name.replace('_minus_', '-').replace('_', '')}", r)
+        for arm, v in fr["index_tokens"][ds].items():
+            put(f"ax-tok-{k}-{arm}", f"{v['tokens_per_chunk']:,.0f}")
+        for tag in ("best", "best_free", "best_free_no_rerank"):
+            g = F[tag]
+            t_ = tag.replace("_no_rerank", "-norr").replace("_", "")
+            put(f"ax-fr-{k}-{t_}", f"{g['arm']} + {g['retriever']}".replace("hybrid+rerank", "rerank"))
+            put(f"ax-fr-{k}-{t_}-m", pt(g["score"], sign=False))
+
+    he = ax.get("heterogeneity", {})
+    for ds, k in d.items():
+        for key, v in he.get("win_tie_loss", {}).get(ds, {}).items():
+            pair, r = key.split("|")
+            if pair == "E-S+T" and r in AX_RET:
+                for o in ("win", "tie", "loss"):
+                    put(f"ax-wtl-{k}-{AX_RET[r]}-{o}", pct(v[o], 1))
+    Q = he.get("qasper")
+    if Q:
+        for g, groups in Q["groups"].items():
+            for lab, v in groups.items():
+                gl = lab.replace("/", "").replace("+", "p")
+                gg = g.replace("_", "")
+                put(f"ax-het-qasper-{gg}-{gl}-n", str(v["n"]))
+                for r in ("hybrid", "bm25", "hybrid+rerank"):
+                    axrow(f"ax-het-qasper-{gg}-{gl}-{AX_RET[r]}", v[r])
+        for r in ("hybrid", "bm25"):
+            axrow(f"ax-het-qasper-ev4v1-{AX_RET[r]}", Q["contrast_evidence_4plus_minus_1"][r])
+            axrow(f"ax-het-qasper-lenhl-{AX_RET[r]}", Q["contrast_paper_chunks_high_minus_low"][r])
+        f1 = Q["answer_f1"]
+        for lab in ("extractive", "abstractive", "mixed", "yes/no"):
+            axrow(f"ax-f1-{lab.replace('/', '')}", f1[lab]["E-S+T"])
+        for lab, v in f1["conditional_on_recall_change"].items():
+            axrow(f"ax-f1-{lab.replace('_', '')}", v["dF1"])
+            put(f"ax-f1-{lab.replace('_', '')}-n", str(v["n"]))
+        axrow("ax-f1-updown", f1["contrast_rec_up_minus_rec_down"])
+        put("ax-f1-recchanged", pct(f1["share_rec_changed"]))
+        put("ax-f1-rho", f"{f1['spearman_drec_dF1']:.2f}")
+    Fh = he.get("freshstack")
+    if Fh:
+        for lab, v in Fh["groups"]["gold_length"].items():
+            for r in ("hybrid", "bm25", "hybrid+rerank"):
+                axrow(f"ax-het-fs-gold-{lab}-{AX_RET[r]}", v[r])
+        for dom, v in Fh["groups"]["domain"].items():
+            for r in ("bm25", "hybrid+rerank", "qwen3"):
+                axrow(f"ax-het-fs-{dom}-{AX_RET[r]}", v[r])
+        for r in ("hybrid", "bm25"):
+            axrow(f"ax-het-fs-goldhl-{AX_RET[r]}", Fh["contrast_gold_long_minus_short"][r])
+
+    bu = ax.get("budgets", {})
+    for ds, k in d.items():
+        Bd = bu.get(ds)
+        if not Bd:
+            continue
+        for key, r in Bd["rows"].items():
+            pair, ret, m = key.split("|")
+            axrow(f"ax-bud-{k}-{pair.replace('+', 'p')}-{AX_RET[ret]}-{m}", r)
+        put(f"ax-bud-{k}-nrev", str(len(Bd["sign_reversals"])))
+        put(f"ax-bud-{k}-nrevstrict", str(sum(1 for x in Bd["sign_reversals"] if x.get("strict"))))
+
+    lc = ax.get("late_chunking")
+    if lc:
+        for name in ("loss_vs_dcos", "loss_vs_cos_late", "loss_vs_n_chunks", "loss_vs_tokens", "dcos_vs_n_chunks"):
+            v = lc[f"rho_{name}"]
+            nm = name.replace("_vs_", "-").replace("_", "")
+            put(f"ax-lc-rho-{nm}", f"{v['rho']:.2f}".replace("-", "$-$"))
+            put(f"ax-lc-rho-{nm}-ci", "[" + ", ".join(f"{x:.2f}".replace("-", "$-$") for x in v["ci95_pct"]) + "]")
+        for lab, tag in (("1", "one"), (">1", "multi")):
+            axrow(f"ax-lc-win-{tag}", lc["by_windows"][lab])
+            put(f"ax-lc-win-{tag}-n", str(lc["by_windows"][lab]["papers"]))
+        axrow("ax-lc-win-c", lc["by_windows"]["contrast_multi_minus_one"])
+        axrow("ax-lc-dcos-c", lc["by_dcos_tertile"]["contrast_high_minus_low"])
+        put("ax-lc-share-ge90", pct(lc["share_papers_cos_late_ge_0_9"], 1))
+
+    gr = ax.get("granularity", {})
+    for ds, k in d.items():
+        G = gr.get(ds)
+        if not G:
+            continue
+        for fam in ("text", "meta"):
+            put(f"ax-gran-{k}-{fam}-rho", f"{G[fam]['spearman_len_score_hybrid']:.2f}".replace("-", "$-$"))
+            put(f"ax-gran-{k}-{fam}-n", str(len(G[fam]["points"])))
+            for p_ in G[fam]["points"]:
+                put(f"ax-gran-{k}-{p_['arm']}-len", f"{p_['mean_tokens']:.0f}")
+        for pair, v in G["merge_by_gold_length"].items():
+            if isinstance(v, dict) and "contrast_long_minus_short" in v:
+                tag = pair.replace("-E-noRK", "").replace("-E", "")
+                for lab in ("low", "mid", "high"):
+                    axrow(f"ax-gran-{k}-{tag}-{lab}", v[lab])
+                axrow(f"ax-gran-{k}-{tag}-c", v["contrast_long_minus_short"])
+
+    ky = ax.get("keys", {})
+    for ds, k in d.items():
+        for arm, v in ky.get(ds, {}).items():
+            a = arm.replace("-noRK", "nork")
+            put(f"ax-key-{k}-{a}-distmed", f"{v['reuse_distance_median']:.0f}")
+            put(f"ax-key-{k}-{a}-adj", pct(v["share_reuse_adjacent"]))
+            put(f"ax-key-{k}-{a}-within3", pct(v["share_reuse_within_3"]))
+            put(f"ax-key-{k}-{a}-gt10", pct(v["share_reuse_gt_10"]))
+            put(f"ax-key-{k}-{a}-evictdocs", str(v["docs_with_eviction"]))
+            put(f"ax-key-{k}-{a}-outside", str(v["reuses_of_key_outside_window"]))
+            put(f"ax-key-{k}-{a}-reuses", f"{v['reuses']:,}")
+            put(f"ax-key-{k}-{a}-verbatim", pct(v["key_verbatim_in_text"]))
+            put(f"ax-key-{k}-{a}-keytokintext", pct(v["key_token_share_in_text"]))
+            put(f"ax-key-{k}-{a}-kwnew", pct(v["keyword_token_share_not_in_st"]))
+            put(f"ax-key-{k}-{a}-qnew", pct(v["question_token_share_not_in_st"]))
 
 
 if __name__ == "__main__":
