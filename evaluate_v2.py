@@ -58,7 +58,7 @@ RETRIEVERS = ("bm25", "nomic", "hybrid", "mxbai")
 PRIMARY_RETRIEVER = "hybrid"
 PRIMARY_METRIC = {"qasper": "rec@512t", "freshstack": "prec@1024t"}
 MARGIN = {"qasper": 0.05, "freshstack": 0.04}
-F1_MARGIN = 0.05  # answer-F1 margin; not stated in the draft plan (see summary note)
+F1_MARGIN = 0.05  # answer-F1 margin, ANALYSIS_PLAN_v2 sec. 3
 DATASETS = ("qasper", "freshstack")
 FS_DOMAINS = ("laravel", "angular", "yolo")
 
@@ -238,7 +238,7 @@ def family_specs() -> list[dict]:
         for a, b in H12_STRONG:
             specs.append(_spec("key_secondary", ds, PRIMARY_RETRIEVER, PRIMARY_METRIC[ds], a, b, MARGIN[ds],
                                "p_tost"))
-    for a, b in H12 + H12_STRONG:
+    for a, b in H12:  # plan v2 sec. 5: answer F1 for E vs S+T and E vs CR (strong-model F1 is exploratory)
         specs.append(_spec("key_secondary", "qasper", PRIMARY_RETRIEVER, "answer_f1", a, b, F1_MARGIN, "p_tost"))
     return specs
 
@@ -258,7 +258,37 @@ def run_family(specs: list[dict], data: dict, n: int) -> list[dict]:
         h = stats.holm([r[r["p_key"]] for r in ok])
         for r, p, rej in zip(ok, h["p_adj"], h["reject"]):
             r.update(p_holm=p, reject_holm=rej, family_m=len(ok))
+        hp = stats.holm([r["p_perm"] for r in ok])
+        for r, p in zip(ok, hp["p_adj"]):
+            r["p_holm_perm"] = p
+            r["verdict_ci"] = r["verdict"]
+            r["label"] = family_verdict(r)
+            r["verdict"] = "equivalent" if r["label"] == "different_but_equivalent" else r["label"]
     return rows
+
+
+# Families whose decision rule is plan v2 sec. 4 ("different" = 95% CI excludes 0; Holm on the
+# family's p_key). Amendment 2-4 families additionally require a Holm-adjusted sign-flip p < 0.05
+# for "different" (Amendment 2 sec. B).
+PLAN_V2_FAMILIES = ("primary", "key_secondary", "h3")
+
+
+def family_verdict(r: dict) -> str:
+    """Final verdict with the family's multiplicity adjustment applied."""
+    alpha = 0.05
+    equivalent = r.get("p_tost") is not None and r["p_key"] == "p_tost" and r["p_holm"] < alpha
+    if r["family"] in PLAN_V2_FAMILIES:
+        different = r["excludes_zero_95"] and (r["p_key"] != "p_perm" or r["p_holm"] < alpha)
+    else:  # Amendment 2 B: Holm over the family's tests (p_perm for two-sided rows, sign-flip p for TOST rows)
+        p_diff = r["p_holm"] if r["p_key"] == "p_perm" else r["p_holm_perm"]
+        different = r["excludes_zero_95"] and p_diff < alpha
+    if equivalent and different:
+        return "different_but_equivalent"
+    if equivalent:
+        return "equivalent"
+    if different:
+        return "different"
+    return "inconclusive" if r.get("p_tost") is not None else "no_difference_detected"
 
 
 def exploratory(data: dict, confirmed: set, n: int) -> list[dict]:
@@ -341,6 +371,8 @@ def _fmt_row(r: dict) -> str:
         s += f" p_tost={r['p_tost']:.4f} +/-{r['margin']}"
     if "p_holm" in r:
         s += f" p_holm={r['p_holm']:.4f}{'*' if r['reject_holm'] else ''}"
+    if "p_holm_perm" in r and r.get("p_key") != "p_perm":
+        s += f" p_holm_perm={r['p_holm_perm']:.4f}"
     return s + f" -> {r.get('label', r['verdict'])}"
 
 
@@ -354,7 +386,7 @@ def summary_text(result: dict, data: dict) -> str:
         L.append(t)
         L += [_fmt_row(r) for r in result[f]]
         L.append("")
-    L.append(f"Note: the answer-F1 margin ({F1_MARGIN}) is not fixed in the draft plan; fix it before unblinding.")
+    L.append(f"Answer-F1 margin: +/-{F1_MARGIN} (ANALYSIS_PLAN_v2 sec. 3).")
     L.append("")
     L.append("System means (hybrid, primary metric; 95% percentile CI)")
     for r in result["systems"]:

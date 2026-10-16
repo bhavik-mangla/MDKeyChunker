@@ -61,10 +61,12 @@ FROZEN = ROOT / "results" / "v2" / "frozen_config.json"
 ENC = tiktoken.get_encoding("cl100k_base")
 
 OLLAMA_URL = "http://127.0.0.1:11435"
-NUM_CTX = {"qasper": 16384, "freshstack": 32768}
+# freshstack_enr: enrichment-only FreshStack runs. Every enrichment prompt fits (max ~5.7k tokens incl.
+# output), so a smaller context only raises throughput; see DEVIATIONS.md (2026-10-06).
+NUM_CTX = {"qasper": 16384, "freshstack": 32768, "freshstack_enr": 8192}
 BASE_TAG = "base"
 BASE_VARIANTS = ("fixed512", "fixedtok", "struct", "parapack", "fixedlen")
-LLM_VARIANTS = ("enr", "cr")
+LLM_VARIANTS = ("enr", "cr", "enr_nork", "perfield")
 PARSE_RETRIES = 3
 FIXED512, FIXEDTOK_SIZE, FIXEDTOK_OVERLAP = 512, 256, 32
 
@@ -104,10 +106,17 @@ class BudgetStop(RuntimeError):
     """Raised inside workers after another worker hit the budget cap."""
 
 
-def configure_llm_api(dataset: str) -> None:
+def run_num_ctx(dataset: str, variants: list[str] | None = None) -> int:
+    """num_ctx for this run: the enrichment-only value when the run builds no CR."""
+    if variants is not None and "cr" not in variants and f"{dataset}_enr" in NUM_CTX:
+        return NUM_CTX[f"{dataset}_enr"]
+    return NUM_CTX[dataset]
+
+
+def configure_llm_api(dataset: str, variants: list[str] | None = None) -> None:
     """One Ollama URL and one num_ctx per run (Ollama reloads the model when num_ctx changes)."""
     llm_api.OLLAMA_URL = OLLAMA_URL
-    llm_api.NUM_CTX = NUM_CTX[dataset]
+    llm_api.NUM_CTX = run_num_ctx(dataset, variants)
 
 
 # --------------------------------------------------------------------------- frozen config
@@ -340,8 +349,78 @@ class LLMAdapter:
                 "failed_chunks": len(self.failed)}
 
 
-def enrich(struct_chunks: list, adapter: LLMAdapter) -> tuple[list[dict], dict]:
-    enriched = LLMEnricher(adapter).enrich_chunks(copy.deepcopy(struct_chunks))  # type: ignore[arg-type]
+class NoRollingKeysEnricher(LLMEnricher):
+    """Amendment 2 ablation (E-noRK): the prompt never sees prior keys; everything else is E.
+
+    "(not provided)" rather than the first-chunk placeholder, which would contradict the chunk
+    position and previous summary in the same prompt (same as the pilot ablation).
+    """
+
+    def _format_rolling_keys(self) -> str:
+        return "(not provided)"
+
+
+# Amendment 3 (H6): one call per indexed field. Instructions are copied verbatim from ENRICH_PROMPT;
+# the context block is ENRICH_PROMPT's, without the rolling keys (keys are not indexed).
+PF_FIELDS = {
+    "title": '"title": "A short descriptive title for this chunk (3-8 words)"',
+    "summary": ('"summary": "A 1-2 sentence summary (30-60 words) capturing the key information. Do NOT just '
+                'repeat the first sentence. Focus on what makes this chunk UNIQUE — what would a search engine '
+                'snippet show?"'),
+    "keywords": '"keywords": ["5-8 salient terms or phrases, domain-specific preferred"]',
+    "questions": '"questions": ["2-3 specific questions this chunk can answer"]',
+}
+PF_RULES = {
+    "keywords": '- "keywords" should be specific and domain-relevant (not generic words like "system", "data", "process")',
+    "questions": '- "questions" should be natural questions a user would ask that this chunk answers',
+}
+PF_PROMPT = """You are a document analysis expert. Analyze this text chunk from a Markdown document and extract structured metadata for a RAG (Retrieval-Augmented Generation) system.
+
+**Section Path:** {section_title}
+**Chunk Position:** {position} of {total} chunks
+**Previous Chunk Summary:** {prev_summary}
+
+**Chunk Text:**
+{chunk_text}
+
+Extract the following in a single JSON response:
+
+{{
+  {field_line}
+}}
+
+Rules:
+{rules}- Return ONLY valid JSON, no extra text"""
+
+
+def perfield(struct_chunks: list, adapter: LLMAdapter) -> tuple[list[dict], dict]:
+    from mdkeychunker.enricher import _as_str, _as_str_list
+    chunks = copy.deepcopy(struct_chunks)
+    total, failed = len(chunks), set()
+    for i, c in enumerate(chunks):
+        prev = "(first chunk)" if i == 0 else (chunks[i - 1].summary or "(unavailable)")
+        for field, line in PF_FIELDS.items():
+            rule = PF_RULES.get(field, "")
+            prompt = PF_PROMPT.format(section_title=c.section_title or "(no section)", position=i + 1, total=total,
+                                      prev_summary=prev, chunk_text=c.text, field_line=line,
+                                      rules=rule + "\n" if rule else "")
+            r = adapter.call_json(prompt)
+            if adapter.fatal:
+                raise adapter.fatal
+            if not isinstance(r, dict):
+                failed.add(i)
+                continue
+            if field in ("title", "summary"):
+                setattr(c, field, _as_str(r.get(field)))
+            else:
+                setattr(c, field, _as_str_list(r.get(field), split_commas=field == "keywords"))
+    out = [{**chunk_dict(c), "llm_failed": i in failed} for i, c in enumerate(chunks)]
+    return out, adapter.stats()
+
+
+def enrich(struct_chunks: list, adapter: LLMAdapter, rolling_keys: bool = True) -> tuple[list[dict], dict]:
+    cls = LLMEnricher if rolling_keys else NoRollingKeysEnricher
+    enriched = cls(adapter).enrich_chunks(copy.deepcopy(struct_chunks))  # type: ignore[arg-type]
     if adapter.fatal:
         raise adapter.fatal
     failed = set(adapter.failed)
@@ -436,6 +515,16 @@ class Builder:
             chunks, st = enrich(struct, ad)
             self._save("enr", did, chunks, st)
             info["enr"] = st
+        if "enr_nork" in v and not self._get("enr_nork", did):
+            ad = LLMAdapter(self.model, self.complete_fn, self.stop, tag=f"enrich-nork-{self.dataset}")
+            chunks, st = enrich(struct, ad, rolling_keys=False)
+            self._save("enr_nork", did, chunks, st)
+            info["enr_nork"] = st
+        if "perfield" in v and not self._get("perfield", did):
+            ad = LLMAdapter(self.model, self.complete_fn, self.stop, tag=f"perfield-{self.dataset}")
+            chunks, st = perfield(struct, ad)
+            self._save("perfield", did, chunks, st)
+            info["perfield"] = st
         if "cr" in v and not self._get("cr", did):
             ad = LLMAdapter(self.model, self.complete_fn, self.stop, tag=f"cr-{self.dataset}")
             chunks, st = contextual_prefixes(md, self._get("struct", did)["chunks"], ad)
@@ -505,19 +594,22 @@ def main(argv: list[str] | None = None) -> int:
     except FrozenConfigMismatch as e:
         print(f"REFUSED: {e}", flush=True)
         return 2
-    configure_llm_api(args.dataset)
+    configure_llm_api(args.dataset, variants)
 
     selection = json.loads(Path(args.selection).read_text())
     docs = load_docs(args.dataset, selection, args.domains.split(","))
     size = median_struct_tokens([d["markdown"] for d in load_docs(args.dataset, selection)]) \
         if "fixedlen" in variants else None
+    if variants == ["perfield"]:  # Amendment 3: 100 papers sampled from the sorted ids
+        docs = sorted(docs, key=lambda d: d["id"])
+        docs = sorted(random.Random(2027).sample(docs, min(100, len(docs))), key=lambda d: d["id"])
     if args.sample:
         docs = sorted(random.Random(2027).sample(docs, min(args.sample, len(docs))), key=lambda d: d["id"])
     if args.limit:
         docs = docs[: args.limit]
     todo = [d for d in docs if missing([d["id"]], variants, args.model_tag)]
     print(f"{args.dataset}/{args.model_tag}: {len(todo)}/{len(docs)} docs to build, variants={variants}, "
-          f"num_ctx={NUM_CTX[args.dataset]}" + (f", fixedlen={size}" if size else ""), flush=True)
+          f"num_ctx={run_num_ctx(args.dataset, variants)}" + (f", fixedlen={size}" if size else ""), flush=True)
     b = Builder(args.dataset, args.model_tag, variants, fixedlen_size=size)
     res = b.run(todo, args.workers)
     print(f"SUMMARY done={res['done']} failed={len(res['failed'])} parse_failures={res['parse_failures']} "

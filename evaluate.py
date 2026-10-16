@@ -9,6 +9,7 @@ bigger chunks get no free credit.
 import argparse
 import os
 import hashlib
+import time
 import json
 import random
 import re
@@ -132,6 +133,35 @@ def covered(evidence: str, units: list[list[str]], grams: set) -> bool:
     return sum(g in grams for g in eg) / len(eg) >= 0.5
 
 
+EMBED_OPTIONS: dict = {}  # per-model Ollama options (e.g. num_ctx); empty for nomic/mxbai
+
+
+def _post_embed(model: str, inputs: list[str]) -> dict:
+    body = {"model": model, "input": inputs, "truncate": True}
+    if EMBED_OPTIONS.get(model):
+        body["options"] = EMBED_OPTIONS[model]
+    return requests.post(f"{OLLAMA}/api/embed", json=body, timeout=600).json()
+
+
+def _embed_batch(model: str, inputs: list[str]) -> list:
+    """One request per batch; if the runner rejects or crashes on the batch (it can fail on long
+    inputs in a batch that it accepts one at a time), wait for it to restart and embed singly."""
+    r = _post_embed(model, inputs)
+    if "embeddings" in r:
+        return r["embeddings"]
+    out = []
+    for text in inputs:
+        for attempt in range(6):
+            time.sleep(5 * attempt)
+            r = _post_embed(model, [text])
+            if "embeddings" in r:
+                out.append(r["embeddings"][0])
+                break
+        else:
+            raise RuntimeError(f"Ollama /api/embed failed for {model}: {str(r)[:500]}")
+    return out
+
+
 def embed(model_key: str, texts: list[str], is_query: bool) -> np.ndarray:
     model, qpre, dpre = EMBEDDERS[model_key]
     pre = qpre if is_query else dpre
@@ -147,9 +177,8 @@ def embed(model_key: str, texts: list[str], is_query: bool) -> np.ndarray:
             todo.append((i, p))
     for b in range(0, len(todo), 32):
         batch = todo[b:b + 32]
-        r = requests.post(f"{OLLAMA}/api/embed", json={
-            "model": model, "input": [pre + texts[i] for i, _ in batch], "truncate": True,
-        }, timeout=600).json()
+        vecs = _embed_batch(model, [pre + texts[i] for i, _ in batch])
+        r = {"embeddings": vecs}
         for (i, p), v in zip(batch, r["embeddings"]):
             arr = np.asarray(v, dtype=np.float32)
             arr /= np.linalg.norm(arr) + 1e-9

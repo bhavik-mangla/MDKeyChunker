@@ -61,6 +61,13 @@ def stages(strong_reduction: int = 0) -> list[dict]:
         {"name": "local-freshstack", "group": "local", "build": ["--dataset", "freshstack", "--model-tag", "local",
                                                                 "--variants", LOCAL_VARIANTS, *local_extra,
                                                                 "--workers", "4"]},
+        # Split FreshStack local run (DEVIATIONS 2026-10-06): enrichment at num_ctx 8192 with 8 slots,
+        # then CR at num_ctx 32768 with 4 slots. Same outputs as one run; about half the wall time.
+        {"name": "local-freshstack-enr", "group": "local-split", "build": [
+            "--dataset", "freshstack", "--model-tag", "local",
+            "--variants", "fixed512,fixedtok,struct,enr", *local_extra, "--workers", "8"]},
+        {"name": "local-freshstack-cr", "group": "local-split", "build": [
+            "--dataset", "freshstack", "--model-tag", "local", "--variants", "cr", "--workers", "4"]},
         {"name": "strong-qasper-enr", "group": "strong", "build": ["--dataset", "qasper", "--model-tag", "strong",
                                                                   "--variants", "enr", "--workers", "8"]},
         {"name": "strong-freshstack-enr", "group": "strong", "build": ["--dataset", "freshstack", "--model-tag",

@@ -320,7 +320,12 @@ class TestFrozen(Tmp):
         self.assertIn("answer_qasper", c["prompts_sha256"])
         self.assertEqual(c["models"]["strong"]["providers"], ["deepinfra/bf16"])
         self.assertEqual(c["models"]["strong"]["reasoning"], "low")
-        self.assertEqual(c["models"]["local"]["num_ctx"], {"qasper": 16384, "freshstack": 32768})
+        self.assertEqual(c["models"]["local"]["num_ctx"],
+                         {"qasper": 16384, "freshstack": 32768, "freshstack_enr": 8192})
+        # enrichment-only FreshStack runs use the smaller context; any run with CR keeps the large one
+        self.assertEqual(build_v2.run_num_ctx("freshstack", ["struct", "enr"]), 8192)
+        self.assertEqual(build_v2.run_num_ctx("freshstack", ["enr", "cr"]), 32768)
+        self.assertEqual(build_v2.run_num_ctx("qasper", ["enr"]), 16384)
         self.assertFalse(c["models"]["local"]["think"])
         self.assertIn("mdkeychunker", c["git"])
 
@@ -566,9 +571,12 @@ class TestOrchestrator(Tmp):
         names = [s["name"] for s in st]
         self.assertEqual(names[0], "select")
         self.assertEqual(names[-2:], ["evaluate", "e2e"])
-        self.assertTrue(orchestrate_v2.skipped(st[3], {"strong"}, set()))
-        self.assertFalse(orchestrate_v2.skipped(st[1], {"strong"}, set()))
-        self.assertTrue(orchestrate_v2.skipped(st[1], set(), {"evaluate"}))
+        by = {s["name"]: s for s in st}
+        self.assertTrue(orchestrate_v2.skipped(by["strong-qasper-enr"], {"strong"}, set()))
+        self.assertFalse(orchestrate_v2.skipped(by["local-qasper"], {"strong"}, set()))
+        self.assertTrue(orchestrate_v2.skipped(by["local-qasper"], set(), {"evaluate"}))
+        self.assertEqual(by["local-freshstack-enr"]["build"][-1], "8")
+        self.assertIn("cr", by["local-freshstack-cr"]["build"])
         self.assertNotIn("strong-freshstack-cr", names)  # plan sec. 2: no CR-strong on FreshStack
         r1 = {s["name"]: s for s in orchestrate_v2.stages(1)}
         self.assertIn("--sample", r1["strong-qasper-cr"]["build"])
