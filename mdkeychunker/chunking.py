@@ -450,8 +450,10 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
 
     ``section_path`` is the header stack at the chunk's first body line, outermost first;
     with ``prefix`` it is joined with ``" > "`` for ``embed_text``. ``section_title`` keeps
-    its 0.3 value, which for a chunk merged across headers can name a later section (the
-    v4 study's prefix used it). ``chunk_id`` is
+    its 0.3 value, which for a chunk merged across headers can name a later section. The v4
+    study's prefix used ``section_title``, so ``embed_text`` differs from the study's indexed
+    text for such chunks (5 of 184 on the repo's own Markdown files); the exact study
+    rendering is ``section_title + "\n\n" + text`` with ``max_tokens=None``. ``chunk_id`` is
     content-stable (``Chunk.stable_id``: doc_id, start offset, text): editing or appending
     text leaves the ids of all chunks before the change unchanged.
 
