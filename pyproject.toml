@@ -24,20 +24,31 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
 ]
 
-dependencies = [
-    "openai>=1.0.0",        # Works with OpenAI, Ollama, vLLM, LM Studio, etc.
-    "python-dotenv>=1.0.0", # .env config
-    "tiktoken>=0.5.0",      # Token counting
-]
+# Core: chunk, window, evidence metrics, fusion maths, diagnose report logic. No dependencies.
+dependencies = []
 
 [project.optional-dependencies]
-anthropic = ["anthropic>=0.18.0"]  # Native Anthropic support
-spacy = ["spacy>=3.0.0"]           # Local enrichment; also run: python -m spacy download en_core_web_md
+llm = ["openai>=1.0.0"]                        # OpenAI and compatible servers (Ollama, vLLM, ...)
+anthropic = ["anthropic>=0.40.0"]
+tokens = ["tiktoken>=0.8.0"]                   # exact token counts (cl100k_base, the study's)
+bm25 = ["bm25s>=0.2.0", "PyStemmer>=2.2.0.3"]  # first with cp310-cp313 wheels
+dense = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]   # 4.51: Qwen3 models
+rerank = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]  # CrossEncoder, Qwen3 seq-cls
+retrieval = ["mdkeychunker[bm25,dense,rerank]"]
+langchain = ["langchain-core>=0.3.0"]
+llamaindex = ["llama-index-core>=0.12.0"]
+spacy = ["spacy>=3.0.0"]           # experimental, not covered by the study; also run:
+                                   # python -m spacy download en_core_web_md
+cli = ["python-dotenv>=1.0.0"]     # .env support for the CLI
+all = ["mdkeychunker[llm,anthropic,tokens,retrieval,langchain,llamaindex,cli]"]
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
+    "hypothesis>=6.100.0",
     "mypy>=1.5.0",
     "ruff>=0.1.0",
+    "markdown-it-py>=3.0.0",
+    "pytest-examples>=0.0.10",
 ]
 benchmark = [
     "sentence-transformers>=2.2.0",
@@ -60,6 +71,9 @@ Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/releases"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["mdkeychunker*"]
+
+[tool.setuptools.package-data]
+mdkeychunker = ["py.typed"]
 
 [tool.mypy]
 python_version = "3.10"

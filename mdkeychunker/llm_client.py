@@ -1,9 +1,10 @@
 """Unified LLM client supporting OpenAI, Anthropic, and OpenAI-compatible endpoints."""
 import json
+import logging
 import re
 import time
-import logging
 from typing import Any
+
 from .config import Config
 
 log = logging.getLogger(__name__)
@@ -18,7 +19,12 @@ class LLMClient:
 
     def _init_client(self) -> None:
         if self.provider in ("openai", "openai_compatible"):
-            from openai import OpenAI
+            try:
+                from openai import OpenAI
+            except ImportError as e:
+                raise ImportError(
+                    "The openai provider needs: pip install 'mdkeychunker[llm]'"
+                ) from e
             kwargs: dict = {"api_key": self.config.llm_api_key or "not-needed"}
             if self.config.llm_base_url:
                 kwargs["base_url"] = self.config.llm_base_url

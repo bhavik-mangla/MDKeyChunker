@@ -10,6 +10,7 @@ class Restructurer:
 
     def restructure(self, chunks: list[Chunk]) -> list[Chunk]:
         """RAG-optimized restructuring: merge by key globally, handle orphans."""
+        # Without merging, orphan handling (min_orphan_size) is skipped as well
         if not self.config.merge_by_keys or not chunks:
             return chunks
 

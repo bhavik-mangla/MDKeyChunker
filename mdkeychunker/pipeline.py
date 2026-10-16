@@ -1,9 +1,14 @@
-"""Main pipeline: chunk → enrich → restructure."""
+"""Legacy pipeline: chunk → enrich → restructure (0.3 API, deprecated in 0.4).
+
+Use ``mk.chunk()`` and, for LLM fields, ``mk.enrich()`` instead.
+"""
 import logging
+import warnings
 from pathlib import Path
-from .config import Config
+
 from .chunker import MarkdownChunker
-from .enricher import LLMEnricher, SpacyEnricher, Enricher
+from .config import Config
+from .enricher import Enricher, LLMEnricher, SpacyEnricher
 from .llm_client import LLMClient
 from .restructurer import Restructurer
 
@@ -12,17 +17,24 @@ log = logging.getLogger(__name__)
 
 class Pipeline:
     def __init__(self, config: Config | None = None, enricher_mode: str = "llm"):
+        warnings.warn(
+            "Pipeline is deprecated and will be removed in 0.6; use mk.chunk() "
+            "(and mk.enrich() for LLM fields)", DeprecationWarning, stacklevel=2)
         self.config = config or Config.from_env()
-        logging.basicConfig(level=getattr(logging, self.config.log_level))
         self.chunker = MarkdownChunker(self.config)
-        self.llm = LLMClient(self.config)
-        
-        # Select Enricher
+
+        # Select Enricher; the LLM client (and openai) is created only when it is used
+        self.llm: LLMClient | None = None
         if enricher_mode == "spacy":
             self.enricher: Enricher = SpacyEnricher()
         else:
+            self.llm = LLMClient(self.config)
             self.enricher = LLMEnricher(self.llm)
-            
+            if self.config.merge_by_keys is None:
+                warnings.warn(
+                    "merge_by_keys now defaults to False (0.4; was True); set it explicitly "
+                    "to silence this", UserWarning, stacklevel=2)
+
         self.restructurer = Restructurer(self.config)
 
     def process_file(self, filepath: str) -> list:
