@@ -44,6 +44,7 @@ from typing import Any, Protocol, Union, runtime_checkable
 from .models import Chunk, GoldSpan, Hit, RetrievedItem
 
 __all__ = [
+    "AnyTokenizer",
     "CharTokenizer",
     "GoldLike",
     "Tokenizer",
@@ -75,12 +76,12 @@ class Tokenizer(Protocol):
 class CharTokenizer:
     """Dependency-free estimate: one token per ``chars_per_token`` characters (rounded up).
 
-    ``decode`` of the first ``n`` ids returns the first ``n * chars_per_token`` characters
-    of the most recently encoded text, which is all the budget logic needs.
+    Stateless (safe to share across threads). It has ``count``/``truncate`` instead of
+    ``encode``/``decode``; the budget logic uses those directly.
 
     Example:
         >>> t = CharTokenizer()
-        >>> len(t.encode("abcdefghij")), t.decode(t.encode("abcdefghij")[:2])
+        >>> t.count("abcdefghij"), t.truncate("abcdefghij", 2)
         (3, 'abcdefgh')
     """
 
@@ -88,20 +89,28 @@ class CharTokenizer:
         if chars_per_token < 1:
             raise ValueError("chars_per_token must be >= 1")
         self.chars_per_token = chars_per_token
-        self._last = ""
 
     def count(self, text: str) -> int:
         return math.ceil(len(text) / self.chars_per_token)
 
-    def encode(self, text: str) -> list[int]:
-        self._last = text
-        return list(range(self.count(text)))
-
-    def decode(self, tokens: Sequence[int]) -> str:
-        return self._last[: len(tokens) * self.chars_per_token]
+    def truncate(self, text: str, n_tokens: int) -> str:
+        """The first ``n_tokens`` tokens of ``text``."""
+        return text[: max(n_tokens, 0) * self.chars_per_token]
 
 
-def get_tokenizer(tokenizer: Tokenizer | str | None = None) -> Tokenizer:
+AnyTokenizer = Union[Tokenizer, CharTokenizer]
+
+
+def _cut(tok: AnyTokenizer, text: str, n_tokens: int) -> tuple[str, int]:
+    """Kept text and tokens used when at most ``n_tokens`` tokens of ``text`` fit."""
+    if isinstance(tok, CharTokenizer):
+        used = min(tok.count(text), n_tokens)
+        return tok.truncate(text, used), used
+    ids = list(tok.encode(text))[:n_tokens]
+    return tok.decode(ids), len(ids)
+
+
+def get_tokenizer(tokenizer: Tokenizer | CharTokenizer | str | None = None) -> AnyTokenizer:
     """Resolve ``None`` (chars/4 estimate), a tiktoken encoding name, or a tokenizer object.
 
     Example:
@@ -118,6 +127,8 @@ def get_tokenizer(tokenizer: Tokenizer | str | None = None) -> Tokenizer:
                               'pip install "mdkeychunker[tokens]"') from e
         enc: Tokenizer = tiktoken.get_encoding(tokenizer)
         return enc
+    if isinstance(tokenizer, CharTokenizer):
+        return tokenizer
     if not isinstance(tokenizer, Tokenizer):
         raise TypeError("tokenizer must be None, a tiktoken encoding name, or have encode/decode")
     return tokenizer
@@ -235,7 +246,7 @@ def _lookup(chunks: Mapping[str, Chunk] | Iterable[Chunk] | None) -> Mapping[str
 
 
 def _budget_units(results: Sequence[RetrievedItem], budget_tokens: int | None, k: int | None,
-                  tok: Tokenizer, lookup: Mapping[str, Chunk] | None) -> list[_Unit]:
+                  tok: AnyTokenizer, lookup: Mapping[str, Chunk] | None) -> list[_Unit]:
     if budget_tokens is not None and budget_tokens < 0:
         raise ValueError("budget_tokens must be >= 0")
     units: list[_Unit] = []
@@ -251,9 +262,8 @@ def _budget_units(results: Sequence[RetrievedItem], budget_tokens: int | None, k
         seen.add(ident)
         kept = c.text
         if budget_tokens is not None:
-            toks = list(tok.encode(c.text))[: budget_tokens - used]
-            used += len(toks)
-            kept = tok.decode(toks)
+            kept, n = _cut(tok, c.text, budget_tokens - used)
+            used += n
         span = c.end_char - c.start_char
         frac = len(kept) / len(c.text) if c.text else 0.0
         units.append(_Unit(c, kept, words(kept), c.start_char, c.start_char + round(span * frac)))
@@ -289,7 +299,7 @@ def _covered_offset(g: GoldSpan, units: Sequence[_Unit]) -> bool:
 
 def evidence_recall(results: Sequence[RetrievedItem], gold: Iterable[GoldLike],
                     budget_tokens: int | None = 512, *, k: int | None = None,
-                    tokenizer: Tokenizer | str | None = None,
+                    tokenizer: Tokenizer | CharTokenizer | str | None = None,
                     chunks: Mapping[str, Chunk] | Iterable[Chunk] | None = None) -> float:
     """Fraction of gold spans found in the retrieved text within a token budget.
 
@@ -302,12 +312,17 @@ def evidence_recall(results: Sequence[RetrievedItem], gold: Iterable[GoldLike],
         gold: the question's gold evidence (see ``to_gold_spans`` for accepted forms).
         budget_tokens: tokens of retrieved chunk text to read; ``None`` reads all results.
         k: read at most the first ``k`` results (applied before the budget).
-        tokenizer: ``None`` (chars/4 estimate), a tiktoken encoding name such as
-            ``"cl100k_base"``, or an object with ``encode``/``decode``.
+        tokenizer: ``None`` (chars/4 estimate), a ``CharTokenizer``, a tiktoken encoding
+            name such as ``"cl100k_base"``, or an object with ``encode``/``decode``.
         chunks: chunks (or an ``{chunk_id: Chunk}`` mapping) to resolve id results.
 
     Returns:
         A value in [0, 1].
+
+    Note:
+        For offset gold, the kept character range of a chunk cut by the budget is
+        approximated proportionally: ``start_char + (end_char - start_char) * len(kept) /
+        len(text)``. It is exact when ``text`` is the verbatim source slice.
 
     Raises:
         ValueError: if ``gold`` is empty, or offset gold is used with chunks that lack offsets.
@@ -343,7 +358,7 @@ def evidence_recall(results: Sequence[RetrievedItem], gold: Iterable[GoldLike],
 
 def evidence_precision(results: Sequence[RetrievedItem], gold: Iterable[GoldLike],
                        budget_tokens: int | None = 1024, *, k: int | None = None,
-                       tokenizer: Tokenizer | str | None = None,
+                       tokenizer: Tokenizer | CharTokenizer | str | None = None,
                        chunks: Mapping[str, Chunk] | Iterable[Chunk] | None = None) -> float:
     """Share of the retrieved text (within the budget) that is gold evidence.
 

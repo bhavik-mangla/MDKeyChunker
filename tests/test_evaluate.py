@@ -109,6 +109,10 @@ def test_k_limits_results_before_budget():
 def test_default_tokenizer_is_chars_over_four():
     t = CharTokenizer()
     assert t.count("") == 0 and t.count("abcd") == 1 and t.count("abcde") == 2
+    assert t.truncate("abcdefghij", 1) == "abcd" and t.truncate("ab", 5) == "ab"
+    assert get_tokenizer(t) is t
+    assert evidence_recall([mk_chunk(TEN)], [TEN], budget_tokens=4,
+                           tokenizer=CharTokenizer(chars_per_token=8)) == 1.0
     assert isinstance(get_tokenizer(None), CharTokenizer)
     with pytest.raises(TypeError):
         get_tokenizer(42)  # type: ignore[arg-type]
