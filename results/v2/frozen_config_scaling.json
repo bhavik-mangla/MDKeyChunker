@@ -1,0 +1,80 @@
+{
+ "plan": "ANALYSIS_PLAN_v2 Amendment 1 sec. C (exploratory within-family scaling)",
+ "model": {
+  "tag": "qwen235b",
+  "spec": "dashscope:qwen3-235b-a22b-instruct-2507",
+  "thinking": false,
+  "backend": "dashscope",
+  "model": "qwen3-235b-a22b-instruct-2507",
+  "temperature": 0.0,
+  "seed": 0,
+  "reasoning": "off",
+  "enrich_max_tokens": 1000,
+  "cr_max_tokens": 120
+ },
+ "variant": "enr",
+ "prompts_sha256": {
+  "enrich": "7b89fb9282546cd06950e5afa359168b576a8bd18886e42d18e56082a8905adb"
+ },
+ "chunking": {
+  "struct": {
+   "min_chunk_size": 100,
+   "max_chunk_size": 1500
+  }
+ },
+ "retry": {
+  "parse_retries": 3,
+  "retry_seeds": [
+   1,
+   2,
+   3
+  ]
+ },
+ "sample": {
+  "dataset": "qasper",
+  "seed": 2027,
+  "n": 30,
+  "method": "random.Random(2027).sample(sorted(selection qasper paper_ids), 30)",
+  "paper_ids": [
+   "1706.00139",
+   "1910.14599",
+   "1703.07476",
+   "1603.09631",
+   "1906.04236",
+   "1909.05359",
+   "1804.05253",
+   "1909.03405",
+   "1804.03839",
+   "1908.05758",
+   "1804.00982",
+   "1901.05415",
+   "1903.09722",
+   "1703.07090",
+   "1907.01468",
+   "1905.07562",
+   "1702.02584",
+   "1810.13414",
+   "1909.13104",
+   "1911.11899",
+   "1808.10245",
+   "1711.04964",
+   "1907.00937",
+   "1907.10676",
+   "1808.04122",
+   "1909.02855",
+   "1910.09916",
+   "1909.00091",
+   "1801.05147",
+   "1911.00461"
+  ]
+ },
+ "dashscope_token_cap": 950000,
+ "cache": "data/v2/cache/qwen235b/enr",
+ "git": {
+  "harness": {
+   "commit": "dd1eedbc4af0a4b008eac02ebaebaf33b81b18e9",
+   "dirty": true
+  }
+ },
+ "created_at": "2026-10-06T14:12:19+0530"
+}
