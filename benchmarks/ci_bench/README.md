@@ -1,8 +1,11 @@
 # CI benchmark: tiny Qasper subset
 
-A regression guard, not a result. It checks that evidence matching, the token budget and
-BM25 still give the numbers they gave when this subset was frozen. It makes no claim about
-which chunker is better: with 39 questions, differences between arms are mostly noise.
+A regression check, not evidence. It checks that evidence matching, the token budget and
+BM25 still give the numbers they gave when this subset was frozen. It says nothing about
+which chunker is better. With n = 39 questions, differences between arms are mostly noise.
+For example, here S+T scores below S (0.372 vs 0.415, cl100k), whereas on all 951 Qasper
+questions the study found no detectable S+T - S difference under BM25 (+0.2 points, 95% CI
+[-0.6, +0.9]; exploratory). The test asserts no ordering between arms, only the frozen values.
 
 - `qasper_ci.json`: 10 papers (39 questions with gold evidence) drawn with seed 2026 from the
   v4 study's 300 Qasper papers. The pool is the 179 papers with at least 3 such questions,
