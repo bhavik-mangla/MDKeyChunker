@@ -1,0 +1,39 @@
+{
+ "meta": {
+  "generator": "ollama:qwen2.5:7b",
+  "budget_tokens": 512,
+  "retriever": "hybrid",
+  "settings": {
+   "max_tokens": 64,
+   "temperature": 0.0,
+   "seed": 0
+  },
+  "prompt_sha256": {
+   "qasper": "488eeb90639b8966e86c2000643bb59d06891cf5e209746f5491e2a84d56cfe0",
+   "freshstack": "f13f7db21af8fd9939c90acc087e0d0c435aa62c0fb26d0137bfb9a4089cc8d4"
+  },
+  "num_ctx": 16384,
+  "systems": [
+   "CR",
+   "CR-strong",
+   "E",
+   "E-strong",
+   "F256t",
+   "F512c",
+   "S",
+   "S+T"
+  ],
+  "failed": [],
+  "dropped_docs": []
+ },
+ "mean_f1": {
+  "F512c": 0.37759880903668486,
+  "F256t": 0.34172966420370876,
+  "S": 0.3767141676245667,
+  "S+T": 0.37639443403565376,
+  "E": 0.38999793069010874,
+  "CR": 0.3877687217338544,
+  "E-strong": 0.3908019594286867,
+  "CR-strong": 0.39038644339342216
+ }
+}

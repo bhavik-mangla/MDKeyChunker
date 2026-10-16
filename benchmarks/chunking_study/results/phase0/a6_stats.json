@@ -1,0 +1,1213 @@
+{
+ "families": {
+  "v3_all_primary_cells": 22,
+  "v2_primary": 4,
+  "v2_rq1": 4
+ },
+ "rows": [
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": 0.0459915611814346,
+   "ci95": [
+    -0.03600367965367963,
+    0.1270337906504065
+   ],
+   "ci90": [
+    -0.023814223057644128,
+    0.11551915708812259
+   ],
+   "p_perm": 0.3100689931006899,
+   "p_lower": 0.0202979702029797,
+   "p_upper": 0.45565443455654436,
+   "p_tost": 0.45565443455654436,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": 0.12721518987341773,
+   "ci95": [
+    0.055138538159371545,
+    0.20195016365748072
+   ],
+   "ci90": [
+    0.06666666666666667,
+    0.19047940797940793
+   ],
+   "p_perm": 0.0016998300169983002,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9751024897510249,
+   "p_tost": 0.9751024897510249,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 0.03569643035696431,
+    "v2_rq1": 0.005099490050994901
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_rq1": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": 0.1040084388185654,
+   "ci95": [
+    0.03138464057871952,
+    0.18294511184755588
+   ],
+   "ci90": [
+    0.043290970128802404,
+    0.17089503688799457
+   ],
+   "p_perm": 0.0084991500849915,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9186081391860814,
+   "p_tost": 0.9186081391860814,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": 0.021097046413502112,
+   "ci95": [
+    -0.0644454365079365,
+    0.10852776927784576
+   ],
+   "ci90": [
+    -0.05324074074074074,
+    0.09362139917695472
+   ],
+   "p_perm": 0.6711328867113289,
+   "p_lower": 0.070992900709929,
+   "p_upper": 0.2693730626937306,
+   "p_tost": 0.2693730626937306,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": 0.09852320675105485,
+   "ci95": [
+    0.00570711394769615,
+    0.1826253306878306
+   ],
+   "ci90": [
+    0.02099527016193683,
+    0.1708942279942279
+   ],
+   "p_perm": 0.042495750424957505,
+   "p_lower": 0.0016998300169983002,
+   "p_upper": 0.8485151484851515,
+   "p_tost": 0.8485151484851515,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 0.8074192580741926
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": 0.22974683544303795,
+   "ci95": [
+    0.12910690770640101,
+    0.33539158950617287
+   ],
+   "ci90": [
+    0.14365027151211363,
+    0.3174515503875967
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9994000599940006,
+   "p_tost": 0.9994000599940006,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 0.0021997800219978004,
+    "v2_rq1": 0.00039996000399960006
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_rq1": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": 0.2090717299578059,
+   "ci95": [
+    0.12486595044521877,
+    0.29915960955607057
+   ],
+   "ci90": [
+    0.13691758966244721,
+    0.28310908130352574
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9996000399960004,
+   "p_tost": 0.9996000399960004,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": 0.1407172995780591,
+   "ci95": [
+    0.0491952224482345,
+    0.22756529850746265
+   ],
+   "ci90": [
+    0.06413428856071261,
+    0.2140845070422535
+   ],
+   "p_perm": 0.0059994000599940004,
+   "p_lower": 0.00029997000299970003,
+   "p_upper": 0.9667033296670333,
+   "p_tost": 0.9667033296670333,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": 0.06751054852320676,
+   "ci95": [
+    -0.008032128514056222,
+    0.14840182648401826
+   ],
+   "ci90": [
+    0.002136752136752138,
+    0.1350210970464135
+   ],
+   "p_perm": 0.12058794120587941,
+   "p_lower": 0.0026997300269973002,
+   "p_upper": 0.6618338166183382,
+   "p_tost": 0.6618338166183382,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": -0.02341772151898734,
+   "ci95": [
+    -0.08554312756644554,
+    0.04325105485232064
+   ],
+   "ci90": [
+    -0.07613607849041454,
+    0.03195216049382705
+   ],
+   "p_perm": 0.518048195180482,
+   "p_lower": 0.21627837216278373,
+   "p_upper": 0.020997900209979003,
+   "p_tost": 0.21627837216278373,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.9875012498750125
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.8651134886511349
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": -0.020253164556962026,
+   "ci95": [
+    -0.10822781385281384,
+    0.07387019648756736
+   ],
+   "ci90": [
+    -0.09312499999999999,
+    0.0578715886939571
+   ],
+   "p_perm": 0.6745325467453255,
+   "p_lower": 0.263973602639736,
+   "p_upper": 0.07579242075792421,
+   "p_tost": 0.263973602639736,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": -0.02341772151898735,
+   "ci95": [
+    -0.12151396066609244,
+    0.07051504629629625
+   ],
+   "ci90": [
+    -0.10460592369477911,
+    0.055424575012378234
+   ],
+   "p_perm": 0.641035896410359,
+   "p_lower": 0.29727027297270275,
+   "p_upper": 0.06969303069693031,
+   "p_tost": 0.29727027297270275,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": 0.024261603375527428,
+   "ci95": [
+    -0.0562506764069264,
+    0.10416666666666667
+   ],
+   "ci90": [
+    -0.043699186991869914,
+    0.09177756139781448
+   ],
+   "p_perm": 0.6013398660133986,
+   "p_lower": 0.044295570442955706,
+   "p_upper": 0.2800719928007199,
+   "p_tost": 0.2800719928007199,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": -0.04113924050632911,
+   "ci95": [
+    -0.10444961240310073,
+    0.023336854460093846
+   ],
+   "ci90": [
+    -0.09404761904761905,
+    0.012223856209150303
+   ],
+   "p_perm": 0.24687531246875313,
+   "p_lower": 0.40075992400759924,
+   "p_upper": 0.005599440055994401,
+   "p_tost": 0.40075992400759924,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.9875012498750125
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.8651134886511349
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": -0.009282700421940935,
+   "ci95": [
+    -0.07921842355175689,
+    0.06730878995433788
+   ],
+   "ci90": [
+    -0.06805724932249324,
+    0.0547945205479452
+   ],
+   "p_perm": 0.8202179782021798,
+   "p_lower": 0.136986301369863,
+   "p_upper": 0.0690930906909309,
+   "p_tost": 0.136986301369863,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": -0.045147679324894524,
+   "ci95": [
+    -0.12662344261429626,
+    0.039792545995670975
+   ],
+   "ci90": [
+    -0.11392156862745098,
+    0.02711734417344164
+   ],
+   "p_perm": 0.3237676232376762,
+   "p_lower": 0.45985401459854014,
+   "p_upper": 0.0217978202179782,
+   "p_tost": 0.45985401459854014,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "merged_nork/meta",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": -0.060126582278481014,
+   "ci95": [
+    -0.12785520866518,
+    -0.001960784313725491
+   ],
+   "ci90": [
+    -0.11622942386831277,
+    -0.009950248756218905
+   ],
+   "p_perm": 0.0917908209179082,
+   "p_lower": 0.6068393160683931,
+   "p_upper": 0.00029997000299970003,
+   "p_tost": 0.6068393160683931,
+   "margin": 0.05,
+   "verdict_ci": "different",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "merged_nork/meta",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": -0.030590717299578057,
+   "ci95": [
+    -0.09959778999198438,
+    0.03273893124665596
+   ],
+   "ci90": [
+    -0.08760961260961263,
+    0.022916666666666672
+   ],
+   "p_perm": 0.38936106389361064,
+   "p_lower": 0.3046695330466953,
+   "p_upper": 0.008599140085991401,
+   "p_tost": 0.3046695330466953,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "merged_nork/meta",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": -0.008438818565400847,
+   "ci95": [
+    -0.08333333333333333,
+    0.07084027777777767
+   ],
+   "ci90": [
+    -0.07094594594594594,
+    0.05769230769230768
+   ],
+   "p_perm": 0.8571142885711429,
+   "p_lower": 0.15978402159784022,
+   "p_upper": 0.0827917208279172,
+   "p_tost": 0.15978402159784022,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "merged_nork/meta",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": -0.012658227848101266,
+   "ci95": [
+    -0.09459639639639639,
+    0.06710571377072819
+   ],
+   "ci90": [
+    -0.07926829268292683,
+    0.053951149425287295
+   ],
+   "p_perm": 0.8217178282171783,
+   "p_lower": 0.1947805219478052,
+   "p_upper": 0.0744925507449255,
+   "p_tost": 0.1947805219478052,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "diff": -0.030590717299578064,
+   "ci95": [
+    -0.09271021262886596,
+    0.030866402116402084
+   ],
+   "ci90": [
+    -0.08333333333333333,
+    0.02142857142857143
+   ],
+   "p_perm": 0.44715528447155284,
+   "p_lower": 0.2996700329967003,
+   "p_upper": 0.010198980101989802,
+   "p_tost": 0.2996700329967003,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "diff": 0.024261603375527428,
+   "ci95": [
+    -0.0021367521367521365,
+    0.0590717299578059
+   ],
+   "ci90": [
+    0.0,
+    0.053030303030303025
+   ],
+   "p_perm": 0.25237476252374763,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.06519348065193481,
+   "p_tost": 0.06519348065193481,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "diff": -0.005274261603375528,
+   "ci95": [
+    -0.04329112554112553,
+    0.03481012658227848
+   ],
+   "ci90": [
+    -0.03760162601626016,
+    0.027777777777777776
+   ],
+   "p_perm": 0.8418158184181582,
+   "p_lower": 0.015398460153984602,
+   "p_upper": 0.0033996600339966003,
+   "p_tost": 0.015398460153984602,
+   "margin": 0.05,
+   "verdict_ci": "equivalent",
+   "verdict_perm": "equivalent"
+  },
+  {
+   "dataset": "qasper",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "diff": 0.017932489451476793,
+   "ci95": [
+    -0.035864978902953586,
+    0.07604279891304347
+   ],
+   "ci90": [
+    -0.027153558052434454,
+    0.0661796128707893
+   ],
+   "p_perm": 0.5381461853814619,
+   "p_lower": 0.0117988201179882,
+   "p_upper": 0.16278372162783722,
+   "p_tost": 0.16278372162783722,
+   "margin": 0.05,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "diff": -0.021798717957931698,
+   "ci95": [
+    -0.05928188699073681,
+    0.015315362240413914
+   ],
+   "ci90": [
+    -0.05317241952839748,
+    0.008530623295467906
+   ],
+   "p_perm": 0.2546745325467453,
+   "p_lower": 0.33636636336366366,
+   "p_upper": 0.0047995200479952005,
+   "p_tost": 0.33636636336366366,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "diff": -0.025605694594620095,
+   "ci95": [
+    -0.06415288425955237,
+    0.012051884569343713
+   ],
+   "ci90": [
+    -0.05812296289975363,
+    0.005987356672101097
+   ],
+   "p_perm": 0.19008099190080993,
+   "p_lower": 0.4026597340265973,
+   "p_upper": 0.0026997300269973002,
+   "p_tost": 0.4026597340265973,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0,
+    "v2_rq1": 0.19008099190080993
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_rq1": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "diff": -0.008252295152693087,
+   "ci95": [
+    -0.049044176132744824,
+    0.03272119217978915
+   ],
+   "ci90": [
+    -0.04278560535093935,
+    0.02621685145866612
+   ],
+   "p_perm": 0.6954304569543046,
+   "p_lower": 0.1516848315168483,
+   "p_upper": 0.039196080391960805,
+   "p_tost": 0.1516848315168483,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixedtok/text",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "diff": -0.009799518384681766,
+   "ci95": [
+    -0.05229588476091102,
+    0.033237667234125856
+   ],
+   "ci90": [
+    -0.045086988726490015,
+    0.02662152144375788
+   ],
+   "p_perm": 0.6583341665833417,
+   "p_lower": 0.1790820917908209,
+   "p_upper": 0.036896310368963105,
+   "p_tost": 0.1790820917908209,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "diff": 0.029796453988890186,
+   "ci95": [
+    0.0014151276888403124,
+    0.059148095340354014
+   ],
+   "ci90": [
+    0.005872491655554297,
+    0.05466118300303727
+   ],
+   "p_perm": 0.050094990500949906,
+   "p_lower": 0.00019998000199980003,
+   "p_upper": 0.4971502849715029,
+   "p_tost": 0.4971502849715029,
+   "margin": 0.03,
+   "verdict_ci": "different",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 0.9017098290170983
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "diff": 0.05129434461079484,
+   "ci95": [
+    0.014235853209398337,
+    0.0890834425813943
+   ],
+   "ci90": [
+    0.019940335472310652,
+    0.08253887819129918
+   ],
+   "p_perm": 0.009799020097990201,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.8642135786421358,
+   "p_tost": 0.8642135786421358,
+   "margin": 0.03,
+   "verdict_ci": "different",
+   "verdict_perm": "different",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 0.19598040195980404,
+    "v2_rq1": 0.019598040195980403
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_rq1": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "diff": 0.06508585715065329,
+   "ci95": [
+    0.029240217737763495,
+    0.1005737415805193
+   ],
+   "ci90": [
+    0.0351212323039864,
+    0.0946245031725023
+   ],
+   "p_perm": 0.0004999500049995,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9699030096990301,
+   "p_tost": 0.9699030096990301,
+   "margin": 0.03,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ1",
+   "a": "struct/text",
+   "b": "fixed512/text",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "diff": 0.03379487718127232,
+   "ci95": [
+    -0.0007709275164097985,
+    0.0693377031237058
+   ],
+   "ci90": [
+    0.004432586493824819,
+    0.06396507451002824
+   ],
+   "p_perm": 0.0678932106789321,
+   "p_lower": 0.0004999500049995,
+   "p_upper": 0.5872412758724127,
+   "p_tost": 0.5872412758724127,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "diff": 0.009608305878790956,
+   "ci95": [
+    -0.01868412032262635,
+    0.037617247614591225
+   ],
+   "ci90": [
+    -0.014228240703097032,
+    0.03329018254299263
+   ],
+   "p_perm": 0.5086491350864913,
+   "p_lower": 0.0037996200379962005,
+   "p_upper": 0.0822917708229177,
+   "p_tost": 0.0822917708229177,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "diff": 0.0228235635834376,
+   "ci95": [
+    -0.015362038066198899,
+    0.06178417005790397
+   ],
+   "ci90": [
+    -0.008698595974125232,
+    0.055438319827288605
+   ],
+   "p_perm": 0.24977502249775022,
+   "p_lower": 0.0036996300369963003,
+   "p_upper": 0.35676432356764326,
+   "p_tost": 0.35676432356764326,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.9875012498750125
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.8651134886511349
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "diff": 0.023621342499764754,
+   "ci95": [
+    -0.020464057258380304,
+    0.06850906451845998
+   ],
+   "ci90": [
+    -0.012965851594126125,
+    0.061129220352150175
+   ],
+   "p_perm": 0.2953704629537046,
+   "p_lower": 0.0103989601039896,
+   "p_upper": 0.3922607739226077,
+   "p_tost": 0.3922607739226077,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ2",
+   "a": "enr_rk/meta",
+   "b": "struct/tc",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "diff": 0.04583164826302814,
+   "ci95": [
+    0.005199476446209734,
+    0.08597345268719375
+   ],
+   "ci90": [
+    0.01137990561222452,
+    0.0801273770379122
+   ],
+   "p_perm": 0.032096790320967905,
+   "p_lower": 0.0004999500049995,
+   "p_upper": 0.775022497750225,
+   "p_tost": 0.775022497750225,
+   "margin": 0.03,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "diff": 0.005032223361522296,
+   "ci95": [
+    -0.024472456839492014,
+    0.03766197143307764
+   ],
+   "ci90": [
+    -0.020114691738237774,
+    0.03260624029887441
+   ],
+   "p_perm": 0.7638236176382361,
+   "p_lower": 0.014698530146985302,
+   "p_upper": 0.06269373062693731,
+   "p_tost": 0.06269373062693731,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "diff": 0.017037744790197124,
+   "ci95": [
+    -0.02366930988322593,
+    0.0589286665096671
+   ],
+   "ci90": [
+    -0.01778096060381514,
+    0.05336575835494131
+   ],
+   "p_perm": 0.44465553444655537,
+   "p_lower": 0.018098190180981903,
+   "p_upper": 0.27187281271872815,
+   "p_tost": 0.27187281271872815,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.9875012498750125
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 1.0,
+    "v2_primary": 0.8651134886511349
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "diff": 0.008715644880084465,
+   "ci95": [
+    -0.037189233711273445,
+    0.05459005189894517
+   ],
+   "ci90": [
+    -0.02955700479769815,
+    0.04693036828241897
+   ],
+   "p_perm": 0.7108289171082892,
+   "p_lower": 0.050094990500949906,
+   "p_upper": 0.18518148185181482,
+   "p_tost": 0.18518148185181482,
+   "margin": 0.03,
+   "verdict_ci": "inconclusive",
+   "verdict_perm": "inconclusive"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ3",
+   "a": "enr_rk/meta",
+   "b": "cr/cr",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "diff": 0.06717778574274458,
+   "ci95": [
+    0.030643418547215445,
+    0.10462840110343531
+   ],
+   "ci90": [
+    0.036494669494701544,
+    0.09873473252048381
+   ],
+   "p_perm": 0.000999900009999,
+   "p_lower": 9.999000099990002e-05,
+   "p_upper": 0.9705029497050295,
+   "p_tost": 0.9705029497050295,
+   "margin": 0.03,
+   "verdict_ci": "different",
+   "verdict_perm": "different"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "diff": -0.002489467797095726,
+   "ci95": [
+    -0.0260378731720321,
+    0.021093704653223667
+   ],
+   "ci90": [
+    -0.022092542825154545,
+    0.017144253697942542
+   ],
+   "p_perm": 0.8338166183381662,
+   "p_lower": 0.011398860113988602,
+   "p_upper": 0.0025997400259974,
+   "p_tost": 0.011398860113988602,
+   "margin": 0.03,
+   "verdict_ci": "equivalent",
+   "verdict_perm": "equivalent",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 0.23937606239376064
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "diff": -0.006455914639262341,
+   "ci95": [
+    -0.024770195853355652,
+    0.01221397483506174
+   ],
+   "ci90": [
+    -0.021824115715785426,
+    0.0090236541604794
+   ],
+   "p_perm": 0.5033496650334967,
+   "p_lower": 0.005699430056994301,
+   "p_upper": 9.999000099990002e-05,
+   "p_tost": 0.005699430056994301,
+   "margin": 0.03,
+   "verdict_ci": "equivalent",
+   "verdict_perm": "equivalent",
+   "holm_p_perm": {
+    "v3_all_primary_cells": 1.0
+   },
+   "holm_p_tost": {
+    "v3_all_primary_cells": 0.12538746125387462
+   }
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "diff": -0.004553446723171781,
+   "ci95": [
+    -0.022017526811461068,
+    0.011360458078372299
+   ],
+   "ci90": [
+    -0.01895825553689164,
+    0.009068572409902147
+   ],
+   "p_perm": 0.609039096090391,
+   "p_lower": 0.000999900009999,
+   "p_upper": 9.999000099990002e-05,
+   "p_tost": 0.000999900009999,
+   "margin": 0.03,
+   "verdict_ci": "equivalent",
+   "verdict_perm": "equivalent"
+  },
+  {
+   "dataset": "freshstack",
+   "rq": "RQ4b",
+   "a": "merged_rk/meta",
+   "b": "enr_rk/meta",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "diff": -0.00674030818253551,
+   "ci95": [
+    -0.017703160541292087,
+    0.004423786100817621
+   ],
+   "ci90": [
+    -0.015828963947012987,
+    0.002782258403000393
+   ],
+   "p_perm": 0.24867513248675133,
+   "p_lower": 0.00019998000199980003,
+   "p_upper": 9.999000099990002e-05,
+   "p_tost": 0.00019998000199980003,
+   "margin": 0.03,
+   "verdict_ci": "equivalent",
+   "verdict_perm": "equivalent"
+  }
+ ]
+}

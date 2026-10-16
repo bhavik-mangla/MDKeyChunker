@@ -1,0 +1,299 @@
+SECONDARY (Amendment 1 section A); unadjusted 95% CIs; not part of any Holm family
+
+qasper: system means, rec@512t (95% percentile CI)
+  hybrid         CR         0.4607 [0.432,0.491] clusters=300 n=951
+  hybrid         CR-strong  0.4774 [0.448,0.508] clusters=300 n=951
+  hybrid         E          0.4815 [0.452,0.512] clusters=300 n=951
+  hybrid         E-strong   0.4933 [0.462,0.524] clusters=300 n=951
+  hybrid         F256t      0.3499 [0.324,0.377] clusters=300 n=951
+  hybrid         F512c      0.3499 [0.324,0.377] clusters=300 n=951
+  hybrid         FL         0.3432 [0.317,0.370] clusters=300 n=951
+  hybrid         PP         0.3724 [0.345,0.400] clusters=300 n=951
+  hybrid         S          0.4248 [0.396,0.453] clusters=300 n=951
+  hybrid         S+T        0.4267 [0.399,0.454] clusters=300 n=951
+  hybrid+rerank  CR         0.5453 [0.515,0.576] clusters=300 n=951
+  hybrid+rerank  CR-strong  0.5696 [0.540,0.599] clusters=300 n=951
+  hybrid+rerank  E          0.5485 [0.519,0.578] clusters=300 n=951
+  hybrid+rerank  E-strong   0.5695 [0.539,0.600] clusters=300 n=951
+  hybrid+rerank  F256t      0.4362 [0.406,0.467] clusters=300 n=951
+  hybrid+rerank  F512c      0.4401 [0.412,0.468] clusters=300 n=951
+  hybrid+rerank  FL         0.4273 [0.398,0.457] clusters=300 n=951
+  hybrid+rerank  PP         0.4734 [0.443,0.504] clusters=300 n=951
+  hybrid+rerank  S          0.5297 [0.499,0.560] clusters=300 n=951
+  hybrid+rerank  S+T        0.5446 [0.516,0.573] clusters=300 n=951
+  hybrid-qwen3   CR         0.4767 [0.447,0.507] clusters=300 n=951
+  hybrid-qwen3   CR-strong  0.4838 [0.453,0.516] clusters=300 n=951
+  hybrid-qwen3   E          0.4971 [0.466,0.528] clusters=300 n=951
+  hybrid-qwen3   E-strong   0.5145 [0.484,0.545] clusters=300 n=951
+  hybrid-qwen3   F256t      0.3834 [0.356,0.411] clusters=300 n=951
+  hybrid-qwen3   F512c      0.3688 [0.341,0.398] clusters=300 n=951
+  hybrid-qwen3   FL         0.3612 [0.333,0.390] clusters=300 n=951
+  hybrid-qwen3   PP         0.3969 [0.370,0.425] clusters=300 n=951
+  hybrid-qwen3   S          0.4395 [0.411,0.469] clusters=300 n=951
+  hybrid-qwen3   S+T        0.4515 [0.422,0.481] clusters=300 n=951
+  jina           CR         0.5069 [0.476,0.538] clusters=300 n=951
+  jina           E          0.4870 [0.456,0.518] clusters=300 n=951
+  jina           LC-S       0.3507 [0.320,0.382] clusters=300 n=951
+  jina           S          0.4642 [0.434,0.495] clusters=300 n=951
+  jina           S+T        0.4586 [0.428,0.489] clusters=300 n=951
+  qwen3          CR         0.5568 [0.528,0.587] clusters=300 n=951
+  qwen3          CR-strong  0.5611 [0.532,0.590] clusters=300 n=951
+  qwen3          E          0.5512 [0.521,0.582] clusters=300 n=951
+  qwen3          E-strong   0.5457 [0.515,0.578] clusters=300 n=951
+  qwen3          F256t      0.4464 [0.416,0.478] clusters=300 n=951
+  qwen3          F512c      0.4324 [0.403,0.462] clusters=300 n=951
+  qwen3          FL         0.4217 [0.394,0.450] clusters=300 n=951
+  qwen3          PP         0.4813 [0.450,0.514] clusters=300 n=951
+  qwen3          S          0.5196 [0.490,0.549] clusters=300 n=951
+  qwen3          S+T        0.5361 [0.507,0.566] clusters=300 n=951
+
+qasper: comparisons on rec@512t (A - B, BCa; unadjusted)
+  [hybrid]  qasper                    CR - S+T       rec@512t    +0.0340 90%[+0.016,+0.052] 95%[+0.013,+0.056] p_perm=0.0023 -> different
+  [hybrid]  qasper                    CR - S         rec@512t    +0.0360 90%[+0.017,+0.055] 95%[+0.013,+0.060] p_perm=0.0031 -> different
+  [hybrid]  qasper             CR-strong - CR        rec@512t    +0.0167 90%[-0.003,+0.037] 95%[-0.007,+0.041] p_perm=0.1802 -> no_difference_detected
+  [hybrid]  qasper             CR-strong - S         rec@512t    +0.0527 90%[+0.032,+0.074] 95%[+0.028,+0.078] p_perm=0.0001 -> different
+  [hybrid]  qasper                     E - S+T       rec@512t    +0.0548 90%[+0.033,+0.077] 95%[+0.029,+0.081] p_perm=0.0001 p_tost=0.6385 +/-0.05 -> different
+  [hybrid]  qasper                     E - CR        rec@512t    +0.0208 90%[+0.001,+0.040] 95%[-0.003,+0.044] p_perm=0.0901 p_tost=0.0082 +/-0.05 -> equivalent
+  [hybrid]  qasper                     E - S         rec@512t    +0.0567 90%[+0.035,+0.078] 95%[+0.031,+0.082] p_perm=0.0002 -> different
+  [hybrid]  qasper              E-strong - S+T       rec@512t    +0.0666 90%[+0.043,+0.090] 95%[+0.039,+0.095] p_perm=0.0001 p_tost=0.8784 +/-0.05 -> different
+  [hybrid]  qasper              E-strong - CR-strong rec@512t    +0.0159 90%[-0.007,+0.038] 95%[-0.011,+0.042] p_perm=0.2452 p_tost=0.0058 +/-0.05 -> equivalent
+  [hybrid]  qasper              E-strong - E         rec@512t    +0.0118 90%[-0.009,+0.033] 95%[-0.013,+0.037] p_perm=0.3708 -> no_difference_detected
+  [hybrid]  qasper              E-strong - S         rec@512t    +0.0685 90%[+0.046,+0.092] 95%[+0.042,+0.097] p_perm=0.0001 -> different
+  [hybrid]  qasper                 F256t - S         rec@512t    -0.0748 90%[-0.097,-0.054] 95%[-0.101,-0.050] p_perm=0.0001 -> different
+  [hybrid]  qasper                 F512c - S         rec@512t    -0.0748 90%[-0.097,-0.053] 95%[-0.101,-0.048] p_perm=0.0001 -> different
+  [hybrid]  qasper                    FL - F256t     rec@512t    -0.0067 90%[-0.028,+0.015] 95%[-0.032,+0.019] p_perm=0.6111 -> no_difference_detected
+  [hybrid]  qasper                    FL - S         rec@512t    -0.0815 90%[-0.106,-0.058] 95%[-0.111,-0.053] p_perm=0.0001 -> different
+  [hybrid]  qasper                    PP - S         rec@512t    -0.0524 90%[-0.074,-0.031] 95%[-0.078,-0.027] p_perm=0.0002 -> different
+  [hybrid]  qasper                     S - F512c     rec@512t    +0.0748 90%[+0.053,+0.097] 95%[+0.048,+0.101] p_perm=0.0001 -> different
+  [hybrid]  qasper                     S - F256t     rec@512t    +0.0748 90%[+0.054,+0.097] 95%[+0.050,+0.101] p_perm=0.0001 -> different
+  [hybrid]  qasper                   S+T - S         rec@512t    +0.0019 90%[-0.013,+0.018] 95%[-0.016,+0.021] p_perm=0.8389 -> no_difference_detected
+  [hybrid+rerank]  qasper                    CR - S+T       rec@512t    +0.0007 90%[-0.017,+0.018] 95%[-0.021,+0.022] p_perm=0.9434 -> no_difference_detected
+  [hybrid+rerank]  qasper                    CR - S         rec@512t    +0.0157 90%[-0.002,+0.033] 95%[-0.005,+0.036] p_perm=0.1410 -> no_difference_detected
+  [hybrid+rerank vs hybrid]  qasper                    CR - CR        rec@512t    +0.0846 90%[+0.061,+0.109] 95%[+0.057,+0.114] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper             CR-strong - CR        rec@512t    +0.0242 90%[+0.006,+0.043] 95%[+0.002,+0.047] p_perm=0.0355 -> different
+  [hybrid+rerank]  qasper             CR-strong - S         rec@512t    +0.0399 90%[+0.022,+0.058] 95%[+0.019,+0.061] p_perm=0.0006 -> different
+  [hybrid+rerank vs hybrid]  qasper             CR-strong - CR-strong rec@512t    +0.0921 90%[+0.070,+0.115] 95%[+0.065,+0.119] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                     E - S+T       rec@512t    +0.0039 90%[-0.014,+0.022] 95%[-0.017,+0.025] p_perm=0.7195 p_tost=0.0001 +/-0.05 -> equivalent
+  [hybrid+rerank]  qasper                     E - CR        rec@512t    +0.0032 90%[-0.016,+0.022] 95%[-0.019,+0.025] p_perm=0.7846 p_tost=0.0001 +/-0.05 -> equivalent
+  [hybrid+rerank]  qasper                     E - S         rec@512t    +0.0189 90%[+0.002,+0.036] 95%[-0.001,+0.039] p_perm=0.0790 -> no_difference_detected
+  [hybrid+rerank vs hybrid]  qasper                     E - E         rec@512t    +0.0670 90%[+0.047,+0.088] 95%[+0.043,+0.092] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper              E-strong - S+T       rec@512t    +0.0250 90%[+0.006,+0.045] 95%[+0.002,+0.049] p_perm=0.0392 p_tost=0.0204 +/-0.05 -> different_but_equivalent
+  [hybrid+rerank]  qasper              E-strong - CR-strong rec@512t    -0.0000 90%[-0.021,+0.020] 95%[-0.024,+0.023] p_perm=0.9978 p_tost=0.0001 +/-0.05 -> equivalent
+  [hybrid+rerank]  qasper              E-strong - E         rec@512t    +0.0210 90%[+0.001,+0.040] 95%[-0.002,+0.044] p_perm=0.0817 -> no_difference_detected
+  [hybrid+rerank]  qasper              E-strong - S         rec@512t    +0.0399 90%[+0.020,+0.061] 95%[+0.016,+0.066] p_perm=0.0023 -> different
+  [hybrid+rerank vs hybrid]  qasper              E-strong - E-strong  rec@512t    +0.0763 90%[+0.053,+0.099] 95%[+0.050,+0.104] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                 F256t - S         rec@512t    -0.0935 90%[-0.118,-0.071] 95%[-0.122,-0.066] p_perm=0.0001 -> different
+  [hybrid+rerank vs hybrid]  qasper                 F256t - F256t     rec@512t    +0.0862 90%[+0.062,+0.112] 95%[+0.057,+0.116] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                 F512c - S         rec@512t    -0.0896 90%[-0.114,-0.066] 95%[-0.118,-0.062] p_perm=0.0001 -> different
+  [hybrid+rerank vs hybrid]  qasper                 F512c - F512c     rec@512t    +0.0901 90%[+0.072,+0.109] 95%[+0.068,+0.113] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                    FL - F256t     rec@512t    -0.0089 90%[-0.031,+0.014] 95%[-0.035,+0.019] p_perm=0.5182 -> no_difference_detected
+  [hybrid+rerank]  qasper                    FL - S         rec@512t    -0.1024 90%[-0.124,-0.080] 95%[-0.129,-0.076] p_perm=0.0001 -> different
+  [hybrid+rerank vs hybrid]  qasper                    FL - FL        rec@512t    +0.0841 90%[+0.061,+0.108] 95%[+0.057,+0.113] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                    PP - S         rec@512t    -0.0563 90%[-0.075,-0.037] 95%[-0.080,-0.034] p_perm=0.0001 -> different
+  [hybrid+rerank vs hybrid]  qasper                    PP - PP        rec@512t    +0.1010 90%[+0.077,+0.124] 95%[+0.072,+0.129] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                     S - F512c     rec@512t    +0.0896 90%[+0.066,+0.114] 95%[+0.062,+0.118] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                     S - F256t     rec@512t    +0.0935 90%[+0.071,+0.118] 95%[+0.066,+0.122] p_perm=0.0001 -> different
+  [hybrid+rerank vs hybrid]  qasper                     S - S         rec@512t    +0.1049 90%[+0.081,+0.129] 95%[+0.077,+0.134] p_perm=0.0001 -> different
+  [hybrid+rerank]  qasper                   S+T - S         rec@512t    +0.0149 90%[+0.001,+0.030] 95%[-0.001,+0.033] p_perm=0.0883 -> no_difference_detected
+  [hybrid+rerank vs hybrid]  qasper                   S+T - S+T       rec@512t    +0.1179 90%[+0.093,+0.143] 95%[+0.088,+0.147] p_perm=0.0001 -> different
+  [hybrid-qwen3]  qasper                    CR - S+T       rec@512t    +0.0252 90%[+0.005,+0.045] 95%[+0.002,+0.050] p_perm=0.0360 -> different
+  [hybrid-qwen3]  qasper                    CR - S         rec@512t    +0.0372 90%[+0.020,+0.056] 95%[+0.017,+0.060] p_perm=0.0009 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                    CR - CR        rec@512t    +0.0160 90%[-0.002,+0.033] 95%[-0.005,+0.037] p_perm=0.1386 -> no_difference_detected
+  [hybrid-qwen3]  qasper             CR-strong - CR        rec@512t    +0.0071 90%[-0.013,+0.027] 95%[-0.016,+0.031] p_perm=0.5483 -> no_difference_detected
+  [hybrid-qwen3]  qasper             CR-strong - S         rec@512t    +0.0443 90%[+0.024,+0.064] 95%[+0.020,+0.068] p_perm=0.0005 -> different
+  [hybrid-qwen3 vs hybrid]  qasper             CR-strong - CR-strong rec@512t    +0.0064 90%[-0.011,+0.024] 95%[-0.014,+0.027] p_perm=0.5462 -> no_difference_detected
+  [hybrid-qwen3]  qasper                     E - S+T       rec@512t    +0.0456 90%[+0.025,+0.067] 95%[+0.020,+0.071] p_perm=0.0008 p_tost=0.3608 +/-0.05 -> different
+  [hybrid-qwen3]  qasper                     E - CR        rec@512t    +0.0204 90%[-0.001,+0.042] 95%[-0.005,+0.046] p_perm=0.1175 p_tost=0.0116 +/-0.05 -> equivalent
+  [hybrid-qwen3]  qasper                     E - S         rec@512t    +0.0576 90%[+0.038,+0.077] 95%[+0.035,+0.081] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                     E - E         rec@512t    +0.0156 90%[+0.000,+0.032] 95%[-0.003,+0.036] p_perm=0.1265 -> no_difference_detected
+  [hybrid-qwen3]  qasper              E-strong - S+T       rec@512t    +0.0629 90%[+0.038,+0.089] 95%[+0.034,+0.093] p_perm=0.0001 p_tost=0.8084 +/-0.05 -> different
+  [hybrid-qwen3]  qasper              E-strong - CR-strong rec@512t    +0.0307 90%[+0.008,+0.055] 95%[+0.003,+0.060] p_perm=0.0355 p_tost=0.1030 +/-0.05 -> different
+  [hybrid-qwen3]  qasper              E-strong - E         rec@512t    +0.0173 90%[-0.004,+0.039] 95%[-0.008,+0.042] p_perm=0.1841 -> no_difference_detected
+  [hybrid-qwen3]  qasper              E-strong - S         rec@512t    +0.0750 90%[+0.053,+0.099] 95%[+0.049,+0.103] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper              E-strong - E-strong  rec@512t    +0.0212 90%[+0.006,+0.036] 95%[+0.004,+0.038] p_perm=0.0185 -> different
+  [hybrid-qwen3]  qasper                 F256t - S         rec@512t    -0.0561 90%[-0.076,-0.036] 95%[-0.080,-0.032] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                 F256t - F256t     rec@512t    +0.0335 90%[+0.017,+0.050] 95%[+0.014,+0.053] p_perm=0.0010 -> different
+  [hybrid-qwen3]  qasper                 F512c - S         rec@512t    -0.0707 90%[-0.092,-0.049] 95%[-0.097,-0.044] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                 F512c - F512c     rec@512t    +0.0188 90%[+0.004,+0.035] 95%[+0.001,+0.038] p_perm=0.0474 -> different
+  [hybrid-qwen3]  qasper                    FL - F256t     rec@512t    -0.0222 90%[-0.044,-0.001] 95%[-0.048,+0.003] p_perm=0.0866 -> no_difference_detected
+  [hybrid-qwen3]  qasper                    FL - S         rec@512t    -0.0783 90%[-0.100,-0.056] 95%[-0.104,-0.052] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                    FL - FL        rec@512t    +0.0180 90%[+0.001,+0.035] 95%[-0.002,+0.038] p_perm=0.0840 -> no_difference_detected
+  [hybrid-qwen3]  qasper                    PP - S         rec@512t    -0.0426 90%[-0.061,-0.024] 95%[-0.065,-0.020] p_perm=0.0003 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                    PP - PP        rec@512t    +0.0245 90%[+0.008,+0.041] 95%[+0.005,+0.044] p_perm=0.0163 -> different
+  [hybrid-qwen3]  qasper                     S - F512c     rec@512t    +0.0707 90%[+0.049,+0.092] 95%[+0.044,+0.097] p_perm=0.0001 -> different
+  [hybrid-qwen3]  qasper                     S - F256t     rec@512t    +0.0561 90%[+0.036,+0.076] 95%[+0.032,+0.080] p_perm=0.0001 -> different
+  [hybrid-qwen3 vs hybrid]  qasper                     S - S         rec@512t    +0.0148 90%[-0.001,+0.031] 95%[-0.004,+0.034] p_perm=0.1321 -> no_difference_detected
+  [hybrid-qwen3]  qasper                   S+T - S         rec@512t    +0.0120 90%[-0.001,+0.026] 95%[-0.004,+0.028] p_perm=0.1381 -> no_difference_detected
+  [hybrid-qwen3 vs hybrid]  qasper                   S+T - S+T       rec@512t    +0.0249 90%[+0.007,+0.043] 95%[+0.003,+0.046] p_perm=0.0223 -> different
+  [jina]  qasper                    CR - S+T       rec@512t    +0.0484 90%[+0.026,+0.071] 95%[+0.022,+0.076] p_perm=0.0008 -> different
+  [jina]  qasper                    CR - S         rec@512t    +0.0427 90%[+0.024,+0.062] 95%[+0.020,+0.066] p_perm=0.0004 -> different
+  [jina]  qasper                     E - S+T       rec@512t    +0.0284 90%[+0.007,+0.051] 95%[+0.002,+0.055] p_perm=0.0383 p_tost=0.0569 +/-0.05 -> different
+  [jina]  qasper                     E - CR        rec@512t    -0.0199 90%[-0.040,-0.001] 95%[-0.044,+0.002] p_perm=0.0963 p_tost=0.0075 +/-0.05 -> equivalent
+  [jina]  qasper                     E - S         rec@512t    +0.0228 90%[+0.003,+0.044] 95%[-0.002,+0.047] p_perm=0.0680 -> no_difference_detected
+  [jina]  qasper                  LC-S - S         rec@512t    -0.1135 90%[-0.139,-0.087] 95%[-0.144,-0.081] p_perm=0.0001 -> different
+  [jina]  qasper                  LC-S - S+T       rec@512t    -0.1079 90%[-0.134,-0.082] 95%[-0.139,-0.077] p_perm=0.0001 -> different
+  [jina]  qasper                  LC-S - E         rec@512t    -0.1363 90%[-0.165,-0.108] 95%[-0.170,-0.102] p_perm=0.0001 -> different
+  [jina]  qasper                  LC-S - CR        rec@512t    -0.1563 90%[-0.183,-0.130] 95%[-0.189,-0.124] p_perm=0.0001 -> different
+  [jina]  qasper                   S+T - S         rec@512t    -0.0056 90%[-0.021,+0.010] 95%[-0.024,+0.013] p_perm=0.5580 -> no_difference_detected
+  [qwen3]  qasper                    CR - S+T       rec@512t    +0.0207 90%[+0.004,+0.037] 95%[+0.001,+0.041] p_perm=0.0442 -> different
+  [qwen3]  qasper                    CR - S         rec@512t    +0.0372 90%[+0.020,+0.055] 95%[+0.016,+0.058] p_perm=0.0003 -> different
+  [qwen3]  qasper             CR-strong - CR        rec@512t    +0.0043 90%[-0.015,+0.023] 95%[-0.018,+0.027] p_perm=0.7247 -> no_difference_detected
+  [qwen3]  qasper             CR-strong - S         rec@512t    +0.0415 90%[+0.023,+0.061] 95%[+0.020,+0.064] p_perm=0.0003 -> different
+  [qwen3]  qasper                     E - S+T       rec@512t    +0.0152 90%[-0.006,+0.035] 95%[-0.010,+0.039] p_perm=0.2307 p_tost=0.0024 +/-0.05 -> equivalent
+  [qwen3]  qasper                     E - CR        rec@512t    -0.0056 90%[-0.027,+0.015] 95%[-0.031,+0.019] p_perm=0.6682 p_tost=0.0004 +/-0.05 -> equivalent
+  [qwen3]  qasper                     E - S         rec@512t    +0.0317 90%[+0.011,+0.052] 95%[+0.008,+0.056] p_perm=0.0112 -> different
+  [qwen3]  qasper              E-strong - S+T       rec@512t    +0.0096 90%[-0.009,+0.029] 95%[-0.012,+0.032] p_perm=0.4087 p_tost=0.0003 +/-0.05 -> equivalent
+  [qwen3]  qasper              E-strong - CR-strong rec@512t    -0.0154 90%[-0.036,+0.004] 95%[-0.040,+0.008] p_perm=0.2189 p_tost=0.0034 +/-0.05 -> equivalent
+  [qwen3]  qasper              E-strong - E         rec@512t    -0.0056 90%[-0.026,+0.014] 95%[-0.030,+0.018] p_perm=0.6515 -> no_difference_detected
+  [qwen3]  qasper              E-strong - S         rec@512t    +0.0261 90%[+0.008,+0.046] 95%[+0.004,+0.050] p_perm=0.0221 -> different
+  [qwen3]  qasper                 F256t - S         rec@512t    -0.0732 90%[-0.092,-0.053] 95%[-0.096,-0.049] p_perm=0.0001 -> different
+  [qwen3]  qasper                 F512c - S         rec@512t    -0.0872 90%[-0.109,-0.066] 95%[-0.112,-0.062] p_perm=0.0001 -> different
+  [qwen3]  qasper                    FL - F256t     rec@512t    -0.0247 90%[-0.045,-0.004] 95%[-0.049,-0.000] p_perm=0.0462 -> different
+  [qwen3]  qasper                    FL - S         rec@512t    -0.0979 90%[-0.120,-0.077] 95%[-0.124,-0.073] p_perm=0.0001 -> different
+  [qwen3]  qasper                    PP - S         rec@512t    -0.0382 90%[-0.058,-0.019] 95%[-0.062,-0.015] p_perm=0.0021 -> different
+  [qwen3]  qasper                     S - F512c     rec@512t    +0.0872 90%[+0.066,+0.109] 95%[+0.062,+0.112] p_perm=0.0001 -> different
+  [qwen3]  qasper                     S - F256t     rec@512t    +0.0732 90%[+0.053,+0.092] 95%[+0.049,+0.096] p_perm=0.0001 -> different
+  [qwen3]  qasper                   S+T - S         rec@512t    +0.0165 90%[+0.002,+0.031] 95%[-0.001,+0.035] p_perm=0.0697 -> no_difference_detected
+
+freshstack: system means, prec@1024t (95% percentile CI)
+  hybrid         CR         0.2900 [0.255,0.327] clusters=235 n=235
+  hybrid         E          0.3075 [0.271,0.345] clusters=235 n=235
+  hybrid         E-strong   0.2978 [0.263,0.334] clusters=235 n=235
+  hybrid         F256t      0.2953 [0.257,0.335] clusters=235 n=235
+  hybrid         F512c      0.2362 [0.207,0.266] clusters=235 n=235
+  hybrid         FL         0.2510 [0.220,0.284] clusters=235 n=235
+  hybrid         PP         0.2872 [0.249,0.327] clusters=235 n=235
+  hybrid         S          0.2667 [0.232,0.302] clusters=235 n=235
+  hybrid         S+T        0.2801 [0.245,0.316] clusters=235 n=235
+  hybrid+rerank  CR         0.3403 [0.302,0.380] clusters=235 n=235
+  hybrid+rerank  E          0.3493 [0.311,0.389] clusters=235 n=235
+  hybrid+rerank  E-strong   0.3589 [0.320,0.398] clusters=235 n=235
+  hybrid+rerank  F256t      0.3508 [0.313,0.390] clusters=235 n=235
+  hybrid+rerank  F512c      0.2932 [0.262,0.325] clusters=235 n=235
+  hybrid+rerank  FL         0.3184 [0.284,0.353] clusters=235 n=235
+  hybrid+rerank  PP         0.3619 [0.320,0.404] clusters=235 n=235
+  hybrid+rerank  S          0.3122 [0.275,0.352] clusters=235 n=235
+  hybrid+rerank  S+T        0.3414 [0.303,0.381] clusters=235 n=235
+  hybrid-qwen3   CR         0.3294 [0.291,0.368] clusters=235 n=235
+  hybrid-qwen3   E          0.3301 [0.292,0.369] clusters=235 n=235
+  hybrid-qwen3   E-strong   0.3330 [0.295,0.372] clusters=235 n=235
+  hybrid-qwen3   F256t      0.3464 [0.305,0.388] clusters=235 n=235
+  hybrid-qwen3   F512c      0.2816 [0.250,0.315] clusters=235 n=235
+  hybrid-qwen3   FL         0.3021 [0.267,0.337] clusters=235 n=235
+  hybrid-qwen3   PP         0.3261 [0.286,0.366] clusters=235 n=235
+  hybrid-qwen3   S          0.3111 [0.275,0.348] clusters=235 n=235
+  hybrid-qwen3   S+T        0.3197 [0.283,0.357] clusters=235 n=235
+  jina           CR         0.3366 [0.299,0.374] clusters=235 n=235
+  jina           E          0.3223 [0.285,0.360] clusters=235 n=235
+  jina           LC-S       0.3316 [0.284,0.380] clusters=235 n=235
+  jina           S          0.3367 [0.298,0.375] clusters=235 n=235
+  jina           S+T        0.3360 [0.298,0.374] clusters=235 n=235
+  qwen3          CR         0.3541 [0.313,0.395] clusters=235 n=235
+  qwen3          E          0.3482 [0.308,0.388] clusters=235 n=235
+  qwen3          E-strong   0.3574 [0.317,0.398] clusters=235 n=235
+  qwen3          F256t      0.3448 [0.304,0.386] clusters=235 n=235
+  qwen3          F512c      0.2942 [0.260,0.329] clusters=235 n=235
+  qwen3          FL         0.3184 [0.283,0.355] clusters=235 n=235
+  qwen3          PP         0.3446 [0.302,0.387] clusters=235 n=235
+  qwen3          S          0.3185 [0.281,0.356] clusters=235 n=235
+  qwen3          S+T        0.3456 [0.305,0.385] clusters=235 n=235
+
+freshstack: comparisons on prec@1024t (A - B, BCa; unadjusted)
+  [hybrid]  freshstack                CR - S+T       prec@1024t  +0.0098 90%[-0.005,+0.026] 95%[-0.008,+0.028] p_perm=0.2836 -> no_difference_detected
+  [hybrid]  freshstack                CR - S         prec@1024t  +0.0233 90%[+0.007,+0.040] 95%[+0.004,+0.043] p_perm=0.0213 -> different
+  [hybrid]  freshstack                 E - S+T       prec@1024t  +0.0274 90%[+0.009,+0.047] 95%[+0.005,+0.051] p_perm=0.0189 p_tost=0.1447 +/-0.04 -> different
+  [hybrid]  freshstack                 E - CR        prec@1024t  +0.0175 90%[+0.002,+0.034] 95%[-0.001,+0.037] p_perm=0.0709 p_tost=0.0109 +/-0.04 -> equivalent
+  [hybrid]  freshstack                 E - S         prec@1024t  +0.0408 90%[+0.021,+0.062] 95%[+0.017,+0.066] p_perm=0.0010 -> different
+  [hybrid]  freshstack          E-strong - S+T       prec@1024t  +0.0177 90%[-0.003,+0.039] 95%[-0.007,+0.043] p_perm=0.1593 p_tost=0.0405 +/-0.04 -> equivalent
+  [hybrid]  freshstack          E-strong - E         prec@1024t  -0.0097 90%[-0.026,+0.006] 95%[-0.029,+0.009] p_perm=0.3400 -> no_difference_detected
+  [hybrid]  freshstack          E-strong - S         prec@1024t  +0.0311 90%[+0.010,+0.053] 95%[+0.006,+0.057] p_perm=0.0178 -> different
+  [hybrid]  freshstack             F256t - S         prec@1024t  +0.0286 90%[+0.007,+0.050] 95%[+0.003,+0.054] p_perm=0.0284 -> different
+  [hybrid]  freshstack             F512c - S         prec@1024t  -0.0305 90%[-0.051,-0.012] 95%[-0.055,-0.009] p_perm=0.0120 -> different
+  [hybrid]  freshstack                FL - F256t     prec@1024t  -0.0443 90%[-0.062,-0.027] 95%[-0.065,-0.024] p_perm=0.0001 -> different
+  [hybrid]  freshstack                FL - S         prec@1024t  -0.0157 90%[-0.035,+0.002] 95%[-0.039,+0.006] p_perm=0.1772 -> no_difference_detected
+  [hybrid]  freshstack                PP - S         prec@1024t  +0.0205 90%[-0.001,+0.041] 95%[-0.005,+0.045] p_perm=0.1017 -> no_difference_detected
+  [hybrid]  freshstack                 S - F512c     prec@1024t  +0.0305 90%[+0.012,+0.051] 95%[+0.009,+0.055] p_perm=0.0120 -> different
+  [hybrid]  freshstack                 S - F256t     prec@1024t  -0.0286 90%[-0.050,-0.007] 95%[-0.054,-0.003] p_perm=0.0284 -> different
+  [hybrid]  freshstack               S+T - S         prec@1024t  +0.0134 90%[-0.001,+0.029] 95%[-0.004,+0.032] p_perm=0.1516 -> no_difference_detected
+  [hybrid+rerank]  freshstack                CR - S+T       prec@1024t  -0.0012 90%[-0.021,+0.018] 95%[-0.025,+0.022] p_perm=0.9210 -> no_difference_detected
+  [hybrid+rerank]  freshstack                CR - S         prec@1024t  +0.0280 90%[+0.006,+0.049] 95%[+0.002,+0.053] p_perm=0.0308 -> different
+  [hybrid+rerank vs hybrid]  freshstack                CR - CR        prec@1024t  +0.0503 90%[+0.025,+0.075] 95%[+0.021,+0.080] p_perm=0.0010 -> different
+  [hybrid+rerank]  freshstack                 E - S+T       prec@1024t  +0.0079 90%[-0.011,+0.026] 95%[-0.014,+0.030] p_perm=0.5018 p_tost=0.0035 +/-0.04 -> equivalent
+  [hybrid+rerank]  freshstack                 E - CR        prec@1024t  +0.0091 90%[-0.010,+0.031] 95%[-0.014,+0.035] p_perm=0.4714 p_tost=0.0089 +/-0.04 -> equivalent
+  [hybrid+rerank]  freshstack                 E - S         prec@1024t  +0.0371 90%[+0.016,+0.059] 95%[+0.012,+0.063] p_perm=0.0045 -> different
+  [hybrid+rerank vs hybrid]  freshstack                 E - E         prec@1024t  +0.0418 90%[+0.016,+0.067] 95%[+0.011,+0.072] p_perm=0.0102 -> different
+  [hybrid+rerank]  freshstack          E-strong - S+T       prec@1024t  +0.0175 90%[-0.004,+0.038] 95%[-0.008,+0.042] p_perm=0.1706 p_tost=0.0350 +/-0.04 -> equivalent
+  [hybrid+rerank]  freshstack          E-strong - E         prec@1024t  +0.0096 90%[-0.008,+0.027] 95%[-0.011,+0.030] p_perm=0.3589 -> no_difference_detected
+  [hybrid+rerank]  freshstack          E-strong - S         prec@1024t  +0.0467 90%[+0.025,+0.069] 95%[+0.021,+0.074] p_perm=0.0008 -> different
+  [hybrid+rerank vs hybrid]  freshstack          E-strong - E-strong  prec@1024t  +0.0611 90%[+0.038,+0.085] 95%[+0.034,+0.089] p_perm=0.0001 -> different
+  [hybrid+rerank]  freshstack             F256t - S         prec@1024t  +0.0385 90%[+0.018,+0.058] 95%[+0.014,+0.061] p_perm=0.0023 -> different
+  [hybrid+rerank vs hybrid]  freshstack             F256t - F256t     prec@1024t  +0.0555 90%[+0.030,+0.082] 95%[+0.025,+0.088] p_perm=0.0008 -> different
+  [hybrid+rerank]  freshstack             F512c - S         prec@1024t  -0.0191 90%[-0.038,+0.000] 95%[-0.042,+0.003] p_perm=0.1021 -> no_difference_detected
+  [hybrid+rerank vs hybrid]  freshstack             F512c - F512c     prec@1024t  +0.0570 90%[+0.043,+0.073] 95%[+0.040,+0.076] p_perm=0.0001 -> different
+  [hybrid+rerank]  freshstack                FL - F256t     prec@1024t  -0.0323 90%[-0.049,-0.015] 95%[-0.052,-0.012] p_perm=0.0024 -> different
+  [hybrid+rerank]  freshstack                FL - S         prec@1024t  +0.0062 90%[-0.014,+0.026] 95%[-0.017,+0.030] p_perm=0.6051 -> no_difference_detected
+  [hybrid+rerank vs hybrid]  freshstack                FL - FL        prec@1024t  +0.0675 90%[+0.050,+0.086] 95%[+0.047,+0.090] p_perm=0.0001 -> different
+  [hybrid+rerank]  freshstack                PP - S         prec@1024t  +0.0497 90%[+0.028,+0.070] 95%[+0.024,+0.074] p_perm=0.0002 -> different
+  [hybrid+rerank vs hybrid]  freshstack                PP - PP        prec@1024t  +0.0747 90%[+0.047,+0.103] 95%[+0.041,+0.109] p_perm=0.0001 -> different
+  [hybrid+rerank]  freshstack                 S - F512c     prec@1024t  +0.0191 90%[-0.000,+0.038] 95%[-0.003,+0.042] p_perm=0.1021 -> no_difference_detected
+  [hybrid+rerank]  freshstack                 S - F256t     prec@1024t  -0.0385 90%[-0.058,-0.018] 95%[-0.061,-0.014] p_perm=0.0023 -> different
+  [hybrid+rerank vs hybrid]  freshstack                 S - S         prec@1024t  +0.0455 90%[+0.020,+0.072] 95%[+0.015,+0.076] p_perm=0.0060 -> different
+  [hybrid+rerank]  freshstack               S+T - S         prec@1024t  +0.0292 90%[+0.013,+0.046] 95%[+0.010,+0.049] p_perm=0.0037 -> different
+  [hybrid+rerank vs hybrid]  freshstack               S+T - S+T       prec@1024t  +0.0613 90%[+0.038,+0.087] 95%[+0.034,+0.092] p_perm=0.0001 -> different
+  [hybrid-qwen3]  freshstack                CR - S+T       prec@1024t  +0.0097 90%[-0.004,+0.024] 95%[-0.007,+0.026] p_perm=0.2697 -> no_difference_detected
+  [hybrid-qwen3]  freshstack                CR - S         prec@1024t  +0.0183 90%[+0.003,+0.034] 95%[+0.000,+0.037] p_perm=0.0567 -> different
+  [hybrid-qwen3 vs hybrid]  freshstack                CR - CR        prec@1024t  +0.0394 90%[+0.020,+0.059] 95%[+0.016,+0.064] p_perm=0.0006 -> different
+  [hybrid-qwen3]  freshstack                 E - S+T       prec@1024t  +0.0104 90%[-0.006,+0.026] 95%[-0.010,+0.029] p_perm=0.2962 p_tost=0.0010 +/-0.04 -> equivalent
+  [hybrid-qwen3]  freshstack                 E - CR        prec@1024t  +0.0007 90%[-0.016,+0.016] 95%[-0.019,+0.020] p_perm=0.9407 p_tost=0.0001 +/-0.04 -> equivalent
+  [hybrid-qwen3]  freshstack                 E - S         prec@1024t  +0.0190 90%[+0.002,+0.036] 95%[-0.002,+0.039] p_perm=0.0736 -> no_difference_detected
+  [hybrid-qwen3 vs hybrid]  freshstack                 E - E         prec@1024t  +0.0226 90%[+0.002,+0.044] 95%[-0.002,+0.048] p_perm=0.0751 -> no_difference_detected
+  [hybrid-qwen3]  freshstack          E-strong - S+T       prec@1024t  +0.0133 90%[-0.003,+0.030] 95%[-0.006,+0.033] p_perm=0.1992 p_tost=0.0044 +/-0.04 -> equivalent
+  [hybrid-qwen3]  freshstack          E-strong - E         prec@1024t  +0.0029 90%[-0.012,+0.019] 95%[-0.015,+0.021] p_perm=0.7753 -> no_difference_detected
+  [hybrid-qwen3]  freshstack          E-strong - S         prec@1024t  +0.0219 90%[+0.006,+0.038] 95%[+0.003,+0.041] p_perm=0.0274 -> different
+  [hybrid-qwen3 vs hybrid]  freshstack          E-strong - E-strong  prec@1024t  +0.0351 90%[+0.014,+0.056] 95%[+0.011,+0.061] p_perm=0.0085 -> different
+  [hybrid-qwen3]  freshstack             F256t - S         prec@1024t  +0.0353 90%[+0.016,+0.055] 95%[+0.012,+0.059] p_perm=0.0030 -> different
+  [hybrid-qwen3 vs hybrid]  freshstack             F256t - F256t     prec@1024t  +0.0511 90%[+0.031,+0.072] 95%[+0.027,+0.076] p_perm=0.0001 -> different
+  [hybrid-qwen3]  freshstack             F512c - S         prec@1024t  -0.0295 90%[-0.046,-0.013] 95%[-0.050,-0.010] p_perm=0.0053 -> different
+  [hybrid-qwen3 vs hybrid]  freshstack             F512c - F512c     prec@1024t  +0.0454 90%[+0.032,+0.059] 95%[+0.030,+0.061] p_perm=0.0001 -> different
+  [hybrid-qwen3]  freshstack                FL - F256t     prec@1024t  -0.0442 90%[-0.062,-0.027] 95%[-0.066,-0.024] p_perm=0.0002 -> different
+  [hybrid-qwen3]  freshstack                FL - S         prec@1024t  -0.0089 90%[-0.027,+0.008] 95%[-0.031,+0.012] p_perm=0.4106 -> no_difference_detected
+  [hybrid-qwen3 vs hybrid]  freshstack                FL - FL        prec@1024t  +0.0512 90%[+0.035,+0.068] 95%[+0.032,+0.071] p_perm=0.0001 -> different
+  [hybrid-qwen3]  freshstack                PP - S         prec@1024t  +0.0151 90%[-0.005,+0.035] 95%[-0.010,+0.039] p_perm=0.2249 -> no_difference_detected
+  [hybrid-qwen3 vs hybrid]  freshstack                PP - PP        prec@1024t  +0.0390 90%[+0.018,+0.061] 95%[+0.014,+0.066] p_perm=0.0036 -> different
+  [hybrid-qwen3]  freshstack                 S - F512c     prec@1024t  +0.0295 90%[+0.013,+0.046] 95%[+0.010,+0.050] p_perm=0.0053 -> different
+  [hybrid-qwen3]  freshstack                 S - F256t     prec@1024t  -0.0353 90%[-0.055,-0.016] 95%[-0.059,-0.012] p_perm=0.0030 -> different
+  [hybrid-qwen3 vs hybrid]  freshstack                 S - S         prec@1024t  +0.0444 90%[+0.023,+0.065] 95%[+0.019,+0.069] p_perm=0.0008 -> different
+  [hybrid-qwen3]  freshstack               S+T - S         prec@1024t  +0.0086 90%[-0.003,+0.021] 95%[-0.005,+0.024] p_perm=0.2651 -> no_difference_detected
+  [hybrid-qwen3 vs hybrid]  freshstack               S+T - S+T       prec@1024t  +0.0396 90%[+0.021,+0.059] 95%[+0.017,+0.063] p_perm=0.0019 -> different
+  [jina]  freshstack                CR - S+T       prec@1024t  +0.0006 90%[-0.018,+0.018] 95%[-0.021,+0.021] p_perm=0.9519 -> no_difference_detected
+  [jina]  freshstack                CR - S         prec@1024t  -0.0001 90%[-0.018,+0.017] 95%[-0.021,+0.021] p_perm=0.9930 -> no_difference_detected
+  [jina]  freshstack                 E - S+T       prec@1024t  -0.0137 90%[-0.033,+0.005] 95%[-0.036,+0.008] p_perm=0.2367 p_tost=0.0120 +/-0.04 -> equivalent
+  [jina]  freshstack                 E - CR        prec@1024t  -0.0143 90%[-0.033,+0.004] 95%[-0.036,+0.007] p_perm=0.1943 p_tost=0.0081 +/-0.04 -> equivalent
+  [jina]  freshstack                 E - S         prec@1024t  -0.0144 90%[-0.036,+0.007] 95%[-0.040,+0.011] p_perm=0.2674 -> no_difference_detected
+  [jina]  freshstack              LC-S - S         prec@1024t  -0.0051 90%[-0.041,+0.030] 95%[-0.047,+0.038] p_perm=0.8161 -> no_difference_detected
+  [jina]  freshstack              LC-S - S+T       prec@1024t  -0.0044 90%[-0.039,+0.031] 95%[-0.046,+0.038] p_perm=0.8422 -> no_difference_detected
+  [jina]  freshstack              LC-S - E         prec@1024t  +0.0093 90%[-0.025,+0.045] 95%[-0.032,+0.053] p_perm=0.6709 -> no_difference_detected
+  [jina]  freshstack              LC-S - CR        prec@1024t  -0.0050 90%[-0.041,+0.032] 95%[-0.048,+0.038] p_perm=0.8211 -> no_difference_detected
+  [jina]  freshstack               S+T - S         prec@1024t  -0.0007 90%[-0.016,+0.014] 95%[-0.019,+0.017] p_perm=0.9405 -> no_difference_detected
+  [qwen3]  freshstack                CR - S+T       prec@1024t  +0.0085 90%[-0.007,+0.025] 95%[-0.010,+0.028] p_perm=0.3805 -> no_difference_detected
+  [qwen3]  freshstack                CR - S         prec@1024t  +0.0355 90%[+0.021,+0.050] 95%[+0.019,+0.053] p_perm=0.0001 -> different
+  [qwen3]  freshstack                 E - S+T       prec@1024t  +0.0026 90%[-0.012,+0.017] 95%[-0.014,+0.020] p_perm=0.7750 p_tost=0.0003 +/-0.04 -> equivalent
+  [qwen3]  freshstack                 E - CR        prec@1024t  -0.0059 90%[-0.025,+0.012] 95%[-0.028,+0.015] p_perm=0.6027 p_tost=0.0012 +/-0.04 -> equivalent
+  [qwen3]  freshstack                 E - S         prec@1024t  +0.0297 90%[+0.013,+0.047] 95%[+0.010,+0.050] p_perm=0.0058 -> different
+  [qwen3]  freshstack          E-strong - S+T       prec@1024t  +0.0118 90%[-0.004,+0.028] 95%[-0.007,+0.031] p_perm=0.2337 p_tost=0.0030 +/-0.04 -> equivalent
+  [qwen3]  freshstack          E-strong - E         prec@1024t  +0.0092 90%[-0.005,+0.024] 95%[-0.008,+0.027] p_perm=0.3118 -> no_difference_detected
+  [qwen3]  freshstack          E-strong - S         prec@1024t  +0.0389 90%[+0.023,+0.055] 95%[+0.020,+0.058] p_perm=0.0002 -> different
+  [qwen3]  freshstack             F256t - S         prec@1024t  +0.0263 90%[+0.008,+0.046] 95%[+0.005,+0.049] p_perm=0.0236 -> different
+  [qwen3]  freshstack             F512c - S         prec@1024t  -0.0243 90%[-0.039,-0.010] 95%[-0.042,-0.007] p_perm=0.0072 -> different
+  [qwen3]  freshstack                FL - F256t     prec@1024t  -0.0264 90%[-0.043,-0.011] 95%[-0.046,-0.008] p_perm=0.0065 -> different
+  [qwen3]  freshstack                FL - S         prec@1024t  -0.0001 90%[-0.016,+0.016] 95%[-0.019,+0.019] p_perm=0.9945 -> no_difference_detected
+  [qwen3]  freshstack                PP - S         prec@1024t  +0.0261 90%[+0.009,+0.045] 95%[+0.005,+0.048] p_perm=0.0185 -> different
+  [qwen3]  freshstack                 S - F512c     prec@1024t  +0.0243 90%[+0.010,+0.039] 95%[+0.007,+0.042] p_perm=0.0072 -> different
+  [qwen3]  freshstack                 S - F256t     prec@1024t  -0.0263 90%[-0.046,-0.008] 95%[-0.049,-0.005] p_perm=0.0236 -> different
+  [qwen3]  freshstack               S+T - S         prec@1024t  +0.0270 90%[+0.014,+0.041] 95%[+0.012,+0.044] p_perm=0.0017 -> different
+
+FreshStack per domain: see stats_extra.json rows with dataset 'freshstack/<domain>'.
+
+Run meta: {"arms": ["lc"], "seconds": 4968.3, "ollama_url": "http://127.0.0.1:11434", "reranker": null, "late_chunking": {"n_chunks": 14274, "n_windows": 796, "pooled": 14274, "split_across_windows": 0, "fallback_plain": 0, "span_counts": {"exact_cursor": 13409, "exact_anywhere": 0, "whitespace_normalised": 865, "not_found": 0, "empty": 0}}, "jina_device": "mps", "lc_overlap": 2048, "runs": [{"arms": ["rerank"], "seconds": 110200.3, "ollama_url": "http://127.0.0.1:11434", "reranker": {"model": "tomaarsen/Qwen3-Reranker-0.6B-seq-cls", "model_key": "tomaarsen/Qwen3-Reranker-0.6B-seq-cls|tmpl=v1|maxlen=2048", "pairs_scored": 273629, "cache_hits": 3907, "seconds": 110066.48, "pairs_per_s": 2.49, "device": "mps"}, "late_chunking": null, "jina_device": null, "lc_overlap": 2048}, {"arms": ["lc"], "seconds": 4968.3, "ollama_url": "http://127.0.0.1:11434", "reranker": null, "late_chunking": {"n_chunks": 14274, "n_windows": 796, "pooled": 14274, "split_across_windows": 0, "fallback_plain": 0, "span_counts": {"exact_cursor": 13409, "exact_anywhere": 0, "whitespace_normalised": 865, "not_found": 0, "empty": 0}}, "jina_device": "mps", "lc_overlap": 2048}]}
+  coverage qasper: systems=['F512c', 'F256t', 'S', 'S+T', 'PP', 'FL', 'E', 'CR', 'E-strong', 'CR-strong'] dropped=0/300 strong_groups={'E-strong': 300, 'CR-strong': 300}
+  coverage freshstack: systems=['F512c', 'F256t', 'S', 'S+T', 'PP', 'FL', 'E', 'CR', 'E-strong'] dropped=0/377 strong_groups={'E-strong': 3}
