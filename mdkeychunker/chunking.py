@@ -1,10 +1,10 @@
 """Free, structure-first chunking: ``chunk``, ``chunk_file`` and ``window``.
 
 ``chunk`` cuts Markdown at headers (the 0.3 structural chunker, unchanged) and then caps
-every chunk at ``max_tokens``: a chunk over the cap is re-packed at block boundaries, and an
-atomic block that alone exceeds it (code, table, a huge paragraph) is split inside —
-line-aware and re-fenced for code, row-aware with the header row repeated for tables,
-paragraph/line/sentence/word for prose — and flagged ``oversized=True``.
+every chunk's ``embed_text`` at ``max_tokens``: a chunk over the cap is re-packed at block
+boundaries, and an atomic block that alone exceeds it (code, table, a huge paragraph) is
+split inside — line-aware and re-fenced for code, row-aware with the header row repeated
+for tables, paragraph/line/sentence/word for prose — and flagged ``oversized=True``.
 
 ``Chunk.text`` stays raw; ``Chunk.embed_text`` is what you embed or BM25-index. With
 ``prefix=True`` it is the section path, a blank line and the text, which is the "free
@@ -12,7 +12,8 @@ prefix" arm of the v4 study (header chunks + section-path prefix; confirmatory: 
 beat 512-character windows on Qasper and FreshStack; scope: English, 7B indexing LLM).
 
 ``window`` gives token windows with overlap (default 256/32, the study's F256t arm, which
-beat header chunks on FreshStack code docs). ``chunk`` falls back to it for headerless input.
+beat header chunks on FreshStack code docs). ``chunk`` falls back to windows over the prose
+of input with no Markdown structure (converted PDFs, plain text).
 
 Token counts default to a dependency-free estimate (``ceil(chars / 4)``). Pass
 ``tokenizer="tiktoken"`` (``pip install "mdkeychunker[tokens]"``; cl100k_base, the study's
@@ -45,11 +46,7 @@ Tokenizer = Union[None, str, Callable[[str], int], Any]
 """``None`` (chars/4 estimate), ``"tiktoken"`` / ``"tiktoken:<encoding>"``, a tiktoken
 ``Encoding``, an object with ``encode(text)``, or a function returning a token count."""
 
-Headerless = Literal["auto", "windows", "structure"]
-
-# Auto fallback to windows: the document exceeds the cap and has fewer than 2 headers per
-# this many tokens.
-HEADERLESS_TOKENS_PER_2_HEADERS = 4096
+Headerless = Literal["auto", "window", "structure"]
 
 _WORD = re.compile(r"\S+\s*")
 _FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
@@ -57,6 +54,8 @@ _FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
 _PROSE_SEPS = (re.compile(r"\n\s*\n"), re.compile(r"\n"),
                re.compile(r"(?<=[.!?。！？])\s+"), re.compile(r"\s+"))
 _CODE_SEPS = (re.compile(r"\n"), re.compile(r"\s+"))
+_ATOMIC = {"code", "table"}  # never windowed, even in headerless mode
+_STRUCTURE = {"code", "table", "list"}  # Markdown structure worth cutting at
 _BINARY_SUFFIXES = {".pdf", ".docx", ".doc", ".pptx", ".ppt", ".xlsx", ".xls", ".odt", ".epub"}
 
 
@@ -231,12 +230,9 @@ class _Piece:
     start: int
     end: int
     types: set[str] = field(default_factory=set)
-    path: list[str] | None = None  # None for headers (they take the path of what follows)
+    path: list[str] = field(default_factory=list)
     oversized: bool = False
-
-    @property
-    def header(self) -> bool:
-        return self.path is None
+    header: bool = False  # headers travel with the content that follows them
 
 
 def _split_text(text: str, lo: int, hi: int, budget: int, tok: _Tok,
@@ -358,7 +354,8 @@ def _cap(blocks: list[_Block], starts: list[int], max_tokens: int, tok: _Tok) ->
     for b in blocks:
         s = starts[b.start_line]
         if b.type == "header" and tok.count(b.content) <= max_tokens:
-            units.append(_Piece(b.content, s, s + len(b.content), {"header"}, None))
+            units.append(_Piece(b.content, s, s + len(b.content), {"header"}, b.section_path,
+                                header=True))
         elif tok.count(b.content) <= max_tokens:
             units.append(_Piece(b.content, s, s + len(b.content), {b.type}, b.section_path))
         else:
@@ -408,6 +405,11 @@ def _line_starts(text: str, newline: str) -> list[int]:
     return [0] + [m.end() for m in re.finditer(newline, text)]
 
 
+def _body_path(parts: list[tuple[list[str], bool]]) -> list[str]:
+    """Header stack at the first body (non-header) part; a header-only chunk takes its last."""
+    return next((path for path, is_header in parts if not is_header), parts[-1][0])
+
+
 def _embed_text(path: list[str], text: str, prefix: bool) -> str:
     return f"{' > '.join(path)}\n\n{text}" if prefix and path else text
 
@@ -415,7 +417,7 @@ def _embed_text(path: list[str], text: str, prefix: bool) -> str:
 def _finalize(chunks: list[Chunk], tok: _Tok) -> list[Chunk]:
     for i, c in enumerate(chunks):
         c.position_index = i
-        c.token_count = tok.count(c.text)
+        c.token_count = tok.count(c.embed_text or c.text)
         c.stable_id()
     for prev, nxt in zip(chunks, chunks[1:]):
         prev.next_chunk_id, nxt.previous_chunk_id = nxt.chunk_id, prev.chunk_id
@@ -430,20 +432,26 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
     Args:
         markdown: the document. CRLF and CR line endings are accepted; offsets refer to it.
         doc_id: document id, copied to every chunk and hashed into ``chunk_id``.
-        max_tokens: hard cap per chunk (``None``: no cap, the 0.3 / study chunks exactly).
-            Over-cap chunks are re-packed at block boundaries; an atomic block over the cap
-            is split inside and its pieces get ``oversized=True``.
+        max_tokens: hard cap on each chunk's ``embed_text`` (what gets embedded), so the
+            prefix counts; ``token_count`` is that count. ``None``: no cap, the 0.3 / study
+            chunks exactly. Over-cap chunks are re-packed at block boundaries; an atomic
+            block over the cap is split inside and its pieces get ``oversized=True``. A run
+            of headers too long to travel with its content (over half the cap) becomes a
+            chunk of its own rather than break the cap.
         prefix: ``embed_text`` = section path + blank line + text (the study's free prefix).
         tokenizer: see :data:`Tokenizer`; default estimate ``ceil(chars / 4)``.
-        headerless: ``"auto"`` uses :func:`window` (256 tokens, overlap 32) and warns
-            when a document over the cap has fewer than 2 headers per
-            ``HEADERLESS_TOKENS_PER_2_HEADERS`` tokens; ``"windows"`` always does;
-            ``"structure"`` never does.
+        headerless: ``"auto"`` switches to 256-token windows (overlap 32) with a
+            :class:`HeaderlessWarning` when the document has no Markdown structure to cut
+            at (no headers, or one header and no code, tables or lists) and is longer than
+            one window; ``"window"`` always does; ``"structure"`` never does. Windows run
+            over prose only: fenced code and tables stay whole, or are split row-/line-aware.
         min_chars, max_chars: the structural chunker's soft sizes (0.3 / study defaults).
         metadata: copied (shallowly) into every chunk's ``metadata``.
 
-    ``section_path`` is the header stack of the chunk's section, outermost first; with
-    ``prefix`` the path is joined with ``" > "`` for ``embed_text`` only. ``chunk_id`` is
+    ``section_path`` is the header stack at the chunk's first body line, outermost first;
+    with ``prefix`` it is joined with ``" > "`` for ``embed_text``. ``section_title`` keeps
+    its 0.3 value, which for a chunk merged across headers can name a later section (the
+    v4 study's prefix used it). ``chunk_id`` is
     content-stable (``Chunk.stable_id``: doc_id, start offset, text): editing or appending
     text leaves the ids of all chunks before the change unchanged.
 
@@ -455,6 +463,8 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
     """
     if max_tokens is not None and max_tokens <= 0:
         raise ValueError("max_tokens must be positive or None")
+    if headerless not in ("auto", "window", "structure"):
+        raise ValueError("headerless must be 'auto', 'window' or 'structure'")
     tok = _resolve_tokenizer(tokenizer)
     if not markdown.strip():
         return []
@@ -462,21 +472,6 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
     sizes = SimpleNamespace(min_chunk_size=min_chars, max_chunk_size=max_chars)
     mc = MarkdownChunker(cast("Config", sizes))
     blocks = mc._parse_blocks(markdown)
-    if headerless != "structure":
-        n_headers = sum(b.type == "header" for b in blocks)
-        doc_tokens = tok.count(markdown)
-        sparse = (doc_tokens > (max_tokens or 512)
-                  and n_headers < 2 * max(1, doc_tokens // HEADERLESS_TOKENS_PER_2_HEADERS))
-        if headerless == "windows" or sparse:
-            size = min(256, max_tokens or 256)
-            if headerless == "auto":
-                warnings.warn(
-                    f"{doc_id or 'document'}: {n_headers} header(s) in ~{doc_tokens} tokens; "
-                    f"using {size}-token windows (headerless='structure' keeps paragraphs)",
-                    HeaderlessWarning, stacklevel=2)
-            return window(markdown, size, min(32, size // 8), doc_id=doc_id, tokenizer=tokenizer,
-                          metadata=metadata)
-
     norm = markdown.replace("\r\n", "\n").replace("\r", "\n")
     n_starts = _line_starts(norm, "\n")
     o_starts = _line_starts(markdown, r"\r\n|\r|\n")
@@ -485,6 +480,23 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
         i = bisect.bisect_right(n_starts, n_off) - 1
         return o_starts[i] + (n_off - n_starts[i])
 
+    def span(b: _Block) -> tuple[int, int]:
+        s = n_starts[b.start_line]
+        return s, s + len(b.content)
+
+    def pre_tokens(path: list[str]) -> int:
+        return tok.count(_embed_text(path, "", True)) if prefix and path else 0
+
+    def use_prefix(path: list[str]) -> bool:
+        # A prefix over half the cap (an absurdly long title) is left out instead
+        return max_tokens is None or pre_tokens(path) <= max_tokens // 2
+
+    def room(path: list[str]) -> int | None:
+        """Text tokens left under the cap once the prefix is added (the cap is on embed_text)."""
+        if max_tokens is None:
+            return None
+        return max_tokens - (pre_tokens(path) if use_prefix(path) else 0)
+
     def make(text: str, start: int, end: int, path: list[str], title: str, types: set[str],
              oversized: bool) -> Chunk:
         return Chunk(text=text, section_title=title, section_path=list(path),
@@ -492,9 +504,31 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
                      start_line=bisect.bisect_right(n_starts, start) - 1,
                      end_line=bisect.bisect_right(n_starts, end) - 1,
                      start_char=orig(start), end_char=orig(end), oversized=oversized,
-                     embed_text=_embed_text(path, text, prefix), metadata=dict(metadata or {}))
+                     embed_text=_embed_text(path, text, prefix and use_prefix(path)),
+                     metadata=dict(metadata or {}))
 
-    out = []
+    def capped(group_blocks: list[_Block]) -> list[Chunk]:
+        cap = min(r for r in (room(b.section_path) for b in group_blocks) if r is not None)
+        out = []
+        for g in _cap(group_blocks, n_starts, cap, tok):
+            path = _body_path([(p.path, p.header) for p in g])
+            out.append(make("\n\n".join(p.text for p in g), g[0].start, g[-1].end, path,
+                            " > ".join(path), set().union(*(p.types for p in g)),
+                            any(p.oversized for p in g)))
+        return out
+
+    n_headers = sum(b.type == "header" for b in blocks)
+    structured = any(b.type in _STRUCTURE for b in blocks)
+    size = min(256, max_tokens or 256)
+    plain = n_headers == 0 or (n_headers < 2 and not structured)
+    if headerless == "window" or (headerless == "auto" and plain and tok.count(markdown) > size):
+        if headerless == "auto":
+            warnings.warn(f"{doc_id or 'document'}: no Markdown headers or structure to cut at; "
+                          f"using {size}-token windows (headerless='structure' keeps paragraphs)",
+                          HeaderlessWarning, stacklevel=2)
+        return _finalize(_windowed(blocks, norm, span, room, make, tok, size), tok)
+
+    out: list[Chunk] = []
     bi = 0
     for legacy in mc._group_blocks(blocks):
         while blocks[bi].start_line < legacy.start_line:
@@ -503,21 +537,52 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
         while bi < len(blocks) and blocks[bi].end_line <= legacy.end_line:
             mine.append(blocks[bi])
             bi += 1
-        start = n_starts[mine[0].start_line]
-        end = n_starts[mine[-1].start_line] + len(mine[-1].content)
-        if max_tokens is None or tok.count(legacy.text) <= max_tokens:
-            # The structural chunk as-is; its path is that of the block that named it
-            path = next((b.section_path for b in mine if b.section_title == legacy.section_title
-                         and b.section_title), [])
-            out.append(make(legacy.text, start, end, path, legacy.section_title,
-                            set(legacy.content_types), False))
-            continue
-        for group in _cap(mine, n_starts, max_tokens, tok):
-            path = next((p.path for p in group if p.path), [])
-            out.append(make("\n\n".join(p.text for p in group), group[0].start, group[-1].end,
-                            path, " > ".join(path), set().union(*(p.types for p in group)),
-                            any(p.oversized for p in group)))
+        # section_path: the header stack at the chunk's first line (RESEARCH.md sec. 4, inv. 5);
+        # section_title keeps the 0.3 value, which can name a later section of a merged chunk
+        path = _body_path([(b.section_path, b.type == "header") for b in mine])
+        fits = room(path)
+        if fits is None or tok.count(legacy.text) <= fits:
+            out.append(make(legacy.text, span(mine[0])[0], span(mine[-1])[1], path,
+                            legacy.section_title, set(legacy.content_types), False))
+        else:
+            out.extend(capped(mine))
     return _finalize(out, tok)
+
+
+def _windowed(blocks: list[_Block], norm: str, span: Callable[[_Block], tuple[int, int]],
+              room: Callable[[list[str]], int | None], make: Callable[..., Chunk], tok: _Tok,
+              size: int) -> list[Chunk]:
+    """Headerless mode: token windows over runs of prose; code and tables stay atomic."""
+    out: list[Chunk] = []
+    run: list[_Block] = []
+
+    def flush_run() -> None:
+        if not run:
+            return
+        lo, hi = span(run[0])[0], span(run[-1])[1]
+        starts = [span(b)[0] for b in run]
+        fits = [r for r in (room(b.section_path) for b in run) if r is not None]
+        for s, e in _window_spans(norm[lo:hi], tok, min([size, *fits]), min(32, size // 8)):
+            b = run[bisect.bisect_right(starts, lo + s) - 1]
+            out.append(make(norm[lo + s:lo + e], lo + s, lo + e, b.section_path,
+                            " > ".join(b.section_path), {"window"}, False))
+        run.clear()
+
+    for b in blocks:
+        if b.type not in _ATOMIC:
+            run.append(b)
+            continue
+        flush_run()
+        s, e = span(b)
+        fits = room(b.section_path)
+        if fits is None or tok.count(b.content) <= fits:
+            out.append(make(b.content, s, e, b.section_path, " > ".join(b.section_path),
+                            {b.type}, False))
+        else:
+            out.extend(make(p.text, p.start, p.end, p.path, " > ".join(p.path), p.types, True)
+                       for p in _split_block(b, s, fits, tok))
+    flush_run()
+    return out
 
 
 def chunk_file(path: str | Path, doc_id: str | None = None, *, encoding: str = "utf-8",

@@ -70,12 +70,24 @@ def test_default_cap_leaves_small_documents_unchanged():
     assert [c.text for c in chunk(DOC)] == [c.text for c in MarkdownChunker(Config()).chunk(DOC)]
 
 
-def test_embed_text_is_study_free_prefix():
+def test_embed_text_is_section_path_prefix():
     cs = chunk(DOC, doc_id="g")
-    for c in cs:
-        assert c.embed_text == f"{c.section_title}\n\n{c.text}"  # study render(mode="tc")
-        assert c.section_title == " > ".join(c.section_path)
+    for c in cs:  # the study's render(mode="tc") layout: path, blank line, text
+        assert c.embed_text == f"{' > '.join(c.section_path)}\n\n{c.text}"
     assert all(c.embed_text == c.text for c in chunk(DOC, prefix=False))
+
+
+def test_section_path_of_merged_chunk_is_where_it_starts():
+    cs = chunk("# A\r\n\r\nPara one.\r\n\r\n## B\r\n\r\nPara two with more words.\r\n")
+    assert len(cs) == 1 and cs[0].section_path == ["A"]
+    assert cs[0].embed_text.startswith("A\n\n# A")
+    assert cs[0].section_title == "A > B"  # 0.3 value kept for compatibility
+    assert cs[0].content_types == ["header", "paragraph"]
+
+
+def test_section_path_skips_leading_headers_to_first_body_line():
+    cs = chunk("# Guide\n\n## Install\n\nRun pip install.")
+    assert cs[0].section_path == ["Guide", "Install"]
 
 
 def test_no_prefix_without_section():
@@ -113,10 +125,17 @@ def test_ids_links_positions_and_metadata():
 
 
 def test_token_count_estimate_and_custom_tokenizer():
-    cs = chunk(DOC)
-    assert all(c.token_count == -(-len(c.text) // 4) for c in cs)
+    cs = chunk(DOC)  # token_count is of embed_text, which the cap applies to
+    assert all(c.token_count == -(-len(c.embed_text) // 4) for c in cs)
     cs = chunk(DOC, tokenizer=lambda s: len(words(s)))
-    assert all(c.token_count == len(words(c.text)) for c in cs)
+    assert all(c.token_count == len(words(c.embed_text)) for c in cs)
+
+
+def test_cap_applies_to_embed_text_including_prefix():
+    md = "# " + " ".join(["Long section title"] * 6) + "\n\n" + "word " * 2000
+    cs = chunk(md, max_tokens=64, headerless="structure")
+    assert all(len(c.embed_text) > len(c.text) for c in cs)
+    assert all(-(-len(c.embed_text) // 4) <= 64 for c in cs)
 
 
 def test_unknown_tokenizer_and_bad_cap():
@@ -272,11 +291,60 @@ def test_short_or_structured_docs_do_not_fall_back():
         chunk(DOC)
 
 
-def test_headerless_windows_forced():
+def test_one_header_with_a_table_is_structure_not_windows():
+    # lead's repro: a table doc with one header must not be windowed through its rows
+    rows = [f"| {i} | value {i} with words |" for i in range(400)]
+    md = "# T\n\n| a | b |\n|---|---|\n" + "\n".join(rows)
     with warnings.catch_warnings():
         warnings.simplefilter("error")
-        cs = chunk(DOC, headerless="windows")
+        cs = chunk(md, doc_id="t")
+    assert len(cs) > 1 and all(c.text.startswith("| a | b |\n|---|---|\n") for c in cs[1:])
+    got = [ln for c in cs for ln in c.text.split("\n") if re.match(r"^\| \d+ \|", ln)]
+    assert got == rows and all(c.token_count <= 512 for c in cs)
+
+
+def test_two_headers_far_apart_is_structure():
+    md = "# One\n\n" + PLAIN + "\n\n# Two\n\n" + PLAIN
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        cs = chunk(md)
+    assert all("window" not in c.content_types for c in cs)
+    assert {tuple(c.section_path) for c in cs} == {("One",), ("Two",)}
+
+
+def test_one_header_plain_prose_is_windowed_with_its_path():
+    md = "# Notes\n\n" + PLAIN
+    with pytest.warns(HeaderlessWarning):
+        cs = chunk(md)
     assert all(c.content_types == ["window"] for c in cs)
+    assert cs[-1].section_path == ["Notes"] and cs[-1].embed_text.startswith("Notes\n\n")
+    assert all(c.token_count <= 512 for c in cs)
+
+
+def test_headerless_windows_never_cut_tables_or_fences():
+    code = "\n".join(f"line_{i} = {i}" for i in range(300))
+    table = "| k | v |\n|---|---|\n" + "\n".join(f"| r{i} | v{i} |" for i in range(300))
+    md = PLAIN + "\n\n```py\n" + code + "\n```\n\n" + PLAIN + "\n\n" + table + "\n\n" + PLAIN
+    with pytest.warns(HeaderlessWarning):
+        cs = chunk(md, max_tokens=256)
+    kinds = {t for c in cs for t in c.content_types}
+    assert kinds == {"window", "code", "table"}
+    for c in cs:
+        if "code" in c.content_types:
+            assert c.text.startswith("```py\n") and c.text.endswith("\n```")
+        if "table" in c.content_types:
+            assert c.text.startswith("| k | v |\n|---|---|\n")
+        if c.content_types == ["window"]:
+            assert "```" not in c.text and "|---|" not in c.text
+    assert all(c.token_count <= 256 for c in cs)
+    assert_tiles(cs, md, overlap=True)
+
+
+def test_headerless_window_forced():
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        cs = chunk(DOC, headerless="window")
+    assert {t for c in cs for t in c.content_types} == {"window", "code", "table"}
 
 
 # --------------------------------------------------------------------------- #
@@ -306,6 +374,8 @@ def test_window_long_word_and_validation():
     for size, overlap in [(0, 0), (10, 10), (10, -1)]:
         with pytest.raises(ValueError):
             window("a b c", size=size, overlap=overlap)
+    with pytest.raises(ValueError):
+        chunk("x", headerless="windows")
 
 
 def test_window_with_tiktoken_matches_token_budget():
@@ -350,12 +420,13 @@ def test_chunk_file_rejects_binary_formats(tmp_path):
 # Regressions found by fuzzing random Markdown                                #
 # --------------------------------------------------------------------------- #
 
-def assert_tiles(cs, md):
+def assert_tiles(cs, md, overlap=False):
     """Chunk spans cover the document in order; gaps hold only whitespace."""
-    prev = 0
+    prev = start = 0
     for c in cs:
-        assert c.start_char >= prev and not md[prev:c.start_char].strip()
-        prev = c.end_char
+        assert c.start_char >= (start if overlap else prev)
+        assert not md[prev:c.start_char].strip()
+        start, prev = c.start_char, max(prev, c.end_char)
     assert not md[prev:].strip()
 
 
