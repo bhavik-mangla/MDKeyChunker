@@ -66,11 +66,15 @@ class BM25Retriever(BaseRetriever):
     Args:
         chunks: the chunks to index.
         k1, b: BM25 parameters (study: 1.5, 0.75).
-        method: ``"lucene"`` (default; the bm25s default and the Lucene/Elasticsearch
-            formula), any other bm25s method (``"robertson"``, ``"atire"``, ``"bm25+"``,
-            ``"bm25l"``), or ``"study"``: the study's rank-bm25 ``BM25Okapi``, reproduced
-            exactly and needing no bm25s. On Qasper (free prefix, 951 questions, recall
-            within 512 tokens) ``"study"`` gives the paper's 0.299 and ``"lucene"`` 0.318.
+        method: ``"lucene"`` (default; the bm25s default and the Lucene/Elasticsearch/
+            OpenSearch formula, so ``diagnose`` verdicts transfer to those stacks), any
+            other bm25s method (``"robertson"``, ``"atire"``, ``"bm25+"``, ``"bm25l"``), or
+            ``"study"``: the study's rank-bm25 ``BM25Okapi`` (idf floor ``epsilon``),
+            reproduced with bit-identical scores and needing no dependency at all.
+            **The default is not the paper's setting.** Measured on Qasper (free prefix,
+            all 951 questions, recall within 512 cl100k tokens): ``"study"`` 0.2989 (the
+            paper's value), ``"lucene"`` 0.3179, ``"atire"`` + ``idf_method="robertson"``
+            0.2944. Use ``"study"`` to reproduce paper numbers.
         idf_method: bm25s idf variant (``None`` = the method's own).
         epsilon: idf floor factor for ``method="study"`` (rank-bm25 default 0.25).
         tokenize: text -> tokens; defaults to ``study_tokenize``.
