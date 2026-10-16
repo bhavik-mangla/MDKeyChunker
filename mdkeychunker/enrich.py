@@ -502,12 +502,16 @@ def enrich(chunks: Iterable[Chunk], llm: Any, *, fields: Sequence[str] = FIELDS,
         rolling_keys: show the keys seen so far in the document (the study's E arm; no
             retrieval gain detected, v4 study, secondary). Off: the E-noRK arm.
         prev_summary: include the previous chunk's generated summary in the prompt, as the
-            study did; calls within a document then run in order and documents run in
-            parallel. ``False`` runs every chunk in parallel, a prompt the study did not test.
+            study did (its findings, e.g. enrichment equivalent to CR and one call equivalent
+            to one call per field, were measured this way); calls within a document then run
+            in order and documents run in parallel. ``False`` parallelises within a document
+            too; that prompt is untested by the study.
         max_output_tokens: output cap per call (the study: 1000 for the 7B LLM).
         prefix: also put the section path first in ``embed_text`` (the study's E arm did not).
-        max_tokens: the cap the chunks were built with; enriched ``embed_text`` over it gives
-            one :class:`EnrichmentOverflowWarning`. ``token_count`` is always recounted.
+        max_tokens: pass the ``max_tokens`` you used in :func:`mk.chunk` (the default matches
+            its default, 512); enriched ``embed_text`` over it gives one
+            :class:`EnrichmentOverflowWarning`. ``None`` disables the check. ``token_count``
+            is always recounted.
         max_field_tokens: trim each generated field (or ``{field: cap}``) to this many tokens
             in ``embed_text``; list fields drop items from the end. The chunk's fields
             themselves keep the full LLM output.
@@ -584,8 +588,12 @@ def estimate_cost(chunks: Iterable[Chunk], *,
     previous summary) or the study's CR prompt (whole document + chunk, per call). Output
     tokens per call default to the study's measurements with qwen2.5 7B on Qasper
     (enrich 190, CR 60; with gpt-oss 120B: 476 and 118). Prices are dollars per million
-    tokens. In the study CR sent 5.8x (Qasper) to 8.7x (FreshStack) the input tokens per
-    call of enrichment (confirmatory finding 2: the two were equivalent for retrieval).
+    tokens. In the study CR sent 5.8x (Qasper papers) to 8.7x (FreshStack docs) the input
+    tokens per call of enrichment (confirmatory finding 2: the two were equivalent for
+    retrieval). The ratio depends on document length, because CR sends the whole document
+    with every chunk: on short documents CR can be cheaper than enrichment (a few-line,
+    one-chunk note: about 100 vs 660 input tokens with the default estimate, because the
+    enrichment prompt's instructions dominate), so estimate on your own documents.
 
     ``cached=True`` models prompt caching for CR: after a document's first call its
     ``<document>`` prefix is billed at ``price_cached_in`` (default 10% of ``price_in``,
