@@ -45,6 +45,8 @@ def row(prefix: str, r: dict | None, level: str = "90") -> None:
     c = r[f"ci{level}_bca"]
     put(prefix + "-d", pt(r["diff"]))
     put(prefix + "-ci", ci(c))
+    if "ci95_bca" in r:
+        put(prefix + "-ci95", ci(r["ci95_bca"]))
     put(prefix, f"{pt(r['diff'])} {ci(c)}")
     put(prefix + "-v", VERDICT.get(r.get("label", r["verdict"]), r.get("label", r["verdict"])))
     p = r.get("p_holm")
@@ -295,7 +297,7 @@ DS_NAME = {"qasper": "Qasper", "freshstack": "FreshStack"}
 
 def _tex(label: str) -> str:
     return (label.replace("E-strong", "\\Estrong{}").replace("CR-strong", "\\CRstrong{}")
-            .replace("-noRK", "$-$K").replace("M-TP", "M$-$TP").replace("_", "\\_"))
+            .replace("-noRK", "$-$K").replace("PP", "P").replace("M-TP", "M$-$TP").replace("_", "\\_"))
 
 
 def write_grids(out: Path, pm: dict) -> None:
@@ -322,7 +324,7 @@ def write_grids(out: Path, pm: dict) -> None:
             L.append(_tex(a) + " & " + " & ".join(cell(ds, k, a, pm[ds]) for k, _ in rets) + " \\\\")
         L += ["\\bottomrule", "\\end{tabular}",
               f"\\caption{{{DS_NAME[ds]}: mean {pm[ds]} ($\\times$100) for every arm under every retriever. "
-              "LC-S exists only under jina-v3; \\CRstrong{} was built for Qasper only. "
+              "LC-S: late-chunked S, only under jina-v3; \\CRstrong{} was built for Qasper only. "
               "Per-question values and 95\\% CIs are in the released results.}",
               f"\\label{{tab:grid-{ds}}}", "\\end{table*}", ""]
         mets = SECONDARY[ds]
@@ -334,7 +336,7 @@ def write_grids(out: Path, pm: dict) -> None:
             L.append(_tex(a) + " & " + " & ".join(cell(ds, "hybrid", a, m) for m in mets) + " \\\\")
         L += ["\\bottomrule", "\\end{tabular}",
               f"\\caption{{{DS_NAME[ds]}: secondary metrics ($\\times$100) under the hybrid retriever, "
-              "including the mechanism arms. RM is averaged over five seeds"
+              "including the mechanism arms (M$-$K: merged E$-$K; E(meta+key): keys and entities also indexed). RM is averaged over five seeds"
               + ("; PF covers 100 papers." if ds == "qasper" else ".") + "}",
               f"\\label{{tab:grid2-{ds}}}", "\\end{table*}", ""]
     out.write_text("\n".join(L) + "\n")
