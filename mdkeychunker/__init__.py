@@ -13,6 +13,7 @@ from importlib.util import find_spec
 from typing import Any
 
 from .chunking import chunk, chunk_file, window
+from .enrich import Anthropic, OpenAICompatible, aenrich, enrich, estimate_cost
 from .models import Chunk, GoldSpan, Hit, Retriever
 
 try:
@@ -22,9 +23,6 @@ except PackageNotFoundError:  # running from a source checkout
 
 # Public name -> submodule, imported on first attribute access
 _LAZY = {
-    # enrichment (session A, A3)
-    "enrich": "enrich", "aenrich": "enrich", "estimate_cost": "enrich",
-    "OpenAICompatible": "enrich", "Anthropic": "enrich",
     # evaluation, retrieval, diagnosis (session B)
     "evidence_recall": "evaluate", "evidence_precision": "evaluate",
     "BM25Retriever": "retrieval", "DenseRetriever": "retrieval",
@@ -34,7 +32,10 @@ _LAZY = {
     "Pipeline": "pipeline", "Config": "config",
 }
 
-__all__ = ["chunk", "chunk_file", "window", "Chunk", "GoldSpan", "Hit", "Retriever"] + [
+# enrich is imported eagerly: the submodule shares the function's name, and a lazy import
+# would leave mk.enrich bound to the module. It imports no optional dependency.
+__all__ = ["chunk", "chunk_file", "window", "enrich", "aenrich", "estimate_cost",
+           "OpenAICompatible", "Anthropic", "Chunk", "GoldSpan", "Hit", "Retriever"] + [
     name for name, mod in _LAZY.items() if find_spec(f"{__name__}.{mod}") is not None]
 
 
