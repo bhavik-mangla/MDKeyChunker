@@ -1,0 +1,70 @@
+{
+ "files": 24,
+ "questions": 73,
+ "unique_spans": 61,
+ "spans_exact_vs_corpus_fixed": 61,
+ "spans_exact_vs_corpus_pilot": 55,
+ "changed_spans": [
+  {
+   "path": "eloquent-relationships.md",
+   "corpus_id": "docs/eloquent-relationships.md_43015_49424"
+  },
+  {
+   "path": "eloquent-relationships.md",
+   "corpus_id": "docs/eloquent-relationships.md_49424_56129"
+  },
+  {
+   "path": "eloquent-relationships.md",
+   "corpus_id": "docs/eloquent-relationships.md_56129_63738"
+  },
+  {
+   "path": "eloquent-relationships.md",
+   "corpus_id": "docs/eloquent-relationships.md_72158_80864"
+  },
+  {
+   "path": "eloquent-relationships.md",
+   "corpus_id": "docs/eloquent-relationships.md_85020_92798"
+  },
+  {
+   "path": "releases.md",
+   "corpus_id": "docs/releases.md_2381_11842"
+  }
+ ],
+ "affected_qids": [
+  "75915323",
+  "76436680",
+  "76721334",
+  "77038806",
+  "77580974",
+  "77969870",
+  "77977254",
+  "78020564",
+  "78188214",
+  "78357045",
+  "78366994",
+  "78429920",
+  "78435847",
+  "78479954",
+  "78490834"
+ ],
+ "files_changed": {
+  "eloquent-relationships.md": {
+   "chars_old": 94087,
+   "chars_new": 94085,
+   "bytes_old": 94087,
+   "bytes_new": 94085,
+   "hunks": 1,
+   "lines_removed": 1,
+   "lines_added": 1
+  }
+ },
+ "diffs": {
+  "eloquent-relationships.md": [
+   "--- 1e8496c2",
+   "+++ 724c31cc",
+   "@@ -1075 +1075 @@",
+   "-If you would like Eloquent to automatically hydrate parent models onto their children, you may invoke the `chaperone` method when defining a `morphMany` relationship:",
+   "+If you would like Eloquent to automatically hydrate parent models onto their children, you may invoke the `chaperone` method when defining a `hasMany` relationship:"
+  ]
+ }
+}

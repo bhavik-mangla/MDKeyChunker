@@ -1,0 +1,103 @@
+{
+ "plan": "ANALYSIS_PLAN_v2",
+ "models": {
+  "local": {
+   "spec": "ollama:qwen2.5:7b",
+   "backend": "ollama",
+   "model": "qwen2.5:7b",
+   "providers": [],
+   "temperature": 0.0,
+   "seed": 0,
+   "reasoning": null,
+   "enrich_max_tokens": 1000,
+   "cr_max_tokens": 120,
+   "url": "http://127.0.0.1:11435",
+   "think": false,
+   "num_ctx": {
+    "qasper": 16384,
+    "freshstack": 32768,
+    "freshstack_enr": 8192
+   },
+   "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+  },
+  "strong": {
+   "spec": "openrouter:openai/gpt-oss-120b@deepinfra/bf16",
+   "backend": "openrouter",
+   "model": "openai/gpt-oss-120b",
+   "providers": [
+    "deepinfra/bf16"
+   ],
+   "temperature": 0.0,
+   "seed": 0,
+   "reasoning": "low",
+   "enrich_max_tokens": 2000,
+   "cr_max_tokens": 600,
+   "allow_fallbacks": false,
+   "data_collection": "deny",
+   "banned": [
+    "together",
+    "fireworks"
+   ]
+  }
+ },
+ "generator": {
+  "spec": "ollama:qwen2.5:7b",
+  "budget_tokens": {
+   "qasper": 512,
+   "freshstack": 1024
+  },
+  "settings": {
+   "qasper": {
+    "max_tokens": 64,
+    "temperature": 0.0,
+    "seed": 0
+   },
+   "freshstack": {
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "seed": 0
+   }
+  }
+ },
+ "prompts_sha256": {
+  "enrich": "7b89fb9282546cd06950e5afa359168b576a8bd18886e42d18e56082a8905adb",
+  "cr": "988f21d0dfe812308b6aef539b3e466549e9d4c6da93de04979d781b68324f3f",
+  "answer_qasper": "488eeb90639b8966e86c2000643bb59d06891cf5e209746f5491e2a84d56cfe0",
+  "answer_freshstack": "f13f7db21af8fd9939c90acc087e0d0c435aa62c0fb26d0137bfb9a4089cc8d4"
+ },
+ "chunking": {
+  "fixed512": 512,
+  "fixedtok": [
+   256,
+   32
+  ],
+  "struct": {
+   "min_chunk_size": 100,
+   "max_chunk_size": 1500
+  },
+  "parapack_max_chars": 1500,
+  "fixedlen": "median struct chunk tokens per dataset",
+  "tokenizer": "cl100k_base"
+ },
+ "retry": {
+  "parse_retries": 3,
+  "retry_seeds": [
+   1,
+   2,
+   3
+  ]
+ },
+ "selection_seed": 2027,
+ "git": {
+  "harness": {
+   "commit": "dd1eedbc4af0a4b008eac02ebaebaf33b81b18e9",
+   "dirty": false
+  },
+  "mdkeychunker": {
+   "commit": "b5b6f3ceaf9f91436c78268d64e5ed1feb676c45",
+   "dirty": false
+  }
+ },
+ "mdkeychunker_version": "0.3.0",
+ "created_at": "2026-10-06T13:46:30+0530"
+}

@@ -58,6 +58,10 @@ NUM_CTX = int(os.environ.get("NUM_CTX", "16384"))
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 BANNED_PROVIDERS = ["together", "fireworks"]
+DASHSCOPE_URL = os.environ.get("DASHSCOPE_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1") \
+    + "/chat/completions"
+# Per-model token cap for DashScope, sized to the free quota so a run cannot spill into billing.
+DASHSCOPE_TOKEN_CAP = int(os.environ.get("DASHSCOPE_TOKEN_CAP", "950000"))
 RETRY_STATUSES = {408, 429, 500, 502, 503, 504, 520, 522, 524, 529}
 
 
@@ -87,8 +91,8 @@ class ModelSpec:
     @classmethod
     def parse(cls, spec: str) -> "ModelSpec":
         backend, sep, rest = spec.partition(":")
-        if not sep or backend not in ("ollama", "openrouter", "gemini") or not rest:
-            raise ValueError(f"bad model spec {spec!r}; want ollama:|openrouter:|gemini:<model>")
+        if not sep or backend not in ("ollama", "openrouter", "gemini", "dashscope") or not rest:
+            raise ValueError(f"bad model spec {spec!r}; want ollama:|openrouter:|gemini:|dashscope:<model>")
         providers: tuple[str, ...] = ()
         if backend == "openrouter":
             model, at, pin = rest.partition("@")
@@ -174,6 +178,21 @@ class Ledger:
                     os.fsync(f.fileno())
                 finally:
                     fcntl.flock(f, fcntl.LOCK_UN)
+
+    def tokens_for(self, backend: str, model: str) -> int:
+        """Total input + output tokens logged for one backend/model (full scan; cheap at our sizes)."""
+        if not self.path.exists():
+            return 0
+        n = 0
+        with self._lock, open(self.path, "r", encoding="utf-8") as f:
+            for line in f:
+                try:
+                    r = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if r.get("backend") == backend and r.get("model") == model:
+                    n += int(r.get("in_tokens") or 0) + int(r.get("out_tokens") or 0)
+        return n
 
     def total_spend(self) -> float:
         """Cumulative cost_usd over every row (rows without a cost count as 0)."""
@@ -281,7 +300,8 @@ class LLMClient:
                  temperature: float = 0.0, seed: int | None = 0, reasoning: Any = None,
                  system: str | None = None, tag: str = "") -> dict:
         spec = ModelSpec.parse(model_spec)
-        fn = {"ollama": self._ollama, "openrouter": self._openrouter, "gemini": self._gemini}[spec.backend]
+        fn = {"ollama": self._ollama, "openrouter": self._openrouter, "gemini": self._gemini,
+              "dashscope": self._dashscope}[spec.backend]
         reserved = self.guard.acquire() if spec.backend == "openrouter" else 0.0
         t0 = time.time()
         row = {"ts": round(t0, 3), "backend": spec.backend, "model": spec.model, "spec": str(spec),
@@ -428,6 +448,32 @@ class LLMClient:
                 "reasoning_tokens": details.get("reasoning_tokens"),
                 "cost_usd": float(cost) if isinstance(cost, (int, float)) else None,
                 "provider": data.get("provider"), "model": data.get("model", spec.model),
+                "finish_reason": choice.get("finish_reason"), "generation_id": data.get("id")}
+
+    def _dashscope(self, spec, prompt, json_mode, max_tokens, temperature, seed, reasoning, system) -> dict:
+        used = self.ledger.tokens_for("dashscope", spec.model)
+        if used + max_tokens > DASHSCOPE_TOKEN_CAP:
+            raise BudgetExceeded(f"dashscope {spec.model}: {used} tokens used, cap {DASHSCOPE_TOKEN_CAP}")
+        msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+        body: dict[str, Any] = {"model": spec.model, "messages": msgs, "max_tokens": max_tokens,
+                                "temperature": temperature, "enable_thinking": bool(reasoning) and
+                                reasoning not in ("off", "none", "disabled")}
+        if seed is not None:
+            body["seed"] = seed
+        if json_mode:
+            body["response_format"] = {"type": "json_object"}
+        headers = {"Authorization": f"Bearer {self.secret('DASHSCOPE_API_KEY')}"}
+        resp = self._post(DASHSCOPE_URL, body, headers)
+        data = self._check_http(resp, "dashscope")
+        try:
+            choice = data["choices"][0]
+            msg_ = choice.get("message") or {}
+        except (KeyError, IndexError, TypeError):
+            raise _Retryable(f"dashscope: unexpected body shape {str(data)[:200]}", None, data) from None
+        usage = data.get("usage") or {}
+        return {"text": msg_.get("content") or "", "in_tokens": usage.get("prompt_tokens", 0),
+                "out_tokens": usage.get("completion_tokens", 0), "reasoning_tokens": None,
+                "cost_usd": 0.0, "provider": "dashscope", "model": data.get("model", spec.model),
                 "finish_reason": choice.get("finish_reason"), "generation_id": data.get("id")}
 
     def _gemini(self, spec, prompt, json_mode, max_tokens, temperature, seed, reasoning, system) -> dict:

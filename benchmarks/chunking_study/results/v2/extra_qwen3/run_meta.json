@@ -1,0 +1,46 @@
+{
+ "arms": [
+  "qwen3"
+ ],
+ "seconds": 5347.2,
+ "ollama_url": "http://127.0.0.1:11434",
+ "reranker": null,
+ "late_chunking": null,
+ "jina_device": null,
+ "lc_overlap": 2048,
+ "coverage": {
+  "freshstack": {
+   "systems": [
+    "F512c",
+    "F256t",
+    "S",
+    "S+T",
+    "PP",
+    "FL",
+    "E",
+    "CR",
+    "E-strong"
+   ],
+   "dropped_docs": [],
+   "n_docs": 377,
+   "dropped_fraction": 0.0,
+   "over_5pct": false,
+   "strong_groups": {
+    "E-strong": 3
+   }
+  }
+ },
+ "runs": [
+  {
+   "arms": [
+    "qwen3"
+   ],
+   "seconds": 5347.2,
+   "ollama_url": "http://127.0.0.1:11434",
+   "reranker": null,
+   "late_chunking": null,
+   "jina_device": null,
+   "lc_overlap": 2048
+  }
+ ]
+}

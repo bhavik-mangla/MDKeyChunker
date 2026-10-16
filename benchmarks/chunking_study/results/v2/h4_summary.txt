@@ -1,0 +1,273 @@
+Amendment 2 (H4) results. A - B, BCa CIs, cluster bootstrap.
+
+H4 family (hybrid; Holm over 8 tests; p_perm for H4a/b, p_tost for H4c/d)
+  qasper                     M - RM      hybrid  rec@512t    +0.0187 90%[+0.006,+0.032] 95%[+0.003,+0.035] p_perm=0.0194 p_holm=0.0776 -> no_difference_detected
+  qasper                     M - SM      hybrid  rec@512t    -0.0010 90%[-0.017,+0.015] 95%[-0.019,+0.018] p_perm=0.9145 p_holm=1.0000 -> no_difference_detected
+  qasper                     M - E       hybrid  rec@512t    -0.0221 90%[-0.036,-0.009] 95%[-0.038,-0.007] p_perm=0.0068 p_tost=0.0012 +/-0.05 p_holm=0.0059* p_holm_perm=0.0544 -> equivalent
+  qasper                     E - E-noRK  hybrid  rec@512t    +0.0065 90%[-0.010,+0.024] 95%[-0.013,+0.027] p_perm=0.5193 p_tost=0.0001 +/-0.05 p_holm=0.0010* p_holm_perm=1.0000 -> equivalent
+  freshstack                 M - RM      hybrid  prec@1024t  +0.0045 90%[-0.005,+0.014] 95%[-0.007,+0.016] p_perm=0.4480 p_holm=1.0000 -> no_difference_detected
+  freshstack                 M - SM      hybrid  prec@1024t  +0.0041 90%[-0.008,+0.016] 95%[-0.010,+0.018] p_perm=0.5797 p_holm=1.0000 -> no_difference_detected
+  freshstack                 M - E       hybrid  prec@1024t  +0.0025 90%[-0.008,+0.014] 95%[-0.010,+0.016] p_perm=0.7111 p_tost=0.0002 +/-0.04 p_holm=0.0012* p_holm_perm=1.0000 -> equivalent
+  freshstack                 E - E-noRK  hybrid  prec@1024t  +0.0136 90%[+0.001,+0.027] 95%[-0.001,+0.029] p_perm=0.0833 p_tost=0.0003 +/-0.04 p_holm=0.0021* p_holm_perm=0.4998 -> equivalent
+
+H7 family (Amendment 4; hybrid; Holm over 2 two-sided sign-flip tests)
+  qasper                     M - M-TP    hybrid  rec@512t    +0.0407 90%[+0.021,+0.062] 95%[+0.017,+0.066] p_perm=0.0012 p_holm=0.0024* -> different
+  freshstack                 M - M-TP    hybrid  prec@1024t  -0.0279 90%[-0.046,-0.011] 95%[-0.049,-0.008] p_perm=0.0076 p_holm=0.0076* -> different
+
+System means (hybrid, primary metric)
+  qasper     E       0.4815 [0.452,0.512]
+  qasper     E-noRK  0.4750 [0.446,0.504]
+  qasper     M       0.4594 [0.431,0.488]
+  qasper     M-TP    0.4187 [0.391,0.447]
+  qasper     M-noRK  0.4657 [0.437,0.494]
+  qasper     RM      0.4407 [0.415,0.466]
+  qasper     S+T     0.4267 [0.399,0.454]
+  qasper     SM      0.4605 [0.431,0.490]
+  freshstack E       0.3075 [0.271,0.345]
+  freshstack E-noRK  0.2939 [0.258,0.330]
+  freshstack M       0.3100 [0.272,0.348]
+  freshstack M-TP    0.3379 [0.297,0.379]
+  freshstack M-noRK  0.2993 [0.263,0.336]
+  freshstack RM      0.3056 [0.270,0.342]
+  freshstack S+T     0.2801 [0.245,0.316]
+  freshstack SM      0.3059 [0.267,0.345]
+
+Key statistics (Amendment 2 sec. C)
+{
+ "E": {
+  "qasper": {
+   "docs": 300,
+   "chunks": 7222,
+   "key_reuse_rate": 0.16214345056770976,
+   "chunks_sharing_a_key": 2021,
+   "distinct_keys_per_doc": 20.17,
+   "stage3_merges": 995
+  },
+  "freshstack": {
+   "docs": 377,
+   "chunks": 7052,
+   "key_reuse_rate": 0.13230289279636984,
+   "chunks_sharing_a_key": 1663,
+   "distinct_keys_per_doc": 16.22811671087533,
+   "stage3_merges": 853
+  }
+ },
+ "E-noRK": {
+  "qasper": {
+   "docs": 300,
+   "chunks": 7222,
+   "key_reuse_rate": 0.06106341733591803,
+   "chunks_sharing_a_key": 796,
+   "distinct_keys_per_doc": 22.596666666666668,
+   "stage3_merges": 390
+  },
+  "freshstack": {
+   "docs": 377,
+   "chunks": 7052,
+   "key_reuse_rate": 0.050623936471922856,
+   "chunks_sharing_a_key": 657,
+   "distinct_keys_per_doc": 17.748010610079575,
+   "stage3_merges": 328
+  }
+ },
+ "E-TP": {
+  "qasper": {
+   "docs": 300,
+   "chunks": 7222,
+   "key_reuse_rate": 0.3630573248407643,
+   "chunks_sharing_a_key": 3973,
+   "distinct_keys_per_doc": 15.326666666666666,
+   "stage3_merges": 2029
+  },
+  "freshstack": {
+   "docs": 377,
+   "chunks": 7052,
+   "key_reuse_rate": 0.2864435621100397,
+   "chunks_sharing_a_key": 3086,
+   "distinct_keys_per_doc": 13.3368700265252,
+   "stage3_merges": 1724
+  }
+ }
+}
+
+Chunk lengths (cl100k tokens)
+{
+ "enr": {
+  "chunks": 14274,
+  "median_tokens": 179,
+  "p95_tokens": 333,
+  "share_over_512": 0.00546448087431694
+ },
+ "merged": {
+  "chunks": 12426,
+  "median_tokens": 193,
+  "p95_tokens": 477,
+  "share_over_512": 0.03774344117173668
+ }
+}
+
+Key cost (Amendment 4 A)
+{
+ "qasper": {
+  "enr": {
+   "calls": 7222,
+   "in_tokens": 7328471,
+   "out_tokens": 1373068,
+   "failed": 0
+  },
+  "enr_nork": {
+   "calls": 7225,
+   "in_tokens": 6477514,
+   "out_tokens": 1371535,
+   "failed": 0
+  },
+  "enr_tp": {
+   "calls": 303,
+   "in_tokens": 143792,
+   "out_tokens": 85881,
+   "failed": 1
+  },
+  "E_total": {
+   "calls": 7222,
+   "in_tokens": 7328471,
+   "out_tokens": 1373068
+  },
+  "noRK_plus_TP_total": {
+   "calls": 7528,
+   "in_tokens": 6621306,
+   "out_tokens": 1457416
+  }
+ },
+ "freshstack": {
+  "enr": {
+   "calls": 7055,
+   "in_tokens": 7170195,
+   "out_tokens": 1210246,
+   "failed": 0
+  },
+  "enr_nork": {
+   "calls": 7061,
+   "in_tokens": 6023771,
+   "out_tokens": 1214978,
+   "failed": 0
+  },
+  "enr_tp": {
+   "calls": 388,
+   "in_tokens": 190894,
+   "out_tokens": 104338,
+   "failed": 10
+  },
+  "E_total": {
+   "calls": 7055,
+   "in_tokens": 7170195,
+   "out_tokens": 1210246
+  },
+  "noRK_plus_TP_total": {
+   "calls": 7449,
+   "in_tokens": 6214665,
+   "out_tokens": 1319316
+  }
+ }
+}
+
+Exploratory (unadjusted), primary metric only
+  qasper                     M - RM      bm25    rec@512t    +0.0120 90%[-0.001,+0.025] 95%[-0.003,+0.028] p_perm=0.1320 -> no_difference_detected
+  qasper                     M - SM      bm25    rec@512t    +0.0117 90%[-0.004,+0.027] 95%[-0.007,+0.030] p_perm=0.2090 -> no_difference_detected
+  qasper                     M - E       bm25    rec@512t    -0.0134 90%[-0.027,+0.000] 95%[-0.030,+0.003] p_perm=0.1071 p_tost=0.0001 +/-0.05 -> equivalent
+  qasper                     E - E-noRK  bm25    rec@512t    +0.0004 90%[-0.016,+0.016] 95%[-0.019,+0.020] p_perm=0.9632 p_tost=0.0001 +/-0.05 -> equivalent
+  qasper                     M - M-TP    bm25    rec@512t    +0.0577 90%[+0.037,+0.079] 95%[+0.033,+0.083] p_perm=0.0001 -> different
+  qasper                  M-TP - E-noRK  bm25    rec@512t    -0.0707 90%[-0.092,-0.051] 95%[-0.095,-0.048] p_perm=0.0001 -> different
+  qasper                  M-TP - M-noRK  bm25    rec@512t    -0.0614 90%[-0.081,-0.041] 95%[-0.085,-0.038] p_perm=0.0001 -> different
+  qasper                M-noRK - M       bm25    rec@512t    +0.0036 90%[-0.013,+0.021] 95%[-0.017,+0.023] p_perm=0.7222 -> no_difference_detected
+  qasper                     M - S+T     bm25    rec@512t    +0.0737 90%[+0.055,+0.093] 95%[+0.052,+0.097] p_perm=0.0001 -> different
+  qasper                M-noRK - E-noRK  bm25    rec@512t    -0.0093 90%[-0.019,+0.000] 95%[-0.021,+0.002] p_perm=0.1230 -> no_difference_detected
+  qasper                     M - RM      nomic   rec@512t    +0.0278 90%[+0.016,+0.039] 95%[+0.015,+0.042] p_perm=0.0002 -> different
+  qasper                     M - SM      nomic   rec@512t    +0.0001 90%[-0.014,+0.014] 95%[-0.017,+0.017] p_perm=0.9909 -> no_difference_detected
+  qasper                     M - E       nomic   rec@512t    -0.0060 90%[-0.015,+0.003] 95%[-0.017,+0.005] p_perm=0.2951 p_tost=0.0002 +/-0.05 -> equivalent
+  qasper                     E - E-noRK  nomic   rec@512t    -0.0001 90%[-0.014,+0.013] 95%[-0.017,+0.016] p_perm=0.9868 p_tost=0.0001 +/-0.05 -> equivalent
+  qasper                     M - M-TP    nomic   rec@512t    +0.0314 90%[+0.013,+0.051] 95%[+0.010,+0.055] p_perm=0.0056 -> different
+  qasper                  M-TP - E-noRK  nomic   rec@512t    -0.0375 90%[-0.054,-0.023] 95%[-0.057,-0.020] p_perm=0.0003 -> different
+  qasper                  M-TP - M-noRK  nomic   rec@512t    -0.0350 90%[-0.052,-0.020] 95%[-0.055,-0.017] p_perm=0.0002 -> different
+  qasper                M-noRK - M       nomic   rec@512t    +0.0037 90%[-0.013,+0.021] 95%[-0.015,+0.025] p_perm=0.7268 -> no_difference_detected
+  qasper                     M - S+T     nomic   rec@512t    +0.0026 90%[-0.021,+0.025] 95%[-0.025,+0.029] p_perm=0.8471 -> no_difference_detected
+  qasper                M-noRK - E-noRK  nomic   rec@512t    -0.0025 90%[-0.010,+0.004] 95%[-0.011,+0.006] p_perm=0.5634 -> no_difference_detected
+  qasper                  M-TP - E-noRK  hybrid  rec@512t    -0.0562 90%[-0.076,-0.037] 95%[-0.080,-0.034] p_perm=0.0001 -> different
+  qasper                  M-TP - M-noRK  hybrid  rec@512t    -0.0470 90%[-0.067,-0.029] 95%[-0.071,-0.026] p_perm=0.0001 -> different
+  qasper                M-noRK - M       hybrid  rec@512t    +0.0063 90%[-0.010,+0.022] 95%[-0.013,+0.026] p_perm=0.5256 -> no_difference_detected
+  qasper                     M - S+T     hybrid  rec@512t    +0.0328 90%[+0.011,+0.055] 95%[+0.007,+0.059] p_perm=0.0133 -> different
+  qasper                M-noRK - E-noRK  hybrid  rec@512t    -0.0093 90%[-0.019,-0.000] 95%[-0.021,+0.001] p_perm=0.1036 -> no_difference_detected
+  qasper                     M - RM      mxbai   rec@512t    +0.0201 90%[+0.008,+0.033] 95%[+0.005,+0.036] p_perm=0.0086 -> different
+  qasper                     M - SM      mxbai   rec@512t    +0.0083 90%[-0.006,+0.023] 95%[-0.009,+0.025] p_perm=0.3506 -> no_difference_detected
+  qasper                     M - E       mxbai   rec@512t    -0.0109 90%[-0.022,-0.001] 95%[-0.024,+0.001] p_perm=0.0823 p_tost=0.0002 +/-0.05 -> equivalent
+  qasper                     E - E-noRK  mxbai   rec@512t    -0.0045 90%[-0.020,+0.011] 95%[-0.023,+0.014] p_perm=0.6238 p_tost=0.0001 +/-0.05 -> equivalent
+  qasper                     M - M-TP    mxbai   rec@512t    +0.0330 90%[+0.012,+0.055] 95%[+0.008,+0.059] p_perm=0.0102 -> different
+  qasper                  M-TP - E-noRK  mxbai   rec@512t    -0.0485 90%[-0.064,-0.033] 95%[-0.068,-0.030] p_perm=0.0001 -> different
+  qasper                  M-TP - M-noRK  mxbai   rec@512t    -0.0442 90%[-0.060,-0.030] 95%[-0.063,-0.027] p_perm=0.0001 -> different
+  qasper                M-noRK - M       mxbai   rec@512t    +0.0112 90%[-0.007,+0.028] 95%[-0.010,+0.032] p_perm=0.2948 -> no_difference_detected
+  qasper                     M - S+T     mxbai   rec@512t    -0.0040 90%[-0.025,+0.018] 95%[-0.029,+0.022] p_perm=0.7683 -> no_difference_detected
+  qasper                M-noRK - E-noRK  mxbai   rec@512t    -0.0043 90%[-0.012,+0.003] 95%[-0.013,+0.005] p_perm=0.3476 -> no_difference_detected
+  freshstack                 M - RM      bm25    prec@1024t  -0.0085 90%[-0.020,+0.005] 95%[-0.022,+0.008] p_perm=0.2629 -> no_difference_detected
+  freshstack                 M - SM      bm25    prec@1024t  -0.0019 90%[-0.014,+0.011] 95%[-0.017,+0.014] p_perm=0.8081 -> no_difference_detected
+  freshstack                 M - E       bm25    prec@1024t  -0.0032 90%[-0.016,+0.010] 95%[-0.018,+0.013] p_perm=0.6874 p_tost=0.0002 +/-0.04 -> equivalent
+  freshstack                 E - E-noRK  bm25    prec@1024t  +0.0062 90%[-0.003,+0.017] 95%[-0.005,+0.019] p_perm=0.3199 p_tost=0.0002 +/-0.04 -> equivalent
+  freshstack                 M - M-TP    bm25    prec@1024t  -0.0352 90%[-0.055,-0.015] 95%[-0.058,-0.011] p_perm=0.0039 -> different
+  freshstack              M-TP - E-noRK  bm25    prec@1024t  +0.0381 90%[+0.019,+0.057] 95%[+0.016,+0.061] p_perm=0.0013 -> different
+  freshstack              M-TP - M-noRK  bm25    prec@1024t  +0.0315 90%[+0.012,+0.050] 95%[+0.008,+0.054] p_perm=0.0076 -> different
+  freshstack            M-noRK - M       bm25    prec@1024t  +0.0037 90%[-0.009,+0.017] 95%[-0.012,+0.020] p_perm=0.6501 -> no_difference_detected
+  freshstack                 M - S+T     bm25    prec@1024t  +0.0207 90%[+0.006,+0.037] 95%[+0.003,+0.041] p_perm=0.0336 -> different
+  freshstack            M-noRK - E-noRK  bm25    prec@1024t  +0.0066 90%[-0.002,+0.018] 95%[-0.003,+0.020] p_perm=0.2775 -> no_difference_detected
+  freshstack                 M - RM      nomic   prec@1024t  -0.0018 90%[-0.010,+0.007] 95%[-0.012,+0.009] p_perm=0.7395 -> no_difference_detected
+  freshstack                 M - SM      nomic   prec@1024t  +0.0072 90%[-0.005,+0.020] 95%[-0.008,+0.023] p_perm=0.3556 -> no_difference_detected
+  freshstack                 M - E       nomic   prec@1024t  +0.0054 90%[-0.003,+0.015] 95%[-0.004,+0.017] p_perm=0.3147 p_tost=0.0002 +/-0.04 -> equivalent
+  freshstack                 E - E-noRK  nomic   prec@1024t  +0.0041 90%[-0.010,+0.018] 95%[-0.013,+0.021] p_perm=0.6463 p_tost=0.0001 +/-0.04 -> equivalent
+  freshstack                 M - M-TP    nomic   prec@1024t  -0.0061 90%[-0.027,+0.014] 95%[-0.031,+0.018] p_perm=0.6237 -> no_difference_detected
+  freshstack              M-TP - E-noRK  nomic   prec@1024t  +0.0155 90%[-0.002,+0.033] 95%[-0.006,+0.037] p_perm=0.1573 -> no_difference_detected
+  freshstack              M-TP - M-noRK  nomic   prec@1024t  +0.0218 90%[+0.005,+0.039] 95%[+0.002,+0.042] p_perm=0.0357 -> different
+  freshstack            M-noRK - M       nomic   prec@1024t  -0.0158 90%[-0.031,-0.000] 95%[-0.034,+0.002] p_perm=0.0951 -> no_difference_detected
+  freshstack                 M - S+T     nomic   prec@1024t  +0.0316 90%[+0.011,+0.052] 95%[+0.008,+0.056] p_perm=0.0119 -> different
+  freshstack            M-noRK - E-noRK  nomic   prec@1024t  -0.0063 90%[-0.014,+0.000] 95%[-0.015,+0.001] p_perm=0.1288 -> no_difference_detected
+  freshstack              M-TP - E-noRK  hybrid  prec@1024t  +0.0440 90%[+0.026,+0.063] 95%[+0.022,+0.068] p_perm=0.0002 -> different
+  freshstack              M-TP - M-noRK  hybrid  prec@1024t  +0.0386 90%[+0.020,+0.059] 95%[+0.017,+0.063] p_perm=0.0011 -> different
+  freshstack            M-noRK - M       hybrid  prec@1024t  -0.0107 90%[-0.025,+0.003] 95%[-0.028,+0.006] p_perm=0.2139 -> no_difference_detected
+  freshstack                 M - S+T     hybrid  prec@1024t  +0.0299 90%[+0.010,+0.050] 95%[+0.007,+0.054] p_perm=0.0132 -> different
+  freshstack            M-noRK - E-noRK  hybrid  prec@1024t  +0.0054 90%[-0.001,+0.011] 95%[-0.002,+0.013] p_perm=0.1494 -> no_difference_detected
+  freshstack                 M - RM      mxbai   prec@1024t  +0.0082 90%[-0.001,+0.017] 95%[-0.003,+0.019] p_perm=0.1461 -> no_difference_detected
+  freshstack                 M - SM      mxbai   prec@1024t  +0.0176 90%[+0.007,+0.029] 95%[+0.005,+0.031] p_perm=0.0085 -> different
+  freshstack                 M - E       mxbai   prec@1024t  +0.0092 90%[+0.002,+0.017] 95%[+0.000,+0.018] p_perm=0.0479 p_tost=0.0002 +/-0.04 -> different_but_equivalent
+  freshstack                 E - E-noRK  mxbai   prec@1024t  +0.0131 90%[-0.001,+0.026] 95%[-0.003,+0.029] p_perm=0.1165 p_tost=0.0006 +/-0.04 -> equivalent
+  freshstack                 M - M-TP    mxbai   prec@1024t  -0.0022 90%[-0.022,+0.016] 95%[-0.025,+0.020] p_perm=0.8510 -> no_difference_detected
+  freshstack              M-TP - E-noRK  mxbai   prec@1024t  +0.0245 90%[+0.009,+0.041] 95%[+0.006,+0.045] p_perm=0.0152 -> different
+  freshstack              M-TP - M-noRK  mxbai   prec@1024t  +0.0225 90%[+0.007,+0.039] 95%[+0.005,+0.042] p_perm=0.0201 -> different
+  freshstack            M-noRK - M       mxbai   prec@1024t  -0.0202 90%[-0.036,-0.004] 95%[-0.039,-0.001] p_perm=0.0412 -> different
+  freshstack                 M - S+T     mxbai   prec@1024t  +0.0092 90%[-0.010,+0.028] 95%[-0.013,+0.032] p_perm=0.4220 -> no_difference_detected
+  freshstack            M-noRK - E-noRK  mxbai   prec@1024t  +0.0021 90%[-0.006,+0.010] 95%[-0.008,+0.012] p_perm=0.6803 -> no_difference_detected
+  freshstack/angular         M - RM      hybrid  prec@1024t  -0.0043 90%[-0.018,+0.009] 95%[-0.021,+0.012] p_perm=0.6168 -> no_difference_detected
+  freshstack/angular         M - SM      hybrid  prec@1024t  -0.0049 90%[-0.024,+0.012] 95%[-0.028,+0.015] p_perm=0.6631 -> no_difference_detected
+  freshstack/angular         M - E       hybrid  prec@1024t  -0.0075 90%[-0.026,+0.012] 95%[-0.029,+0.017] p_perm=0.5335 -> no_difference_detected
+  freshstack/angular         E - E-noRK  hybrid  prec@1024t  +0.0138 90%[-0.005,+0.035] 95%[-0.009,+0.040] p_perm=0.2616 -> no_difference_detected
+  freshstack/angular         M - M-TP    hybrid  prec@1024t  -0.0453 90%[-0.073,-0.021] 95%[-0.079,-0.017] p_perm=0.0060 -> different
+  freshstack/angular      M-TP - E-noRK  hybrid  prec@1024t  +0.0516 90%[+0.022,+0.085] 95%[+0.017,+0.092] p_perm=0.0075 -> different
+  freshstack/angular      M-TP - M-noRK  hybrid  prec@1024t  +0.0467 90%[+0.018,+0.080] 95%[+0.013,+0.088] p_perm=0.0150 -> different
+  freshstack/angular    M-noRK - M       hybrid  prec@1024t  -0.0014 90%[-0.024,+0.018] 95%[-0.028,+0.021] p_perm=0.9120 -> no_difference_detected
+  freshstack/angular         M - S+T     hybrid  prec@1024t  +0.0190 90%[-0.009,+0.051] 95%[-0.015,+0.057] p_perm=0.3167 -> no_difference_detected
+  freshstack/angular    M-noRK - E-noRK  hybrid  prec@1024t  +0.0049 90%[-0.004,+0.013] 95%[-0.006,+0.015] p_perm=0.3626 -> no_difference_detected
+  freshstack/laravel         M - RM      hybrid  prec@1024t  +0.0076 90%[-0.008,+0.023] 95%[-0.011,+0.026] p_perm=0.4206 -> no_difference_detected
+  freshstack/laravel         M - SM      hybrid  prec@1024t  -0.0039 90%[-0.022,+0.013] 95%[-0.026,+0.017] p_perm=0.7289 -> no_difference_detected
+  freshstack/laravel         M - E       hybrid  prec@1024t  -0.0009 90%[-0.015,+0.014] 95%[-0.017,+0.017] p_perm=0.9162 -> no_difference_detected
+  freshstack/laravel         E - E-noRK  hybrid  prec@1024t  +0.0203 90%[+0.001,+0.044] 95%[-0.003,+0.048] p_perm=0.1260 -> no_difference_detected
+  freshstack/laravel         M - M-TP    hybrid  prec@1024t  -0.0292 90%[-0.059,+0.002] 95%[-0.064,+0.008] p_perm=0.1165 -> no_difference_detected
+  freshstack/laravel      M-TP - E-noRK  hybrid  prec@1024t  +0.0486 90%[+0.021,+0.077] 95%[+0.015,+0.082] p_perm=0.0042 -> different
+  freshstack/laravel      M-TP - M-noRK  hybrid  prec@1024t  +0.0447 90%[+0.017,+0.074] 95%[+0.011,+0.079] p_perm=0.0110 -> different
+  freshstack/laravel    M-noRK - M       hybrid  prec@1024t  -0.0155 90%[-0.038,+0.006] 95%[-0.042,+0.010] p_perm=0.2552 -> no_difference_detected
+  freshstack/laravel         M - S+T     hybrid  prec@1024t  +0.0454 90%[+0.020,+0.073] 95%[+0.016,+0.078] p_perm=0.0067 -> different
+  freshstack/laravel    M-noRK - E-noRK  hybrid  prec@1024t  +0.0039 90%[-0.009,+0.016] 95%[-0.011,+0.018] p_perm=0.6089 -> no_difference_detected
+  freshstack/yolo            M - RM      hybrid  prec@1024t  +0.0170 90%[-0.003,+0.046] 95%[-0.007,+0.052] p_perm=0.2672 -> no_difference_detected
+  freshstack/yolo            M - SM      hybrid  prec@1024t  +0.0381 90%[+0.012,+0.075] 95%[+0.008,+0.083] p_perm=0.0488 -> different
+  freshstack/yolo            M - E       hybrid  prec@1024t  +0.0301 90%[+0.008,+0.057] 95%[+0.004,+0.063] p_perm=0.0467 -> different
+  freshstack/yolo            E - E-noRK  hybrid  prec@1024t  +0.0006 90%[-0.029,+0.025] 95%[-0.035,+0.030] p_perm=0.9747 -> no_difference_detected
+  freshstack/yolo            M - M-TP    hybrid  prec@1024t  +0.0113 90%[-0.031,+0.048] 95%[-0.039,+0.055] p_perm=0.6392 -> no_difference_detected
+  freshstack/yolo         M-TP - E-noRK  hybrid  prec@1024t  +0.0193 90%[-0.030,+0.061] 95%[-0.039,+0.069] p_perm=0.4997 -> no_difference_detected
+  freshstack/yolo         M-TP - M-noRK  hybrid  prec@1024t  +0.0100 90%[-0.039,+0.052] 95%[-0.048,+0.061] p_perm=0.7278 -> no_difference_detected
+  freshstack/yolo       M-noRK - M       hybrid  prec@1024t  -0.0213 90%[-0.058,+0.015] 95%[-0.064,+0.022] p_perm=0.3393 -> no_difference_detected
+  freshstack/yolo            M - S+T     hybrid  prec@1024t  +0.0236 90%[-0.035,+0.079] 95%[-0.046,+0.088] p_perm=0.5035 -> no_difference_detected
+  freshstack/yolo       M-noRK - E-noRK  hybrid  prec@1024t  +0.0094 90%[+0.003,+0.021] 95%[+0.001,+0.024] p_perm=0.0882 -> different

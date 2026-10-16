@@ -1,0 +1,52 @@
+zero-LLM system means: 176 cells; max |delta| 0.0274 (nomic fixed512/text hit@10)
+
+prec@1024t: published -> corrected (delta)
+  fixed512/text    bm25   0.240->0.240 (-0.000)  mxbai  0.348->0.348 (+0.000)  nomic  0.272->0.269 (-0.004)  hybrid 0.309->0.311 (+0.002)
+  fixedtok/text    bm25   0.291->0.291 (-0.000)  mxbai  0.392->0.396 (+0.004)  nomic  0.346->0.355 (+0.010)  hybrid 0.386->0.384 (-0.002)
+  struct/text      bm25   0.270->0.270 (+0.000)  mxbai  0.382->0.382 (+0.000)  nomic  0.337->0.337 (-0.000)  hybrid 0.360->0.360 (+0.000)
+  struct/tc        bm25   0.274->0.274 (+0.000)  mxbai  0.385->0.385 (-0.000)  nomic  0.320->0.320 (+0.000)  hybrid 0.345->0.345 (+0.000)
+
+rec@1024t: published -> corrected (delta)
+  fixed512/text    bm25   0.092->0.092 (-0.000)  mxbai  0.131->0.131 (+0.000)  nomic  0.101->0.100 (-0.001)  hybrid 0.116->0.116 (+0.000)
+  fixedtok/text    bm25   0.113->0.113 (+0.000)  mxbai  0.143->0.146 (+0.002)  nomic  0.132->0.136 (+0.003)  hybrid 0.144->0.143 (-0.002)
+  struct/text      bm25   0.104->0.104 (+0.000)  mxbai  0.146->0.146 (+0.000)  nomic  0.133->0.133 (+0.000)  hybrid 0.140->0.140 (+0.000)
+  struct/tc        bm25   0.108->0.108 (+0.000)  mxbai  0.147->0.147 (+0.000)  nomic  0.119->0.119 (+0.000)  hybrid 0.130->0.130 (+0.000)
+
+hit@5: published -> corrected (delta)
+  fixed512/text    bm25   0.589->0.603 (+0.014)  mxbai  0.795->0.795 (+0.000)  nomic  0.712->0.699 (-0.014)  hybrid 0.726->0.740 (+0.014)
+  fixedtok/text    bm25   0.644->0.644 (+0.000)  mxbai  0.781->0.767 (-0.014)  nomic  0.699->0.699 (+0.000)  hybrid 0.753->0.753 (+0.000)
+  struct/text      bm25   0.671->0.671 (+0.000)  mxbai  0.740->0.740 (+0.000)  nomic  0.726->0.726 (+0.000)  hybrid 0.767->0.767 (+0.000)
+  struct/tc        bm25   0.671->0.671 (+0.000)  mxbai  0.740->0.740 (+0.000)  nomic  0.671->0.671 (+0.000)  hybrid 0.767->0.767 (+0.000)
+
+mrr@10: published -> corrected (delta)
+  fixed512/text    bm25   0.428->0.427 (-0.001)  mxbai  0.571->0.580 (+0.009)  nomic  0.513->0.503 (-0.010)  hybrid 0.589->0.576 (-0.013)
+  fixedtok/text    bm25   0.435->0.434 (-0.001)  mxbai  0.600->0.592 (-0.007)  nomic  0.548->0.552 (+0.003)  hybrid 0.605->0.595 (-0.010)
+  struct/text      bm25   0.406->0.406 (+0.000)  mxbai  0.598->0.598 (+0.000)  nomic  0.544->0.544 (+0.000)  hybrid 0.555->0.555 (+0.000)
+  struct/tc        bm25   0.419->0.419 (+0.000)  mxbai  0.556->0.556 (+0.000)  nomic  0.506->0.506 (+0.000)  hybrid 0.559->0.559 (+0.000)
+
+comparisons: 220; max |delta| 0.0274; significance flips: 2
+  FLIP [corrected] bm25 struct/text - fixed512/text prec@1024t: +0.030 [-0.00031023020077610694, 0.05951637726870231] -> +0.030 [0.00017440489091511454, 0.05938626247698905]
+  FLIP [corrected] hybrid struct/text - fixed512/text rec@512t: +0.014 [0.0005039150126478098, 0.029347682276274472] -> +0.013 [-0.0004269485726599658, 0.028471002745971495]
+  [corr] bm25   struct/text     - fixedtok/text   -0.022 -> -0.022 (+0.000) sig False->False
+  [corr] mxbai  struct/text     - fixedtok/text   -0.010 -> -0.014 (-0.004) sig False->False
+  [corr] nomic  struct/text     - fixedtok/text   -0.008 -> -0.018 (-0.010) sig False->False
+  [corr] hybrid struct/text     - fixedtok/text   -0.026 -> -0.023 (+0.002) sig False->False
+  [corr] bm25   struct/text     - fixed512/text   +0.030 -> +0.030 (+0.000) sig False->True
+  [corr] mxbai  struct/text     - fixed512/text   +0.034 -> +0.034 (-0.000) sig False->False
+  [corr] nomic  struct/text     - fixed512/text   +0.065 -> +0.069 (+0.004) sig True->True
+  [corr] hybrid struct/text     - fixed512/text   +0.051 -> +0.049 (-0.002) sig True->True
+  [prov] bm25   enr_rk/meta     - struct/tc       +0.010 -> +0.010 (-0.000) sig False->False
+  [prov] mxbai  enr_rk/meta     - struct/tc       +0.046 -> +0.046 (+0.000) sig True->True
+  [prov] nomic  enr_rk/meta     - struct/tc       +0.024 -> +0.024 (+0.000) sig False->False
+  [prov] hybrid enr_rk/meta     - struct/tc       +0.023 -> +0.023 (-0.000) sig False->False
+  [prov] bm25   enr_rk/meta     - cr/cr           +0.005 -> +0.005 (+0.000) sig False->False
+  [prov] mxbai  enr_rk/meta     - cr/cr           +0.067 -> +0.067 (+0.000) sig True->True
+  [prov] nomic  enr_rk/meta     - cr/cr           +0.009 -> +0.009 (+0.000) sig False->False
+  [prov] hybrid enr_rk/meta     - cr/cr           +0.017 -> +0.017 (+0.000) sig False->False
+  [prov] bm25   merged_rk/meta  - enr_rk/meta     -0.002 -> -0.002 (+0.000) sig False->False
+  [prov] mxbai  merged_rk/meta  - enr_rk/meta     -0.007 -> -0.007 (+0.000) sig False->False
+  [prov] nomic  merged_rk/meta  - enr_rk/meta     -0.005 -> -0.005 (+0.000) sig False->False
+  [prov] hybrid merged_rk/meta  - enr_rk/meta     -0.006 -> -0.006 (+0.000) sig False->False
+
+zero-LLM: questions with any per-question value moved: 43 (13 of the 15 affected; 30 others)
+LLM rebuild: 192 LLM calls; questions possibly affected: 44/73 (gold changed 15, gold in changed doc 16, changed doc in scoring window 41)

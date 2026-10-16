@@ -1,0 +1,69 @@
+v2 retrieval results (ANALYSIS_PLAN_v2). A - B, BCa CIs, cluster bootstrap (10000 resamples).
+
+PRIMARY family (H1, H2; local model; hybrid; TOST; Holm over p_tost)
+  qasper                     E - S+T       rec@512t    +0.0548 90%[+0.033,+0.077] 95%[+0.029,+0.081] p_perm=0.0001 p_tost=0.6385 +/-0.05 p_holm=0.6385 p_holm_perm=0.0004 -> different
+  qasper                     E - CR        rec@512t    +0.0208 90%[+0.001,+0.040] 95%[-0.003,+0.044] p_perm=0.0901 p_tost=0.0082 +/-0.05 p_holm=0.0328* p_holm_perm=0.1418 -> equivalent
+  freshstack                 E - S+T       prec@1024t  +0.0274 90%[+0.009,+0.047] 95%[+0.005,+0.051] p_perm=0.0189 p_tost=0.1447 +/-0.04 p_holm=0.2893 p_holm_perm=0.0567 -> different
+  freshstack                 E - CR        prec@1024t  +0.0175 90%[+0.002,+0.034] 95%[-0.001,+0.037] p_perm=0.0709 p_tost=0.0109 +/-0.04 p_holm=0.0328* p_holm_perm=0.1418 -> equivalent
+
+H3 family (structure vs fixed; hybrid; two-sided; Holm over sign-flip p)
+  qasper                     S - F512c     rec@512t    +0.0748 90%[+0.053,+0.097] 95%[+0.048,+0.101] p_perm=0.0001 p_holm=0.0004* -> different
+  qasper                     S - F256t     rec@512t    +0.0748 90%[+0.054,+0.097] 95%[+0.050,+0.101] p_perm=0.0001 p_holm=0.0004* -> different
+  freshstack                 S - F512c     prec@1024t  +0.0305 90%[+0.012,+0.051] 95%[+0.009,+0.055] p_perm=0.0120 p_holm=0.0240* -> different
+  freshstack                 S - F256t     prec@1024t  -0.0286 90%[-0.050,-0.007] 95%[-0.054,-0.003] p_perm=0.0284 p_holm=0.0284* -> different
+
+KEY SECONDARY family (strong model H1/H2; Qasper answer F1; Holm over p_tost)
+  qasper              E-strong - S+T       rec@512t    +0.0666 90%[+0.043,+0.090] 95%[+0.039,+0.095] p_perm=0.0001 p_tost=0.8784 +/-0.05 p_holm=0.8784 p_holm_perm=0.0005 -> different
+  qasper              E-strong - CR-strong rec@512t    +0.0159 90%[-0.007,+0.038] 95%[-0.011,+0.042] p_perm=0.2452 p_tost=0.0058 +/-0.05 p_holm=0.0174* p_holm_perm=0.6371 -> equivalent
+  freshstack          E-strong - S+T       prec@1024t  +0.0177 90%[-0.003,+0.039] 95%[-0.007,+0.043] p_perm=0.1593 p_tost=0.0405 +/-0.04 p_holm=0.0811 p_holm_perm=0.6371 -> inconclusive
+  freshstack          E-strong - CR-strong prec@1024t  not available
+  qasper                     E - S+T       answer_f1   +0.0136 90%[-0.003,+0.029] 95%[-0.006,+0.032] p_perm=0.1687 p_tost=0.0001 +/-0.05 p_holm=0.0005* p_holm_perm=0.6371 -> equivalent
+  qasper                     E - CR        answer_f1   +0.0022 90%[-0.014,+0.019] 95%[-0.017,+0.022] p_perm=0.8176 p_tost=0.0001 +/-0.05 p_holm=0.0005* p_holm_perm=0.8176 -> equivalent
+
+Answer-F1 margin: +/-0.05 (ANALYSIS_PLAN_v2 sec. 3).
+
+System means (hybrid, primary metric; 95% percentile CI)
+  qasper     CR         answer_f1   0.3878 [0.363,0.413] clusters=300 n=951
+  qasper     CR         rec@512t    0.4607 [0.432,0.491] clusters=300 n=951
+  qasper     CR-strong  answer_f1   0.3904 [0.364,0.416] clusters=300 n=951
+  qasper     CR-strong  rec@512t    0.4774 [0.448,0.508] clusters=300 n=951
+  qasper     E          answer_f1   0.3900 [0.363,0.417] clusters=300 n=951
+  qasper     E          rec@512t    0.4815 [0.452,0.512] clusters=300 n=951
+  qasper     E-strong   answer_f1   0.3908 [0.364,0.418] clusters=300 n=951
+  qasper     E-strong   rec@512t    0.4933 [0.462,0.524] clusters=300 n=951
+  qasper     F256t      answer_f1   0.3417 [0.315,0.368] clusters=300 n=951
+  qasper     F256t      rec@512t    0.3499 [0.324,0.377] clusters=300 n=951
+  qasper     F512c      answer_f1   0.3776 [0.352,0.404] clusters=300 n=951
+  qasper     F512c      rec@512t    0.3499 [0.324,0.377] clusters=300 n=951
+  qasper     FL         rec@512t    0.3432 [0.317,0.370] clusters=300 n=951
+  qasper     PP         rec@512t    0.3724 [0.345,0.400] clusters=300 n=951
+  qasper     S          answer_f1   0.3767 [0.351,0.402] clusters=300 n=951
+  qasper     S          rec@512t    0.4248 [0.396,0.453] clusters=300 n=951
+  qasper     S+T        answer_f1   0.3764 [0.351,0.402] clusters=300 n=951
+  qasper     S+T        rec@512t    0.4267 [0.399,0.454] clusters=300 n=951
+  freshstack CR         prec@1024t  0.2900 [0.255,0.327] clusters=235 n=235
+  freshstack E          prec@1024t  0.3075 [0.271,0.345] clusters=235 n=235
+  freshstack E-strong   prec@1024t  0.2978 [0.263,0.334] clusters=235 n=235
+  freshstack F256t      prec@1024t  0.2953 [0.257,0.335] clusters=235 n=235
+  freshstack F512c      prec@1024t  0.2362 [0.207,0.266] clusters=235 n=235
+  freshstack FL         prec@1024t  0.2510 [0.220,0.284] clusters=235 n=235
+  freshstack PP         prec@1024t  0.2872 [0.249,0.327] clusters=235 n=235
+  freshstack S          prec@1024t  0.2667 [0.232,0.302] clusters=235 n=235
+  freshstack S+T        prec@1024t  0.2801 [0.245,0.316] clusters=235 n=235
+
+Exploratory (unadjusted): FreshStack per domain, hybrid, primary pairs
+  freshstack/angular         E - S+T       prec@1024t  +0.0264 90%[-0.001,+0.057] 95%[-0.007,+0.063] p_perm=0.1448 p_tost=0.2327 +/-0.04 -> inconclusive
+  freshstack/angular         E - CR        prec@1024t  +0.0053 90%[-0.022,+0.032] 95%[-0.027,+0.036] p_perm=0.7427 p_tost=0.0140 +/-0.04 -> equivalent
+  freshstack/angular  E-strong - S+T       prec@1024t  +0.0113 90%[-0.017,+0.041] 95%[-0.023,+0.046] p_perm=0.5320 p_tost=0.0569 +/-0.04 -> inconclusive
+  freshstack/angular         S - F512c     prec@1024t  +0.0254 90%[+0.000,+0.053] 95%[-0.004,+0.059] p_perm=0.1182 -> no_difference_detected
+  freshstack/angular         S - F256t     prec@1024t  -0.0292 90%[-0.060,-0.000] 95%[-0.066,+0.005] p_perm=0.1106 -> no_difference_detected
+  freshstack/laravel         E - S+T       prec@1024t  +0.0463 90%[+0.021,+0.076] 95%[+0.017,+0.081] p_perm=0.0069 p_tost=0.6566 +/-0.04 -> different
+  freshstack/laravel         E - CR        prec@1024t  +0.0254 90%[+0.005,+0.048] 95%[+0.002,+0.052] p_perm=0.0494 p_tost=0.1374 +/-0.04 -> different
+  freshstack/laravel  E-strong - S+T       prec@1024t  +0.0255 90%[-0.009,+0.060] 95%[-0.015,+0.066] p_perm=0.2251 p_tost=0.2427 +/-0.04 -> inconclusive
+  freshstack/laravel         S - F512c     prec@1024t  +0.0530 90%[+0.022,+0.087] 95%[+0.015,+0.093] p_perm=0.0076 -> different
+  freshstack/laravel         S - F256t     prec@1024t  -0.0272 90%[-0.061,+0.004] 95%[-0.067,+0.010] p_perm=0.1794 -> no_difference_detected
+  freshstack/yolo            E - S+T       prec@1024t  -0.0065 90%[-0.059,+0.043] 95%[-0.070,+0.053] p_perm=0.8339 p_tost=0.1340 +/-0.04 -> inconclusive
+  freshstack/yolo            E - CR        prec@1024t  +0.0282 90%[-0.012,+0.071] 95%[-0.019,+0.079] p_perm=0.2833 p_tost=0.3346 +/-0.04 -> inconclusive
+  freshstack/yolo     E-strong - S+T       prec@1024t  +0.0163 90%[-0.036,+0.070] 95%[-0.046,+0.080] p_perm=0.6249 p_tost=0.2364 +/-0.04 -> inconclusive
+  freshstack/yolo            S - F512c     prec@1024t  -0.0013 90%[-0.052,+0.056] 95%[-0.062,+0.068] p_perm=0.9682 -> no_difference_detected
+  freshstack/yolo            S - F256t     prec@1024t  -0.0297 90%[-0.086,+0.030] 95%[-0.097,+0.044] p_perm=0.4162 -> no_difference_detected

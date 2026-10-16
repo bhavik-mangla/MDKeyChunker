@@ -1,0 +1,7728 @@
+{
+ "h5": [
+  {
+   "family": "h5",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E",
+   "margin": null,
+   "p_key": "p_perm",
+   "status": "ok",
+   "mean_a": 0.3816576017036751,
+   "mean_b": 0.4814973746140385,
+   "diff": -0.09983977291036343,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.11946728761152785,
+    -0.07997490109521643
+   ],
+   "ci95_bca": [
+    -0.12282761183898104,
+    -0.0758992744053215
+   ],
+   "ci90_pct": [
+    -0.1196353737384163,
+    -0.08018572196371324
+   ],
+   "ci95_pct": [
+    -0.12298925450097604,
+    -0.07597080230879857
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different",
+   "p_holm": 0.00039996000399960006,
+   "reject_holm": true,
+   "family_m": 4,
+   "p_holm_perm": 0.00039996000399960006,
+   "verdict_ci": "different",
+   "label": "different"
+  },
+  {
+   "family": "h5",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "margin": null,
+   "p_key": "p_perm",
+   "status": "ok",
+   "mean_a": 0.3816576017036751,
+   "mean_b": 0.40337421209287394,
+   "diff": -0.0217166103891988,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.03930991909691748,
+    -0.004803401959995489
+   ],
+   "ci95_bca": [
+    -0.04252804129948855,
+    -0.0015990963248871703
+   ],
+   "ci90_pct": [
+    -0.03893249775051172,
+    -0.0045376405549118985
+   ],
+   "ci95_pct": [
+    -0.042090802615080025,
+    -0.0012110769268574531
+   ],
+   "p_perm": 0.045295470452954706,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "no_difference_detected",
+   "p_holm": 0.13588641135886412,
+   "reject_holm": false,
+   "family_m": 4,
+   "p_holm_perm": 0.13588641135886412,
+   "verdict_ci": "different",
+   "label": "no_difference_detected"
+  },
+  {
+   "family": "h5",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "margin": null,
+   "p_key": "p_perm",
+   "status": "ok",
+   "mean_a": 0.3196117317922991,
+   "mean_b": 0.30750984151223365,
+   "diff": 0.012101890280065435,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.010622903759692867,
+    0.03696487800494868
+   ],
+   "ci95_bca": [
+    -0.014731953117452908,
+    0.04153368371986203
+   ],
+   "ci90_pct": [
+    -0.01140565544775649,
+    0.03599292077268046
+   ],
+   "ci95_pct": [
+    -0.01556322275399535,
+    0.04040973986330955
+   ],
+   "p_perm": 0.39936006399360063,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected",
+   "p_holm": 0.39936006399360063,
+   "reject_holm": false,
+   "family_m": 4,
+   "p_holm_perm": 0.39936006399360063,
+   "verdict_ci": "no_difference_detected",
+   "label": "no_difference_detected"
+  },
+  {
+   "family": "h5",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "margin": null,
+   "p_key": "p_perm",
+   "status": "ok",
+   "mean_a": 0.3196117317922991,
+   "mean_b": 0.3351832056011106,
+   "diff": -0.015571473808811484,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.028415132058999572,
+    -0.0019304404221303323
+   ],
+   "ci95_bca": [
+    -0.03102586893542518,
+    0.0010225546108558413
+   ],
+   "ci90_pct": [
+    -0.02866373939014632,
+    -0.002136071507867848
+   ],
+   "ci95_pct": [
+    -0.031401793114890615,
+    0.0006406673500787361
+   ],
+   "p_perm": 0.05729427057294271,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected",
+   "p_holm": 0.13588641135886412,
+   "reject_holm": false,
+   "family_m": 4,
+   "p_holm_perm": 0.13588641135886412,
+   "verdict_ci": "no_difference_detected",
+   "label": "no_difference_detected"
+  }
+ ],
+ "h6": [
+  {
+   "family": "h6",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E",
+   "b": "PF",
+   "margin": 0.05,
+   "p_key": "p_tost",
+   "status": "ok",
+   "mean_a": 0.49945921586300135,
+   "mean_b": 0.4832829193239288,
+   "diff": 0.01617629653907257,
+   "n_clusters": 100,
+   "n_obs": 317,
+   "ci90_bca": [
+    -0.014712975471500403,
+    0.0458325210453142
+   ],
+   "ci95_bca": [
+    -0.020867061526425007,
+    0.05142504816090506
+   ],
+   "ci90_pct": [
+    -0.014862168794484633,
+    0.04570266498207675
+   ],
+   "ci95_pct": [
+    -0.02094348559828332,
+    0.05137117470892938
+   ],
+   "p_perm": 0.38216178382161786,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "equivalent",
+   "label": "equivalent",
+   "p_tost": 0.028777779188501107,
+   "p_tost_t": 0.03479223485370417,
+   "p_holm": 0.028777779188501107,
+   "reject_holm": true,
+   "family_m": 1,
+   "p_holm_perm": 0.38216178382161786,
+   "verdict_ci": "equivalent"
+  }
+ ],
+ "exploratory": [
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.2901824442716301,
+   "mean_b": 0.3859602556645835,
+   "diff": -0.09577781139295335,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.11718988040217578,
+    -0.07412556291731377
+   ],
+   "ci95_bca": [
+    -0.1215835132054826,
+    -0.06953070437706886
+   ],
+   "ci90_pct": [
+    -0.11757734903792061,
+    -0.07442124896383605
+   ],
+   "ci95_pct": [
+    -0.1219929128855048,
+    -0.06983728127257503
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.2901824442716301,
+   "mean_b": 0.30657862052861773,
+   "diff": -0.016396176256987593,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.029882454178853816,
+    -0.0028560759461689427
+   ],
+   "ci95_bca": [
+    -0.032726430953308246,
+    -0.0002626372907513782
+   ],
+   "ci90_pct": [
+    -0.029747789670674228,
+    -0.0026713023382780635
+   ],
+   "ci95_pct": [
+    -0.032540621927421194,
+    -0.00010568811749884568
+   ],
+   "p_perm": 0.050294970502949704,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.38634209721361745,
+   "mean_b": 0.3859602556645835,
+   "diff": 0.0003818415490339779,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.006382810424080544,
+    0.006941694282321665
+   ],
+   "ci95_bca": [
+    -0.007842531133559908,
+    0.008120176411025954
+   ],
+   "ci90_pct": [
+    -0.006366174750142665,
+    0.006957009821879844
+   ],
+   "ci95_pct": [
+    -0.007796148264546721,
+    0.008194149788269444
+   ],
+   "p_perm": 0.9245075492450755,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E",
+   "b": "PF",
+   "status": "ok",
+   "mean_a": 0.38827367865222756,
+   "mean_b": 0.363465092566039,
+   "diff": 0.02480858608618861,
+   "n_clusters": 100,
+   "n_obs": 317,
+   "ci90_bca": [
+    -0.007380470223713415,
+    0.05376528934015712
+   ],
+   "ci95_bca": [
+    -0.01371360752849346,
+    0.059432642177506975
+   ],
+   "ci90_pct": [
+    -0.006226850911262134,
+    0.05468814565848464
+   ],
+   "ci95_pct": [
+    -0.012494826779123027,
+    0.06073309488560384
+   ],
+   "p_perm": 0.1850814918508149,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3599323481435109,
+   "mean_b": 0.3859602556645835,
+   "diff": -0.02602790752107261,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.04234072226100135,
+    -0.010332277000927344
+   ],
+   "ci95_bca": [
+    -0.04590418281831947,
+    -0.0071664407152329315
+   ],
+   "ci90_pct": [
+    -0.042183353165986974,
+    -0.01012267624288794
+   ],
+   "ci95_pct": [
+    -0.045587464001437476,
+    -0.006931001890782102
+   ],
+   "p_perm": 0.0098990100989901,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.2901824442716301,
+   "mean_b": 0.3599323481435109,
+   "diff": -0.06974990387188072,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.08796369550068642,
+    -0.05041586196640985
+   ],
+   "ci95_bca": [
+    -0.09169363329306872,
+    -0.04702617124254372
+   ],
+   "ci90_pct": [
+    -0.08837435179827513,
+    -0.050971929401301325
+   ],
+   "ci95_pct": [
+    -0.09207368440647405,
+    -0.04734057545255089
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "metric": "rec@512t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.30657862052861773,
+   "mean_b": 0.3859602556645835,
+   "diff": -0.07938163513596576,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.1020531147973532,
+    -0.05663107658452414
+   ],
+   "ci95_bca": [
+    -0.10654764434710527,
+    -0.052435918430353
+   ],
+   "ci90_pct": [
+    -0.10233087626376071,
+    -0.05698739872001169
+   ],
+   "ci95_pct": [
+    -0.1069100011956961,
+    -0.05271567257594186
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3990363050970998,
+   "mean_b": 0.48644684101336383,
+   "diff": -0.08741053591626394,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.10493866445419625,
+    -0.0692925931221253
+   ],
+   "ci95_bca": [
+    -0.10828215449209432,
+    -0.06597309747727868
+   ],
+   "ci90_pct": [
+    -0.10481860370248625,
+    -0.06917716008925273
+   ],
+   "ci95_pct": [
+    -0.10813179107875284,
+    -0.06582657438683194
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.3990363050970998,
+   "mean_b": 0.4183272240884726,
+   "diff": -0.019290918991372807,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.03593626345799923,
+    -0.002395163198296865
+   ],
+   "ci95_bca": [
+    -0.0387769628806579,
+    0.0008364385576327645
+   ],
+   "ci90_pct": [
+    -0.03602684515556952,
+    -0.0025204656529461585
+   ],
+   "ci95_pct": [
+    -0.038980681669322975,
+    0.0006894629550370366
+   ],
+   "p_perm": 0.060993900609939006,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.49136643654810125,
+   "mean_b": 0.48644684101336383,
+   "diff": 0.004919595534737491,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.0022857886137393492,
+    0.012557560791806803
+   ],
+   "ci95_bca": [
+    -0.003786093788725454,
+    0.01407195459831718
+   ],
+   "ci90_pct": [
+    -0.002522400111782678,
+    0.01239141083318648
+   ],
+   "ci95_pct": [
+    -0.003953778788097601,
+    0.013827024350924779
+   ],
+   "p_perm": 0.29047095290470953,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E",
+   "b": "PF",
+   "status": "ok",
+   "mean_a": 0.5024137271771342,
+   "mean_b": 0.519205233952868,
+   "diff": -0.016791506775733905,
+   "n_clusters": 100,
+   "n_obs": 317,
+   "ci90_bca": [
+    -0.0449340084297018,
+    0.009572353132276694
+   ],
+   "ci95_bca": [
+    -0.05031919282656827,
+    0.015034355204042029
+   ],
+   "ci90_pct": [
+    -0.04467986296111297,
+    0.009838726419639711
+   ],
+   "ci95_pct": [
+    -0.05002178282980432,
+    0.015179949444545246
+   ],
+   "p_perm": 0.2993700629937006,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4550929776129013,
+   "mean_b": 0.48644684101336383,
+   "diff": -0.03135386340046255,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.04659910997987344,
+    -0.016560886002220287
+   ],
+   "ci95_bca": [
+    -0.04959344307252328,
+    -0.013801272575052067
+   ],
+   "ci90_pct": [
+    -0.046625774313698444,
+    -0.016588459480105396
+   ],
+   "ci95_pct": [
+    -0.049532950598902746,
+    -0.013787705815881627
+   ],
+   "p_perm": 0.0010998900109989002,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.3990363050970998,
+   "mean_b": 0.4550929776129013,
+   "diff": -0.05605667251580141,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.07333270430542534,
+    -0.03844205723840285
+   ],
+   "ci95_bca": [
+    -0.0767689581482278,
+    -0.0351919699240691
+   ],
+   "ci90_pct": [
+    -0.07320846928709138,
+    -0.038276969164303946
+   ],
+   "ci95_pct": [
+    -0.07660533950724459,
+    -0.03495646546257923
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "metric": "rec@512t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4183272240884726,
+   "mean_b": 0.48644684101336383,
+   "diff": -0.06811961692489114,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.08766874189434161,
+    -0.04839214024156643
+   ],
+   "ci95_bca": [
+    -0.09193222957829515,
+    -0.04418158999423033
+   ],
+   "ci90_pct": [
+    -0.08770049670371349,
+    -0.04840319859837405
+   ],
+   "ci95_pct": [
+    -0.09195106748842542,
+    -0.04419225409497822
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4815697873047477,
+   "mean_b": 0.4814973746140385,
+   "diff": 7.241269070922042e-05,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.007728608997591878,
+    0.007990227463477365
+   ],
+   "ci95_bca": [
+    -0.009349882566512212,
+    0.009695062535942002
+   ],
+   "ci90_pct": [
+    -0.007774791198957918,
+    0.007939347813279516
+   ],
+   "ci95_pct": [
+    -0.00939830805036537,
+    0.009616512768479545
+   ],
+   "p_perm": 0.9875012498750125,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.44345970785660305,
+   "mean_b": 0.4814973746140385,
+   "diff": -0.03803766675743542,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.05448428742273746,
+    -0.02257508096897949
+   ],
+   "ci95_bca": [
+    -0.05779838032306232,
+    -0.019648451209765962
+   ],
+   "ci90_pct": [
+    -0.05412847865128302,
+    -0.022290178421768215
+   ],
+   "ci95_pct": [
+    -0.05743701357601958,
+    -0.019300004987155308
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.3816576017036751,
+   "mean_b": 0.44345970785660305,
+   "diff": -0.061802106152928006,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.08033700064859034,
+    -0.042980133761433316
+   ],
+   "ci95_bca": [
+    -0.08380624045404153,
+    -0.03961533646599939
+   ],
+   "ci90_pct": [
+    -0.08026917032191684,
+    -0.04292054751436757
+   ],
+   "ci95_pct": [
+    -0.0837302901397471,
+    -0.03944616133189103
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "metric": "rec@512t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.40337421209287394,
+   "mean_b": 0.4814973746140385,
+   "diff": -0.07812316252116462,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.0990661625545019,
+    -0.057005112703173176
+   ],
+   "ci95_bca": [
+    -0.10265494475585026,
+    -0.0529199863429178
+   ],
+   "ci90_pct": [
+    -0.09928964236385895,
+    -0.057289801777786246
+   ],
+   "ci95_pct": [
+    -0.1028499065111409,
+    -0.05329148052689693
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3906751847748859,
+   "mean_b": 0.47934117503545803,
+   "diff": -0.08866599026057215,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.10803791330592377,
+    -0.07040442575565957
+   ],
+   "ci95_bca": [
+    -0.11136361076595885,
+    -0.06716777162287962
+   ],
+   "ci90_pct": [
+    -0.10736776961788208,
+    -0.06986689542874962
+   ],
+   "ci95_pct": [
+    -0.11073885145302914,
+    -0.06618653769963595
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.3906751847748859,
+   "mean_b": 0.4192963566033464,
+   "diff": -0.028621171828460554,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.044707974466144065,
+    -0.013641933505863887
+   ],
+   "ci95_bca": [
+    -0.04811260222807759,
+    -0.010574623583445958
+   ],
+   "ci90_pct": [
+    -0.04408825404522529,
+    -0.013186178968703445
+   ],
+   "ci95_pct": [
+    -0.04754259085133641,
+    -0.009962659277736891
+   ],
+   "p_perm": 0.0028997100289971,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4829762585061716,
+   "mean_b": 0.47934117503545803,
+   "diff": 0.003635083470713555,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.004149824326157143,
+    0.011084113280960772
+   ],
+   "ci95_bca": [
+    -0.005608330192343158,
+    0.012710535775847125
+   ],
+   "ci90_pct": [
+    -0.00392572459476088,
+    0.01129359539204231
+   ],
+   "ci95_pct": [
+    -0.0054149190971727835,
+    0.012910107796481796
+   ],
+   "p_perm": 0.44265573442655737,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E",
+   "b": "PF",
+   "status": "ok",
+   "mean_a": 0.47694554831778796,
+   "mean_b": 0.5006924813707148,
+   "diff": -0.02374693305292674,
+   "n_clusters": 100,
+   "n_obs": 317,
+   "ci90_bca": [
+    -0.048352130525330585,
+    0.0024344472692075132
+   ],
+   "ci95_bca": [
+    -0.05342867008406211,
+    0.00784208221867776
+   ],
+   "ci90_pct": [
+    -0.049274488240121664,
+    0.001361884011770676
+   ],
+   "ci95_pct": [
+    -0.05438471833569398,
+    0.006622616759150623
+   ],
+   "p_perm": 0.13488651134886512,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4554203462367999,
+   "mean_b": 0.47934117503545803,
+   "diff": -0.023920828798658228,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.03821886532431749,
+    -0.00949407556615995
+   ],
+   "ci95_bca": [
+    -0.04092119161065064,
+    -0.006525287459637793
+   ],
+   "ci90_pct": [
+    -0.03820243019887532,
+    -0.009465571686251574
+   ],
+   "ci95_pct": [
+    -0.040924945563426976,
+    -0.006547117701019392
+   ],
+   "p_perm": 0.0058994100589941,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.3906751847748859,
+   "mean_b": 0.4554203462367999,
+   "diff": -0.06474516146191392,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.08460229367760204,
+    -0.047622159597215385
+   ],
+   "ci95_bca": [
+    -0.08830649008603556,
+    -0.04430895462806328
+   ],
+   "ci90_pct": [
+    -0.08324672799859431,
+    -0.04649842422307999
+   ],
+   "ci95_pct": [
+    -0.08682046676655272,
+    -0.043337474577834836
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "metric": "rec@512t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.4192963566033464,
+   "mean_b": 0.47934117503545803,
+   "diff": -0.060044818432111596,
+   "n_clusters": 300,
+   "n_obs": 951,
+   "ci90_bca": [
+    -0.07983182925930946,
+    -0.04087924243367807
+   ],
+   "ci95_bca": [
+    -0.08427512415218501,
+    -0.037118186768301184
+   ],
+   "ci90_pct": [
+    -0.07946710088806812,
+    -0.04042936155676173
+   ],
+   "ci95_pct": [
+    -0.08381300360199723,
+    -0.03666668828983577
+   ],
+   "p_perm": 9.999000099990002e-05,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.24113998989513122,
+   "mean_b": 0.25106420300308724,
+   "diff": -0.009924213107956112,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.030136824087290598,
+    0.010663271541978119
+   ],
+   "ci95_bca": [
+    -0.03392274464080289,
+    0.014659541768800707
+   ],
+   "ci90_pct": [
+    -0.03023800260803364,
+    0.01056495775612532
+   ],
+   "ci95_pct": [
+    -0.03402236109549693,
+    0.014471113268288292
+   ],
+   "p_perm": 0.43655634436556345,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.24113998989513122,
+   "mean_b": 0.26290771677617175,
+   "diff": -0.02176772688104051,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.03564364307091396,
+    -0.009651534126725167
+   ],
+   "ci95_bca": [
+    -0.03830420421078467,
+    -0.0076479393169906346
+   ],
+   "ci90_pct": [
+    -0.03477794974301159,
+    -0.009002933740164639
+   ],
+   "ci95_pct": [
+    -0.0374125166559583,
+    -0.006796873331462801
+   ],
+   "p_perm": 0.006999300069993001,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.25205731184167934,
+   "mean_b": 0.25106420300308724,
+   "diff": 0.000993108838592037,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0030492717548842164,
+    0.005527172868376795
+   ],
+   "ci95_bca": [
+    -0.0038468978364807143,
+    0.006399079899489569
+   ],
+   "ci90_pct": [
+    -0.0032323846197129034,
+    0.0053513286283362665
+   ],
+   "ci95_pct": [
+    -0.00406703513081973,
+    0.006212939795602687
+   ],
+   "p_perm": 0.718028197180282,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.2574139681852142,
+   "mean_b": 0.25106420300308724,
+   "diff": 0.006349765182126938,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0028690361937558084,
+    0.016451341403924395
+   ],
+   "ci95_bca": [
+    -0.004509879068196833,
+    0.018277748773592728
+   ],
+   "ci90_pct": [
+    -0.0031804054508416703,
+    0.016008980927254897
+   ],
+   "ci95_pct": [
+    -0.0049073140193625015,
+    0.01790469278459171
+   ],
+   "p_perm": 0.28147185281471854,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.24113998989513122,
+   "mean_b": 0.2574139681852142,
+   "diff": -0.01627397829008305,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.03668718120308956,
+    0.004373541986070234
+   ],
+   "ci95_bca": [
+    -0.04095070976313967,
+    0.00814668063538067
+   ],
+   "ci90_pct": [
+    -0.036617641967042654,
+    0.004425155245955323
+   ],
+   "ci95_pct": [
+    -0.04083598894982368,
+    0.00820390765055164
+   ],
+   "p_perm": 0.21037896210378962,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "metric": "prec@1024t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.26290771677617175,
+   "mean_b": 0.25106420300308724,
+   "diff": 0.0118435137730844,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.009531313414401903,
+    0.034329660323778335
+   ],
+   "ci95_bca": [
+    -0.01350599525290272,
+    0.03875181735479738
+   ],
+   "ci90_pct": [
+    -0.009926217818556777,
+    0.033783005819474105
+   ],
+   "ci95_pct": [
+    -0.01401341451405186,
+    0.03814309997833713
+   ],
+   "p_perm": 0.37336266373362664,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.31508291818304307,
+   "mean_b": 0.2948211670554885,
+   "diff": 0.020261751127554635,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0010368604065844446,
+    0.04186418150630722
+   ],
+   "ci95_bca": [
+    -0.00509767851555238,
+    0.046034128109536825
+   ],
+   "ci90_pct": [
+    -0.0009525620770682993,
+    0.041989663472080156
+   ],
+   "ci95_pct": [
+    -0.005026709125633936,
+    0.04606154059373502
+   ],
+   "p_perm": 0.12938706129387062,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.31508291818304307,
+   "mean_b": 0.32835041574705937,
+   "diff": -0.013267497564016255,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.027686274456367958,
+    4.4121981957522686e-05
+   ],
+   "ci95_bca": [
+    -0.030317516853806455,
+    0.0025478777435699023
+   ],
+   "ci90_pct": [
+    -0.02709206105468488,
+    0.0006262137434750006
+   ],
+   "ci95_pct": [
+    -0.029592699082513937,
+    0.003187754492179545
+   ],
+   "p_perm": 0.12048795120487951,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.290564714192707,
+   "mean_b": 0.2948211670554885,
+   "diff": -0.004256452862781492,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.010516028637092712,
+    0.0014846069636995625
+   ],
+   "ci95_bca": [
+    -0.01171291844314604,
+    0.0026583720283599624
+   ],
+   "ci90_pct": [
+    -0.010359636957567085,
+    0.0016924106580308684
+   ],
+   "ci95_pct": [
+    -0.011463125259686234,
+    0.0028906416296793206
+   ],
+   "p_perm": 0.2568743125687431,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3040837247362264,
+   "mean_b": 0.2948211670554885,
+   "diff": 0.009262557680737865,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0005962498305657521,
+    0.019525884706795466
+   ],
+   "ci95_bca": [
+    -0.0023889244190769166,
+    0.02155438024489251
+   ],
+   "ci90_pct": [
+    -0.0006947137612399094,
+    0.019373541346969125
+   ],
+   "ci95_pct": [
+    -0.0024956396426491544,
+    0.021337513577150274
+   ],
+   "p_perm": 0.15078492150784922,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.31508291818304307,
+   "mean_b": 0.3040837247362264,
+   "diff": 0.010999193446816775,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.009383108575971317,
+    0.031775891087021044
+   ],
+   "ci95_bca": [
+    -0.013657095341331452,
+    0.03571978469949726
+   ],
+   "ci90_pct": [
+    -0.009317567885217546,
+    0.03185667534278441
+   ],
+   "ci95_pct": [
+    -0.01353705188214062,
+    0.03578410203340208
+   ],
+   "p_perm": 0.38166183381661833,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "metric": "prec@1024t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.32835041574705937,
+   "mean_b": 0.2948211670554885,
+   "diff": 0.033529248691570895,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    0.01303181160396097,
+    0.05574307925093646
+   ],
+   "ci95_bca": [
+    0.008985887119271823,
+    0.06049701423303408
+   ],
+   "ci90_pct": [
+    0.01233999381312544,
+    0.055087200859533676
+   ],
+   "ci95_pct": [
+    0.008157563364779366,
+    0.05938221092748147
+   ],
+   "p_perm": 0.012198780121987801,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3034207772363226,
+   "mean_b": 0.30750984151223365,
+   "diff": -0.004089064275911033,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.010096366522540583,
+    0.001066192523235818
+   ],
+   "ci95_bca": [
+    -0.01132620340742721,
+    0.0019262090803017413
+   ],
+   "ci90_pct": [
+    -0.00972123118790028,
+    0.0013375355290401408
+   ],
+   "ci95_pct": [
+    -0.010963958047980069,
+    0.0022364667620584423
+   ],
+   "p_perm": 0.23247675232476753,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3152165240875608,
+   "mean_b": 0.30750984151223365,
+   "diff": 0.007706682575327146,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0036676021749276833,
+    0.020759862798905054
+   ],
+   "ci95_bca": [
+    -0.00559119884947883,
+    0.02343863955725903
+   ],
+   "ci90_pct": [
+    -0.004273107442743647,
+    0.019998542003846608
+   ],
+   "ci95_pct": [
+    -0.006193233595366578,
+    0.02275302353382955
+   ],
+   "p_perm": 0.29357064293570645,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.3196117317922991,
+   "mean_b": 0.3152165240875608,
+   "diff": 0.004395207704738286,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.01720594696388704,
+    0.02717022673478913
+   ],
+   "ci95_bca": [
+    -0.021588130277756974,
+    0.030913681734430317
+   ],
+   "ci90_pct": [
+    -0.01772374249933416,
+    0.02667470136185417
+   ],
+   "ci95_pct": [
+    -0.022336169135396097,
+    0.03032290388311543
+   ],
+   "p_perm": 0.7450254974502549,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3351832056011106,
+   "mean_b": 0.30750984151223365,
+   "diff": 0.02767336408887691,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    0.0057106591972501735,
+    0.05049600232665442
+   ],
+   "ci95_bca": [
+    0.0018955934126238707,
+    0.054809880516789346
+   ],
+   "ci90_pct": [
+    0.005142960143533402,
+    0.04999776002564703
+   ],
+   "ci95_pct": [
+    0.0015595425700069428,
+    0.05416195223132791
+   ],
+   "p_perm": 0.046295370462953706,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3321785476211308,
+   "mean_b": 0.322019064836614,
+   "diff": 0.010159482784516798,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.01104183291146018,
+    0.03185787572443726
+   ],
+   "ci95_bca": [
+    -0.014813982703080472,
+    0.0360292966699794
+   ],
+   "ci90_pct": [
+    -0.011240512684044175,
+    0.03166907062895929
+   ],
+   "ci95_pct": [
+    -0.015003507465398056,
+    0.0357589605592725
+   ],
+   "p_perm": 0.43485651434856515,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.3321785476211308,
+   "mean_b": 0.35986753000303473,
+   "diff": -0.027688982381903916,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.04361175184441212,
+    -0.01401851711270848
+   ],
+   "ci95_bca": [
+    -0.046689867921196074,
+    -0.011519203748698486
+   ],
+   "ci90_pct": [
+    -0.042360042871680166,
+    -0.013200529554978914
+   ],
+   "ci95_pct": [
+    -0.04559753084491535,
+    -0.010448940922924352
+   ],
+   "p_perm": 0.0024997500249975004,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E(meta+key)",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3249048840648615,
+   "mean_b": 0.322019064836614,
+   "diff": 0.002885819228247573,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.0023482436613546627,
+    0.008594134511903113
+   ],
+   "ci95_bca": [
+    -0.003299853391119637,
+    0.009774893894123475
+   ],
+   "ci90_pct": [
+    -0.0025386769011519,
+    0.008273062312192365
+   ],
+   "ci95_pct": [
+    -0.0036057595426828228,
+    0.009448172413413893
+   ],
+   "p_perm": 0.38916108389161086,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E+SX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.3340376819630783,
+   "mean_b": 0.322019064836614,
+   "diff": 0.012018617126464268,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    0.0005224346248882152,
+    0.026291051712574665
+   ],
+   "ci95_bca": [
+    -0.0014664156289188165,
+    0.028871120323178845
+   ],
+   "ci90_pct": [
+    -0.00031682533977528225,
+    0.02509015165756376
+   ],
+   "ci95_pct": [
+    -0.002671439653416994,
+    0.027643327178430824
+   ],
+   "p_perm": 0.1372862713728627,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+SX",
+   "status": "ok",
+   "mean_a": 0.3321785476211308,
+   "mean_b": 0.3340376819630783,
+   "diff": -0.0018591343419474683,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    -0.02396577655765624,
+    0.020838625636951057
+   ],
+   "ci95_bca": [
+    -0.02793774678095309,
+    0.02555460356766892
+   ],
+   "ci90_pct": [
+    -0.02408926702441189,
+    0.020663880246357506
+   ],
+   "ci95_pct": [
+    -0.028058135254622273,
+    0.025375159480060996
+   ],
+   "p_perm": 0.8936106389361064,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "metric": "prec@1024t",
+   "a": "E+AX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.35986753000303473,
+   "mean_b": 0.322019064836614,
+   "diff": 0.03784846516642072,
+   "n_clusters": 235,
+   "n_obs": 235,
+   "ci90_bca": [
+    0.01579395021077073,
+    0.061750318790893835
+   ],
+   "ci95_bca": [
+    0.011924793615568426,
+    0.06617588198634682
+   ],
+   "ci90_pct": [
+    0.014891945020109485,
+    0.06084760142527537
+   ],
+   "ci95_pct": [
+    0.0110990066913649,
+    0.06513167601276917
+   ],
+   "p_perm": 0.0064993500649935,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/angular",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.297856185984097,
+   "mean_b": 0.2772027057611443,
+   "diff": 0.020653480222952735,
+   "n_clusters": 99,
+   "n_obs": 99,
+   "ci90_bca": [
+    -0.009595402063766816,
+    0.05253634095136815
+   ],
+   "ci95_bca": [
+    -0.015363426513837897,
+    0.05865802019757272
+   ],
+   "ci90_pct": [
+    -0.010270029581276745,
+    0.05169057871272569
+   ],
+   "ci95_pct": [
+    -0.016124273962976277,
+    0.057788440962796964
+   ],
+   "p_perm": 0.28357164283571645,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/angular",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.297856185984097,
+   "mean_b": 0.31517013092238677,
+   "diff": -0.017313944938289715,
+   "n_clusters": 99,
+   "n_obs": 99,
+   "ci90_bca": [
+    -0.033511011773814464,
+    -0.0018779812282319758
+   ],
+   "ci95_bca": [
+    -0.03657169861159624,
+    0.0008357397299123652
+   ],
+   "ci90_pct": [
+    -0.03325304831713557,
+    -0.0016100486872371172
+   ],
+   "ci95_pct": [
+    -0.03632385824603691,
+    0.0012220658906057947
+   ],
+   "p_perm": 0.0750924907509249,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/laravel",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.40268637840520044,
+   "mean_b": 0.3833054212679126,
+   "diff": 0.01938095713728796,
+   "n_clusters": 89,
+   "n_obs": 89,
+   "ci90_bca": [
+    -0.01916968010151269,
+    0.06266423142224821
+   ],
+   "ci95_bca": [
+    -0.02660766524604504,
+    0.0712947571111901
+   ],
+   "ci90_pct": [
+    -0.02031551466456632,
+    0.061037203702035844
+   ],
+   "ci95_pct": [
+    -0.02835073319617783,
+    0.06905012752120938
+   ],
+   "p_perm": 0.43845615438456154,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/laravel",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.40268637840520044,
+   "mean_b": 0.4342443723501855,
+   "diff": -0.03155799394498497,
+   "n_clusters": 89,
+   "n_obs": 89,
+   "ci90_bca": [
+    -0.05375559864903414,
+    -0.010029559375356722
+   ],
+   "ci95_bca": [
+    -0.05825417851521589,
+    -0.005869524004207935
+   ],
+   "ci90_pct": [
+    -0.05340452593565403,
+    -0.00977608423065204
+   ],
+   "ci95_pct": [
+    -0.05787322635960605,
+    -0.005472957258612667
+   ],
+   "p_perm": 0.0197980201979802,
+   "perm_exact": false,
+   "excludes_zero_95": true,
+   "verdict": "different"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/yolo",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E",
+   "status": "ok",
+   "mean_a": 0.20812567831280496,
+   "mean_b": 0.22782047642930647,
+   "diff": -0.01969479811650154,
+   "n_clusters": 47,
+   "n_obs": 47,
+   "ci90_bca": [
+    -0.07323983298870664,
+    0.04291310391493261
+   ],
+   "ci95_bca": [
+    -0.08357387197620543,
+    0.05624967450461001
+   ],
+   "ci90_pct": [
+    -0.07616296915386066,
+    0.039201793573786295
+   ],
+   "ci95_pct": [
+    -0.08628668074694934,
+    0.05161822195738546
+   ],
+   "p_perm": 0.5842415758424158,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  },
+  {
+   "family": "exploratory",
+   "dataset": "freshstack/yolo",
+   "retriever": "hybrid",
+   "metric": "prec@1024t",
+   "a": "E+KX",
+   "b": "E+AX",
+   "status": "ok",
+   "mean_a": 0.20812567831280496,
+   "mean_b": 0.18975449395272742,
+   "diff": 0.018371184360077574,
+   "n_clusters": 47,
+   "n_obs": 47,
+   "ci90_bca": [
+    -0.016396604371183957,
+    0.06199991461844365
+   ],
+   "ci95_bca": [
+    -0.02245609206995258,
+    0.07089408179558744
+   ],
+   "ci90_pct": [
+    -0.019186120832187254,
+    0.057978535555440636
+   ],
+   "ci95_pct": [
+    -0.02620724639301452,
+    0.06686857017566895
+   ],
+   "p_perm": 0.4567543245675432,
+   "perm_exact": false,
+   "excludes_zero_95": false,
+   "verdict": "no_difference_detected"
+  }
+ ],
+ "systems": [
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.28180862250262884,
+   "ci95_pct": [
+    0.2521918059634064,
+    0.3112719751809721
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.5657202944269191,
+   "ci95_pct": [
+    0.533678756476684,
+    0.5972830380029229
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.6992639327024185,
+   "ci95_pct": [
+    0.6702937976060935,
+    0.7276622282734112
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@1",
+   "mean": 0.19599946870064197,
+   "ci95_pct": [
+    0.17244935913665324,
+    0.21945469510744575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.5606681565084077,
+   "ci95_pct": [
+    0.5328748135144507,
+    0.5891020989388092
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@256t",
+   "mean": 0.23549757428707563,
+   "ci95_pct": [
+    0.21155394421227086,
+    0.25982837075646853
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@3",
+   "mean": 0.42950903221809195,
+   "ci95_pct": [
+    0.4003474275738849,
+    0.45836469315515427
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@5",
+   "mean": 0.5613212306589084,
+   "ci95_pct": [
+    0.5335745728577933,
+    0.5891045477090385
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.3859602556645835,
+   "ci95_pct": [
+    0.3581828506598329,
+    0.4135377503704214
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.28286014721345953,
+   "ci95_pct": [
+    0.2539673622257892,
+    0.3115791249777988
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.5604626708727655,
+   "ci95_pct": [
+    0.5268225983586219,
+    0.5924783774596819
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.7003154574132492,
+   "ci95_pct": [
+    0.6718374119868452,
+    0.7286324786324786
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@1",
+   "mean": 0.19653524557711285,
+   "ci95_pct": [
+    0.17335275621606505,
+    0.2194175019784351
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.5614520709621434,
+   "ci95_pct": [
+    0.5326953148391177,
+    0.5900560107728425
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@256t",
+   "mean": 0.2374863671276035,
+   "ci95_pct": [
+    0.21389209417537347,
+    0.2616051349158521
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@3",
+   "mean": 0.42489651072859885,
+   "ci95_pct": [
+    0.3951470125403391,
+    0.4539887208806264
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@5",
+   "mean": 0.5641906691224583,
+   "ci95_pct": [
+    0.5364006872438164,
+    0.5927068090691574
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.38634209721361745,
+   "ci95_pct": [
+    0.3586014362636281,
+    0.41379423254610337
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.28180862250262884,
+   "ci95_pct": [
+    0.2521918059634064,
+    0.3112719751809721
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.43112513144058884,
+   "ci95_pct": [
+    0.39813833103646956,
+    0.4635991016067628
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.5499474237644585,
+   "ci95_pct": [
+    0.5153113753421115,
+    0.5844298245614035
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@1",
+   "mean": 0.19599946870064197,
+   "ci95_pct": [
+    0.17244935913665324,
+    0.21945469510744575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.4527095151770009,
+   "ci95_pct": [
+    0.42181573566421043,
+    0.4827177212814635
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@256t",
+   "mean": 0.21699168372822142,
+   "ci95_pct": [
+    0.1929375851040463,
+    0.2413593121930472
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@3",
+   "mean": 0.32424724075894584,
+   "ci95_pct": [
+    0.296029288216536,
+    0.3517359517449032
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@5",
+   "mean": 0.4373525546017106,
+   "ci95_pct": [
+    0.4062367854740986,
+    0.4683925001833917
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.3065786205286178,
+   "ci95_pct": [
+    0.2792960172727613,
+    0.33325807925734374
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.28180862250262884,
+   "ci95_pct": [
+    0.2521918059634064,
+    0.3112719751809721
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.4216614090431125,
+   "ci95_pct": [
+    0.38795592640501075,
+    0.4544557416267942
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.5615141955835962,
+   "ci95_pct": [
+    0.526372387829593,
+    0.5964369543661112
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@1",
+   "mean": 0.19599946870064197,
+   "ci95_pct": [
+    0.17244935913665324,
+    0.21945469510744575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.4452595025157149,
+   "ci95_pct": [
+    0.4132346473651285,
+    0.4760507037355064
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@256t",
+   "mean": 0.2116876332058412,
+   "ci95_pct": [
+    0.18812097907127565,
+    0.23540891321951643
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@3",
+   "mean": 0.31314884578692753,
+   "ci95_pct": [
+    0.28486917021970426,
+    0.340666712297941
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@5",
+   "mean": 0.4365336189904512,
+   "ci95_pct": [
+    0.40546250542852774,
+    0.46753501952943377
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.29018244427163015,
+   "ci95_pct": [
+    0.26285077282418134,
+    0.3176246182571264
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.28180862250262884,
+   "ci95_pct": [
+    0.2521918059634064,
+    0.3112719751809721
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.5110410094637224,
+   "ci95_pct": [
+    0.47884052102314906,
+    0.5425189163765156
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.6361724500525763,
+   "ci95_pct": [
+    0.6045294724093079,
+    0.667401379392828
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@1",
+   "mean": 0.19599946870064197,
+   "ci95_pct": [
+    0.17244935913665324,
+    0.21945469510744575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.526105341806266,
+   "ci95_pct": [
+    0.49640345918379236,
+    0.5559565187704247
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@256t",
+   "mean": 0.2334953655288206,
+   "ci95_pct": [
+    0.20934492519570908,
+    0.2581643816069299
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@3",
+   "mean": 0.39718628087588737,
+   "ci95_pct": [
+    0.368571294082064,
+    0.42504392585321477
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@5",
+   "mean": 0.5209668762784596,
+   "ci95_pct": [
+    0.49129293681853636,
+    0.5506642492508234
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.3599323481435109,
+   "ci95_pct": [
+    0.3318996672535552,
+    0.3877727939755328
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "hit@1",
+   "mean": 0.2586750788643533,
+   "ci95_pct": [
+    0.21193980428980924,
+    0.3042168674698795
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "hit@3",
+   "mean": 0.526813880126183,
+   "ci95_pct": [
+    0.4696957595120535,
+    0.5839206283013623
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "hit@5",
+   "mean": 0.7160883280757098,
+   "ci95_pct": [
+    0.6678571428571428,
+    0.7629889927146024
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@1",
+   "mean": 0.18565795403334834,
+   "ci95_pct": [
+    0.14781893024369147,
+    0.22408313693555815
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@1024t",
+   "mean": 0.5738228385704726,
+   "ci95_pct": [
+    0.5244280920103288,
+    0.6222033288315906
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@256t",
+   "mean": 0.2243267510617668,
+   "ci95_pct": [
+    0.18173558098334885,
+    0.26846813985106366
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@3",
+   "mean": 0.4028522038774404,
+   "ci95_pct": [
+    0.3518246939581281,
+    0.454625440971868
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@5",
+   "mean": 0.5879733568219373,
+   "ci95_pct": [
+    0.5390096092171875,
+    0.6357310205077743
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "bm25",
+   "system": "PF",
+   "metric": "rec@512t",
+   "mean": 0.3634650925660389,
+   "ci95_pct": [
+    0.314562723727568,
+    0.4135984539886903
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.3901156677181914,
+   "ci95_pct": [
+    0.35828715120577176,
+    0.4220707193830061
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.6424815983175605,
+   "ci95_pct": [
+    0.6112309362189801,
+    0.6729967884114059
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.7718191377497371,
+   "ci95_pct": [
+    0.7462365591397849,
+    0.7971611186601635
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@1",
+   "mean": 0.2822710232161502,
+   "ci95_pct": [
+    0.25698647629432986,
+    0.30808005105834535
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.6503933200533731,
+   "ci95_pct": [
+    0.6218877069565779,
+    0.6782860399912555
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@256t",
+   "mean": 0.31707167647106216,
+   "ci95_pct": [
+    0.2919182176801227,
+    0.3431630090641229
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@3",
+   "mean": 0.5075297321118893,
+   "ci95_pct": [
+    0.47936732049966047,
+    0.536434094990851
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@5",
+   "mean": 0.6425520086313433,
+   "ci95_pct": [
+    0.614393530244521,
+    0.6702977596489701
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.4814973746140385,
+   "ci95_pct": [
+    0.45157129988149974,
+    0.5115317609078208
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.38801261829652994,
+   "ci95_pct": [
+    0.35714095946561414,
+    0.4194236926360726
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.6414300736067298,
+   "ci95_pct": [
+    0.6093741706475584,
+    0.6730386847174635
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.7770767613038907,
+   "ci95_pct": [
+    0.7512841669463793,
+    0.8024568153960853
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@1",
+   "mean": 0.282596495150455,
+   "ci95_pct": [
+    0.25750651745163183,
+    0.3085929719806614
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.6464819366716262,
+   "ci95_pct": [
+    0.618146367341288,
+    0.6749305210530743
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@256t",
+   "mean": 0.3197505608534165,
+   "ci95_pct": [
+    0.2944032840319904,
+    0.34567135552803663
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@3",
+   "mean": 0.5052677342662953,
+   "ci95_pct": [
+    0.47572266763200277,
+    0.5348000067191988
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@5",
+   "mean": 0.6453801906919124,
+   "ci95_pct": [
+    0.6178325523053072,
+    0.673044558053655
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.48156978730474764,
+   "ci95_pct": [
+    0.4513067598599115,
+    0.5122825653262241
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.3901156677181914,
+   "ci95_pct": [
+    0.35828715120577176,
+    0.4220707193830061
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.5404837013669821,
+   "ci95_pct": [
+    0.5101822079314041,
+    0.5706341912893159
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.658254468980021,
+   "ci95_pct": [
+    0.6265425850952167,
+    0.6889637524650202
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@1",
+   "mean": 0.2822710232161502,
+   "ci95_pct": [
+    0.25698647629432986,
+    0.30808005105834535
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.5534695721936299,
+   "ci95_pct": [
+    0.5232589251544283,
+    0.5826029601182013
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@256t",
+   "mean": 0.30385990469213114,
+   "ci95_pct": [
+    0.278737115394888,
+    0.3300325600511655
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@3",
+   "mean": 0.42449730177399114,
+   "ci95_pct": [
+    0.39756969458009117,
+    0.4519086302741988
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@5",
+   "mean": 0.5427439263837237,
+   "ci95_pct": [
+    0.5125209918968139,
+    0.5719996207122701
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.4033742120928739,
+   "ci95_pct": [
+    0.3773909218007629,
+    0.4302672819652802
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.3901156677181914,
+   "ci95_pct": [
+    0.35828715120577176,
+    0.4220707193830061
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.5331230283911672,
+   "ci95_pct": [
+    0.5015872177804596,
+    0.564468233175045
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.6593059936908517,
+   "ci95_pct": [
+    0.6282170273284939,
+    0.6897291746887434
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@1",
+   "mean": 0.2822710232161502,
+   "ci95_pct": [
+    0.25698647629432986,
+    0.30808005105834535
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.5315071310214926,
+   "ci95_pct": [
+    0.5017428607080815,
+    0.5607364478740811
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@256t",
+   "mean": 0.29761869400546137,
+   "ci95_pct": [
+    0.27240276751681325,
+    0.3237574430753719
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@3",
+   "mean": 0.40597621304910037,
+   "ci95_pct": [
+    0.3776250934653089,
+    0.43411835001983295
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@5",
+   "mean": 0.5316467569137888,
+   "ci95_pct": [
+    0.5018063835840079,
+    0.5610347557753181
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.3816576017036751,
+   "ci95_pct": [
+    0.35252896371410936,
+    0.41081769370855253
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.3901156677181914,
+   "ci95_pct": [
+    0.35828715120577176,
+    0.4220707193830061
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.580441640378549,
+   "ci95_pct": [
+    0.5500492922143579,
+    0.6105822578252484
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.7097791798107256,
+   "ci95_pct": [
+    0.6812437448326879,
+    0.7379313959372515
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@1",
+   "mean": 0.2822710232161502,
+   "ci95_pct": [
+    0.25698647629432986,
+    0.30808005105834535
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.5936555885639953,
+   "ci95_pct": [
+    0.564137778047541,
+    0.6233435318973948
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@256t",
+   "mean": 0.31973428725670133,
+   "ci95_pct": [
+    0.2951477045511326,
+    0.3453757295306152
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@3",
+   "mean": 0.4689653313615625,
+   "ci95_pct": [
+    0.4400053533739807,
+    0.4982315090116854
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@5",
+   "mean": 0.5899695709148363,
+   "ci95_pct": [
+    0.5609328802545736,
+    0.619492747843502
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.44345970785660305,
+   "ci95_pct": [
+    0.41575157396178297,
+    0.471731239707005
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "hit@1",
+   "mean": 0.3943217665615142,
+   "ci95_pct": [
+    0.33429394812680113,
+    0.45454545454545453
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "hit@3",
+   "mean": 0.6593059936908517,
+   "ci95_pct": [
+    0.6028332975141486,
+    0.715625
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "hit@5",
+   "mean": 0.7728706624605678,
+   "ci95_pct": [
+    0.7278905988624959,
+    0.8171461794019933
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@1",
+   "mean": 0.2944600352329059,
+   "ci95_pct": [
+    0.24484286244597947,
+    0.3471378021142911
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@1024t",
+   "mean": 0.66222181253727,
+   "ci95_pct": [
+    0.6144146945646946,
+    0.7087546829480792
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@256t",
+   "mean": 0.32660289237576295,
+   "ci95_pct": [
+    0.2764156244903783,
+    0.3795192339464771
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@3",
+   "mean": 0.5273988191969264,
+   "ci95_pct": [
+    0.4752673621504247,
+    0.5787186548932459
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@5",
+   "mean": 0.66336972701326,
+   "ci95_pct": [
+    0.6177752865075208,
+    0.7090706352135059
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "hybrid",
+   "system": "PF",
+   "metric": "rec@512t",
+   "mean": 0.4832829193239288,
+   "ci95_pct": [
+    0.43014486780951694,
+    0.5345147187553575
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38453605554298764,
+    0.4514040569544405
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.6487907465825447,
+   "ci95_pct": [
+    0.6164508058802692,
+    0.6812503182281059
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.7770767613038907,
+   "ci95_pct": [
+    0.7479506088511098,
+    0.8057029741927239
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@1",
+   "mean": 0.31007375851099905,
+   "ci95_pct": [
+    0.2826359236080035,
+    0.33865148873907763
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.6424447477120563,
+   "ci95_pct": [
+    0.6139766501308339,
+    0.6699146248700161
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@256t",
+   "mean": 0.3401988374033036,
+   "ci95_pct": [
+    0.3135185614814074,
+    0.3680463627339776
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@3",
+   "mean": 0.5105770211621393,
+   "ci95_pct": [
+    0.48266483199307525,
+    0.5390731745358817
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@5",
+   "mean": 0.6434432907411489,
+   "ci95_pct": [
+    0.6147490998871638,
+    0.6722054740323768
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.47934117503545803,
+   "ci95_pct": [
+    0.45099756175754446,
+    0.507912470152491
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.41430073606729756,
+   "ci95_pct": [
+    0.38095238095238093,
+    0.44853061848371734
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.6603575184016824,
+   "ci95_pct": [
+    0.6292013683851919,
+    0.6917611792717577
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.7718191377497371,
+   "ci95_pct": [
+    0.7423117709437964,
+    0.8006170560838852
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@1",
+   "mean": 0.306428472846786,
+   "ci95_pct": [
+    0.2798379594687936,
+    0.3343478650215231
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.6427466598436214,
+   "ci95_pct": [
+    0.6140247791538894,
+    0.6713001852028271
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@256t",
+   "mean": 0.33403880887070325,
+   "ci95_pct": [
+    0.30684182122653064,
+    0.3620086448987414
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@3",
+   "mean": 0.518804597080235,
+   "ci95_pct": [
+    0.49079048790429114,
+    0.546995090892142
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@5",
+   "mean": 0.6407871088117643,
+   "ci95_pct": [
+    0.6114140982485877,
+    0.6695274861017204
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.4829762585061716,
+   "ci95_pct": [
+    0.45397742249316086,
+    0.5120496735253127
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38453605554298764,
+    0.4514040569544405
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.5636172450052577,
+   "ci95_pct": [
+    0.5294695864332696,
+    0.5991516436903499
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.6529968454258676,
+   "ci95_pct": [
+    0.6204814306731878,
+    0.6858325707526113
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@1",
+   "mean": 0.31007375851099905,
+   "ci95_pct": [
+    0.2826359236080035,
+    0.33865148873907763
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.5539163257555254,
+   "ci95_pct": [
+    0.5230924765832777,
+    0.5854140910566334
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@256t",
+   "mean": 0.3305452184436909,
+   "ci95_pct": [
+    0.3021801456785881,
+    0.3601009285399226
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@3",
+   "mean": 0.4503613139156058,
+   "ci95_pct": [
+    0.41879808913177163,
+    0.4827380013718165
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@5",
+   "mean": 0.543994537847269,
+   "ci95_pct": [
+    0.5130632132008601,
+    0.5753013971094101
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.41929635660334647,
+   "ci95_pct": [
+    0.38949181597486277,
+    0.45034529206441903
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38453605554298764,
+    0.4514040569544405
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.5467928496319664,
+   "ci95_pct": [
+    0.5119292972831154,
+    0.582428747481879
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.6698212407991588,
+   "ci95_pct": [
+    0.636544194899644,
+    0.7024072898043521
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@1",
+   "mean": 0.31007375851099905,
+   "ci95_pct": [
+    0.2826359236080035,
+    0.33865148873907763
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.5510733327249183,
+   "ci95_pct": [
+    0.5199771972051895,
+    0.5822825461951616
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@256t",
+   "mean": 0.317936864560225,
+   "ci95_pct": [
+    0.2902561955948055,
+    0.34636377873721075
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@3",
+   "mean": 0.4224649877397677,
+   "ci95_pct": [
+    0.39120775303172395,
+    0.4537792287601177
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@5",
+   "mean": 0.5458324514622594,
+   "ci95_pct": [
+    0.5144222601060507,
+    0.5769389359011203
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.390675184774886,
+   "ci95_pct": [
+    0.36064288979089637,
+    0.4212916990586634
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38453605554298764,
+    0.4514040569544405
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.601472134595163,
+   "ci95_pct": [
+    0.5692299107142857,
+    0.6340425531914894
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.7245005257623555,
+   "ci95_pct": [
+    0.6932771911501202,
+    0.7551652892561983
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@1",
+   "mean": 0.31007375851099905,
+   "ci95_pct": [
+    0.2826359236080035,
+    0.33865148873907763
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.6050356278371111,
+   "ci95_pct": [
+    0.5732814565859918,
+    0.6365274024980248
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@256t",
+   "mean": 0.3364396365620838,
+   "ci95_pct": [
+    0.3088451031842403,
+    0.3643195404752542
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@3",
+   "mean": 0.48434103706600806,
+   "ci95_pct": [
+    0.4539850332148865,
+    0.516000701328598
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@5",
+   "mean": 0.6038148884667784,
+   "ci95_pct": [
+    0.5736491054042318,
+    0.6348237322820375
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.45542034623679983,
+   "ci95_pct": [
+    0.4250890894785348,
+    0.4863935364753034
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "hit@1",
+   "mean": 0.38485804416403785,
+   "ci95_pct": [
+    0.32934131736526945,
+    0.44299674267100975
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "hit@3",
+   "mean": 0.6561514195583596,
+   "ci95_pct": [
+    0.6006823075337289,
+    0.710691823899371
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "hit@5",
+   "mean": 0.7570977917981072,
+   "ci95_pct": [
+    0.7068403908794788,
+    0.8058276379662749
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@1",
+   "mean": 0.2962616248105207,
+   "ci95_pct": [
+    0.24958047576038228,
+    0.34527343044962094
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@1024t",
+   "mean": 0.6566473659533597,
+   "ci95_pct": [
+    0.60773358800709,
+    0.705118035870182
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@256t",
+   "mean": 0.3527209908913379,
+   "ci95_pct": [
+    0.3067997632370579,
+    0.4021293346057113
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@3",
+   "mean": 0.5465952904438709,
+   "ci95_pct": [
+    0.4952249935405722,
+    0.5993060843335489
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@5",
+   "mean": 0.6475103673053201,
+   "ci95_pct": [
+    0.59842696597839,
+    0.697538411343481
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "mxbai",
+   "system": "PF",
+   "metric": "rec@512t",
+   "mean": 0.5006924813707148,
+   "ci95_pct": [
+    0.45264514743381895,
+    0.5513518524678598
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38396601908887834,
+    0.4519235685071575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.655099894847529,
+   "ci95_pct": [
+    0.6226215644820295,
+    0.6873742410914948
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.7833859095688749,
+   "ci95_pct": [
+    0.755995206368697,
+    0.8111587982832618
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@1",
+   "mean": 0.30522337950183986,
+   "ci95_pct": [
+    0.2775450244348905,
+    0.3346539037794064
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.6655051274579196,
+   "ci95_pct": [
+    0.6363877573524732,
+    0.6944744005263853
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@256t",
+   "mean": 0.34701509724269697,
+   "ci95_pct": [
+    0.31818207627003464,
+    0.3773233610630739
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@3",
+   "mean": 0.5205052934195388,
+   "ci95_pct": [
+    0.49082551308296063,
+    0.54981092129904
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@5",
+   "mean": 0.6506654081104798,
+   "ci95_pct": [
+    0.6230973260906034,
+    0.6787480349675091
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.4864468410133638,
+   "ci95_pct": [
+    0.45719157144389666,
+    0.5162482023844354
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.4185068349106204,
+   "ci95_pct": [
+    0.3855415271308878,
+    0.45283065203692036
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.6614090431125131,
+   "ci95_pct": [
+    0.6297435897435898,
+    0.6927375885177163
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.7875920084121977,
+   "ci95_pct": [
+    0.7602040816326531,
+    0.8148515369319358
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@1",
+   "mean": 0.3068357173917803,
+   "ci95_pct": [
+    0.2789775831812254,
+    0.3355118500234097
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.6604430506043766,
+   "ci95_pct": [
+    0.6310927981901097,
+    0.6892693443637727
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@256t",
+   "mean": 0.3509407894964649,
+   "ci95_pct": [
+    0.3224981363232728,
+    0.3807583407066961
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@3",
+   "mean": 0.5217752661931919,
+   "ci95_pct": [
+    0.4932647891622249,
+    0.5499941949667285
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@5",
+   "mean": 0.6513138483488254,
+   "ci95_pct": [
+    0.6237828300998783,
+    0.6791166955759966
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.49136643654810125,
+   "ci95_pct": [
+    0.4621505465159288,
+    0.5207084176337933
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38396601908887834,
+    0.4519235685071575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.5636172450052577,
+   "ci95_pct": [
+    0.5302659700922033,
+    0.5973891685046342
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.6708727655099895,
+   "ci95_pct": [
+    0.6362715298885512,
+    0.7053404050679544
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@1",
+   "mean": 0.30522337950183986,
+   "ci95_pct": [
+    0.2775450244348905,
+    0.3346539037794064
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.5660181332832006,
+   "ci95_pct": [
+    0.5332445919627746,
+    0.598203560451992
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@256t",
+   "mean": 0.33381884145969043,
+   "ci95_pct": [
+    0.3054200272431962,
+    0.3636572521160264
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@3",
+   "mean": 0.44842483858270565,
+   "ci95_pct": [
+    0.41809070483108707,
+    0.4803232271330595
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@5",
+   "mean": 0.554244910794803,
+   "ci95_pct": [
+    0.5217371555414027,
+    0.5866568343978578
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.4183272240884726,
+   "ci95_pct": [
+    0.38933786595446795,
+    0.44870898283652233
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38396601908887834,
+    0.4519235685071575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.5562565720294427,
+   "ci95_pct": [
+    0.522372528616025,
+    0.590955806783145
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.676130389064143,
+   "ci95_pct": [
+    0.6417751979654901,
+    0.7101304455204309
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@1",
+   "mean": 0.30522337950183986,
+   "ci95_pct": [
+    0.2775450244348905,
+    0.3346539037794064
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.5448270106005731,
+   "ci95_pct": [
+    0.5116421572057177,
+    0.5781784955283776
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@256t",
+   "mean": 0.3223329105440733,
+   "ci95_pct": [
+    0.2938750228314754,
+    0.35203099550189626
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@3",
+   "mean": 0.4257665601790899,
+   "ci95_pct": [
+    0.3959494407932561,
+    0.4562231903852109
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@5",
+   "mean": 0.5479017232739076,
+   "ci95_pct": [
+    0.5154287676689542,
+    0.5805833701990424
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.39903630509709975,
+   "ci95_pct": [
+    0.3688730610387928,
+    0.4306805955256708
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.4174553101997897,
+   "ci95_pct": [
+    0.38396601908887834,
+    0.4519235685071575
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.6088328075709779,
+   "ci95_pct": [
+    0.5769622833843018,
+    0.6404869542163387
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.7192429022082019,
+   "ci95_pct": [
+    0.6886785590103032,
+    0.7494409617228409
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@1",
+   "mean": 0.30522337950183986,
+   "ci95_pct": [
+    0.2775450244348905,
+    0.3346539037794064
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.6183412348141996,
+   "ci95_pct": [
+    0.5888187997294462,
+    0.6477536727233786
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@256t",
+   "mean": 0.34348038858180535,
+   "ci95_pct": [
+    0.3147932239365727,
+    0.3732112985773411
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@3",
+   "mean": 0.49296543054844566,
+   "ci95_pct": [
+    0.46360484954204845,
+    0.5229243283848733
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@5",
+   "mean": 0.6045155178214562,
+   "ci95_pct": [
+    0.5747375959738136,
+    0.6340598907232364
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.4550929776129012,
+   "ci95_pct": [
+    0.4254780170264269,
+    0.48518484897977543
+   ],
+   "n_clusters": 300,
+   "n_obs": 951
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "hit@1",
+   "mean": 0.41324921135646686,
+   "ci95_pct": [
+    0.3531113632396579,
+    0.4754138409782666
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "hit@3",
+   "mean": 0.6876971608832808,
+   "ci95_pct": [
+    0.6342261417580619,
+    0.7409858021077284
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "hit@5",
+   "mean": 0.7917981072555205,
+   "ci95_pct": [
+    0.7422672408273037,
+    0.8409110986186958
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@1",
+   "mean": 0.30882085842653667,
+   "ci95_pct": [
+    0.2589389796851873,
+    0.3616013402116213
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@1024t",
+   "mean": 0.6835001661500084,
+   "ci95_pct": [
+    0.6338648009398361,
+    0.7344621084357784
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@256t",
+   "mean": 0.35820246175135767,
+   "ci95_pct": [
+    0.3077571182278936,
+    0.4109548468020228
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@3",
+   "mean": 0.5675405474301373,
+   "ci95_pct": [
+    0.5154660964511287,
+    0.6204522579514251
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@5",
+   "mean": 0.670198378558,
+   "ci95_pct": [
+    0.6212483267218697,
+    0.720225539641151
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "qasper",
+   "retriever": "nomic",
+   "system": "PF",
+   "metric": "rec@512t",
+   "mean": 0.519205233952868,
+   "ci95_pct": [
+    0.4641242631373178,
+    0.5775116858437545
+   ],
+   "n_clusters": 100,
+   "n_obs": 317
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.2765957446808511,
+   "ci95_pct": [
+    0.22127659574468084,
+    0.33617021276595743
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@10",
+   "mean": 0.7063829787234043,
+   "ci95_pct": [
+    0.6468085106382979,
+    0.7659574468085106
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.4595744680851064,
+   "ci95_pct": [
+    0.39574468085106385,
+    0.5234042553191489
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.5531914893617021,
+   "ci95_pct": [
+    0.49361702127659574,
+    0.6170212765957447
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "mrr@10",
+   "mean": 0.39670043904086455,
+   "ci95_pct": [
+    0.34733603512326916,
+    0.4490485477879094
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "prec@1024t",
+   "mean": 0.25106420300308724,
+   "ci95_pct": [
+    0.21542743139159154,
+    0.28880259061697494
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "prec@2048t",
+   "mean": 0.2116189997335224,
+   "ci95_pct": [
+    0.18266542475497882,
+    0.2419196936623601
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "prec@512t",
+   "mean": 0.27193168370299153,
+   "ci95_pct": [
+    0.22739966152884383,
+    0.3180304770774096
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.06853833569359731,
+   "ci95_pct": [
+    0.05663368007354215,
+    0.08102186651893878
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@2048t",
+   "mean": 0.10761417974134417,
+   "ci95_pct": [
+    0.0910797817526456,
+    0.12542155855222042
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.03825793107219914,
+   "ci95_pct": [
+    0.030490705259545482,
+    0.04689033891844304
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.28936170212765955,
+   "ci95_pct": [
+    0.23404255319148937,
+    0.34893617021276596
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@10",
+   "mean": 0.7021276595744681,
+   "ci95_pct": [
+    0.6425531914893617,
+    0.7574468085106383
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.46382978723404256,
+   "ci95_pct": [
+    0.4,
+    0.5276595744680851
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.5361702127659574,
+   "ci95_pct": [
+    0.4723404255319149,
+    0.6
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "mrr@10",
+   "mean": 0.39977372509287407,
+   "ci95_pct": [
+    0.3498839918946302,
+    0.45252478047956773
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "prec@1024t",
+   "mean": 0.25205731184167934,
+   "ci95_pct": [
+    0.21577335753985466,
+    0.29007551120563935
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "prec@2048t",
+   "mean": 0.21543437017635447,
+   "ci95_pct": [
+    0.18588073961259938,
+    0.2464434166834313
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "prec@512t",
+   "mean": 0.2725941878806174,
+   "ci95_pct": [
+    0.22696762528970388,
+    0.3191529077054911
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.06875380878308857,
+   "ci95_pct": [
+    0.05690598280323323,
+    0.08119939738755934
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@2048t",
+   "mean": 0.10882055192163141,
+   "ci95_pct": [
+    0.09221598561626411,
+    0.12660715844816145
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.03850239285794254,
+   "ci95_pct": [
+    0.030626390466403378,
+    0.04728879978400704
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.2765957446808511,
+   "ci95_pct": [
+    0.22127659574468084,
+    0.33617021276595743
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@10",
+   "mean": 0.5148936170212766,
+   "ci95_pct": [
+    0.451063829787234,
+    0.5787234042553191
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.32340425531914896,
+   "ci95_pct": [
+    0.26382978723404255,
+    0.3829787234042553
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.3872340425531915,
+   "ci95_pct": [
+    0.3276595744680851,
+    0.451063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "mrr@10",
+   "mean": 0.32563492063492067,
+   "ci95_pct": [
+    0.27232510131712256,
+    0.381398387369132
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "prec@1024t",
+   "mean": 0.26290771677617175,
+   "ci95_pct": [
+    0.21705346337005507,
+    0.3109403920151785
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "prec@2048t",
+   "mean": 0.23369075495671898,
+   "ci95_pct": [
+    0.1976098932723719,
+    0.27054409514967515
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "prec@512t",
+   "mean": 0.2731465135731358,
+   "ci95_pct": [
+    0.22264100445129112,
+    0.3276255031335619
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.06973777822746313,
+   "ci95_pct": [
+    0.05579628034892536,
+    0.08485473037233587
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@2048t",
+   "mean": 0.12022386627123322,
+   "ci95_pct": [
+    0.10050630075852607,
+    0.14140585121508636
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.037312333067820676,
+   "ci95_pct": [
+    0.028805786555859025,
+    0.04698677521451514
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.2765957446808511,
+   "ci95_pct": [
+    0.22127659574468084,
+    0.33617021276595743
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@10",
+   "mean": 0.5319148936170213,
+   "ci95_pct": [
+    0.46808510638297873,
+    0.5957446808510638
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.33617021276595743,
+   "ci95_pct": [
+    0.2765957446808511,
+    0.4
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.40425531914893614,
+   "ci95_pct": [
+    0.3446808510638298,
+    0.46808510638297873
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "mrr@10",
+   "mean": 0.33356636271529894,
+   "ci95_pct": [
+    0.2805808004052685,
+    0.3890536136440391
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "prec@1024t",
+   "mean": 0.24113998989513122,
+   "ci95_pct": [
+    0.1996825879935076,
+    0.28467353600752404
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "prec@2048t",
+   "mean": 0.21342850370171348,
+   "ci95_pct": [
+    0.18023734783916684,
+    0.2472290364078439
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "prec@512t",
+   "mean": 0.26812123666383936,
+   "ci95_pct": [
+    0.2197795106956793,
+    0.31935158855560086
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.06597598463691096,
+   "ci95_pct": [
+    0.05309929464570014,
+    0.07993709660226404
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@2048t",
+   "mean": 0.10798066315788439,
+   "ci95_pct": [
+    0.09034048934563588,
+    0.12684874685530684
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.037316868916046714,
+   "ci95_pct": [
+    0.02924338686482509,
+    0.046456344690087886
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.2765957446808511,
+   "ci95_pct": [
+    0.22127659574468084,
+    0.33617021276595743
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@10",
+   "mean": 0.6127659574468085,
+   "ci95_pct": [
+    0.5531914893617021,
+    0.6723404255319149
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.4297872340425532,
+   "ci95_pct": [
+    0.3659574468085106,
+    0.49361702127659574
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.5106382978723404,
+   "ci95_pct": [
+    0.44680851063829785,
+    0.574468085106383
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "mrr@10",
+   "mean": 0.3695694022289768,
+   "ci95_pct": [
+    0.31871293481931784,
+    0.42340708375548797
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "prec@1024t",
+   "mean": 0.2574139681852142,
+   "ci95_pct": [
+    0.2191763246097718,
+    0.2979050540814285
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "prec@2048t",
+   "mean": 0.21855320486445004,
+   "ci95_pct": [
+    0.1879475599092462,
+    0.2512224827048614
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "prec@512t",
+   "mean": 0.2719427819660871,
+   "ci95_pct": [
+    0.22478029296474308,
+    0.32043511302948363
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.07027441164852992,
+   "ci95_pct": [
+    0.05697709677146071,
+    0.0844879862105858
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@2048t",
+   "mean": 0.11241369916087951,
+   "ci95_pct": [
+    0.09370855244294218,
+    0.13293502938891336
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "bm25",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.03783663267291875,
+   "ci95_pct": [
+    0.029786807206934603,
+    0.04681627373454083
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.37446808510638296,
+   "ci95_pct": [
+    0.3148936170212766,
+    0.4340425531914894
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@10",
+   "mean": 0.7574468085106383,
+   "ci95_pct": [
+    0.7021276595744681,
+    0.8085106382978723
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.5872340425531914,
+   "ci95_pct": [
+    0.5234042553191489,
+    0.6468085106382979
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.6638297872340425,
+   "ci95_pct": [
+    0.6042553191489362,
+    0.723404255319149
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "mrr@10",
+   "mean": 0.49725261735900034,
+   "ci95_pct": [
+    0.4458281830462681,
+    0.5486960486322188
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "prec@1024t",
+   "mean": 0.30750984151223365,
+   "ci95_pct": [
+    0.2706328717665021,
+    0.3449477363754849
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "prec@2048t",
+   "mean": 0.2584911475992947,
+   "ci95_pct": [
+    0.2289568187960427,
+    0.28890640498406034
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "prec@512t",
+   "mean": 0.34186083931712924,
+   "ci95_pct": [
+    0.29755141927105183,
+    0.3871799940651924
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.08410535428233469,
+   "ci95_pct": [
+    0.07197639014491877,
+    0.0968905741261992
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@2048t",
+   "mean": 0.13014250865918853,
+   "ci95_pct": [
+    0.11408103278207657,
+    0.14723480046725654
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.04720423066343531,
+   "ci95_pct": [
+    0.03961400916510848,
+    0.05532104781877777
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.3659574468085106,
+   "ci95_pct": [
+    0.30638297872340425,
+    0.425531914893617
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@10",
+   "mean": 0.7574468085106383,
+   "ci95_pct": [
+    0.7021276595744681,
+    0.8085106382978723
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.5872340425531914,
+   "ci95_pct": [
+    0.5234042553191489,
+    0.6468085106382979
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.6723404255319149,
+   "ci95_pct": [
+    0.6127659574468085,
+    0.7319148936170212
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "mrr@10",
+   "mean": 0.49255488010807164,
+   "ci95_pct": [
+    0.44070487166497807,
+    0.544108282674772
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "prec@1024t",
+   "mean": 0.3034207772363226,
+   "ci95_pct": [
+    0.2669367906817037,
+    0.3404495446431967
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "prec@2048t",
+   "mean": 0.2608443058918916,
+   "ci95_pct": [
+    0.23088296554166943,
+    0.2913853071501919
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "prec@512t",
+   "mean": 0.33704648163241174,
+   "ci95_pct": [
+    0.2930754214847359,
+    0.3825691860101518
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.08287221042310396,
+   "ci95_pct": [
+    0.07089957365113925,
+    0.09561193350947961
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@2048t",
+   "mean": 0.13270639656035357,
+   "ci95_pct": [
+    0.11606878416662143,
+    0.15049558453001077
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.04602067049757309,
+   "ci95_pct": [
+    0.038461834580810296,
+    0.054078581713852665
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.37446808510638296,
+   "ci95_pct": [
+    0.3148936170212766,
+    0.4340425531914894
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@10",
+   "mean": 0.5914893617021276,
+   "ci95_pct": [
+    0.5319148936170213,
+    0.6510638297872341
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.451063829787234,
+   "ci95_pct": [
+    0.39148936170212767,
+    0.5106382978723404
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.5063829787234042,
+   "ci95_pct": [
+    0.44680851063829785,
+    0.5702127659574469
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "mrr@10",
+   "mean": 0.424805808848362,
+   "ci95_pct": [
+    0.36879301756163463,
+    0.48061060452549814
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "prec@1024t",
+   "mean": 0.3351832056011106,
+   "ci95_pct": [
+    0.2900615701832079,
+    0.3812011388602784
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "prec@2048t",
+   "mean": 0.28595770445897833,
+   "ci95_pct": [
+    0.24949777668689763,
+    0.3217762991498931
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "prec@512t",
+   "mean": 0.3619166063287178,
+   "ci95_pct": [
+    0.3087591953435634,
+    0.4149792760189575
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.0932010476581863,
+   "ci95_pct": [
+    0.07793190113422763,
+    0.10910841234693665
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@2048t",
+   "mean": 0.15003751878482585,
+   "ci95_pct": [
+    0.12820404086300322,
+    0.1736518873304602
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.051587225166016146,
+   "ci95_pct": [
+    0.04202266632338392,
+    0.06185473251877349
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.37446808510638296,
+   "ci95_pct": [
+    0.3148936170212766,
+    0.4340425531914894
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@10",
+   "mean": 0.6212765957446809,
+   "ci95_pct": [
+    0.561595744680852,
+    0.6808510638297872
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.46382978723404256,
+   "ci95_pct": [
+    0.40425531914893614,
+    0.5234042553191489
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.5234042553191489,
+   "ci95_pct": [
+    0.46382978723404256,
+    0.5872340425531914
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "mrr@10",
+   "mean": 0.4362613981762918,
+   "ci95_pct": [
+    0.381327043228639,
+    0.4910410334346504
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "prec@1024t",
+   "mean": 0.3196117317922991,
+   "ci95_pct": [
+    0.27543242660665135,
+    0.3637697664387746
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "prec@2048t",
+   "mean": 0.27112223150743964,
+   "ci95_pct": [
+    0.23569447441564761,
+    0.30615759074281407
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "prec@512t",
+   "mean": 0.34429088122768825,
+   "ci95_pct": [
+    0.29505770338270765,
+    0.3939699772873761
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.08741737427039302,
+   "ci95_pct": [
+    0.0736473677180166,
+    0.1020089645665284
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@2048t",
+   "mean": 0.14214236928945484,
+   "ci95_pct": [
+    0.12187181107425438,
+    0.16414808302664674
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.049236980998486696,
+   "ci95_pct": [
+    0.04066325086355526,
+    0.058358860035156584
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.37446808510638296,
+   "ci95_pct": [
+    0.3148936170212766,
+    0.4340425531914894
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@10",
+   "mean": 0.7106382978723405,
+   "ci95_pct": [
+    0.6510638297872341,
+    0.7659574468085106
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.5404255319148936,
+   "ci95_pct": [
+    0.4808510638297872,
+    0.6
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.6042553191489362,
+   "ci95_pct": [
+    0.5446808510638298,
+    0.6638297872340425
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "mrr@10",
+   "mean": 0.4766210739614995,
+   "ci95_pct": [
+    0.42395791117865594,
+    0.5298042890915232
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "prec@1024t",
+   "mean": 0.3152165240875608,
+   "ci95_pct": [
+    0.2754724938795296,
+    0.35603543596610393
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "prec@2048t",
+   "mean": 0.2709516831438044,
+   "ci95_pct": [
+    0.23861539661402126,
+    0.30396669383588143
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "prec@512t",
+   "mean": 0.35102833266738637,
+   "ci95_pct": [
+    0.3044090653098467,
+    0.3991091565120647
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.08628643124690433,
+   "ci95_pct": [
+    0.07270939829085925,
+    0.10085998396457754
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@2048t",
+   "mean": 0.1377755335190248,
+   "ci95_pct": [
+    0.11953331152244656,
+    0.15760520042366993
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "hybrid",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.048942671955954246,
+   "ci95_pct": [
+    0.040480105301226144,
+    0.05801930342650148
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.42127659574468085,
+   "ci95_pct": [
+    0.3574468085106383,
+    0.4851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@10",
+   "mean": 0.7914893617021277,
+   "ci95_pct": [
+    0.7404255319148936,
+    0.8425531914893617
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.6042553191489362,
+   "ci95_pct": [
+    0.5404255319148936,
+    0.6638297872340425
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.6808510638297872,
+   "ci95_pct": [
+    0.6212765957446809,
+    0.7404255319148936
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "mrr@10",
+   "mean": 0.5323556231003039,
+   "ci95_pct": [
+    0.4776294748395812,
+    0.5875382049983114
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "prec@1024t",
+   "mean": 0.322019064836614,
+   "ci95_pct": [
+    0.28495652530735754,
+    0.35996214272595634
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "prec@2048t",
+   "mean": 0.26983054626179076,
+   "ci95_pct": [
+    0.24093677474323708,
+    0.29877633595004033
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "prec@512t",
+   "mean": 0.3653698221683934,
+   "ci95_pct": [
+    0.31850912616501437,
+    0.4118963067997884
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.09176968494678908,
+   "ci95_pct": [
+    0.07809138077351732,
+    0.10620453275897969
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@2048t",
+   "mean": 0.14497759370428476,
+   "ci95_pct": [
+    0.12748572839669456,
+    0.16327432643287132
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.054799259126867214,
+   "ci95_pct": [
+    0.04472209321819002,
+    0.0655653603586658
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.4127659574468085,
+   "ci95_pct": [
+    0.34893617021276596,
+    0.4765957446808511
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@10",
+   "mean": 0.7914893617021277,
+   "ci95_pct": [
+    0.7404255319148936,
+    0.8425531914893617
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.6,
+   "ci95_pct": [
+    0.5361702127659574,
+    0.6638297872340425
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.6851063829787234,
+   "ci95_pct": [
+    0.625531914893617,
+    0.7446808510638298
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "mrr@10",
+   "mean": 0.5261229314420803,
+   "ci95_pct": [
+    0.47133248902397845,
+    0.5806095913542723
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "prec@1024t",
+   "mean": 0.3249048840648615,
+   "ci95_pct": [
+    0.28759622660637674,
+    0.36288223297704747
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "prec@2048t",
+   "mean": 0.27094434074330737,
+   "ci95_pct": [
+    0.24195167505189022,
+    0.30020940210377467
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "prec@512t",
+   "mean": 0.3678242795324298,
+   "ci95_pct": [
+    0.3204170021718514,
+    0.41455812549548315
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.09238772693818902,
+   "ci95_pct": [
+    0.0787977804551009,
+    0.10695313464625264
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@2048t",
+   "mean": 0.1462896616103831,
+   "ci95_pct": [
+    0.12844743189342328,
+    0.16505018372513755
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.05516059226649447,
+   "ci95_pct": [
+    0.04545705910404561,
+    0.06555877082683327
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.42127659574468085,
+   "ci95_pct": [
+    0.3574468085106383,
+    0.4851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@10",
+   "mean": 0.6212765957446809,
+   "ci95_pct": [
+    0.5574468085106383,
+    0.6808510638297872
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.46382978723404256,
+   "ci95_pct": [
+    0.4,
+    0.5276595744680851
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.5319148936170213,
+   "ci95_pct": [
+    0.46808510638297873,
+    0.5957446808510638
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "mrr@10",
+   "mean": 0.46395812225599464,
+   "ci95_pct": [
+    0.40339036643026005,
+    0.5244484126984127
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "prec@1024t",
+   "mean": 0.35986753000303473,
+   "ci95_pct": [
+    0.3107757296010597,
+    0.4088626329829324
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "prec@2048t",
+   "mean": 0.3022835318412511,
+   "ci95_pct": [
+    0.2651267893479517,
+    0.3400067407059506
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "prec@512t",
+   "mean": 0.39940892625733776,
+   "ci95_pct": [
+    0.34239125085768185,
+    0.4565144443307687
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.10510254352330005,
+   "ci95_pct": [
+    0.08625852438933838,
+    0.12529119933706032
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@2048t",
+   "mean": 0.16633832803119605,
+   "ci95_pct": [
+    0.142552590228402,
+    0.19173161778630363
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.06546549352209542,
+   "ci95_pct": [
+    0.051417557269914926,
+    0.08108902009537308
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.42127659574468085,
+   "ci95_pct": [
+    0.3574468085106383,
+    0.4851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@10",
+   "mean": 0.6425531914893617,
+   "ci95_pct": [
+    0.5829787234042553,
+    0.7021276595744681
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.46808510638297873,
+   "ci95_pct": [
+    0.40425531914893614,
+    0.5319148936170213
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.548936170212766,
+   "ci95_pct": [
+    0.4851063829787234,
+    0.6127659574468085
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "mrr@10",
+   "mean": 0.47097771023302937,
+   "ci95_pct": [
+    0.4115355032083756,
+    0.531231298547788
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "prec@1024t",
+   "mean": 0.3321785476211308,
+   "ci95_pct": [
+    0.2863597722414448,
+    0.37808747672446713
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "prec@2048t",
+   "mean": 0.2854891043821054,
+   "ci95_pct": [
+    0.2489640977175516,
+    0.3224294989005811
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "prec@512t",
+   "mean": 0.3719555587760118,
+   "ci95_pct": [
+    0.31800958907133237,
+    0.42559220724543667
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.09891486955116265,
+   "ci95_pct": [
+    0.08109376010596403,
+    0.11791828629990372
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@2048t",
+   "mean": 0.1544940496316587,
+   "ci95_pct": [
+    0.13263493721870254,
+    0.17807353204305318
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.06265447480610974,
+   "ci95_pct": [
+    0.04882473968512419,
+    0.07803630405603978
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.42127659574468085,
+   "ci95_pct": [
+    0.3574468085106383,
+    0.4851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@10",
+   "mean": 0.7574468085106383,
+   "ci95_pct": [
+    0.7021276595744681,
+    0.8085106382978723
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.5574468085106383,
+   "ci95_pct": [
+    0.49361702127659574,
+    0.6212765957446809
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.625531914893617,
+   "ci95_pct": [
+    0.5617021276595745,
+    0.6851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "mrr@10",
+   "mean": 0.5154795677136104,
+   "ci95_pct": [
+    0.45955192502532927,
+    0.5720610013508949
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "prec@1024t",
+   "mean": 0.3340376819630783,
+   "ci95_pct": [
+    0.292058930842881,
+    0.37575274305968187
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "prec@2048t",
+   "mean": 0.2811043509170139,
+   "ci95_pct": [
+    0.2491588142746869,
+    0.31281899313913214
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "prec@512t",
+   "mean": 0.38046352899343594,
+   "ci95_pct": [
+    0.33048402918794156,
+    0.4299297465983062
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.09541301991623102,
+   "ci95_pct": [
+    0.07963208107607844,
+    0.11216251565408132
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@2048t",
+   "mean": 0.1481902045539617,
+   "ci95_pct": [
+    0.12893343714028097,
+    0.1683710420977351
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "mxbai",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.05707511171231572,
+   "ci95_pct": [
+    0.04650098630098596,
+    0.06840151247207757
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@1",
+   "mean": 0.37872340425531914,
+   "ci95_pct": [
+    0.3191489361702128,
+    0.43829787234042555
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@10",
+   "mean": 0.7276595744680852,
+   "ci95_pct": [
+    0.6680851063829787,
+    0.7829787234042553
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@3",
+   "mean": 0.5872340425531914,
+   "ci95_pct": [
+    0.5234042553191489,
+    0.6510638297872341
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "hit@5",
+   "mean": 0.6680851063829787,
+   "ci95_pct": [
+    0.6085106382978723,
+    0.7276595744680852
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "mrr@10",
+   "mean": 0.49559439378588316,
+   "ci95_pct": [
+    0.44161406619385346,
+    0.5485744680851065
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "prec@1024t",
+   "mean": 0.2948211670554885,
+   "ci95_pct": [
+    0.2585122876866149,
+    0.3319932188961595
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "prec@2048t",
+   "mean": 0.24509800925804776,
+   "ci95_pct": [
+    0.21713546139083675,
+    0.27394705321885543
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "prec@512t",
+   "mean": 0.3457354557298939,
+   "ci95_pct": [
+    0.3010920111231384,
+    0.3916561873707519
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@1024t",
+   "mean": 0.08180701446070845,
+   "ci95_pct": [
+    0.0692346011649583,
+    0.09557298475018769
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@2048t",
+   "mean": 0.1274175856655992,
+   "ci95_pct": [
+    0.11086043467213064,
+    0.14522836552110335
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E",
+   "metric": "rec@512t",
+   "mean": 0.04830034161778606,
+   "ci95_pct": [
+    0.0393434478814435,
+    0.05855827976808868
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@1",
+   "mean": 0.3829787234042553,
+   "ci95_pct": [
+    0.3191489361702128,
+    0.44680851063829785
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@10",
+   "mean": 0.7276595744680852,
+   "ci95_pct": [
+    0.6680851063829787,
+    0.7829787234042553
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@3",
+   "mean": 0.5872340425531914,
+   "ci95_pct": [
+    0.5234042553191489,
+    0.6510638297872341
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "hit@5",
+   "mean": 0.6638297872340425,
+   "ci95_pct": [
+    0.6042553191489362,
+    0.723404255319149
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "mrr@10",
+   "mean": 0.4966582235731172,
+   "ci95_pct": [
+    0.44237153833164466,
+    0.5500194191151638
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "prec@1024t",
+   "mean": 0.290564714192707,
+   "ci95_pct": [
+    0.25468222407140106,
+    0.3275034548187672
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "prec@2048t",
+   "mean": 0.23985496848364493,
+   "ci95_pct": [
+    0.21165195539804318,
+    0.2686340570116289
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "prec@512t",
+   "mean": 0.34290844725674696,
+   "ci95_pct": [
+    0.29801547184708194,
+    0.38860371676965394
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@1024t",
+   "mean": 0.08100584195522956,
+   "ci95_pct": [
+    0.06870392180187543,
+    0.0945132844202624
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@2048t",
+   "mean": 0.12509126262666198,
+   "ci95_pct": [
+    0.10854746071026396,
+    0.14281531802306222
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E(meta+key)",
+   "metric": "rec@512t",
+   "mean": 0.04819763574852936,
+   "ci95_pct": [
+    0.0392962910418357,
+    0.058379333227240246
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@1",
+   "mean": 0.37872340425531914,
+   "ci95_pct": [
+    0.3191489361702128,
+    0.43829787234042555
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@10",
+   "mean": 0.6212765957446809,
+   "ci95_pct": [
+    0.5617021276595745,
+    0.6851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@3",
+   "mean": 0.43829787234042555,
+   "ci95_pct": [
+    0.37446808510638296,
+    0.502127659574468
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "hit@5",
+   "mean": 0.5106382978723404,
+   "ci95_pct": [
+    0.44680851063829785,
+    0.574468085106383
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "mrr@10",
+   "mean": 0.43115332657885846,
+   "ci95_pct": [
+    0.3736000506585613,
+    0.4888408899020601
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "prec@1024t",
+   "mean": 0.32835041574705937,
+   "ci95_pct": [
+    0.28194878905646387,
+    0.375433748544613
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "prec@2048t",
+   "mean": 0.28753422977889953,
+   "ci95_pct": [
+    0.2491531714475149,
+    0.3269375907935885
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "prec@512t",
+   "mean": 0.3612124357903502,
+   "ci95_pct": [
+    0.3070023783090485,
+    0.415121509262049
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@1024t",
+   "mean": 0.08886161058110349,
+   "ci95_pct": [
+    0.07287260113761873,
+    0.10579875334721987
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@2048t",
+   "mean": 0.14874879009811637,
+   "ci95_pct": [
+    0.12577110744938405,
+    0.1735488914749779
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+AX",
+   "metric": "rec@512t",
+   "mean": 0.05061705776224021,
+   "ci95_pct": [
+    0.03955531056432563,
+    0.06320087156812246
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@1",
+   "mean": 0.37872340425531914,
+   "ci95_pct": [
+    0.3191489361702128,
+    0.43829787234042555
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@10",
+   "mean": 0.625531914893617,
+   "ci95_pct": [
+    0.5659574468085107,
+    0.6851063829787234
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@3",
+   "mean": 0.4553191489361702,
+   "ci95_pct": [
+    0.39148936170212767,
+    0.5191489361702127
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "hit@5",
+   "mean": 0.5234042553191489,
+   "ci95_pct": [
+    0.4595744680851064,
+    0.5872340425531914
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "mrr@10",
+   "mean": 0.4373877068557919,
+   "ci95_pct": [
+    0.3797927642688281,
+    0.4947963103681189
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "prec@1024t",
+   "mean": 0.31508291818304307,
+   "ci95_pct": [
+    0.2704625889519955,
+    0.3599753383897569
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "prec@2048t",
+   "mean": 0.2700126305853587,
+   "ci95_pct": [
+    0.234093007643947,
+    0.30758356443062573
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "prec@512t",
+   "mean": 0.3502590651349892,
+   "ci95_pct": [
+    0.2983556509994368,
+    0.4024216991751779
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@1024t",
+   "mean": 0.08575509994147122,
+   "ci95_pct": [
+    0.0700103271853617,
+    0.10250496555117118
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@2048t",
+   "mean": 0.13905913670157982,
+   "ci95_pct": [
+    0.11803186326659104,
+    0.16182867559646202
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+KX",
+   "metric": "rec@512t",
+   "mean": 0.05030248190267172,
+   "ci95_pct": [
+    0.03937669578906193,
+    0.06261992516312585
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@1",
+   "mean": 0.37872340425531914,
+   "ci95_pct": [
+    0.3191489361702128,
+    0.43829787234042555
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@10",
+   "mean": 0.7063829787234043,
+   "ci95_pct": [
+    0.6468085106382979,
+    0.7659574468085106
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@3",
+   "mean": 0.5446808510638298,
+   "ci95_pct": [
+    0.4808510638297872,
+    0.6085106382978723
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "hit@5",
+   "mean": 0.6170212765957447,
+   "ci95_pct": [
+    0.5531914893617021,
+    0.6808510638297872
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "mrr@10",
+   "mean": 0.48020770010131714,
+   "ci95_pct": [
+    0.4254192418101993,
+    0.5340114826072272
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "prec@1024t",
+   "mean": 0.3040837247362264,
+   "ci95_pct": [
+    0.26440764295613506,
+    0.34431351767249807
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "prec@2048t",
+   "mean": 0.25491521936949046,
+   "ci95_pct": [
+    0.2242406394577843,
+    0.2862660024090881
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "prec@512t",
+   "mean": 0.3535517046701842,
+   "ci95_pct": [
+    0.3072180766144115,
+    0.400387916011237
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@1024t",
+   "mean": 0.08056723152204023,
+   "ci95_pct": [
+    0.06792936870883834,
+    0.09428437874460158
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@2048t",
+   "mean": 0.1311311894426881,
+   "ci95_pct": [
+    0.113147927895259,
+    0.1502585354834973
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  },
+  {
+   "dataset": "freshstack",
+   "retriever": "nomic",
+   "system": "E+SX",
+   "metric": "rec@512t",
+   "mean": 0.048891005622299345,
+   "ci95_pct": [
+    0.03966250957216605,
+    0.059404101445655985
+   ],
+   "n_clusters": 235,
+   "n_obs": 235
+  }
+ ],
+ "pf_cost": {
+  "enr": {
+   "calls": 2444,
+   "in_tokens": 2499085,
+   "out_tokens": 464071,
+   "chunks": 2444
+  },
+  "perfield": {
+   "calls": 9776,
+   "in_tokens": 4010296,
+   "out_tokens": 359358,
+   "chunks": 2444
+  }
+ },
+ "key_links": {
+  "qasper": {
+   "chunks_with_links": [
+    7034,
+    7222
+   ],
+   "retrieved_with_links": [
+    2957,
+    3008
+   ]
+  },
+  "freshstack": {
+   "chunks_with_links": [
+    6622,
+    7052
+   ],
+   "retrieved_with_links": [
+    1120,
+    1137
+   ]
+  }
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "qasper": {
+  "systems": [
+   "F512c",
+   "F256t",
+   "S",
+   "S+T",
+   "PP",
+   "FL",
+   "E",
+   "CR",
+   "E-strong",
+   "CR-strong"
+  ],
+  "dropped_docs": [],
+  "n_docs": 300,
+  "dropped_fraction": 0.0,
+  "over_5pct": false,
+  "strong_groups": {
+   "E-strong": 300,
+   "CR-strong": 300
+  }
+ },
+ "freshstack": {
+  "systems": [
+   "F512c",
+   "F256t",
+   "S",
+   "S+T",
+   "PP",
+   "FL",
+   "E",
+   "CR",
+   "E-strong"
+  ],
+  "dropped_docs": [],
+  "n_docs": 377,
+  "dropped_fraction": 0.0,
+  "over_5pct": false,
+  "strong_groups": {
+   "E-strong": 3
+  }
+ }
+}

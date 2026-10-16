@@ -1,0 +1,113 @@
+{
+ "arms": [
+  "lc"
+ ],
+ "seconds": 4968.3,
+ "ollama_url": "http://127.0.0.1:11434",
+ "reranker": null,
+ "late_chunking": {
+  "n_chunks": 14274,
+  "n_windows": 796,
+  "pooled": 14274,
+  "split_across_windows": 0,
+  "fallback_plain": 0,
+  "span_counts": {
+   "exact_cursor": 13409,
+   "exact_anywhere": 0,
+   "whitespace_normalised": 865,
+   "not_found": 0,
+   "empty": 0
+  }
+ },
+ "jina_device": "mps",
+ "lc_overlap": 2048,
+ "coverage": {
+  "qasper": {
+   "systems": [
+    "F512c",
+    "F256t",
+    "S",
+    "S+T",
+    "PP",
+    "FL",
+    "E",
+    "CR",
+    "E-strong",
+    "CR-strong"
+   ],
+   "dropped_docs": [],
+   "n_docs": 300,
+   "dropped_fraction": 0.0,
+   "over_5pct": false,
+   "strong_groups": {
+    "E-strong": 300,
+    "CR-strong": 300
+   }
+  },
+  "freshstack": {
+   "systems": [
+    "F512c",
+    "F256t",
+    "S",
+    "S+T",
+    "PP",
+    "FL",
+    "E",
+    "CR",
+    "E-strong"
+   ],
+   "dropped_docs": [],
+   "n_docs": 377,
+   "dropped_fraction": 0.0,
+   "over_5pct": false,
+   "strong_groups": {
+    "E-strong": 3
+   }
+  }
+ },
+ "runs": [
+  {
+   "arms": [
+    "rerank"
+   ],
+   "seconds": 110200.3,
+   "ollama_url": "http://127.0.0.1:11434",
+   "reranker": {
+    "model": "tomaarsen/Qwen3-Reranker-0.6B-seq-cls",
+    "model_key": "tomaarsen/Qwen3-Reranker-0.6B-seq-cls|tmpl=v1|maxlen=2048",
+    "pairs_scored": 273629,
+    "cache_hits": 3907,
+    "seconds": 110066.48,
+    "pairs_per_s": 2.49,
+    "device": "mps"
+   },
+   "late_chunking": null,
+   "jina_device": null,
+   "lc_overlap": 2048
+  },
+  {
+   "arms": [
+    "lc"
+   ],
+   "seconds": 4968.3,
+   "ollama_url": "http://127.0.0.1:11434",
+   "reranker": null,
+   "late_chunking": {
+    "n_chunks": 14274,
+    "n_windows": 796,
+    "pooled": 14274,
+    "split_across_windows": 0,
+    "fallback_plain": 0,
+    "span_counts": {
+     "exact_cursor": 13409,
+     "exact_anywhere": 0,
+     "whitespace_normalised": 865,
+     "not_found": 0,
+     "empty": 0
+    }
+   },
+   "jina_device": "mps",
+   "lc_overlap": 2048
+  }
+ ]
+}

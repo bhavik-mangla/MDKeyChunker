@@ -1,0 +1,8494 @@
+[
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "hit@1",
+  "mean": 0.273972602739726,
+  "ci": [
+   0.1780821917808219,
+   0.3835616438356164
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "hit@3",
+  "mean": 0.547945205479452,
+  "ci": [
+   0.4383561643835616,
+   0.6575342465753424
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "hit@5",
+  "mean": 0.6027397260273972,
+  "ci": [
+   0.4931506849315068,
+   0.7123287671232876
+  ],
+  "diff_vs_struct": -0.0684931506849315,
+  "diff_ci": [
+   -0.1506849315068493,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "hit@10",
+  "mean": 0.7945205479452054,
+  "ci": [
+   0.6986301369863014,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "mrr@10",
+  "mean": 0.4270982822352685,
+  "ci": [
+   0.34327027614698846,
+   0.5173298543161557
+  ],
+  "diff_vs_struct": 0.02076538377908241,
+  "diff_ci": [
+   -0.033045227223309416,
+   0.07196673189823875
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "prec@512t",
+  "mean": 0.27015663094858067,
+  "ci": [
+   0.20994514946882037,
+   0.33415175883827936
+  ],
+  "diff_vs_struct": 0.012025724355215041,
+  "diff_ci": [
+   -0.04040740216788391,
+   0.066236801714473
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "rec@512t",
+  "mean": 0.05008907241774032,
+  "ci": [
+   0.03699963049590059,
+   0.06532938954913715
+  ],
+  "diff_vs_struct": -0.004608314358183987,
+  "diff_ci": [
+   -0.01800742693985033,
+   0.007707852967228133
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "prec@1024t",
+  "mean": 0.23965160029548285,
+  "ci": [
+   0.19562209849856615,
+   0.2857842169270415
+  ],
+  "diff_vs_struct": -0.03002015180404547,
+  "diff_ci": [
+   -0.05928548285961941,
+   0.00014623550676069188
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "rec@1024t",
+  "mean": 0.09171197681177251,
+  "ci": [
+   0.07181869344224105,
+   0.11524077238527845
+  ],
+  "diff_vs_struct": -0.012396599817693298,
+  "diff_ci": [
+   -0.029118717718898963,
+   0.003274729434236362
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "prec@2048t",
+  "mean": 0.21493584554281095,
+  "ci": [
+   0.1763495971044161,
+   0.25659279692867376
+  ],
+  "diff_vs_struct": -0.0251991117797984,
+  "diff_ci": [
+   -0.04633102983023954,
+   -0.0037292686131522156
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixed512/text",
+  "metric": "rec@2048t",
+  "mean": 0.15265464442207427,
+  "ci": [
+   0.1243052644636811,
+   0.1839863106166143
+  ],
+  "diff_vs_struct": -0.030831643149724513,
+  "diff_ci": [
+   -0.05308342187919047,
+   -0.01076518329580024
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "hit@1",
+  "mean": 0.4383561643835616,
+  "ci": [
+   0.3150684931506849,
+   0.547945205479452
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.136986301369863,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "hit@3",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "hit@5",
+  "mean": 0.7945205479452054,
+  "ci": [
+   0.6986301369863014,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   -0.0136986301369863,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "hit@10",
+  "mean": 0.8767123287671232,
+  "ci": [
+   0.7945205479452054,
+   0.9452054794520548
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "mrr@10",
+  "mean": 0.5802076538377908,
+  "ci": [
+   0.4874048706240487,
+   0.6719721678625789
+  ],
+  "diff_vs_struct": -0.018226788432267882,
+  "diff_ci": [
+   -0.10100565340291368,
+   0.06349749945640357
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "prec@512t",
+  "mean": 0.40179003916695405,
+  "ci": [
+   0.33222153552237593,
+   0.47205117029208776
+  ],
+  "diff_vs_struct": -0.027955759501404696,
+  "diff_ci": [
+   -0.07257151406944122,
+   0.013359350829453203
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "rec@512t",
+  "mean": 0.0799761269157971,
+  "ci": [
+   0.06410588879138768,
+   0.09735285900907222
+  ],
+  "diff_vs_struct": -0.011888763270635684,
+  "diff_ci": [
+   -0.024805847906444394,
+   -8.870560436790485e-05
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "prec@1024t",
+  "mean": 0.34833303040668917,
+  "ci": [
+   0.28968845042262487,
+   0.40846070729299644
+  ],
+  "diff_vs_struct": -0.03379271976642997,
+  "diff_ci": [
+   -0.06859238256303668,
+   0.00103240394850811
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "rec@1024t",
+  "mean": 0.13118620513721235,
+  "ci": [
+   0.10772998340682813,
+   0.15618825420510565
+  ],
+  "diff_vs_struct": -0.015136804985748716,
+  "diff_ci": [
+   -0.03275515691753199,
+   0.002584362740278399
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "prec@2048t",
+  "mean": 0.2846495576907724,
+  "ci": [
+   0.23826690999779446,
+   0.333354228416483
+  ],
+  "diff_vs_struct": -0.0581123746539363,
+  "diff_ci": [
+   -0.08944586061092148,
+   -0.028537281903731254
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixed512/text",
+  "metric": "rec@2048t",
+  "mean": 0.19827729469221847,
+  "ci": [
+   0.1661453003032907,
+   0.23213435498976662
+  ],
+  "diff_vs_struct": -0.04957513687358648,
+  "diff_ci": [
+   -0.07553283699438759,
+   -0.02439900571294745
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "hit@1",
+  "mean": 0.3698630136986301,
+  "ci": [
+   0.2602739726027397,
+   0.4794520547945205
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1506849315068493,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "hit@3",
+  "mean": 0.6164383561643836,
+  "ci": [
+   0.5068493150684932,
+   0.7397260273972602
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "hit@5",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.8082191780821918
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "hit@10",
+  "mean": 0.7808219178082192,
+  "ci": [
+   0.684931506849315,
+   0.863013698630137
+  ],
+  "diff_vs_struct": -0.0684931506849315,
+  "diff_ci": [
+   -0.1506849315068493,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "mrr@10",
+  "mean": 0.5034790171776473,
+  "ci": [
+   0.41027397260273973,
+   0.5989345509893454
+  ],
+  "diff_vs_struct": -0.04084040008697543,
+  "diff_ci": [
+   -0.11146444879321593,
+   0.03429549902152642
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "prec@512t",
+  "mean": 0.32151697692058445,
+  "ci": [
+   0.26109103711746673,
+   0.38580424369890365
+  ],
+  "diff_vs_struct": -0.06410800180719872,
+  "diff_ci": [
+   -0.11105408704683357,
+   -0.01451658141898605
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "rec@512t",
+  "mean": 0.05934667081962054,
+  "ci": [
+   0.04694775912764414,
+   0.0714475283723376
+  ],
+  "diff_vs_struct": -0.018608867045135948,
+  "diff_ci": [
+   -0.031125929487057415,
+   -0.006577040095371401
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "prec@1024t",
+  "mean": 0.26878778886497373,
+  "ci": [
+   0.21881063227105996,
+   0.31978020885212166
+  ],
+  "diff_vs_struct": -0.06859609152507878,
+  "diff_ci": [
+   -0.1041198683161382,
+   -0.03346242041969949
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "rec@1024t",
+  "mean": 0.09957746687048924,
+  "ci": [
+   0.0805694097455944,
+   0.11776311743972562
+  ],
+  "diff_vs_struct": -0.033568802771717365,
+  "diff_ci": [
+   -0.052846001635888,
+   -0.014969375897622914
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "prec@2048t",
+  "mean": 0.23800199380943762,
+  "ci": [
+   0.19685998567794805,
+   0.28041304432291747
+  ],
+  "diff_vs_struct": -0.04518290429836586,
+  "diff_ci": [
+   -0.07050404048600065,
+   -0.01876501043629742
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixed512/text",
+  "metric": "rec@2048t",
+  "mean": 0.16962077873526687,
+  "ci": [
+   0.14201873229679798,
+   0.19889027373297427
+  ],
+  "diff_vs_struct": -0.04413557525813848,
+  "diff_ci": [
+   -0.06956962380123209,
+   -0.019191891767409236
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "hit@1",
+  "mean": 0.4520547945205479,
+  "ci": [
+   0.3424657534246575,
+   0.5753424657534246
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.1780821917808219
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "hit@3",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "hit@5",
+  "mean": 0.7397260273972602,
+  "ci": [
+   0.6301369863013698,
+   0.8356164383561644
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "hit@10",
+  "mean": 0.8356164383561644,
+  "ci": [
+   0.7397260273972602,
+   0.9178082191780822
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "mrr@10",
+  "mean": 0.5763861709067188,
+  "ci": [
+   0.48019134594477064,
+   0.6715155468580126
+  ],
+  "diff_vs_struct": 0.02129267232006958,
+  "diff_ci": [
+   -0.05222330941509024,
+   0.09575994781474234
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "prec@512t",
+  "mean": 0.3436638935293378,
+  "ci": [
+   0.28119409152914443,
+   0.40700926140431404
+  ],
+  "diff_vs_struct": -0.0588994670998793,
+  "diff_ci": [
+   -0.11001605620154238,
+   -0.006629065680428742
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "rec@512t",
+  "mean": 0.06703902925316933,
+  "ci": [
+   0.05314570816984606,
+   0.08172808538716299
+  ],
+  "diff_vs_struct": -0.013364965772995493,
+  "diff_ci": [
+   -0.02845547088485559,
+   0.0004921862016049883
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "prec@1024t",
+  "mean": 0.31084232704057174,
+  "ci": [
+   0.2585056127169312,
+   0.36624868340302164
+  ],
+  "diff_vs_struct": -0.04947778631041797,
+  "diff_ci": [
+   -0.08784464997377409,
+   -0.011642423382362283
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "rec@1024t",
+  "mean": 0.11629612208287204,
+  "ci": [
+   0.09569535798900826,
+   0.13781861935022813
+  ],
+  "diff_vs_struct": -0.023331094946810866,
+  "diff_ci": [
+   -0.045089954522983706,
+   -0.003789433322190408
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "prec@2048t",
+  "mean": 0.2723074313243661,
+  "ci": [
+   0.22702513522929413,
+   0.31919697281952114
+  ],
+  "diff_vs_struct": -0.028955677701076883,
+  "diff_ci": [
+   -0.05262475116290444,
+   -0.004471298180190641
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixed512/text",
+  "metric": "rec@2048t",
+  "mean": 0.1981431576921032,
+  "ci": [
+   0.16569418135673242,
+   0.2337922536659272
+  ],
+  "diff_vs_struct": -0.03183726598684279,
+  "diff_ci": [
+   -0.05256837362495978,
+   -0.009955453402677998
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "hit@1",
+  "mean": 0.2876712328767123,
+  "ci": [
+   0.1917808219178082,
+   0.3972602739726027
+  ],
+  "diff_vs_struct": 0.0684931506849315,
+  "diff_ci": [
+   -0.0136986301369863,
+   0.1506849315068493
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "hit@3",
+  "mean": 0.4931506849315068,
+  "ci": [
+   0.3835616438356164,
+   0.6164383561643836
+  ],
+  "diff_vs_struct": -0.0684931506849315,
+  "diff_ci": [
+   -0.1506849315068493,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "hit@5",
+  "mean": 0.6438356164383562,
+  "ci": [
+   0.5342465753424658,
+   0.7534246575342466
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "hit@10",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.9041095890410958
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0821917808219178
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "mrr@10",
+  "mean": 0.4341867797347249,
+  "ci": [
+   0.3486410089149815,
+   0.5256088280060883
+  ],
+  "diff_vs_struct": 0.027853881278538817,
+  "diff_ci": [
+   -0.02107523374646662,
+   0.07926179604261796
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "prec@512t",
+  "mean": 0.28235481769488385,
+  "ci": [
+   0.20650147696900858,
+   0.3677729999627627
+  ],
+  "diff_vs_struct": 0.024223911101518277,
+  "diff_ci": [
+   -0.021537387235155355,
+   0.07205832524556585
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "rec@512t",
+  "mean": 0.05606018571573951,
+  "ci": [
+   0.03819708775532457,
+   0.07725595785488987
+  ],
+  "diff_vs_struct": 0.0013627989398152004,
+  "diff_ci": [
+   -0.011039868263422908,
+   0.013458525120186532
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "prec@1024t",
+  "mean": 0.2914450743376139,
+  "ci": [
+   0.22856980396153675,
+   0.35872071122453064
+  ],
+  "diff_vs_struct": 0.021773322238085514,
+  "diff_ci": [
+   -0.014879550277293496,
+   0.05974506461402707
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "rec@1024t",
+  "mean": 0.11342238477557441,
+  "ci": [
+   0.08438524906605917,
+   0.14638696048599475
+  ],
+  "diff_vs_struct": 0.009313808146108606,
+  "diff_ci": [
+   -0.006023357418969542,
+   0.02561062787664492
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "prec@2048t",
+  "mean": 0.2523083087079612,
+  "ci": [
+   0.20456604074334286,
+   0.3031496535134308
+  ],
+  "diff_vs_struct": 0.01217335138535182,
+  "diff_ci": [
+   -0.013564393095270312,
+   0.03722179538925913
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "fixedtok/text",
+  "metric": "rec@2048t",
+  "mean": 0.18926875311261238,
+  "ci": [
+   0.1497440374862705,
+   0.23086812613921776
+  ],
+  "diff_vs_struct": 0.005782465540813566,
+  "diff_ci": [
+   -0.017727033524446933,
+   0.027768410930329997
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "hit@1",
+  "mean": 0.4520547945205479,
+  "ci": [
+   0.3424657534246575,
+   0.5616438356164384
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "hit@3",
+  "mean": 0.7123287671232876,
+  "ci": [
+   0.6027397260273972,
+   0.821917808219178
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "hit@5",
+  "mean": 0.7671232876712328,
+  "ci": [
+   0.6712328767123288,
+   0.863013698630137
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "hit@10",
+  "mean": 0.8767123287671232,
+  "ci": [
+   0.7945205479452054,
+   0.9452054794520548
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "mrr@10",
+  "mean": 0.5921776473146336,
+  "ci": [
+   0.5001304631441618,
+   0.6859371602522287
+  ],
+  "diff_vs_struct": -0.006256794955425093,
+  "diff_ci": [
+   -0.07122744074798869,
+   0.06141008914981518
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "prec@512t",
+  "mean": 0.4303714094888596,
+  "ci": [
+   0.34425007011942266,
+   0.5210226093022359
+  ],
+  "diff_vs_struct": 0.0006256108205008603,
+  "diff_ci": [
+   -0.05147875847036857,
+   0.05476985967455727
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "rec@512t",
+  "mean": 0.08664597992449517,
+  "ci": [
+   0.06644969287513017,
+   0.10831085966711321
+  ],
+  "diff_vs_struct": -0.005218910261937603,
+  "diff_ci": [
+   -0.020232162562723123,
+   0.010265378052531773
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "prec@1024t",
+  "mean": 0.3960632271642052,
+  "ci": [
+   0.3279045414171972,
+   0.46754459726485387
+  ],
+  "diff_vs_struct": 0.013937476991086087,
+  "diff_ci": [
+   -0.02727601866851531,
+   0.05868216635316557
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "rec@1024t",
+  "mean": 0.14554333852502932,
+  "ci": [
+   0.11872778885628389,
+   0.17475269217754086
+  ],
+  "diff_vs_struct": -0.0007796715979317287,
+  "diff_ci": [
+   -0.022354455435165253,
+   0.021802061497677123
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "prec@2048t",
+  "mean": 0.35363157679351975,
+  "ci": [
+   0.29728278594574736,
+   0.4167226028634587
+  ],
+  "diff_vs_struct": 0.01086964444881109,
+  "diff_ci": [
+   -0.0179704526920798,
+   0.03967944703811732
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "fixedtok/text",
+  "metric": "rec@2048t",
+  "mean": 0.24916748174891915,
+  "ci": [
+   0.20927204594572305,
+   0.29115188041388934
+  ],
+  "diff_vs_struct": 0.0013150501831142249,
+  "diff_ci": [
+   -0.022649296634432766,
+   0.024902346103090868
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "hit@1",
+  "mean": 0.4246575342465753,
+  "ci": [
+   0.3150684931506849,
+   0.5342465753424658
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.1232876712328767
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "hit@3",
+  "mean": 0.6438356164383562,
+  "ci": [
+   0.5342465753424658,
+   0.7534246575342466
+  ],
+  "diff_vs_struct": 0.0410958904109589,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.1506849315068493
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "hit@5",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "hit@10",
+  "mean": 0.7945205479452054,
+  "ci": [
+   0.6986301369863014,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.136986301369863,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "mrr@10",
+  "mean": 0.5517829963035443,
+  "ci": [
+   0.45414220482713635,
+   0.6454664057403784
+  ],
+  "diff_vs_struct": 0.0074635790389215055,
+  "diff_ci": [
+   -0.06796586214394433,
+   0.08318656229615135
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "prec@512t",
+  "mean": 0.41343520735767236,
+  "ci": [
+   0.3251315292483653,
+   0.4997542439657561
+  ],
+  "diff_vs_struct": 0.027810228629889217,
+  "diff_ci": [
+   -0.029525089098142703,
+   0.09063188431057466
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "rec@512t",
+  "mean": 0.0827730149454143,
+  "ci": [
+   0.06343775860067229,
+   0.10348401769050382
+  ],
+  "diff_vs_struct": 0.004817477080657801,
+  "diff_ci": [
+   -0.013134359004892076,
+   0.024342130717352473
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "prec@1024t",
+  "mean": 0.35514315935630186,
+  "ci": [
+   0.28523219345206835,
+   0.4248898988805581
+  ],
+  "diff_vs_struct": 0.01775927896624934,
+  "diff_ci": [
+   -0.025392615829082112,
+   0.059631347647208795
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "rec@1024t",
+  "mean": 0.13563072491434347,
+  "ci": [
+   0.10862906051515712,
+   0.16247588891220088
+  ],
+  "diff_vs_struct": 0.00248445527213687,
+  "diff_ci": [
+   -0.01814692597898979,
+   0.02298328071229687
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "prec@2048t",
+  "mean": 0.2838199235380451,
+  "ci": [
+   0.23298495412103223,
+   0.3370649635220239
+  ],
+  "diff_vs_struct": 0.0006350254302416014,
+  "diff_ci": [
+   -0.03077729745595928,
+   0.03472251080831501
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "fixedtok/text",
+  "metric": "rec@2048t",
+  "mean": 0.20489335636427675,
+  "ci": [
+   0.17130558236473273,
+   0.23774751877692082
+  ],
+  "diff_vs_struct": -0.00886299762912859,
+  "diff_ci": [
+   -0.03753906052810893,
+   0.01885206610104699
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "hit@1",
+  "mean": 0.4520547945205479,
+  "ci": [
+   0.3424657534246575,
+   0.5616438356164384
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.1506849315068493
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "hit@3",
+  "mean": 0.7123287671232876,
+  "ci": [
+   0.6027397260273972,
+   0.8082191780821918
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "hit@5",
+  "mean": 0.7534246575342466,
+  "ci": [
+   0.6438356164383562,
+   0.8493150684931506
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "hit@10",
+  "mean": 0.8493150684931506,
+  "ci": [
+   0.7534246575342466,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "mrr@10",
+  "mean": 0.5949554250924114,
+  "ci": [
+   0.4993476842791911,
+   0.6846814524896717
+  ],
+  "diff_vs_struct": 0.039861926505762126,
+  "diff_ci": [
+   -0.024461839530332676,
+   0.10109262883235486
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "prec@512t",
+  "mean": 0.4307927509282524,
+  "ci": [
+   0.3509672196038907,
+   0.5096922339482557
+  ],
+  "diff_vs_struct": 0.02822939029903535,
+  "diff_ci": [
+   -0.019616671250672603,
+   0.07569799934817431
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "rec@512t",
+  "mean": 0.0918287491628872,
+  "ci": [
+   0.07101484422067492,
+   0.1143010979435111
+  ],
+  "diff_vs_struct": 0.011424754136722365,
+  "diff_ci": [
+   -0.0039017709469731056,
+   0.02718531117464453
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "prec@1024t",
+  "mean": 0.3835515082965717,
+  "ci": [
+   0.31232767799002636,
+   0.45935616103827237
+  ],
+  "diff_vs_struct": 0.023231394945581976,
+  "diff_ci": [
+   -0.01394212984001355,
+   0.06193343245330176
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "rec@1024t",
+  "mean": 0.142848480249763,
+  "ci": [
+   0.11513462077329296,
+   0.1715984784328257
+  ],
+  "diff_vs_struct": 0.0032212632200800504,
+  "diff_ci": [
+   -0.016412059915860127,
+   0.0220603232030539
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "prec@2048t",
+  "mean": 0.3284937215100978,
+  "ci": [
+   0.2727294906594282,
+   0.3864872469029105
+  ],
+  "diff_vs_struct": 0.02723061248465488,
+  "diff_ci": [
+   0.0005894934768563969,
+   0.05299488755441345
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "fixedtok/text",
+  "metric": "rec@2048t",
+  "mean": 0.23778168960429238,
+  "ci": [
+   0.19748103541939427,
+   0.27785118439255024
+  ],
+  "diff_vs_struct": 0.007801265925346372,
+  "diff_ci": [
+   -0.015228641178311858,
+   0.02936017823669434
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "hit@1",
+  "mean": 0.2191780821917808,
+  "ci": [
+   0.1232876712328767,
+   0.3150684931506849
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "hit@3",
+  "mean": 0.5616438356164384,
+  "ci": [
+   0.4383561643835616,
+   0.6712328767123288
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "hit@5",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7671232876712328
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "hit@10",
+  "mean": 0.7945205479452054,
+  "ci": [
+   0.6986301369863014,
+   0.8767123287671232
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "mrr@10",
+  "mean": 0.40633289845618614,
+  "ci": [
+   0.3270711024135682,
+   0.4915688193085453
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "prec@512t",
+  "mean": 0.2581309065933656,
+  "ci": [
+   0.18315804313238446,
+   0.3379813197913302
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "rec@512t",
+  "mean": 0.05469738677592431,
+  "ci": [
+   0.03489032077947867,
+   0.07830711605154665
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "prec@1024t",
+  "mean": 0.2696717520995283,
+  "ci": [
+   0.2125463933876251,
+   0.32773120440160175
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "rec@1024t",
+  "mean": 0.10410857662946581,
+  "ci": [
+   0.07845368277844642,
+   0.13494185441436332
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "prec@2048t",
+  "mean": 0.24013495732260934,
+  "ci": [
+   0.1980433477460959,
+   0.28613433952716816
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/text",
+  "metric": "rec@2048t",
+  "mean": 0.1834862875717988,
+  "ci": [
+   0.1430317889321112,
+   0.22909290499264964
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "hit@1",
+  "mean": 0.4520547945205479,
+  "ci": [
+   0.3424657534246575,
+   0.5616438356164384
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "hit@3",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.8082191780821918
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "hit@5",
+  "mean": 0.7397260273972602,
+  "ci": [
+   0.6301369863013698,
+   0.8356164383561644
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "hit@10",
+  "mean": 0.9041095890410958,
+  "ci": [
+   0.8356164383561644,
+   0.958904109589041
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "mrr@10",
+  "mean": 0.5984344422700587,
+  "ci": [
+   0.5054577081974342,
+   0.6902533159382475
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "prec@512t",
+  "mean": 0.42974579866835877,
+  "ci": [
+   0.3491212562128785,
+   0.5096411924169036
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "rec@512t",
+  "mean": 0.09186489018643278,
+  "ci": [
+   0.07216665852462478,
+   0.11366363496193278
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "prec@1024t",
+  "mean": 0.3821257501731191,
+  "ci": [
+   0.3083685469366353,
+   0.4567892438598822
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "rec@1024t",
+  "mean": 0.14632301012296106,
+  "ci": [
+   0.11675276014733962,
+   0.17771978050242593
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "prec@2048t",
+  "mean": 0.3427619323447087,
+  "ci": [
+   0.2891206719595638,
+   0.4023089060061835
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/text",
+  "metric": "rec@2048t",
+  "mean": 0.24785243156580497,
+  "ci": [
+   0.20894306679174715,
+   0.2885886135202772
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "hit@1",
+  "mean": 0.410958904109589,
+  "ci": [
+   0.3013698630136986,
+   0.5205479452054794
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "hit@3",
+  "mean": 0.6027397260273972,
+  "ci": [
+   0.4931506849315068,
+   0.7123287671232876
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "hit@5",
+  "mean": 0.726027397260274,
+  "ci": [
+   0.6164383561643836,
+   0.821917808219178
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "hit@10",
+  "mean": 0.8493150684931506,
+  "ci": [
+   0.7671232876712328,
+   0.9178082191780822
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "mrr@10",
+  "mean": 0.5443194172646227,
+  "ci": [
+   0.45160904544466185,
+   0.6352902804957599
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "prec@512t",
+  "mean": 0.3856249787277831,
+  "ci": [
+   0.3018422965986266,
+   0.4717043204494047
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "rec@512t",
+  "mean": 0.0779555378647565,
+  "ci": [
+   0.05931364810569222,
+   0.0970641421510269
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "prec@1024t",
+  "mean": 0.3373838803900525,
+  "ci": [
+   0.2749367178187257,
+   0.4037718005550001
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "rec@1024t",
+  "mean": 0.1331462696422066,
+  "ci": [
+   0.10525611229363242,
+   0.16250771993036825
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "prec@2048t",
+  "mean": 0.2831848981078035,
+  "ci": [
+   0.23472840349158963,
+   0.3303261555287671
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/text",
+  "metric": "rec@2048t",
+  "mean": 0.21375635399340534,
+  "ci": [
+   0.17522189349990386,
+   0.25431367212787526
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "hit@1",
+  "mean": 0.3972602739726027,
+  "ci": [
+   0.2876712328767123,
+   0.5068493150684932
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "hit@3",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "hit@5",
+  "mean": 0.7671232876712328,
+  "ci": [
+   0.6712328767123288,
+   0.863013698630137
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "hit@10",
+  "mean": 0.8493150684931506,
+  "ci": [
+   0.7671232876712328,
+   0.9178082191780822
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "mrr@10",
+  "mean": 0.5550934985866492,
+  "ci": [
+   0.46611219830397915,
+   0.64337899543379
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "prec@512t",
+  "mean": 0.40256336062921705,
+  "ci": [
+   0.32048763618458365,
+   0.4827719695172727
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "rec@512t",
+  "mean": 0.08040399502616483,
+  "ci": [
+   0.061808500476213626,
+   0.10207582745539644
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "prec@1024t",
+  "mean": 0.3603201133509897,
+  "ci": [
+   0.2955083537565501,
+   0.4283348484721382
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "rec@1024t",
+  "mean": 0.13962721702968292,
+  "ci": [
+   0.11258818112548874,
+   0.17118887208505346
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "prec@2048t",
+  "mean": 0.30126310902544295,
+  "ci": [
+   0.25206370814993856,
+   0.3547246559833394
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/text",
+  "metric": "rec@2048t",
+  "mean": 0.229980423678946,
+  "ci": [
+   0.1897458331976591,
+   0.2722970191673991
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "hit@1",
+  "mean": 0.2328767123287671,
+  "ci": [
+   0.136986301369863,
+   0.3424657534246575
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   0.0,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "hit@3",
+  "mean": 0.5616438356164384,
+  "ci": [
+   0.4520547945205479,
+   0.6712328767123288
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "hit@5",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "hit@10",
+  "mean": 0.7808219178082192,
+  "ci": [
+   0.684931506849315,
+   0.8767123287671232
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "mrr@10",
+  "mean": 0.41883561643835615,
+  "ci": [
+   0.3401826484018265,
+   0.504337899543379
+  ],
+  "diff_vs_struct": 0.012502717982170038,
+  "diff_ci": [
+   -0.0016362252663622526,
+   0.03162644053055012
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "prec@512t",
+  "mean": 0.2829424865143371,
+  "ci": [
+   0.203779291928888,
+   0.36293342997779315
+  ],
+  "diff_vs_struct": 0.024811579920971515,
+  "diff_ci": [
+   0.010228515253001376,
+   0.04473721521164515
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "rec@512t",
+  "mean": 0.06089397806699816,
+  "ci": [
+   0.041004100103164735,
+   0.08470790279338355
+  ],
+  "diff_vs_struct": 0.006196591291073841,
+  "diff_ci": [
+   0.0019733665359708366,
+   0.012492842428015261
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "prec@1024t",
+  "mean": 0.2743164594971831,
+  "ci": [
+   0.2191732229243309,
+   0.33104456268357996
+  ],
+  "diff_vs_struct": 0.004644707397654747,
+  "diff_ci": [
+   -0.013207787784681912,
+   0.024123337214043708
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "rec@1024t",
+  "mean": 0.10822589738345634,
+  "ci": [
+   0.08171443642823822,
+   0.13865923166274666
+  ],
+  "diff_vs_struct": 0.0041173207539905235,
+  "diff_ci": [
+   -0.0030192537810381746,
+   0.012673597121881621
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "prec@2048t",
+  "mean": 0.24289620509493176,
+  "ci": [
+   0.19954454404427235,
+   0.28962087059508457
+  ],
+  "diff_vs_struct": 0.002761247772322424,
+  "diff_ci": [
+   -0.00744210924013405,
+   0.013735185669536234
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "struct/tc",
+  "metric": "rec@2048t",
+  "mean": 0.18389237506373124,
+  "ci": [
+   0.14369825189788074,
+   0.22875447893934545
+  ],
+  "diff_vs_struct": 0.00040608749193247047,
+  "diff_ci": [
+   -0.006733202277634173,
+   0.007551233023433033
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "hit@1",
+  "mean": 0.410958904109589,
+  "ci": [
+   0.3013698630136986,
+   0.5205479452054794
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "hit@3",
+  "mean": 0.6438356164383562,
+  "ci": [
+   0.5342465753424658,
+   0.7534246575342466
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "hit@5",
+  "mean": 0.7397260273972602,
+  "ci": [
+   0.6301369863013698,
+   0.8356164383561644
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "hit@10",
+  "mean": 0.8767123287671232,
+  "ci": [
+   0.7945205479452054,
+   0.9452054794520548
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "mrr@10",
+  "mean": 0.556169819525984,
+  "ci": [
+   0.46738964992389653,
+   0.6497445096760165
+  ],
+  "diff_vs_struct": -0.0422646227440748,
+  "diff_ci": [
+   -0.08605675146771037,
+   -0.003989997825614263
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "prec@512t",
+  "mean": 0.4305205045242401,
+  "ci": [
+   0.34096812718984815,
+   0.5218566391185065
+  ],
+  "diff_vs_struct": 0.0007747058558813524,
+  "diff_ci": [
+   -0.03367483809217737,
+   0.037309602438622705
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "rec@512t",
+  "mean": 0.08866396846743593,
+  "ci": [
+   0.06705360076756485,
+   0.1115682421174043
+  ],
+  "diff_vs_struct": -0.0032009217189968428,
+  "diff_ci": [
+   -0.011358757560474398,
+   0.004926205088596236
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "prec@1024t",
+  "mean": 0.385135127221277,
+  "ci": [
+   0.3088974616356007,
+   0.4648683673522914
+  ],
+  "diff_vs_struct": 0.0030093770481578437,
+  "diff_ci": [
+   -0.028913669713125922,
+   0.036257660942925055
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "rec@1024t",
+  "mean": 0.14710692755091714,
+  "ci": [
+   0.11620611479312418,
+   0.18111268857589446
+  ],
+  "diff_vs_struct": 0.0007839174279560616,
+  "diff_ci": [
+   -0.014000851226532844,
+   0.014693659408202178
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "prec@2048t",
+  "mean": 0.3502091634348182,
+  "ci": [
+   0.2894409312517275,
+   0.416026704396907
+  ],
+  "diff_vs_struct": 0.007447231090109549,
+  "diff_ci": [
+   -0.015693268763197907,
+   0.03127500654547982
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "struct/tc",
+  "metric": "rec@2048t",
+  "mean": 0.25044727922430604,
+  "ci": [
+   0.20468461513191796,
+   0.29803992852764144
+  ],
+  "diff_vs_struct": 0.002594847658501086,
+  "diff_ci": [
+   -0.01509478407875527,
+   0.020125761745971867
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "hit@1",
+  "mean": 0.3698630136986301,
+  "ci": [
+   0.2602739726027397,
+   0.4794520547945205
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "hit@3",
+  "mean": 0.5616438356164384,
+  "ci": [
+   0.4520547945205479,
+   0.6712328767123288
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "hit@5",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7671232876712328
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "hit@10",
+  "mean": 0.821917808219178,
+  "ci": [
+   0.726027397260274,
+   0.9041095890410958
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "mrr@10",
+  "mean": 0.5057784300934985,
+  "ci": [
+   0.4100619699934768,
+   0.5938899760817569
+  ],
+  "diff_vs_struct": -0.03854098717112416,
+  "diff_ci": [
+   -0.08764948901935204,
+   0.010225048923679059
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "prec@512t",
+  "mean": 0.3533411405036492,
+  "ci": [
+   0.27071739479914186,
+   0.43870831427809975
+  ],
+  "diff_vs_struct": -0.032283838224134026,
+  "diff_ci": [
+   -0.06682066445919471,
+   0.001232790477012572
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "rec@512t",
+  "mean": 0.07149518313338216,
+  "ci": [
+   0.05302659611907404,
+   0.09134560251429953
+  ],
+  "diff_vs_struct": -0.006460354731374342,
+  "diff_ci": [
+   -0.013754978813414344,
+   0.0010603448773658937
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "prec@1024t",
+  "mean": 0.31984452966623395,
+  "ci": [
+   0.2558463159578855,
+   0.3863355621326422
+  ],
+  "diff_vs_struct": -0.01753935072381861,
+  "diff_ci": [
+   -0.047806605330127566,
+   0.013088562822826845
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "rec@1024t",
+  "mean": 0.11922180735548545,
+  "ci": [
+   0.09422252540274935,
+   0.14825853696496533
+  ],
+  "diff_vs_struct": -0.013924462286721154,
+  "diff_ci": [
+   -0.028257051880208446,
+   -0.0009294709144367445
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "prec@2048t",
+  "mean": 0.28368729519994257,
+  "ci": [
+   0.23136972380402082,
+   0.3380848445846743
+  ],
+  "diff_vs_struct": 0.0005023970921390499,
+  "diff_ci": [
+   -0.023798637754570733,
+   0.024713273129103604
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "struct/tc",
+  "metric": "rec@2048t",
+  "mean": 0.204381257545824,
+  "ci": [
+   0.16421388673828685,
+   0.2465672865888051
+  ],
+  "diff_vs_struct": -0.00937509644758133,
+  "diff_ci": [
+   -0.02868951744748255,
+   0.009305361163022685
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "hit@1",
+  "mean": 0.410958904109589,
+  "ci": [
+   0.3013698630136986,
+   0.5205479452054794
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "hit@3",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "hit@5",
+  "mean": 0.7671232876712328,
+  "ci": [
+   0.6575342465753424,
+   0.863013698630137
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   0.0,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "mrr@10",
+  "mean": 0.5587845183735595,
+  "ci": [
+   0.47099913024570556,
+   0.6461730811045879
+  ],
+  "diff_vs_struct": 0.003691019786910197,
+  "diff_ci": [
+   -0.02857686453576865,
+   0.036910197869101984
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "prec@512t",
+  "mean": 0.38074488741399987,
+  "ci": [
+   0.2981530137755354,
+   0.46379297938820563
+  ],
+  "diff_vs_struct": -0.021818473215217165,
+  "diff_ci": [
+   -0.06001806401582147,
+   0.012274068251673832
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "rec@512t",
+  "mean": 0.07668110927969791,
+  "ci": [
+   0.05809889230644064,
+   0.09756977572196734
+  ],
+  "diff_vs_struct": -0.0037228857464669104,
+  "diff_ci": [
+   -0.012239908891618717,
+   0.004334021853148365
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "prec@1024t",
+  "mean": 0.34529309581714346,
+  "ci": [
+   0.2807056247065528,
+   0.4154715809777464
+  ],
+  "diff_vs_struct": -0.015027017533846231,
+  "diff_ci": [
+   -0.041515731891430464,
+   0.010434829742694008
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "rec@1024t",
+  "mean": 0.13045995896031018,
+  "ci": [
+   0.10408878193729725,
+   0.16025570724683227
+  ],
+  "diff_vs_struct": -0.009167258069372729,
+  "diff_ci": [
+   -0.023892150365454404,
+   0.004516157652079256
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "prec@2048t",
+  "mean": 0.3129139862205025,
+  "ci": [
+   0.26107509708831433,
+   0.37011886033270347
+  ],
+  "diff_vs_struct": 0.011650877195059514,
+  "diff_ci": [
+   -0.006494992679926298,
+   0.03207079871190124
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "struct/tc",
+  "metric": "rec@2048t",
+  "mean": 0.2311090738932268,
+  "ci": [
+   0.18877549204112903,
+   0.276157559632879
+  ],
+  "diff_vs_struct": 0.0011286502142808042,
+  "diff_ci": [
+   -0.015419622746237788,
+   0.01806004988687736
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "hit@1",
+  "mean": 0.2191780821917808,
+  "ci": [
+   0.1232876712328767,
+   0.3150684931506849
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "hit@3",
+  "mean": 0.547945205479452,
+  "ci": [
+   0.4383561643835616,
+   0.6575342465753424
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "hit@5",
+  "mean": 0.726027397260274,
+  "ci": [
+   0.6301369863013698,
+   0.821917808219178
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "hit@10",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "mrr@10",
+  "mean": 0.41684605348988907,
+  "ci": [
+   0.3388454011741683,
+   0.5008480104370515
+  ],
+  "diff_vs_struct": 0.010513155033702981,
+  "diff_ci": [
+   -0.025989345509893454,
+   0.04635790389215047
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "prec@512t",
+  "mean": 0.2645734492332422,
+  "ci": [
+   0.19377369931298327,
+   0.33855925691272787
+  ],
+  "diff_vs_struct": 0.006442542639876607,
+  "diff_ci": [
+   -0.0230324768475796,
+   0.03718616787120965
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "rec@512t",
+  "mean": 0.05770781052315617,
+  "ci": [
+   0.04000489531155481,
+   0.07783812253200365
+  ],
+  "diff_vs_struct": 0.003010423747231857,
+  "diff_ci": [
+   -0.00765630143766189,
+   0.014648162385184745
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "prec@1024t",
+  "mean": 0.27862995978734695,
+  "ci": [
+   0.22009088273280206,
+   0.33727704583539314
+  ],
+  "diff_vs_struct": 0.008958207687818609,
+  "diff_ci": [
+   -0.01426987448663384,
+   0.03208904334842765
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "rec@1024t",
+  "mean": 0.10818124434403377,
+  "ci": [
+   0.08167709331404249,
+   0.13804480173277764
+  ],
+  "diff_vs_struct": 0.0040726677145679555,
+  "diff_ci": [
+   -0.006077831973741313,
+   0.014285886387254003
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "prec@2048t",
+  "mean": 0.2462683416898088,
+  "ci": [
+   0.2031432721524839,
+   0.29344415882211017
+  ],
+  "diff_vs_struct": 0.006133384367199451,
+  "diff_ci": [
+   -0.009379638933014196,
+   0.022602923236149347
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "cr/cr",
+  "metric": "rec@2048t",
+  "mean": 0.18304430988987613,
+  "ci": [
+   0.14624467629291246,
+   0.22491740212912015
+  ],
+  "diff_vs_struct": -0.00044197768192264154,
+  "diff_ci": [
+   -0.013613509563546023,
+   0.012125216225404883
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "hit@1",
+  "mean": 0.4246575342465753,
+  "ci": [
+   0.3150684931506849,
+   0.5342465753424658
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "hit@3",
+  "mean": 0.6712328767123288,
+  "ci": [
+   0.5616438356164384,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "hit@5",
+  "mean": 0.7397260273972602,
+  "ci": [
+   0.6438356164383562,
+   0.8356164383561644
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "hit@10",
+  "mean": 0.8493150684931506,
+  "ci": [
+   0.7671232876712328,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "mrr@10",
+  "mean": 0.5577353772559253,
+  "ci": [
+   0.4661448140900195,
+   0.656028484453142
+  ],
+  "diff_vs_struct": -0.040699065014133506,
+  "diff_ci": [
+   -0.0950804522722331,
+   0.01271472059143292
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "prec@512t",
+  "mean": 0.4214846294962748,
+  "ci": [
+   0.3317912642439628,
+   0.5136237956352194
+  ],
+  "diff_vs_struct": -0.008261169172083945,
+  "diff_ci": [
+   -0.051047169526854244,
+   0.03573903606275396
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "rec@512t",
+  "mean": 0.08763984081033936,
+  "ci": [
+   0.06653558517524326,
+   0.11012304140933146
+  ],
+  "diff_vs_struct": -0.00422504937609342,
+  "diff_ci": [
+   -0.01446539672694877,
+   0.006145230995576458
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "prec@1024t",
+  "mean": 0.36296380273040973,
+  "ci": [
+   0.29484171921627955,
+   0.43327661252830574
+  ],
+  "diff_vs_struct": -0.019161947442709385,
+  "diff_ci": [
+   -0.04828514043671295,
+   0.008907225954972496
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "rec@1024t",
+  "mean": 0.14019459257137634,
+  "ci": [
+   0.11079863412639157,
+   0.17164262298919555
+  ],
+  "diff_vs_struct": -0.006128417551584723,
+  "diff_ci": [
+   -0.016868683174233227,
+   0.004562114414608503
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "prec@2048t",
+  "mean": 0.32501940946035374,
+  "ci": [
+   0.26888588959288023,
+   0.38636717275204724
+  ],
+  "diff_vs_struct": -0.017742522884354968,
+  "diff_ci": [
+   -0.04502675448513292,
+   0.008112383180521463
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "cr/cr",
+  "metric": "rec@2048t",
+  "mean": 0.22379033968962847,
+  "ci": [
+   0.18453968707938806,
+   0.26488482787667716
+  ],
+  "diff_vs_struct": -0.02406209187617647,
+  "diff_ci": [
+   -0.04822380769323369,
+   -0.0033404236858733272
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "hit@1",
+  "mean": 0.3835616438356164,
+  "ci": [
+   0.273972602739726,
+   0.4931506849315068
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "hit@3",
+  "mean": 0.5616438356164384,
+  "ci": [
+   0.4520547945205479,
+   0.6712328767123288
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.136986301369863,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "hit@5",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "hit@10",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "mrr@10",
+  "mean": 0.5119591215481627,
+  "ci": [
+   0.4149706457925636,
+   0.6048053924766253
+  ],
+  "diff_vs_struct": -0.032360295716460104,
+  "diff_ci": [
+   -0.09631985214176995,
+   0.029805392476625357
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "prec@512t",
+  "mean": 0.34751635192896246,
+  "ci": [
+   0.2699542121943326,
+   0.42457898303030855
+  ],
+  "diff_vs_struct": -0.03810862679882065,
+  "diff_ci": [
+   -0.09447010248366194,
+   0.020903150192936863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "rec@512t",
+  "mean": 0.07227722576365059,
+  "ci": [
+   0.052164290086020665,
+   0.09566313803470583
+  ],
+  "diff_vs_struct": -0.0056783121011059045,
+  "diff_ci": [
+   -0.021810092255244776,
+   0.011326322411404313
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "prec@1024t",
+  "mean": 0.3386149226356486,
+  "ci": [
+   0.2737578960159125,
+   0.4046169554890068
+  ],
+  "diff_vs_struct": 0.0012310422455960564,
+  "diff_ci": [
+   -0.03488465282841008,
+   0.038784752700096084
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "rec@1024t",
+  "mean": 0.12778774507478322,
+  "ci": [
+   0.09976795326865019,
+   0.15680779303062847
+  ],
+  "diff_vs_struct": -0.005358524567423408,
+  "diff_ci": [
+   -0.024677774358782312,
+   0.013884130658741039
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "prec@2048t",
+  "mean": 0.27810909572844245,
+  "ci": [
+   0.22546729248708813,
+   0.33381739315094944
+  ],
+  "diff_vs_struct": -0.005075802379361059,
+  "diff_ci": [
+   -0.03456931720386425,
+   0.026380316748153883
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "cr/cr",
+  "metric": "rec@2048t",
+  "mean": 0.1942931592442659,
+  "ci": [
+   0.1592573352538236,
+   0.23001724827877845
+  ],
+  "diff_vs_struct": -0.019463194749139438,
+  "diff_ci": [
+   -0.046248990497766734,
+   0.00685033988207709
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "hit@1",
+  "mean": 0.4246575342465753,
+  "ci": [
+   0.3150684931506849,
+   0.5342465753424658
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "hit@3",
+  "mean": 0.726027397260274,
+  "ci": [
+   0.6164383561643836,
+   0.821917808219178
+  ],
+  "diff_vs_struct": 0.0410958904109589,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.1232876712328767
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "hit@5",
+  "mean": 0.7808219178082192,
+  "ci": [
+   0.684931506849315,
+   0.8767123287671232
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "mrr@10",
+  "mean": 0.5803979125896934,
+  "ci": [
+   0.4919439008480105,
+   0.6683137638617092
+  ],
+  "diff_vs_struct": 0.025304414003044142,
+  "diff_ci": [
+   -0.01752011306805827,
+   0.07308110458795392
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "prec@512t",
+  "mean": 0.40538961800519324,
+  "ci": [
+   0.3211265402358905,
+   0.49175447049216814
+  ],
+  "diff_vs_struct": 0.002826257375976221,
+  "diff_ci": [
+   -0.05219909015922038,
+   0.05796339311689172
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "rec@512t",
+  "mean": 0.08353861149311691,
+  "ci": [
+   0.0629315896387709,
+   0.10637664759301799
+  ],
+  "diff_vs_struct": 0.003134616466952072,
+  "diff_ci": [
+   -0.01658762919103884,
+   0.022982857398122176
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "prec@1024t",
+  "mean": 0.35548262084248133,
+  "ci": [
+   0.29078322251519934,
+   0.4211711986410011
+  ],
+  "diff_vs_struct": -0.00483749250850839,
+  "diff_ci": [
+   -0.03532246848708772,
+   0.024964475169638
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "rec@1024t",
+  "mean": 0.1418574637224452,
+  "ci": [
+   0.11204776759664034,
+   0.17509306954704232
+  ],
+  "diff_vs_struct": 0.002230246692762291,
+  "diff_ci": [
+   -0.015849771733509863,
+   0.021539081240843347
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "prec@2048t",
+  "mean": 0.3001863531187766,
+  "ci": [
+   0.2503699325210117,
+   0.35343640896245
+  ],
+  "diff_vs_struct": -0.0010767559066663078,
+  "diff_ci": [
+   -0.022730684919647914,
+   0.020576656821866157
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "cr/cr",
+  "metric": "rec@2048t",
+  "mean": 0.22586181648674744,
+  "ci": [
+   0.18723491907046472,
+   0.26607487555418013
+  ],
+  "diff_vs_struct": -0.004118607192198565,
+  "diff_ci": [
+   -0.018509234801749118,
+   0.010353539239921791
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3013698630136986,
+  "ci": [
+   0.2054794520547945,
+   0.410958904109589
+  ],
+  "diff_vs_struct": 0.0821917808219178,
+  "diff_ci": [
+   0.0,
+   0.1643835616438356
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.5205479452054794,
+  "ci": [
+   0.410958904109589,
+   0.6301369863013698
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.1095890410958904,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0547945205479452,
+   0.0821917808219178
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.4501630789302022,
+  "ci": [
+   0.36449228093063707,
+   0.5439986953685584
+  ],
+  "diff_vs_struct": 0.043830180474016094,
+  "diff_ci": [
+   -0.005713198521417701,
+   0.0984996738421396
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.28986428596985536,
+  "ci": [
+   0.2131263205593243,
+   0.3724226289349453
+  ],
+  "diff_vs_struct": 0.03173337937648978,
+  "diff_ci": [
+   -0.00956512854746036,
+   0.0772369833191824
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.06282920152494384,
+  "ci": [
+   0.0426959062798422,
+   0.08599925205742029
+  ],
+  "diff_vs_struct": 0.008131814749019525,
+  "diff_ci": [
+   -0.0019063990923858759,
+   0.019645396032287557
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.27368852826196105,
+  "ci": [
+   0.21430277767027328,
+   0.3344272120458611
+  ],
+  "diff_vs_struct": 0.004016776162432734,
+  "diff_ci": [
+   -0.02404653577773443,
+   0.03159025675394278
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.10641137939753313,
+  "ci": [
+   0.07994787193644541,
+   0.13709422165957816
+  ],
+  "diff_vs_struct": 0.0023028027680673164,
+  "diff_ci": [
+   -0.010248825154315633,
+   0.015426288244797352
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.25504840878579965,
+  "ci": [
+   0.21060183903811355,
+   0.30166874054283
+  ],
+  "diff_vs_struct": 0.014913451463190269,
+  "diff_ci": [
+   -0.0019490069768704145,
+   0.0320442675740526
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.1848506063680842,
+  "ci": [
+   0.14943223817011228,
+   0.22318713796810258
+  ],
+  "diff_vs_struct": 0.001364318796285411,
+  "diff_ci": [
+   -0.016744894552341617,
+   0.017877357642219007
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3972602739726027,
+  "ci": [
+   0.2876712328767123,
+   0.5068493150684932
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1643835616438356,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.8082191780821918
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0684931506849315,
+  "diff_ci": [
+   0.0136986301369863,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.8767123287671232,
+  "ci": [
+   0.7945205479452054,
+   0.9452054794520548
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.5710697977821265,
+  "ci": [
+   0.48675799086757987,
+   0.6591650358773646
+  ],
+  "diff_vs_struct": -0.02736464448793216,
+  "diff_ci": [
+   -0.09585779517286366,
+   0.04496086105675147
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.43203514885939553,
+  "ci": [
+   0.35395569997741444,
+   0.5148347912630133
+  ],
+  "diff_vs_struct": 0.002289350191036782,
+  "diff_ci": [
+   -0.056688221649348336,
+   0.06295091407921115
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.08552611113767908,
+  "ci": [
+   0.06738652117876044,
+   0.10512532925237357
+  ],
+  "diff_vs_struct": -0.006338779048753693,
+  "diff_ci": [
+   -0.02496447550090065,
+   0.01050036804397125
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.43217940051873543,
+  "ci": [
+   0.3666717825967614,
+   0.5049487559197102
+  ],
+  "diff_vs_struct": 0.050053650345616325,
+  "diff_ci": [
+   0.008913514833351966,
+   0.09117748350942434
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.16781392287776933,
+  "ci": [
+   0.1387209186075859,
+   0.1987670771407378
+  ],
+  "diff_vs_struct": 0.02149091275480825,
+  "diff_ci": [
+   0.0036304851615074148,
+   0.04127862842891242
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.35598251389310215,
+  "ci": [
+   0.2989426963511611,
+   0.41798375682061945
+  ],
+  "diff_vs_struct": 0.013220581548393435,
+  "diff_ci": [
+   -0.014817110721284006,
+   0.04089018361161107
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.2539729390551221,
+  "ci": [
+   0.21233242390389118,
+   0.2969415136689039
+  ],
+  "diff_vs_struct": 0.006120507489317138,
+  "diff_ci": [
+   -0.01638455585149576,
+   0.027711129903585523
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3972602739726027,
+  "ci": [
+   0.2876712328767123,
+   0.5068493150684932
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.1232876712328767,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.6301369863013698,
+  "ci": [
+   0.5205479452054794,
+   0.7397260273972602
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.1232876712328767
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.7534246575342466,
+  "ci": [
+   0.6575342465753424,
+   0.8493150684931506
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0547945205479452,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0547945205479452,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.5422265709936943,
+  "ci": [
+   0.44955425092411394,
+   0.6310067405957817
+  ],
+  "diff_vs_struct": -0.0020928462709284648,
+  "diff_ci": [
+   -0.07565775168514896,
+   0.06839530332681018
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.3907372020152503,
+  "ci": [
+   0.3093644472280168,
+   0.4698355218750034
+  ],
+  "diff_vs_struct": 0.005112223287467127,
+  "diff_ci": [
+   -0.05941062317261904,
+   0.07001017897365346
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.07909823518886304,
+  "ci": [
+   0.06030913767708099,
+   0.09809633461016805
+  ],
+  "diff_vs_struct": 0.0011426973241065509,
+  "diff_ci": [
+   -0.01605067453965915,
+   0.017848992094716177
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.33231631025230374,
+  "ci": [
+   0.2673314415816227,
+   0.40147117597865856
+  ],
+  "diff_vs_struct": -0.0050675701377487815,
+  "diff_ci": [
+   -0.05119906696842649,
+   0.04081517314571033
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.12368609557743236,
+  "ci": [
+   0.09835541493834142,
+   0.1491143893942031
+  ],
+  "diff_vs_struct": -0.009460174064774248,
+  "diff_ci": [
+   -0.030864361902052977,
+   0.0102396989331425
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.28811861162803926,
+  "ci": [
+   0.2342079971995467,
+   0.34292571074439043
+  ],
+  "diff_vs_struct": 0.004933713520235779,
+  "diff_ci": [
+   -0.026437394273579044,
+   0.03636407675009436
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.20736546121080016,
+  "ci": [
+   0.16863264804723252,
+   0.24749658437864375
+  ],
+  "diff_vs_struct": -0.006390892782605202,
+  "diff_ci": [
+   -0.033652520479906974,
+   0.02106675828055499
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.4246575342465753,
+  "ci": [
+   0.3150684931506849,
+   0.5342465753424658
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0547945205479452,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.6027397260273972,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.821917808219178,
+  "ci": [
+   0.726027397260274,
+   0.9041095890410958
+  ],
+  "diff_vs_struct": 0.0547945205479452,
+  "diff_ci": [
+   0.0,
+   0.1232876712328767
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.9178082191780822,
+  "ci": [
+   0.8493150684931506,
+   0.9726027397260274
+  ],
+  "diff_vs_struct": 0.0684931506849315,
+  "diff_ci": [
+   0.0136986301369863,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.586328549684714,
+  "ci": [
+   0.5007936507936508,
+   0.6710534898891063
+  ],
+  "diff_vs_struct": 0.031235051098064796,
+  "diff_ci": [
+   -0.019455316373124594,
+   0.07967492933246358
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.4074604829410762,
+  "ci": [
+   0.32704550706973123,
+   0.4882448005339826
+  ],
+  "diff_vs_struct": 0.004897122311859106,
+  "diff_ci": [
+   -0.05582096783406327,
+   0.06190446942512084
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.08432770237497894,
+  "ci": [
+   0.06325700143948501,
+   0.10819676132120534
+  ],
+  "diff_vs_struct": 0.003923707348814109,
+  "diff_ci": [
+   -0.010945690801721447,
+   0.01858315235986196
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.35380903472880865,
+  "ci": [
+   0.29325911353942025,
+   0.4157371348211496
+  ],
+  "diff_vs_struct": -0.006511078622181061,
+  "diff_ci": [
+   -0.04746163711873138,
+   0.03528598438911712
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.13999339447617853,
+  "ci": [
+   0.11105805850990086,
+   0.16974323357007526
+  ],
+  "diff_vs_struct": 0.00036617744649562625,
+  "diff_ci": [
+   -0.023187827003053715,
+   0.02498417230601298
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.3178193331001383,
+  "ci": [
+   0.2698683852221434,
+   0.3724242574475508
+  ],
+  "diff_vs_struct": 0.0165562240746954,
+  "diff_ci": [
+   -0.008628831793938408,
+   0.0433056213420895
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.2339023295968132,
+  "ci": [
+   0.19635888353273362,
+   0.2728864680613544
+  ],
+  "diff_vs_struct": 0.003921905917867192,
+  "diff_ci": [
+   -0.01915602392150044,
+   0.0279047956625335
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "hit@1",
+  "mean": 0.2054794520547945,
+  "ci": [
+   0.1095890410958904,
+   0.3013698630136986
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "hit@3",
+  "mean": 0.5068493150684932,
+  "ci": [
+   0.3972602739726027,
+   0.6164383561643836
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1095890410958904,
+   -0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "hit@5",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "hit@10",
+  "mean": 0.7808219178082192,
+  "ci": [
+   0.684931506849315,
+   0.8767123287671232
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "mrr@10",
+  "mean": 0.39204718417047185,
+  "ci": [
+   0.31229071537290715,
+   0.47549467275494667
+  ],
+  "diff_vs_struct": -0.014285714285714287,
+  "diff_ci": [
+   -0.03643183300717548,
+   0.001011089367253752
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "prec@512t",
+  "mean": 0.26132066544093163,
+  "ci": [
+   0.1807355625524787,
+   0.3441654158991498
+  ],
+  "diff_vs_struct": 0.003189758847566027,
+  "diff_ci": [
+   -0.016763421182573894,
+   0.024359769026024748
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "rec@512t",
+  "mean": 0.05540205715620481,
+  "ci": [
+   0.03541561344886647,
+   0.07853759944204855
+  ],
+  "diff_vs_struct": 0.0007046703802804944,
+  "diff_ci": [
+   -0.0032061995481300074,
+   0.005193861184141381
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "prec@1024t",
+  "mean": 0.26231925102822395,
+  "ci": [
+   0.20394273927840512,
+   0.32562921960232527
+  ],
+  "diff_vs_struct": -0.007352501071304379,
+  "diff_ci": [
+   -0.028199577096928927,
+   0.011122912335350132
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "rec@1024t",
+  "mean": 0.10063786891179825,
+  "ci": [
+   0.07432532697455814,
+   0.13221351269473375
+  ],
+  "diff_vs_struct": -0.0034707077176675547,
+  "diff_ci": [
+   -0.013150004945393905,
+   0.004777333298466345
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "prec@2048t",
+  "mean": 0.2411186958426356,
+  "ci": [
+   0.19637995791494683,
+   0.28775180183806975
+  ],
+  "diff_vs_struct": 0.0009837385200262378,
+  "diff_ci": [
+   -0.010256514064012515,
+   0.012419058805183418
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/text",
+  "metric": "rec@2048t",
+  "mean": 0.18471271728335603,
+  "ci": [
+   0.14436130896289878,
+   0.23133230974350666
+  ],
+  "diff_vs_struct": 0.0012264297115572459,
+  "diff_ci": [
+   -0.0070121515647203194,
+   0.009714576162976742
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "hit@1",
+  "mean": 0.410958904109589,
+  "ci": [
+   0.3013698630136986,
+   0.5205479452054794
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "hit@3",
+  "mean": 0.7123287671232876,
+  "ci": [
+   0.6027397260273972,
+   0.821917808219178
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   0.0,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "hit@5",
+  "mean": 0.7534246575342466,
+  "ci": [
+   0.6438356164383562,
+   0.8493150684931506
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "hit@10",
+  "mean": 0.9041095890410958,
+  "ci": [
+   0.8356164383561644,
+   0.958904109589041
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "mrr@10",
+  "mean": 0.5776201348119155,
+  "ci": [
+   0.4892041748206132,
+   0.6645140247879974
+  ],
+  "diff_vs_struct": -0.020814307458143076,
+  "diff_ci": [
+   -0.05273972602739726,
+   0.009665144596651444
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "prec@512t",
+  "mean": 0.4189265344028796,
+  "ci": [
+   0.3401066318011801,
+   0.5003633730133057
+  ],
+  "diff_vs_struct": -0.010819264265479162,
+  "diff_ci": [
+   -0.03270624757408221,
+   0.0098337670902178
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "rec@512t",
+  "mean": 0.0883757958364115,
+  "ci": [
+   0.06828327438012079,
+   0.11023237895023025
+  ],
+  "diff_vs_struct": -0.0034890943500212692,
+  "diff_ci": [
+   -0.009616741878399011,
+   0.001615466741246123
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "prec@1024t",
+  "mean": 0.3832089020767673,
+  "ci": [
+   0.3097850093900021,
+   0.45904240055400525
+  ],
+  "diff_vs_struct": 0.0010831519036481364,
+  "diff_ci": [
+   -0.011671200972367827,
+   0.013200873878331616
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "rec@1024t",
+  "mean": 0.14545533993059392,
+  "ci": [
+   0.11618829508994846,
+   0.17687105981470594
+  ],
+  "diff_vs_struct": -0.000867670192367129,
+  "diff_ci": [
+   -0.005888295219874363,
+   0.0034269296624799255
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "prec@2048t",
+  "mean": 0.3492386237386105,
+  "ci": [
+   0.2931822476895238,
+   0.41007571639285617
+  ],
+  "diff_vs_struct": 0.006476691393901789,
+  "diff_ci": [
+   -0.0026668047057748666,
+   0.01635234108544088
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/text",
+  "metric": "rec@2048t",
+  "mean": 0.24958116577757977,
+  "ci": [
+   0.2090961765423824,
+   0.2932227446170377
+  ],
+  "diff_vs_struct": 0.0017287342117748286,
+  "diff_ci": [
+   -0.008934186458206117,
+   0.011630038560867932
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "hit@1",
+  "mean": 0.3835616438356164,
+  "ci": [
+   0.273972602739726,
+   0.4931506849315068
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "hit@3",
+  "mean": 0.5753424657534246,
+  "ci": [
+   0.4657534246575342,
+   0.684931506849315
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "hit@5",
+  "mean": 0.7123287671232876,
+  "ci": [
+   0.6027397260273972,
+   0.821917808219178
+  ],
+  "diff_vs_struct": -0.0136986301369863,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   0.0,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "mrr@10",
+  "mean": 0.5275222874537944,
+  "ci": [
+   0.4380463144161774,
+   0.619341161121983
+  ],
+  "diff_vs_struct": -0.016797129810828444,
+  "diff_ci": [
+   -0.05353337682104805,
+   0.013888888888888888
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "prec@512t",
+  "mean": 0.3863732333514515,
+  "ci": [
+   0.30044639278312835,
+   0.47305784299684916
+  ],
+  "diff_vs_struct": 0.0007482546236683811,
+  "diff_ci": [
+   -0.017056530671447776,
+   0.01806210598216766
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "rec@512t",
+  "mean": 0.0767312882346028,
+  "ci": [
+   0.05771704882635781,
+   0.09668871133852326
+  ],
+  "diff_vs_struct": -0.0012242496301536848,
+  "diff_ci": [
+   -0.004527767297273095,
+   0.002010615110429157
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "prec@1024t",
+  "mean": 0.32882011427086083,
+  "ci": [
+   0.26394743902800005,
+   0.397409497969887
+  ],
+  "diff_vs_struct": -0.008563766119191697,
+  "diff_ci": [
+   -0.023912764500326613,
+   0.006378523630318589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "rec@1024t",
+  "mean": 0.1272067071052979,
+  "ci": [
+   0.09942361190477671,
+   0.15669038752331546
+  ],
+  "diff_vs_struct": -0.005939562536908695,
+  "diff_ci": [
+   -0.013261451144608768,
+   0.0004243018617694999
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "prec@2048t",
+  "mean": 0.27442338849233594,
+  "ci": [
+   0.2260188929201184,
+   0.32157979255497604
+  ],
+  "diff_vs_struct": -0.00876150961546755,
+  "diff_ci": [
+   -0.022193377630536863,
+   0.003950981203628401
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/text",
+  "metric": "rec@2048t",
+  "mean": 0.20608953497019902,
+  "ci": [
+   0.16727730708604868,
+   0.24738983420149227
+  ],
+  "diff_vs_struct": -0.007666819023206301,
+  "diff_ci": [
+   -0.018076928751662846,
+   0.0016658715398662955
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "hit@1",
+  "mean": 0.3972602739726027,
+  "ci": [
+   0.2876712328767123,
+   0.5068493150684932
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "hit@3",
+  "mean": 0.6575342465753424,
+  "ci": [
+   0.547945205479452,
+   0.7671232876712328
+  ],
+  "diff_vs_struct": -0.0273972602739726,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0273972602739726
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "hit@5",
+  "mean": 0.7671232876712328,
+  "ci": [
+   0.6712328767123288,
+   0.863013698630137
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   0.0,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "mrr@10",
+  "mean": 0.5498260491411177,
+  "ci": [
+   0.4596651445966515,
+   0.6371167645140248
+  ],
+  "diff_vs_struct": -0.005267449445531637,
+  "diff_ci": [
+   -0.026712328767123285,
+   0.018036529680365298
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "prec@512t",
+  "mean": 0.38827252483691194,
+  "ci": [
+   0.3058704978874273,
+   0.4705830416643898
+  ],
+  "diff_vs_struct": -0.014290835792305069,
+  "diff_ci": [
+   -0.04036938258993155,
+   0.009644939373970233
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "rec@512t",
+  "mean": 0.07726023323917493,
+  "ci": [
+   0.05776764854530681,
+   0.10036381484525435
+  ],
+  "diff_vs_struct": -0.0031437617869899035,
+  "diff_ci": [
+   -0.011148278709714136,
+   0.006319560213061761
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "prec@1024t",
+  "mean": 0.3621274253453151,
+  "ci": [
+   0.29307903966270094,
+   0.4330402339236097
+  ],
+  "diff_vs_struct": 0.0018073119943254076,
+  "diff_ci": [
+   -0.02036958556070949,
+   0.02521107373112284
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "rec@1024t",
+  "mean": 0.1413871526035036,
+  "ci": [
+   0.11214482108979688,
+   0.17500923161120815
+  ],
+  "diff_vs_struct": 0.0017599355738206611,
+  "diff_ci": [
+   -0.008868982048617031,
+   0.01300684398197978
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "prec@2048t",
+  "mean": 0.30216095608384874,
+  "ci": [
+   0.24966196427549914,
+   0.35924688499035645
+  ],
+  "diff_vs_struct": 0.0008978470584058126,
+  "diff_ci": [
+   -0.014339311885529431,
+   0.016614502933855198
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/text",
+  "metric": "rec@2048t",
+  "mean": 0.22688171623768016,
+  "ci": [
+   0.18556637361578548,
+   0.2705999898204525
+  ],
+  "diff_vs_struct": -0.0030987074412658524,
+  "diff_ci": [
+   -0.016000653954688727,
+   0.009132632184756705
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3013698630136986,
+  "ci": [
+   0.2054794520547945,
+   0.410958904109589
+  ],
+  "diff_vs_struct": 0.0821917808219178,
+  "diff_ci": [
+   0.0,
+   0.1643835616438356
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.5205479452054794,
+  "ci": [
+   0.3972602739726027,
+   0.6301369863013698
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.8082191780821918
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0273972602739726,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.7945205479452054,
+  "ci": [
+   0.6986301369863014,
+   0.8767123287671232
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.447352685366384,
+  "ci": [
+   0.3623070232659274,
+   0.5417210263100674
+  ],
+  "diff_vs_struct": 0.04101978691019787,
+  "diff_ci": [
+   -0.008230050010871928,
+   0.09334637964774951
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.3035151146092384,
+  "ci": [
+   0.22094038392057627,
+   0.3905499636506792
+  ],
+  "diff_vs_struct": 0.04538420801587278,
+  "diff_ci": [
+   0.0014480103253610532,
+   0.09364586254080044
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.06346540344386088,
+  "ci": [
+   0.043880864644045246,
+   0.08675991688076429
+  ],
+  "diff_vs_struct": 0.008768016667936581,
+  "diff_ci": [
+   -0.0014798477812164143,
+   0.020546895759927745
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.27857716891552126,
+  "ci": [
+   0.21843463535630253,
+   0.3422172105153789
+  ],
+  "diff_vs_struct": 0.00890541681599289,
+  "diff_ci": [
+   -0.018344721642091808,
+   0.036203541407853625
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.10841604983234998,
+  "ci": [
+   0.08103526843658045,
+   0.13997940950022977
+  ],
+  "diff_vs_struct": 0.0043074732028841696,
+  "diff_ci": [
+   -0.009047004166014418,
+   0.01723333776101806
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.25357167178774165,
+  "ci": [
+   0.20679774521960703,
+   0.3031800523370701
+  ],
+  "diff_vs_struct": 0.013436714465132294,
+  "diff_ci": [
+   -0.00512050320537018,
+   0.03356904343289079
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "bm25",
+  "system": "merged_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.1850657058527127,
+  "ci": [
+   0.14780664552118428,
+   0.22747587641401212
+  ],
+  "diff_vs_struct": 0.0015794182809139169,
+  "diff_ci": [
+   -0.01585979103549735,
+   0.01895631165440168
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3972602739726027,
+  "ci": [
+   0.2876712328767123,
+   0.5068493150684932
+  ],
+  "diff_vs_struct": -0.0547945205479452,
+  "diff_ci": [
+   -0.1643835616438356,
+   0.0547945205479452
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.6986301369863014,
+  "ci": [
+   0.589041095890411,
+   0.7945205479452054
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0684931506849315,
+  "diff_ci": [
+   0.0136986301369863,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9452054794520548
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.0958904109589041,
+   0.0
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.5684279191128506,
+  "ci": [
+   0.4811154598825832,
+   0.6543705153294195
+  ],
+  "diff_vs_struct": -0.030006523157208087,
+  "diff_ci": [
+   -0.0992933246357904,
+   0.04438464883670363
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.42621812409246146,
+  "ci": [
+   0.3469284514768661,
+   0.5083089145340896
+  ],
+  "diff_vs_struct": -0.0035276745758972662,
+  "diff_ci": [
+   -0.06119621820810909,
+   0.05657709724551552
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.08515731937588597,
+  "ci": [
+   0.06668947219056702,
+   0.10370118996135361
+  ],
+  "diff_vs_struct": -0.0067075708105468045,
+  "diff_ci": [
+   -0.023332382692783236,
+   0.009488847027697568
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.42751450167730776,
+  "ci": [
+   0.36058791090269793,
+   0.49946396835319123
+  ],
+  "diff_vs_struct": 0.04538875150418862,
+  "diff_ci": [
+   0.0025040665449476925,
+   0.08829981047510659
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.16644884165965818,
+  "ci": [
+   0.13718257936777464,
+   0.1971244765471165
+  ],
+  "diff_vs_struct": 0.02012583153669711,
+  "diff_ci": [
+   0.001383993113433511,
+   0.04061382295235105
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.3497594706029907,
+  "ci": [
+   0.29338745374508457,
+   0.4097649426348947
+  ],
+  "diff_vs_struct": 0.006997538258282035,
+  "diff_ci": [
+   -0.02529421967369647,
+   0.038836842244516195
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "mxbai",
+  "system": "merged_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.25242007255138915,
+  "ci": [
+   0.20948619534147006,
+   0.29636270561649625
+  ],
+  "diff_vs_struct": 0.004567640985584191,
+  "diff_ci": [
+   -0.01763629627975428,
+   0.02720217244011653
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.3698630136986301,
+  "ci": [
+   0.2602739726027397,
+   0.4794520547945205
+  ],
+  "diff_vs_struct": -0.0410958904109589,
+  "diff_ci": [
+   -0.136986301369863,
+   0.0684931506849315
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.6301369863013698,
+  "ci": [
+   0.5205479452054794,
+   0.7397260273972602
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.1232876712328767
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.7534246575342466,
+  "ci": [
+   0.6575342465753424,
+   0.8493150684931506
+  ],
+  "diff_vs_struct": 0.0273972602739726,
+  "diff_ci": [
+   -0.0547945205479452,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.863013698630137,
+  "ci": [
+   0.7808219178082192,
+   0.9315068493150684
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0684931506849315,
+   0.0958904109589041
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.5272722330941508,
+  "ci": [
+   0.438454011741683,
+   0.6157099369428136
+  ],
+  "diff_vs_struct": -0.01704718417047184,
+  "diff_ci": [
+   -0.0868884540117417,
+   0.05275603392041748
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.38092872440293485,
+  "ci": [
+   0.30262601438780456,
+   0.4571697821370549
+  ],
+  "diff_vs_struct": -0.00469625432484831,
+  "diff_ci": [
+   -0.07430251624377934,
+   0.06626081496348869
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.07697342597509112,
+  "ci": [
+   0.05892667108510469,
+   0.09540128296821081
+  ],
+  "diff_vs_struct": -0.000982111889665379,
+  "diff_ci": [
+   -0.018977525892359997,
+   0.016593658909129436
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.3290110725638897,
+  "ci": [
+   0.26233899678553524,
+   0.39492447794393465
+  ],
+  "diff_vs_struct": -0.008372807826162872,
+  "diff_ci": [
+   -0.0522679479193319,
+   0.03682753024632313
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.12082187671525174,
+  "ci": [
+   0.09626566998509671,
+   0.1453738906548052
+  ],
+  "diff_vs_struct": -0.012324392926954876,
+  "diff_ci": [
+   -0.03388284148523815,
+   0.007740916135784339
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.28648188692746707,
+  "ci": [
+   0.23031549640706353,
+   0.3401930377070851
+  ],
+  "diff_vs_struct": 0.003296988819663557,
+  "diff_ci": [
+   -0.030041551135939672,
+   0.036727933306413
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "nomic",
+  "system": "merged_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.20672611300265673,
+  "ci": [
+   0.1670532727835233,
+   0.24894045448160793
+  ],
+  "diff_vs_struct": -0.00703024099074863,
+  "diff_ci": [
+   -0.037450849923199456,
+   0.021001025698535722
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "hit@1",
+  "mean": 0.410958904109589,
+  "ci": [
+   0.3013698630136986,
+   0.5205479452054794
+  ],
+  "diff_vs_struct": 0.0136986301369863,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "hit@3",
+  "mean": 0.684931506849315,
+  "ci": [
+   0.5753424657534246,
+   0.7808219178082192
+  ],
+  "diff_vs_struct": 0.0,
+  "diff_ci": [
+   -0.0821917808219178,
+   0.0821917808219178
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "hit@5",
+  "mean": 0.8082191780821918,
+  "ci": [
+   0.7123287671232876,
+   0.8904109589041096
+  ],
+  "diff_vs_struct": 0.0410958904109589,
+  "diff_ci": [
+   -0.0136986301369863,
+   0.1095890410958904
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "hit@10",
+  "mean": 0.9178082191780822,
+  "ci": [
+   0.8493150684931506,
+   0.9726027397260274
+  ],
+  "diff_vs_struct": 0.0684931506849315,
+  "diff_ci": [
+   0.0136986301369863,
+   0.136986301369863
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "mrr@10",
+  "mean": 0.5734724940204392,
+  "ci": [
+   0.4889051967819091,
+   0.6589584692324418
+  ],
+  "diff_vs_struct": 0.018378995433789957,
+  "diff_ci": [
+   -0.037861491628614914,
+   0.07275494672754947
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "prec@512t",
+  "mean": 0.3886872647121699,
+  "ci": [
+   0.3098279636972288,
+   0.4681629655610171
+  ],
+  "diff_vs_struct": -0.013876095917047129,
+  "diff_ci": [
+   -0.07405003138813744,
+   0.0393336715210172
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "rec@512t",
+  "mean": 0.07632178239042796,
+  "ci": [
+   0.057822817157039776,
+   0.09588757578127188
+  ],
+  "diff_vs_struct": -0.004082212635736866,
+  "diff_ci": [
+   -0.015793460535954797,
+   0.006792288585038903
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "prec@1024t",
+  "mean": 0.35846472070725666,
+  "ci": [
+   0.2936186934390305,
+   0.42612404114694513
+  ],
+  "diff_vs_struct": -0.0018553926437330326,
+  "diff_ci": [
+   -0.04479817215642679,
+   0.038446176866839606
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "rec@1024t",
+  "mean": 0.13930739250264257,
+  "ci": [
+   0.10992522435239745,
+   0.1697915298737615
+  ],
+  "diff_vs_struct": -0.0003198245270403594,
+  "diff_ci": [
+   -0.023777000866894417,
+   0.023594586907820007
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "prec@2048t",
+  "mean": 0.3261930933045277,
+  "ci": [
+   0.2746705678799429,
+   0.3817014872562556
+  ],
+  "diff_vs_struct": 0.024929984279084775,
+  "diff_ci": [
+   -0.003590283088503849,
+   0.05557670719759839
+  ]
+ },
+ {
+  "kind": "system",
+  "retriever": "hybrid",
+  "system": "merged_rk/meta",
+  "metric": "rec@2048t",
+  "mean": 0.2416684629481722,
+  "ci": [
+   0.2006776463692362,
+   0.28520338378274057
+  ],
+  "diff_vs_struct": 0.01168803926922624,
+  "diff_ci": [
+   -0.013075778167545574,
+   0.03850952754378136
+  ]
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@1",
+  "diff": -0.0684931506849315,
+  "ci": [
+   -0.1506849315068493,
+   0.0136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@3",
+  "diff": 0.0684931506849315,
+  "ci": [
+   0.0,
+   0.1506849315068493
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@5",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0547945205479452,
+   0.1095890410958904
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@10",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0821917808219178,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "mrr@10",
+  "diff": -0.027853881278538817,
+  "ci": [
+   -0.07922374429223744,
+   0.021194824961948248
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@512t",
+  "diff": -0.024223911101518277,
+  "ci": [
+   -0.0716665877121541,
+   0.021577637559795373
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@512t",
+  "diff": -0.0013627989398152004,
+  "ci": [
+   -0.013433613595401182,
+   0.01116216317882218
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@1024t",
+  "diff": -0.021773322238085514,
+  "ci": [
+   -0.05962024608336134,
+   0.014933927073947254
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@1024t",
+  "diff": -0.009313808146108606,
+  "ci": [
+   -0.02558605943461718,
+   0.006156233750946621
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@2048t",
+  "diff": -0.01217335138535182,
+  "ci": [
+   -0.03720090314603919,
+   0.013639303190185303
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@2048t",
+  "diff": -0.005782465540813566,
+  "ci": [
+   -0.027694700399258,
+   0.017794072255075146
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@1",
+  "diff": 0.0,
+  "ci": [
+   -0.1095890410958904,
+   0.1095890410958904
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@3",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.1095890410958904,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@5",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.1095890410958904,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@10",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0410958904109589,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "mrr@10",
+  "diff": 0.006256794955425093,
+  "ci": [
+   -0.0609262883235486,
+   0.07123831267666884
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@512t",
+  "diff": -0.0006256108205008603,
+  "ci": [
+   -0.054057405611331794,
+   0.05158668178475808
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@512t",
+  "diff": 0.005218910261937603,
+  "ci": [
+   -0.010245350094741451,
+   0.020270206087391537
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@1024t",
+  "diff": -0.013937476991086087,
+  "ci": [
+   -0.058530070648987555,
+   0.027349091946045862
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@1024t",
+  "diff": 0.0007796715979317287,
+  "ci": [
+   -0.021626893088929785,
+   0.022448986169892236
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@2048t",
+  "diff": -0.01086964444881109,
+  "ci": [
+   -0.03937969789671513,
+   0.018104461391117318
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@2048t",
+  "diff": -0.0013150501831142249,
+  "ci": [
+   -0.024898174440689577,
+   0.022849932811754792
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@1",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.1232876712328767,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@3",
+  "diff": -0.0410958904109589,
+  "ci": [
+   -0.1506849315068493,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@5",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0547945205479452,
+   0.1095890410958904
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@10",
+  "diff": 0.0547945205479452,
+  "ci": [
+   -0.0273972602739726,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "mrr@10",
+  "diff": -0.0074635790389215055,
+  "ci": [
+   -0.0828821482931072,
+   0.0682050445749076
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@512t",
+  "diff": -0.027810228629889217,
+  "ci": [
+   -0.0904360250890501,
+   0.029707685778350073
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@512t",
+  "diff": -0.004817477080657801,
+  "ci": [
+   -0.024158783355274206,
+   0.013191364570832875
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@1024t",
+  "diff": -0.01775927896624934,
+  "ci": [
+   -0.0591491865566342,
+   0.02584430022467918
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@1024t",
+  "diff": -0.00248445527213687,
+  "ci": [
+   -0.022969728508846255,
+   0.01815507774450261
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@2048t",
+  "diff": -0.0006350254302416014,
+  "ci": [
+   -0.03471563221785587,
+   0.030833879830213913
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@2048t",
+  "diff": 0.00886299762912859,
+  "ci": [
+   -0.018760974377819616,
+   0.037541754876168495
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@1",
+  "diff": -0.0547945205479452,
+  "ci": [
+   -0.1506849315068493,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@3",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.1095890410958904,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@5",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0547945205479452,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   -0.0684931506849315,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "mrr@10",
+  "diff": -0.039861926505762126,
+  "ci": [
+   -0.1008751902587519,
+   0.025070667536420958
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@512t",
+  "diff": -0.02822939029903535,
+  "ci": [
+   -0.07539452957254647,
+   0.01988077296239213
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@512t",
+  "diff": -0.011424754136722365,
+  "ci": [
+   -0.027112595464829012,
+   0.003942045353704462
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@1024t",
+  "diff": -0.023231394945581976,
+  "ci": [
+   -0.06185953996578328,
+   0.014155936033421147
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@1024t",
+  "diff": -0.0032212632200800504,
+  "ci": [
+   -0.022015958380571066,
+   0.016490119453410394
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "prec@2048t",
+  "diff": -0.02723061248465488,
+  "ci": [
+   -0.05296477676525227,
+   -0.0005392691135236999
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixedtok/text",
+  "metric": "rec@2048t",
+  "diff": -0.007801265925346372,
+  "ci": [
+   -0.029190276326943272,
+   0.01529843889840193
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@1",
+  "diff": -0.0547945205479452,
+  "ci": [
+   -0.136986301369863,
+   0.0273972602739726
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@3",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0684931506849315,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@5",
+  "diff": 0.0684931506849315,
+  "ci": [
+   -0.0136986301369863,
+   0.1506849315068493
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   -0.0684931506849315,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "mrr@10",
+  "diff": -0.02076538377908241,
+  "ci": [
+   -0.07160795825179388,
+   0.033066971080669715
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@512t",
+  "diff": -0.012025724355215041,
+  "ci": [
+   -0.06622626729210772,
+   0.04042710816523147
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@512t",
+  "diff": 0.004608314358183987,
+  "ci": [
+   -0.007686303015225518,
+   0.01809065103680343
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@1024t",
+  "diff": 0.03002015180404547,
+  "ci": [
+   0.00017440489091511454,
+   0.05938626247698905
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@1024t",
+  "diff": 0.012396599817693298,
+  "ci": [
+   -0.0032712283524134345,
+   0.029129371597453557
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@2048t",
+  "diff": 0.0251991117797984,
+  "ci": [
+   0.003791455940149083,
+   0.04653375869372489
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@2048t",
+  "diff": 0.030831643149724513,
+  "ci": [
+   0.010774576485962677,
+   0.05330671923918097
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@1",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.1095890410958904,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@3",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0684931506849315,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@5",
+  "diff": -0.0547945205479452,
+  "ci": [
+   -0.136986301369863,
+   0.0136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@10",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0410958904109589,
+   0.1095890410958904
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "mrr@10",
+  "diff": 0.018226788432267882,
+  "ci": [
+   -0.06310611002391825,
+   0.10117960426179604
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@512t",
+  "diff": 0.027955759501404696,
+  "ci": [
+   -0.013351138791438209,
+   0.0726904120002504
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@512t",
+  "diff": 0.011888763270635684,
+  "ci": [
+   0.00012619170320295683,
+   0.024841182899855006
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@1024t",
+  "diff": 0.03379271976642997,
+  "ci": [
+   -0.0004762326450022614,
+   0.06873211808035382
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@1024t",
+  "diff": 0.015136804985748716,
+  "ci": [
+   -0.0025147640300903482,
+   0.03276246551732265
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@2048t",
+  "diff": 0.0581123746539363,
+  "ci": [
+   0.028693718278929883,
+   0.08965773536372278
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@2048t",
+  "diff": 0.04957513687358648,
+  "ci": [
+   0.024405789300728595,
+   0.07560938888030487
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@1",
+  "diff": 0.0410958904109589,
+  "ci": [
+   -0.0684931506849315,
+   0.1506849315068493
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@3",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0958904109589041,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@5",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0547945205479452,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@10",
+  "diff": 0.0684931506849315,
+  "ci": [
+   0.0,
+   0.1506849315068493
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "mrr@10",
+  "diff": 0.04084040008697543,
+  "ci": [
+   -0.03301804740160904,
+   0.11158947597303762
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@512t",
+  "diff": 0.06410800180719872,
+  "ci": [
+   0.014532887004985794,
+   0.11140777064419713
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@512t",
+  "diff": 0.018608867045135948,
+  "ci": [
+   0.006603078438104585,
+   0.03114785007300668
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@1024t",
+  "diff": 0.06859609152507878,
+  "ci": [
+   0.033688932409877956,
+   0.10429546447541135
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@1024t",
+  "diff": 0.033568802771717365,
+  "ci": [
+   0.015020192010788753,
+   0.052899856179779846
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@2048t",
+  "diff": 0.04518290429836586,
+  "ci": [
+   0.01878817132598472,
+   0.07050797455687143
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@2048t",
+  "diff": 0.04413557525813848,
+  "ci": [
+   0.019213897492515165,
+   0.06969400992493198
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@1",
+  "diff": -0.0547945205479452,
+  "ci": [
+   -0.1780821917808219,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@3",
+  "diff": 0.0,
+  "ci": [
+   -0.0958904109589041,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@5",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0410958904109589,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "hit@10",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "mrr@10",
+  "diff": -0.02129267232006958,
+  "ci": [
+   -0.09535225048923679,
+   0.05249510763209394
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@512t",
+  "diff": 0.0588994670998793,
+  "ci": [
+   0.006931207020820775,
+   0.11005085422062022
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@512t",
+  "diff": 0.013364965772995493,
+  "ci": [
+   -0.0004269485726599658,
+   0.028471002745971495
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@1024t",
+  "diff": 0.04947778631041797,
+  "ci": [
+   0.011654808432223418,
+   0.0881333200693296
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@1024t",
+  "diff": 0.023331094946810866,
+  "ci": [
+   0.003968858336136581,
+   0.04514354196976162
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "prec@2048t",
+  "diff": 0.028955677701076883,
+  "ci": [
+   0.004553813709957055,
+   0.052668674322759804
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "struct/text",
+  "b": "fixed512/text",
+  "metric": "rec@2048t",
+  "diff": 0.03183726598684279,
+  "ci": [
+   0.009973548136631687,
+   0.05258837639338793
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@1",
+  "diff": 0.0684931506849315,
+  "ci": [
+   -0.0136986301369863,
+   0.1643835616438356
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@3",
+  "diff": -0.0410958904109589,
+  "ci": [
+   -0.1095890410958904,
+   0.0273972602739726
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@5",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0547945205479452,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@10",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0273972602739726,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "mrr@10",
+  "diff": 0.03132746249184605,
+  "ci": [
+   -0.01914546640574038,
+   0.08477386388345293
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@512t",
+  "diff": 0.006921799455518272,
+  "ci": [
+   -0.033300217766943224,
+   0.049351433686869596
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@512t",
+  "diff": 0.0019352234579456836,
+  "ci": [
+   -0.00644302176933713,
+   0.011271929157446847
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@1024t",
+  "diff": -0.0006279312352220143,
+  "ci": [
+   -0.030099673165081445,
+   0.028998069922505143
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@1024t",
+  "diff": -0.0018145179859232075,
+  "ci": [
+   -0.013159983497715617,
+   0.00971172555136753
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@2048t",
+  "diff": 0.012152203690867844,
+  "ci": [
+   -0.003364637549136664,
+   0.026986450778079756
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@2048t",
+  "diff": 0.0009582313043529406,
+  "ci": [
+   -0.015714837195658304,
+   0.016165281690465546
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@1",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.1095890410958904,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@3",
+  "diff": 0.0547945205479452,
+  "ci": [
+   -0.0273972602739726,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@5",
+  "diff": 0.0684931506849315,
+  "ci": [
+   0.0,
+   0.1506849315068493
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   -0.0547945205479452,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "mrr@10",
+  "diff": 0.014899978256142641,
+  "ci": [
+   -0.04271037181996086,
+   0.07548380082626657
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@512t",
+  "diff": 0.0015146443351554298,
+  "ci": [
+   -0.05937988131429273,
+   0.06375948281174358
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@512t",
+  "diff": -0.00313785732975685,
+  "ci": [
+   -0.021861609166588993,
+   0.015143470492595566
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@1024t",
+  "diff": 0.04704427329745848,
+  "ci": [
+   0.0027542844088093666,
+   0.08866488538547673
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@1024t",
+  "diff": 0.020706995326852193,
+  "ci": [
+   -0.0025151347846578648,
+   0.043924026976694654
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@2048t",
+  "diff": 0.005773350458283888,
+  "ci": [
+   -0.020055282409701905,
+   0.030354761419291772
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@2048t",
+  "diff": 0.0035256598308160522,
+  "ci": [
+   -0.016850113432721546,
+   0.02348946455937267
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@1",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0821917808219178,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@3",
+  "diff": 0.0684931506849315,
+  "ci": [
+   -0.0273972602739726,
+   0.1643835616438356
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@5",
+  "diff": 0.0821917808219178,
+  "ci": [
+   0.0,
+   0.1643835616438356
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@10",
+  "diff": 0.0410958904109589,
+  "ci": [
+   -0.0410958904109589,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "mrr@10",
+  "diff": 0.03644814090019569,
+  "ci": [
+   -0.036208958469232444,
+   0.10797455968688846
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@512t",
+  "diff": 0.03739606151160115,
+  "ci": [
+   -0.018959510526264333,
+   0.09767269428871658
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@512t",
+  "diff": 0.007603052055480893,
+  "ci": [
+   -0.007645687983723775,
+   0.023524888705373947
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@1024t",
+  "diff": 0.01247178058606983,
+  "ci": [
+   -0.026628839549470158,
+   0.04787009885395523
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@1024t",
+  "diff": 0.004464288221946906,
+  "ci": [
+   -0.013415316857818091,
+   0.020839259885948473
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@2048t",
+  "diff": 0.0044313164280967285,
+  "ci": [
+   -0.021553290805602147,
+   0.032120790831451765
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@2048t",
+  "diff": 0.0029842036649761284,
+  "ci": [
+   -0.021038499967677024,
+   0.029299414680391798
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@1",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@3",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0684931506849315,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@5",
+  "diff": 0.0547945205479452,
+  "ci": [
+   0.0,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "hit@10",
+  "diff": 0.0547945205479452,
+  "ci": [
+   0.0136986301369863,
+   0.1095890410958904
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "mrr@10",
+  "diff": 0.0275440313111546,
+  "ci": [
+   -0.0190367471189389,
+   0.07368449662970211
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@512t",
+  "diff": 0.026715595527076273,
+  "ci": [
+   -0.03314590637996419,
+   0.08056285139888682
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@512t",
+  "diff": 0.00764659309528102,
+  "ci": [
+   -0.007052339844221197,
+   0.023319194460719506
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@1024t",
+  "diff": 0.008515938911665168,
+  "ci": [
+   -0.028572092327127107,
+   0.04338683581033145
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@1024t",
+  "diff": 0.009533435515868355,
+  "ci": [
+   -0.010450681208327263,
+   0.03225448542530682
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "prec@2048t",
+  "diff": 0.004905346879635887,
+  "ci": [
+   -0.020497441296084908,
+   0.03181855623618533
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "struct/tc",
+  "metric": "rec@2048t",
+  "diff": 0.002793255703586388,
+  "ci": [
+   -0.020979768739610247,
+   0.0280348991038542
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@1",
+  "diff": 0.0821917808219178,
+  "ci": [
+   0.0,
+   0.1780821917808219
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@3",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@5",
+  "diff": -0.0410958904109589,
+  "ci": [
+   -0.1232876712328767,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   -0.0547945205479452,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "mrr@10",
+  "diff": 0.033317025440313106,
+  "ci": [
+   -0.01989562948467058,
+   0.09055229397695151
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@512t",
+  "diff": 0.025290836736613177,
+  "ci": [
+   -0.014879966838671831,
+   0.07292148042116503
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@512t",
+  "diff": 0.005121391001787667,
+  "ci": [
+   -0.006182046546139281,
+   0.017781228081389197
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@1024t",
+  "diff": -0.004941431525385875,
+  "ci": [
+   -0.03704612430852319,
+   0.027623547885809428
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@1024t",
+  "diff": -0.0017698649465006393,
+  "ci": [
+   -0.017422070240434136,
+   0.014226032666902673
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@2048t",
+  "diff": 0.008780067095990817,
+  "ci": [
+   -0.008571142107702514,
+   0.025172358642551882
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@2048t",
+  "diff": 0.0018062964782080526,
+  "ci": [
+   -0.016339805903751354,
+   0.01806096843908721
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@1",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.1232876712328767,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@3",
+  "diff": 0.0273972602739726,
+  "ci": [
+   -0.0547945205479452,
+   0.1232876712328767
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@5",
+  "diff": 0.0684931506849315,
+  "ci": [
+   0.0,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@10",
+  "diff": 0.0273972602739726,
+  "ci": [
+   0.0,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "mrr@10",
+  "diff": 0.01333442052620135,
+  "ci": [
+   -0.04597195042400521,
+   0.07308654055229398
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@512t",
+  "diff": 0.010550519363120724,
+  "ci": [
+   -0.04170017547412821,
+   0.06793122813374176
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@512t",
+  "diff": -0.0021137296726602725,
+  "ci": [
+   -0.018449251595731415,
+   0.013223766377656033
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@1024t",
+  "diff": 0.06921559778832571,
+  "ci": [
+   0.03023235733303089,
+   0.10786641801574852
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@1024t",
+  "diff": 0.027619330306392978,
+  "ci": [
+   0.0076276530296915624,
+   0.04924009580790431
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@2048t",
+  "diff": 0.030963104432748408,
+  "ci": [
+   0.008097796597767777,
+   0.05403901790296776
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@2048t",
+  "diff": 0.030182599365493605,
+  "ci": [
+   0.011134973951214286,
+   0.050637276745466614
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@1",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0684931506849315,
+   0.0958904109589041
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@3",
+  "diff": 0.0684931506849315,
+  "ci": [
+   -0.0136986301369863,
+   0.1643835616438356
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@5",
+  "diff": 0.0684931506849315,
+  "ci": [
+   -0.0410958904109589,
+   0.1643835616438356
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@10",
+  "diff": 0.0547945205479452,
+  "ci": [
+   -0.0136986301369863,
+   0.136986301369863
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "mrr@10",
+  "diff": 0.030267449445531634,
+  "ci": [
+   -0.026011089367253753,
+   0.08693737769080236
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@512t",
+  "diff": 0.043220850086287774,
+  "ci": [
+   -0.014049394175061765,
+   0.09997518133907535
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@512t",
+  "diff": 0.006821009425212457,
+  "ci": [
+   -0.007177289015363079,
+   0.02075106528341429
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@1024t",
+  "diff": -0.0062986123833448406,
+  "ci": [
+   -0.04368835278983526,
+   0.031118690021419693
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@1024t",
+  "diff": -0.00410164949735084,
+  "ci": [
+   -0.020523995985197288,
+   0.012318738110937255
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@2048t",
+  "diff": 0.01000951589959684,
+  "ci": [
+   -0.01931743453989345,
+   0.03982326324164295
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@2048t",
+  "diff": 0.013072301966534238,
+  "ci": [
+   -0.015142304883780983,
+   0.04375691003538868
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@1",
+  "diff": 0.0,
+  "ci": [
+   -0.0821917808219178,
+   0.0821917808219178
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@3",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.1095890410958904,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@5",
+  "diff": 0.0410958904109589,
+  "ci": [
+   -0.0273972602739726,
+   0.1095890410958904
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "hit@10",
+  "diff": 0.0547945205479452,
+  "ci": [
+   0.0136986301369863,
+   0.1095890410958904
+  ],
+  "excludes_zero": true
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "mrr@10",
+  "diff": 0.005930637095020659,
+  "ci": [
+   -0.049842357034137856,
+   0.06131224179169385
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@512t",
+  "diff": 0.0020708649358828855,
+  "ci": [
+   -0.052860712763697186,
+   0.05396038542595968
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@512t",
+  "diff": 0.0007890908818620368,
+  "ci": [
+   -0.015718892641577015,
+   0.017189931194038444
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@1024t",
+  "diff": -0.0016735861136726708,
+  "ci": [
+   -0.039100545889383304,
+   0.036761246633630985
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@1024t",
+  "diff": -0.0018640692462666656,
+  "ci": [
+   -0.022388226520013915,
+   0.01987110910679988
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "prec@2048t",
+  "diff": 0.01763297998136171,
+  "ci": [
+   -0.007548928584892669,
+   0.04386948317422033
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "enr_rk/meta",
+  "b": "cr/cr",
+  "metric": "rec@2048t",
+  "diff": 0.008040513110065758,
+  "ci": [
+   -0.0119827902006382,
+   0.029428921400806145
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@1",
+  "diff": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@3",
+  "diff": 0.0,
+  "ci": [
+   -0.0547945205479452,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@5",
+  "diff": 0.0136986301369863,
+  "ci": [
+   -0.0273972602739726,
+   0.0684931506849315
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@10",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "mrr@10",
+  "diff": -0.002810393563818222,
+  "ci": [
+   -0.013193085453359427,
+   0.006996086105675144
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@512t",
+  "diff": 0.013650828639382995,
+  "ci": [
+   -0.003615023937260684,
+   0.035445362356003825
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@512t",
+  "diff": 0.0006362019189170574,
+  "ci": [
+   -0.0030240000748697035,
+   0.004947948894418658
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "diff": 0.004888640653560156,
+  "ci": [
+   -0.01764006819935821,
+   0.02688914531319179
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "diff": 0.0020046704348168536,
+  "ci": [
+   -0.009654450485940349,
+   0.012673012765226891
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "diff": -0.0014767369980579735,
+  "ci": [
+   -0.014589933674170243,
+   0.011900501238878147
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "bm25",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "diff": 0.00021509948462850585,
+  "ci": [
+   -0.008700910230880958,
+   0.010054289421322799
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@1",
+  "diff": 0.0,
+  "ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@3",
+  "diff": 0.0,
+  "ci": [
+   -0.0547945205479452,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@5",
+  "diff": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@10",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "mrr@10",
+  "diff": -0.0026418786692759292,
+  "ci": [
+   -0.025016307893020222,
+   0.019047619047619046
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@512t",
+  "diff": -0.005817024766934048,
+  "ci": [
+   -0.03362343818108502,
+   0.01965037719681441
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@512t",
+  "diff": -0.0003687917617931117,
+  "ci": [
+   -0.008200811720257465,
+   0.00688811328189688
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "diff": -0.004664898841427701,
+  "ci": [
+   -0.016896291031376406,
+   0.008705784407452136
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "diff": -0.001365081218111146,
+  "ci": [
+   -0.00557708013692902,
+   0.0033413863361896087
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "diff": -0.006223043290111402,
+  "ci": [
+   -0.019178771315663052,
+   0.006189856408840384
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "mxbai",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "diff": -0.0015528665037329466,
+  "ci": [
+   -0.010142703240438063,
+   0.007275373452380191
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@1",
+  "diff": -0.0273972602739726,
+  "ci": [
+   -0.0684931506849315,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@3",
+  "diff": 0.0,
+  "ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@5",
+  "diff": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   -0.0410958904109589,
+   0.0410958904109589
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "mrr@10",
+  "diff": -0.014954337899543377,
+  "ci": [
+   -0.0447869101978691,
+   0.005571863448575777
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@512t",
+  "diff": -0.009808477612315436,
+  "ci": [
+   -0.03335182511027082,
+   0.009199442961630631
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@512t",
+  "diff": -0.00212480921377193,
+  "ci": [
+   -0.00647230244186077,
+   0.0017378677002809553
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "diff": -0.00330523768841409,
+  "ci": [
+   -0.023051871786533992,
+   0.017346024053413497
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "diff": -0.0028642188621806276,
+  "ci": [
+   -0.010039751267082156,
+   0.0039640867488173566
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "diff": -0.001636724700572222,
+  "ci": [
+   -0.017560063762437343,
+   0.013809141882970956
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "nomic",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "diff": -0.0006393482081434276,
+  "ci": [
+   -0.013266440188745657,
+   0.012259113876746542
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@1",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0821917808219178,
+   0.0547945205479452
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@3",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@5",
+  "diff": -0.0136986301369863,
+  "ci": [
+   -0.0410958904109589,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "hit@10",
+  "diff": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "mrr@10",
+  "diff": -0.012856055664274842,
+  "ci": [
+   -0.05601217656012176,
+   0.02878886714503153
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@512t",
+  "diff": -0.018773218228906235,
+  "ci": [
+   -0.053080566581713576,
+   0.018329639133009924
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@512t",
+  "diff": -0.008005919984550976,
+  "ci": [
+   -0.021256964467415807,
+   0.003399162680226574
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@1024t",
+  "diff": 0.004655685978448029,
+  "ci": [
+   -0.011235409822096679,
+   0.021155875352546274
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@1024t",
+  "diff": -0.0006860019735359857,
+  "ci": [
+   -0.006926999908135493,
+   0.005565606962410513
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "prec@2048t",
+  "diff": 0.008373760204389373,
+  "ci": [
+   -0.008230227414745933,
+   0.025784007333065163
+  ],
+  "excludes_zero": false
+ },
+ {
+  "kind": "comparison",
+  "retriever": "hybrid",
+  "a": "merged_rk/meta",
+  "b": "enr_rk/meta",
+  "metric": "rec@2048t",
+  "diff": 0.007766133351359046,
+  "ci": [
+   -0.003396793687464215,
+   0.019551358373361815
+  ],
+  "excludes_zero": false
+ }
+]
