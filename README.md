@@ -6,7 +6,7 @@
 [![Research Paper](https://img.shields.io/badge/Research-ArXiv-red.svg)](https://arxiv.org/abs/2603.23533)
 
 Markdown chunking with single-call LLM enrichment or ultra-fast spaCy processing for RAG pipelines. 
-Paper: **[MDKeyChunker: What Does One LLM Call per Chunk Buy for Markdown Retrieval?](https://arxiv.org/abs/2603.23533)** (arXiv:2603.23533)
+Paper: **[Upgrade the Retriever First: What an LLM Call per Chunk Buys in RAG](https://arxiv.org/abs/2603.23533)** (arXiv:2603.23533, v4)
 
 ## What It Does
 
@@ -74,7 +74,7 @@ Set via `.env` file or environment variables:
 | `LLM_MODEL` | `gpt-4o-mini` | Model name |
 | `MIN_CHUNK_SIZE` | `100` | Minimum characters per chunk |
 | `MAX_CHUNK_SIZE` | `1500` | Soft max characters per chunk |
-| `MERGE_BY_KEYS` | `true` | Merge chunks sharing the same key |
+| `MERGE_BY_KEYS` | `true` | Merge chunks sharing the same key (the v4 study found no retrieval gain from key-based merging; set `false` if you only need retrieval) |
 | `MAX_MERGED_SIZE` | `3000` | Max combined size after merging |
 | `MIN_ORPHAN_SIZE` | `200` | Below this, orphan chunks get context enrichment |
 | `LOG_LEVEL` | `INFO` | Logging verbosity |
@@ -135,37 +135,42 @@ Markdown → Chunker → Enricher (1 LLM call/chunk) → Restructurer → Enrich
 
 ## What the evaluation found
 
-The v3 paper evaluates each stage on two public datasets (Qasper and FreshStack
-Laravel docs) with `qwen2.5:7b`, four retrievers, and an analysis plan committed
-before results. In short:
+The v4 paper is a confirmatory study: an analysis plan made public before any
+index was built, 951 Qasper and 235 FreshStack questions, 7B and 120B indexing
+LLMs, eight retrievers, and an LLM-free control for every add-on. In short:
 
-- **Structure-aware chunking (Stage 1, no LLM) is the main win**: it beats
-  512-character windows on both datasets.
-- **One LLM call per chunk (Stage 2) showed no measurable retrieval gain** over a
-  free section-path prefix or over contextual retrieval on the main retrievers;
-  it helped only with BM25 alone on Qasper and with an embedder that truncates
-  long inputs.
-- **Rolling keys make keys about 3x more consistent**, but merging on keys
-  (Stage 3) did not improve retrieval.
+- **Upgrade the retriever before paying for LLM indexing.** Under the default
+  hybrid retriever, one enrichment call per chunk beats a free section-path
+  prefix by 5.5 recall points on Qasper. Under the two strongest retrievers
+  tested (qwen3-embedding and a reranker), 7B enrichment is equivalent to the
+  free prefix on both datasets.
+- **The gain is document expansion.** It is largest under BM25, where the
+  generated keywords and questions supply words the chunk lacks.
+- **Enrichment matches contextual retrieval** at 5.8-8.7x fewer input tokens per call.
+- **Header-led chunks beat 512-character windows** on both datasets (256-token
+  windows win on FreshStack).
+- **The add-ons do not pay.** Rolling keys make keys more consistent, but
+  neither they, key-based merging nor related-key expansion beat LLM-free controls.
 
-If you only need retrieval quality, structure-aware chunking alone is the cheap
-default (no LLM calls):
+If you only need retrieval quality, header-led chunking with a free section-path
+prefix and a strong retriever is the cheap default (no LLM calls):
 
 ```python
 from mdkeychunker import Config
 from mdkeychunker.chunker import MarkdownChunker
 
 chunks = MarkdownChunker(Config()).chunk(markdown_text)
-# prefix each chunk's text with chunk.section_title for a free title-chain index
+# prefix each chunk's text with chunk.section_title for a free section-path index
 ```
 
 Enrichment is most useful when you want the metadata itself (titles, summaries,
-questions) or retrieve with BM25.
+questions) or retrieve mainly with BM25.
 Harness, plan and per-question results: [`benchmarks/chunking_study/`](benchmarks/chunking_study/).
+Generated enrichment and contextual-retrieval texts: [Hugging Face](https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study).
 
 ## Benchmarks
 
-The paper's evaluation (30 queries over an 18-document Markdown corpus, Configs A–D) is described in [arXiv:2603.23533](https://arxiv.org/abs/2603.23533). The code version used in the paper is commit `e3e1b86`.
+The evaluation in versions 1–2 of the paper (30 queries over an 18-document, partly author-written Markdown corpus) has been withdrawn; the v4 study in [`benchmarks/chunking_study/`](benchmarks/chunking_study/) replaces it.
 
 `benchmarks/scifact.py` runs a SciFact sanity check in spaCy mode (`pip install -e ".[benchmark,spacy]"`, then `python benchmarks/scifact.py`). Embeddings are [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) with exact cosine search.
 
@@ -211,7 +216,7 @@ If you use MDKeyChunker, please cite:
 
 ```bibtex
 @misc{mangla2026mdkeychunker,
-  title         = {{MDKeyChunker}: What Does One {LLM} Call per Chunk Buy for {Markdown} Retrieval?},
+  title         = {Upgrade the Retriever First: What an {LLM} Call per Chunk Buys in {RAG}},
   author        = {Mangla, Bhavik},
   year          = {2026},
   eprint        = {2603.23533},
