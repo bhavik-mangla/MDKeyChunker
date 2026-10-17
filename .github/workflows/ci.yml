@@ -111,9 +111,16 @@ jobs:
           EOF
 
   slow:
-    name: slow (real models)
+    name: slow (real models) / ${{ matrix.deps.name }}
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # default resolution, plus transformers 4 so presets gated on <5 (nomic) really load
+        deps:
+          - {name: default, with: ""}
+          - {name: transformers-4, with: "--with 'transformers<5'"}
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
@@ -126,4 +133,4 @@ jobs:
           key: hf-${{ runner.os }}-v1
       - run: >-
           uv run --extra retrieval --extra tokens --with pytest --with rank-bm25
-          pytest -q --run-slow tests
+          ${{ matrix.deps.with }} pytest -q --run-slow tests

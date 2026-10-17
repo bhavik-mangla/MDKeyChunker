@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdkeychunker"
-version = "0.4.0"
+version = "0.4.1"
 description = "Header-aware chunking for RAG and a retrieval diagnostic that tells you whether to spend on the retriever, chunking or LLM enrichment"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -37,7 +37,8 @@ llm = ["openai>=1.0.0"]                        # OpenAI and compatible servers (
 anthropic = ["anthropic>=0.40.0"]
 tokens = ["tiktoken>=0.8.0"]                   # exact token counts (cl100k_base, the study's)
 bm25 = ["bm25s>=0.2.0", "PyStemmer>=2.2.0.3"]  # first with cp310-cp313 wheels
-dense = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]   # 4.51: Qwen3 models
+dense = ["sentence-transformers>=3.0.0", "transformers>=4.51.0",   # 4.51: Qwen3 models
+         "einops>=0.7.0"]   # nomic's remote model code imports einops
 rerank = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]  # CrossEncoder, Qwen3 seq-cls
 retrieval = ["mdkeychunker[bm25,dense,rerank]"]
 langchain = ["langchain-text-splitters>=0.3.0"]   # TextSplitter; pulls in langchain-core

@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.4.1 — unreleased
+
+### Fixed
+- `nomic` dense preset: the `[dense]` extra now installs `einops`, which the model's remote code
+  (`nomic-ai/nomic-bert-2048`) imports. Before, `diagnose(..., embedder="nomic")` failed with
+  `ImportError: ... einops`.
+- `nomic` preset on transformers 5: its remote code crashes there
+  (`'NomicBertModel' object has no attribute 'get_extended_attention_mask'`; an upstream fix is
+  pending in nomic-ai/nomic-bert-2048#23). Loading it now fails at once with
+  `ImportError: the 'nomic' embedder needs transformers<5 ... pip install 'transformers<5'`, for the
+  preset name and for its Hugging Face id, instead of a traceback at the first encode.
+  `qwen3-embedding-0.6b`, `mxbai` and both reranker presets work on transformers 5.
+
+### Known
+- On transformers 5, sentence-transformers loads `qwen3-embedding-0.6b` in its config's bfloat16
+  (float32 on transformers 4). Retrieval is unaffected, but scores differ slightly between the two
+  (e.g. 0.7426 vs 0.7439 cosine on a toy query), so pin transformers when you compare runs.
+
+### Added
+- Slow tests that load every dense and reranker preset and check a toy retrieval. The weekly
+  CI job runs them with the default dependency resolution and with transformers 4, so a
+  preset that breaks on a new transformers release is caught there.
+
 ## 0.4.0 — 2026-10-17
 
 Rebuilt around the findings of the v4 study (arXiv:2603.23533 v4, *Upgrade the Retriever First:
