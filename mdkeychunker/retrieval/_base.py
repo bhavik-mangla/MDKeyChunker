@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 import importlib
-from collections.abc import Sequence
+import math
+from collections.abc import Iterable, Sequence
 from types import ModuleType
 from typing import Any
 
@@ -73,10 +74,16 @@ class BaseRetriever:
         return f"{type(self).__name__}(name={self.name!r}, chunks={len(self.chunks)})"
 
 
-def argsort_desc(scores: Any) -> Ranking:
-    """Indices by descending score; ties keep index order (numpy stable argsort, as the study)."""
-    import numpy as np
+def argsort_desc(scores: Iterable[Any]) -> Ranking:
+    """Indices by descending score; ties keep index order.
 
-    arr = np.asarray(scores, dtype=np.float64)
-    order = np.argsort(-arr, kind="stable")
-    return [(int(i), float(arr[i])) for i in order]
+    Pure Python (accepts lists or numpy arrays) and identical to the study's
+    ``np.argsort(-scores, kind="stable")``. NaN scores rank last.
+
+    Example:
+        >>> argsort_desc([0.5, 2.0, 0.5, float("nan")])
+        [(1, 2.0), (0, 0.5), (2, 0.5), (3, nan)]
+    """
+    vals = [float(v) for v in scores]
+    key = [-v if v == v else math.inf for v in vals]  # NaN != NaN
+    return [(i, vals[i]) for i in sorted(range(len(vals)), key=key.__getitem__)]

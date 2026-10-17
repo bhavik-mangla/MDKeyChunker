@@ -53,6 +53,18 @@ def test_study_bm25_is_bit_identical_to_rank_bm25_on_random_corpora():
             assert np.array_equal(ref.get_scores(q), np.array(ours.scores(q)))
 
 
+def test_pure_python_argsort_matches_numpy_stable_argsort():
+    from mdkeychunker.retrieval._base import argsort_desc
+
+    rng = random.Random(1)
+    for _ in range(300):
+        n = rng.randint(0, 40)
+        vals = [rng.choice([0.0, -0.0, 1.0, 2.5, rng.random()]) for _ in range(n)]
+        want = list(np.argsort(-np.asarray(vals), kind="stable"))
+        assert [i for i, _ in argsort_desc(vals)] == want
+        assert [i for i, _ in argsort_desc(np.asarray(vals))] == want
+
+
 @needs_data
 def test_study_bm25_reproduces_harness_rankings_on_qasper():
     rank_bm25 = pytest.importorskip("rank_bm25")
