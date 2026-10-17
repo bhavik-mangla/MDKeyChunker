@@ -100,7 +100,8 @@ class MarkdownChunker:
                 continue
 
             # Headers
-            header_match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$", line)
+            # CommonMark allows up to 3 spaces of indentation before an ATX header
+            header_match = re.match(r"^ {0,3}(#{1,6})\s+(.+?)(?:\s+#+)?\s*$", line)
             setext_match = (
                 not header_match
                 and line.strip()

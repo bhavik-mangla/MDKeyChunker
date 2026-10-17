@@ -348,34 +348,44 @@ def _split_block(b: _Block, start: int, budget: int, tok: _Tok) -> list[_Piece]:
     return pieces
 
 
-def _cap(blocks: list[_Block], starts: list[int], max_tokens: int, tok: _Tok) -> list[list[_Piece]]:
-    """Re-pack one over-cap chunk's blocks into groups within ``max_tokens``."""
+def _cap(blocks: list[_Block], starts: list[int], room: Callable[[list[str]], int],
+         tok: _Tok) -> list[list[_Piece]]:
+    """Re-pack one over-cap chunk's blocks into groups that fit.
+
+    ``room(path)`` is the text budget of a group whose section path is ``path`` (the cap
+    minus that group's prefix). Each group is sized by its own path only, so content after
+    it never moves its boundaries (ids stay stable when a document grows).
+    """
+    def fits(group: list[_Piece], text: str) -> bool:
+        return tok.count(text) <= room(_body_path([(p.path, p.header) for p in group]))
+
     units: list[_Piece] = []
     for b in blocks:
         s = starts[b.start_line]
-        if b.type == "header" and tok.count(b.content) <= max_tokens:
+        cap = room(b.section_path)
+        if b.type == "header" and tok.count(b.content) <= cap:
             units.append(_Piece(b.content, s, s + len(b.content), {"header"}, b.section_path,
                                 header=True))
-        elif tok.count(b.content) <= max_tokens:
+        elif tok.count(b.content) <= cap:
             units.append(_Piece(b.content, s, s + len(b.content), {b.type}, b.section_path))
         else:
             # Leave room for the headers that will travel with the first piece
             lead = tok.count("\n\n".join(u.text for u in _trailing_headers(units)) + "\n\n")
-            budget = max_tokens - lead if lead <= max_tokens // 2 else max_tokens
+            budget = cap - lead if lead <= cap // 2 else cap
             units.extend(_split_block(b, s, budget, tok))
 
     groups: list[list[_Piece]] = []
     cur: list[_Piece] = []
     cur_text = ""
     for u in units:
-        if cur and tok.count(cur_text + "\n\n" + u.text) > max_tokens:
+        if cur and not fits(cur + [u], cur_text + "\n\n" + u.text):
             tail = _trailing_headers(cur)  # headers travel with the content that follows
             body = cur[:len(cur) - len(tail)]
             if body:
                 groups.append(body)
                 cur = tail
                 cur_text = "\n\n".join(p.text for p in cur)
-            if cur and tok.count(cur_text + "\n\n" + u.text) > max_tokens:
+            if cur and not fits(cur + [u], cur_text + "\n\n" + u.text):
                 groups.append(cur)  # a header run too long to travel: emitted on its own
                 cur, cur_text = [], ""
         cur.append(u)
@@ -383,7 +393,7 @@ def _cap(blocks: list[_Block], starts: list[int], max_tokens: int, tok: _Tok) ->
     if cur:
         last = "\n\n".join(p.text for p in groups[-1]) if groups else ""
         if all(p.header for p in cur) and groups \
-                and tok.count(last + "\n\n" + cur_text) <= max_tokens:
+                and fits(groups[-1] + cur, last + "\n\n" + cur_text):
             groups[-1].extend(cur)  # trailing headers with no content of their own
         else:
             groups.append(cur)
@@ -452,7 +462,7 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
     with ``prefix`` it is joined with ``" > "`` for ``embed_text``. ``section_title`` keeps
     its 0.3 value, which for a chunk merged across headers can name a later section. The v4
     study's prefix used ``section_title``, so ``embed_text`` differs from the study's indexed
-    text for such chunks (5 of 184 on the repo's own Markdown files); the exact study
+    text for such chunks (329 of the study's 14,274 header chunks, 2.3%); the exact study
     rendering is ``section_title + "\n\n" + text`` with ``max_tokens=None``. ``chunk_id`` is
     content-stable (``Chunk.stable_id``: doc_id, start offset, text): editing or appending
     text leaves the ids of all chunks before the change unchanged.
@@ -510,9 +520,8 @@ def chunk(markdown: str, doc_id: str = "", *, max_tokens: int | None = 512, pref
                      metadata=dict(metadata or {}))
 
     def capped(group_blocks: list[_Block]) -> list[Chunk]:
-        cap = min(r for r in (room(b.section_path) for b in group_blocks) if r is not None)
         out = []
-        for g in _cap(group_blocks, n_starts, cap, tok):
+        for g in _cap(group_blocks, n_starts, lambda path: cast(int, room(path)), tok):
             path = _body_path([(p.path, p.header) for p in g])
             out.append(make("\n\n".join(p.text for p in g), g[0].start, g[-1].end, path,
                             " > ".join(path), set().union(*(p.types for p in g)),

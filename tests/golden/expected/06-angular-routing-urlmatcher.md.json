@@ -1,0 +1,228 @@
+[
+ {
+  "chunk_id": "e3dca8ad71080170",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches\n\n# Creating custom route matches\n\nThe Angular Router supports a powerful matching strategy that you can use to help users navigate your application.\nThis matching strategy supports static routes, variable routes with parameters, wildcard routes, and so on.\nAlso, build your own custom pattern matching for situations in which the URLs are more complicated.\n\nIn this tutorial, you'll build a custom route matcher using Angular's `UrlMatcher`.\nThis matcher looks for a Twitter handle in the URL.",
+  "end_char": 492,
+  "end_line": 7,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "0e9cd8b325c70e8e",
+  "oversized": false,
+  "position_index": 0,
+  "previous_chunk_id": "",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches"
+  ],
+  "section_title": "Creating custom route matches",
+  "start_char": 0,
+  "start_line": 0,
+  "summary": "",
+  "text": "# Creating custom route matches\n\nThe Angular Router supports a powerful matching strategy that you can use to help users navigate your application.\nThis matching strategy supports static routes, variable routes with parameters, wildcard routes, and so on.\nAlso, build your own custom pattern matching for situations in which the URLs are more complicated.\n\nIn this tutorial, you'll build a custom route matcher using Angular's `UrlMatcher`.\nThis matcher looks for a Twitter handle in the URL.",
+  "title": "",
+  "token_count": 131
+ },
+ {
+  "chunk_id": "0e9cd8b325c70e8e",
+  "content_types": [
+   "header",
+   "list",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Objectives\n\n## Objectives\n\nImplement Angular's `UrlMatcher` to create a custom route matcher.\n\n## Create a sample application\n\nUsing the Angular CLI, create a new application, *angular-custom-route-match*.\nIn addition to the default Angular application framework, you will also create a *profile* component.\n\n1. Create a new Angular project, *angular-custom-route-match*.\n\n    ```shell\n    ng new angular-custom-route-match\n    ```\n\n    When prompted with `Would you like to add Angular routing?`, select `Y`.\n\n    When prompted with `Which stylesheet format would you like to use?`, select `CSS`.\n\n    After a few moments, a new project, `angular-custom-route-match`, is ready.\n\n1. From your terminal, navigate to the `angular-custom-route-match` directory.\n1. Create a component, *profile*.\n\n    ```shell\n    ng generate component profile\n    ```\n\n1. In your code editor, locate the file, `profile.component.html` and replace the placeholder content with the following HTML.\n\n    <docs-code header=\"src/app/profile/profile.component.html\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/profile/profile.component.html\"/>\n\n1. In your code editor, locate the file, `app.component.html` and replace the placeholder content with the following HTML.\n\n    <docs-code header=\"src/app/app.component.html\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/app.component.html\"/>",
+  "end_char": 1882,
+  "end_line": 43,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "3b165831e7d34589",
+  "oversized": false,
+  "position_index": 1,
+  "previous_chunk_id": "e3dca8ad71080170",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Objectives"
+  ],
+  "section_title": "Creating custom route matches > Create a sample application",
+  "start_char": 494,
+  "start_line": 9,
+  "summary": "",
+  "text": "## Objectives\n\nImplement Angular's `UrlMatcher` to create a custom route matcher.\n\n## Create a sample application\n\nUsing the Angular CLI, create a new application, *angular-custom-route-match*.\nIn addition to the default Angular application framework, you will also create a *profile* component.\n\n1. Create a new Angular project, *angular-custom-route-match*.\n\n    ```shell\n    ng new angular-custom-route-match\n    ```\n\n    When prompted with `Would you like to add Angular routing?`, select `Y`.\n\n    When prompted with `Which stylesheet format would you like to use?`, select `CSS`.\n\n    After a few moments, a new project, `angular-custom-route-match`, is ready.\n\n1. From your terminal, navigate to the `angular-custom-route-match` directory.\n1. Create a component, *profile*.\n\n    ```shell\n    ng generate component profile\n    ```\n\n1. In your code editor, locate the file, `profile.component.html` and replace the placeholder content with the following HTML.\n\n    <docs-code header=\"src/app/profile/profile.component.html\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/profile/profile.component.html\"/>\n\n1. In your code editor, locate the file, `app.component.html` and replace the placeholder content with the following HTML.\n\n    <docs-code header=\"src/app/app.component.html\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/app.component.html\"/>",
+  "title": "",
+  "token_count": 358
+ },
+ {
+  "chunk_id": "3b165831e7d34589",
+  "content_types": [
+   "header",
+   "list",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Configure your routes for your application\n\n## Configure your routes for your application\n\nWith your application framework in place, you next need to add routing capabilities to the `app.config.ts` file.\nAs a part of this process, you will create a custom URL matcher that looks for a Twitter handle in the URL.\nThis handle is identified by a preceding `@` symbol.\n\n1. In your code editor, open your `app.config.ts` file.\n1. Add an `import` statement for Angular's `provideRouter` and `withComponentInputBinding` as well as the application routes.\n\n    ```ts\n    import {provideRouter, withComponentInputBinding} from '@angular/router';\n\n    import {routes} from './app.routes';\n    ```\n\n1. In the providers array, add a `provideRouter(routes, withComponentInputBinding())` statement.\n\n1. Define the custom route matcher by adding the following code to the application routes.\n\n    <docs-code header=\"src/app/app.routes.ts\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/app.routes.ts\" visibleRegion=\"matcher\"/>\n\nThis custom matcher is a function that performs the following tasks:\n\n* The matcher verifies that the array contains only one segment\n* The matcher employs a regular expression to ensure that the format of the username is a match\n* If there is a match, the function returns the entire URL, defining a `username` route parameter as a substring of the path\n* If there isn't a match, the function returns null and the router continues to look for other routes that match the URL",
+  "end_char": 3345,
+  "end_line": 71,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "a35ec2b9b8c4c239",
+  "oversized": false,
+  "position_index": 2,
+  "previous_chunk_id": "0e9cd8b325c70e8e",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Configure your routes for your application"
+  ],
+  "section_title": "Creating custom route matches > Configure your routes for your application",
+  "start_char": 1884,
+  "start_line": 45,
+  "summary": "",
+  "text": "## Configure your routes for your application\n\nWith your application framework in place, you next need to add routing capabilities to the `app.config.ts` file.\nAs a part of this process, you will create a custom URL matcher that looks for a Twitter handle in the URL.\nThis handle is identified by a preceding `@` symbol.\n\n1. In your code editor, open your `app.config.ts` file.\n1. Add an `import` statement for Angular's `provideRouter` and `withComponentInputBinding` as well as the application routes.\n\n    ```ts\n    import {provideRouter, withComponentInputBinding} from '@angular/router';\n\n    import {routes} from './app.routes';\n    ```\n\n1. In the providers array, add a `provideRouter(routes, withComponentInputBinding())` statement.\n\n1. Define the custom route matcher by adding the following code to the application routes.\n\n    <docs-code header=\"src/app/app.routes.ts\" path=\"adev/src/content/examples/routing-with-urlmatcher/src/app/app.routes.ts\" visibleRegion=\"matcher\"/>\n\nThis custom matcher is a function that performs the following tasks:\n\n* The matcher verifies that the array contains only one segment\n* The matcher employs a regular expression to ensure that the format of the username is a match\n* If there is a match, the function returns the entire URL, defining a `username` route parameter as a substring of the path\n* If there isn't a match, the function returns null and the router continues to look for other routes that match the URL",
+  "title": "",
+  "token_count": 385
+ },
+ {
+  "chunk_id": "a35ec2b9b8c4c239",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Configure your routes for your application\n\nHELPFUL: A custom URL matcher behaves like any other route definition. Define child routes or lazy loaded routes as you would with any other route.",
+  "end_char": 3494,
+  "end_line": 73,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "c57fc22decbe4c19",
+  "oversized": false,
+  "position_index": 3,
+  "previous_chunk_id": "3b165831e7d34589",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Configure your routes for your application"
+  ],
+  "section_title": "Creating custom route matches > Configure your routes for your application",
+  "start_char": 3347,
+  "start_line": 73,
+  "summary": "",
+  "text": "HELPFUL: A custom URL matcher behaves like any other route definition. Define child routes or lazy loaded routes as you would with any other route.",
+  "title": "",
+  "token_count": 56
+ },
+ {
+  "chunk_id": "c57fc22decbe4c19",
+  "content_types": [
+   "code",
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Reading the route parameters\n\n## Reading the route parameters\n\nWith the custom matcher in place, you can now bind the route parameter in the `profile` component.\n\nIn your code editor, open your `profile.component.ts` file and create an `Input` matching the `username` parameter.\nWe added the `withComponentInputBinding` feature earlier\nin `provideRouter`. This allows the `Router` to bind information directly to the route components.\n\n```ts\n@Input() username!: string;\n```",
+  "end_char": 3939,
+  "end_line": 85,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "5ae9842d58a0fef4",
+  "oversized": false,
+  "position_index": 4,
+  "previous_chunk_id": "a35ec2b9b8c4c239",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Reading the route parameters"
+  ],
+  "section_title": "Creating custom route matches > Reading the route parameters",
+  "start_char": 3496,
+  "start_line": 75,
+  "summary": "",
+  "text": "## Reading the route parameters\n\nWith the custom matcher in place, you can now bind the route parameter in the `profile` component.\n\nIn your code editor, open your `profile.component.ts` file and create an `Input` matching the `username` parameter.\nWe added the `withComponentInputBinding` feature earlier\nin `provideRouter`. This allows the `Router` to bind information directly to the route components.\n\n```ts\n@Input() username!: string;\n```",
+  "title": "",
+  "token_count": 127
+ },
+ {
+  "chunk_id": "5ae9842d58a0fef4",
+  "content_types": [
+   "header",
+   "list",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Test your custom URL matcher\n\n## Test your custom URL matcher\n\nWith your code in place, you can now test your custom URL matcher.\n\n1. From a terminal window, run the `ng serve` command.\n\n    <docs-code language=\"shell\">\n    ng serve\n    </docs-code>\n\n1. Open a browser to `http://localhost:4200`.\n\n    You should see a single web page, consisting of a sentence that reads `Navigate to my profile`.\n\n1. Click the **my profile** hyperlink.\n\n    A new sentence, reading `Hello, Angular!` appears on the page.",
+  "end_char": 4416,
+  "end_line": 103,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "b435f8abaa6f5463",
+  "oversized": false,
+  "position_index": 5,
+  "previous_chunk_id": "c57fc22decbe4c19",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Test your custom URL matcher"
+  ],
+  "section_title": "Creating custom route matches > Test your custom URL matcher",
+  "start_char": 3941,
+  "start_line": 87,
+  "summary": "",
+  "text": "## Test your custom URL matcher\n\nWith your code in place, you can now test your custom URL matcher.\n\n1. From a terminal window, run the `ng serve` command.\n\n    <docs-code language=\"shell\">\n    ng serve\n    </docs-code>\n\n1. Open a browser to `http://localhost:4200`.\n\n    You should see a single web page, consisting of a sentence that reads `Navigate to my profile`.\n\n1. Click the **my profile** hyperlink.\n\n    A new sentence, reading `Hello, Angular!` appears on the page.",
+  "title": "",
+  "token_count": 135
+ },
+ {
+  "chunk_id": "b435f8abaa6f5463",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "06-angular-routing-urlmatcher.md",
+  "embed_text": "Creating custom route matches > Next steps\n\n## Next steps\n\nPattern matching with the Angular Router provides you with a lot of flexibility when you have dynamic URLs in your application.\nTo learn more about the Angular Router, see the following topics:\n\n<docs-pill-row>\n  <docs-pill href=\"guide/routing/common-router-tasks\" title=\"In-app Routing and Navigation\"/>\n  <docs-pill href=\"api/router/Router\" title=\"Router API\"/>\n</docs-pill-row>\n\nHELPFUL: This content is based on [Custom Route Matching with the Angular Router](https://medium.com/@brandontroberts/custom-route-matching-with-the-angular-router-fbdd48665483), by [Brandon Roberts](https://twitter.com/brandontroberts).",
+  "end_char": 5052,
+  "end_line": 115,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "",
+  "oversized": false,
+  "position_index": 6,
+  "previous_chunk_id": "5ae9842d58a0fef4",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Creating custom route matches",
+   "Next steps"
+  ],
+  "section_title": "Creating custom route matches > Next steps",
+  "start_char": 4418,
+  "start_line": 105,
+  "summary": "",
+  "text": "## Next steps\n\nPattern matching with the Angular Router provides you with a lot of flexibility when you have dynamic URLs in your application.\nTo learn more about the Angular Router, see the following topics:\n\n<docs-pill-row>\n  <docs-pill href=\"guide/routing/common-router-tasks\" title=\"In-app Routing and Navigation\"/>\n  <docs-pill href=\"api/router/Router\" title=\"Router API\"/>\n</docs-pill-row>\n\nHELPFUL: This content is based on [Custom Route Matching with the Angular Router](https://medium.com/@brandontroberts/custom-route-matching-with-the-angular-router-fbdd48665483), by [Brandon Roberts](https://twitter.com/brandontroberts).",
+  "title": "",
+  "token_count": 170
+ }
+]

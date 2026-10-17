@@ -1,0 +1,472 @@
+{
+ "source": "https://spec.commonmark.org/0.31.2/spec.json",
+ "license": "CommonMark Spec by John MacFarlane, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)",
+ "note": "Examples from the sections ATX headings, Setext headings, Fenced code blocks, Thematic breaks, unmodified.",
+ "examples": [
+  {
+   "example": 43,
+   "section": "Thematic breaks",
+   "markdown": "***\n---\n___\n"
+  },
+  {
+   "example": 44,
+   "section": "Thematic breaks",
+   "markdown": "+++\n"
+  },
+  {
+   "example": 45,
+   "section": "Thematic breaks",
+   "markdown": "===\n"
+  },
+  {
+   "example": 46,
+   "section": "Thematic breaks",
+   "markdown": "--\n**\n__\n"
+  },
+  {
+   "example": 47,
+   "section": "Thematic breaks",
+   "markdown": " ***\n  ***\n   ***\n"
+  },
+  {
+   "example": 48,
+   "section": "Thematic breaks",
+   "markdown": "    ***\n"
+  },
+  {
+   "example": 49,
+   "section": "Thematic breaks",
+   "markdown": "Foo\n    ***\n"
+  },
+  {
+   "example": 50,
+   "section": "Thematic breaks",
+   "markdown": "_____________________________________\n"
+  },
+  {
+   "example": 51,
+   "section": "Thematic breaks",
+   "markdown": " - - -\n"
+  },
+  {
+   "example": 52,
+   "section": "Thematic breaks",
+   "markdown": " **  * ** * ** * **\n"
+  },
+  {
+   "example": 53,
+   "section": "Thematic breaks",
+   "markdown": "-     -      -      -\n"
+  },
+  {
+   "example": 54,
+   "section": "Thematic breaks",
+   "markdown": "- - - -    \n"
+  },
+  {
+   "example": 55,
+   "section": "Thematic breaks",
+   "markdown": "_ _ _ _ a\n\na------\n\n---a---\n"
+  },
+  {
+   "example": 56,
+   "section": "Thematic breaks",
+   "markdown": " *-*\n"
+  },
+  {
+   "example": 57,
+   "section": "Thematic breaks",
+   "markdown": "- foo\n***\n- bar\n"
+  },
+  {
+   "example": 58,
+   "section": "Thematic breaks",
+   "markdown": "Foo\n***\nbar\n"
+  },
+  {
+   "example": 59,
+   "section": "Thematic breaks",
+   "markdown": "Foo\n---\nbar\n"
+  },
+  {
+   "example": 60,
+   "section": "Thematic breaks",
+   "markdown": "* Foo\n* * *\n* Bar\n"
+  },
+  {
+   "example": 61,
+   "section": "Thematic breaks",
+   "markdown": "- Foo\n- * * *\n"
+  },
+  {
+   "example": 62,
+   "section": "ATX headings",
+   "markdown": "# foo\n## foo\n### foo\n#### foo\n##### foo\n###### foo\n"
+  },
+  {
+   "example": 63,
+   "section": "ATX headings",
+   "markdown": "####### foo\n"
+  },
+  {
+   "example": 64,
+   "section": "ATX headings",
+   "markdown": "#5 bolt\n\n#hashtag\n"
+  },
+  {
+   "example": 65,
+   "section": "ATX headings",
+   "markdown": "\\## foo\n"
+  },
+  {
+   "example": 66,
+   "section": "ATX headings",
+   "markdown": "# foo *bar* \\*baz\\*\n"
+  },
+  {
+   "example": 67,
+   "section": "ATX headings",
+   "markdown": "#                  foo                     \n"
+  },
+  {
+   "example": 68,
+   "section": "ATX headings",
+   "markdown": " ### foo\n  ## foo\n   # foo\n"
+  },
+  {
+   "example": 69,
+   "section": "ATX headings",
+   "markdown": "    # foo\n"
+  },
+  {
+   "example": 70,
+   "section": "ATX headings",
+   "markdown": "foo\n    # bar\n"
+  },
+  {
+   "example": 71,
+   "section": "ATX headings",
+   "markdown": "## foo ##\n  ###   bar    ###\n"
+  },
+  {
+   "example": 72,
+   "section": "ATX headings",
+   "markdown": "# foo ##################################\n##### foo ##\n"
+  },
+  {
+   "example": 73,
+   "section": "ATX headings",
+   "markdown": "### foo ###     \n"
+  },
+  {
+   "example": 74,
+   "section": "ATX headings",
+   "markdown": "### foo ### b\n"
+  },
+  {
+   "example": 75,
+   "section": "ATX headings",
+   "markdown": "# foo#\n"
+  },
+  {
+   "example": 76,
+   "section": "ATX headings",
+   "markdown": "### foo \\###\n## foo #\\##\n# foo \\#\n"
+  },
+  {
+   "example": 77,
+   "section": "ATX headings",
+   "markdown": "****\n## foo\n****\n"
+  },
+  {
+   "example": 78,
+   "section": "ATX headings",
+   "markdown": "Foo bar\n# baz\nBar foo\n"
+  },
+  {
+   "example": 79,
+   "section": "ATX headings",
+   "markdown": "## \n#\n### ###\n"
+  },
+  {
+   "example": 80,
+   "section": "Setext headings",
+   "markdown": "Foo *bar*\n=========\n\nFoo *bar*\n---------\n"
+  },
+  {
+   "example": 81,
+   "section": "Setext headings",
+   "markdown": "Foo *bar\nbaz*\n====\n"
+  },
+  {
+   "example": 82,
+   "section": "Setext headings",
+   "markdown": "  Foo *bar\nbaz*\t\n====\n"
+  },
+  {
+   "example": 83,
+   "section": "Setext headings",
+   "markdown": "Foo\n-------------------------\n\nFoo\n=\n"
+  },
+  {
+   "example": 84,
+   "section": "Setext headings",
+   "markdown": "   Foo\n---\n\n  Foo\n-----\n\n  Foo\n  ===\n"
+  },
+  {
+   "example": 85,
+   "section": "Setext headings",
+   "markdown": "    Foo\n    ---\n\n    Foo\n---\n"
+  },
+  {
+   "example": 86,
+   "section": "Setext headings",
+   "markdown": "Foo\n   ----      \n"
+  },
+  {
+   "example": 87,
+   "section": "Setext headings",
+   "markdown": "Foo\n    ---\n"
+  },
+  {
+   "example": 88,
+   "section": "Setext headings",
+   "markdown": "Foo\n= =\n\nFoo\n--- -\n"
+  },
+  {
+   "example": 89,
+   "section": "Setext headings",
+   "markdown": "Foo  \n-----\n"
+  },
+  {
+   "example": 90,
+   "section": "Setext headings",
+   "markdown": "Foo\\\n----\n"
+  },
+  {
+   "example": 91,
+   "section": "Setext headings",
+   "markdown": "`Foo\n----\n`\n\n<a title=\"a lot\n---\nof dashes\"/>\n"
+  },
+  {
+   "example": 92,
+   "section": "Setext headings",
+   "markdown": "> Foo\n---\n"
+  },
+  {
+   "example": 93,
+   "section": "Setext headings",
+   "markdown": "> foo\nbar\n===\n"
+  },
+  {
+   "example": 94,
+   "section": "Setext headings",
+   "markdown": "- Foo\n---\n"
+  },
+  {
+   "example": 95,
+   "section": "Setext headings",
+   "markdown": "Foo\nBar\n---\n"
+  },
+  {
+   "example": 96,
+   "section": "Setext headings",
+   "markdown": "---\nFoo\n---\nBar\n---\nBaz\n"
+  },
+  {
+   "example": 97,
+   "section": "Setext headings",
+   "markdown": "\n====\n"
+  },
+  {
+   "example": 98,
+   "section": "Setext headings",
+   "markdown": "---\n---\n"
+  },
+  {
+   "example": 99,
+   "section": "Setext headings",
+   "markdown": "- foo\n-----\n"
+  },
+  {
+   "example": 100,
+   "section": "Setext headings",
+   "markdown": "    foo\n---\n"
+  },
+  {
+   "example": 101,
+   "section": "Setext headings",
+   "markdown": "> foo\n-----\n"
+  },
+  {
+   "example": 102,
+   "section": "Setext headings",
+   "markdown": "\\> foo\n------\n"
+  },
+  {
+   "example": 103,
+   "section": "Setext headings",
+   "markdown": "Foo\n\nbar\n---\nbaz\n"
+  },
+  {
+   "example": 104,
+   "section": "Setext headings",
+   "markdown": "Foo\nbar\n\n---\n\nbaz\n"
+  },
+  {
+   "example": 105,
+   "section": "Setext headings",
+   "markdown": "Foo\nbar\n* * *\nbaz\n"
+  },
+  {
+   "example": 106,
+   "section": "Setext headings",
+   "markdown": "Foo\nbar\n\\---\nbaz\n"
+  },
+  {
+   "example": 119,
+   "section": "Fenced code blocks",
+   "markdown": "```\n<\n >\n```\n"
+  },
+  {
+   "example": 120,
+   "section": "Fenced code blocks",
+   "markdown": "~~~\n<\n >\n~~~\n"
+  },
+  {
+   "example": 121,
+   "section": "Fenced code blocks",
+   "markdown": "``\nfoo\n``\n"
+  },
+  {
+   "example": 122,
+   "section": "Fenced code blocks",
+   "markdown": "```\naaa\n~~~\n```\n"
+  },
+  {
+   "example": 123,
+   "section": "Fenced code blocks",
+   "markdown": "~~~\naaa\n```\n~~~\n"
+  },
+  {
+   "example": 124,
+   "section": "Fenced code blocks",
+   "markdown": "````\naaa\n```\n``````\n"
+  },
+  {
+   "example": 125,
+   "section": "Fenced code blocks",
+   "markdown": "~~~~\naaa\n~~~\n~~~~\n"
+  },
+  {
+   "example": 126,
+   "section": "Fenced code blocks",
+   "markdown": "```\n"
+  },
+  {
+   "example": 127,
+   "section": "Fenced code blocks",
+   "markdown": "`````\n\n```\naaa\n"
+  },
+  {
+   "example": 128,
+   "section": "Fenced code blocks",
+   "markdown": "> ```\n> aaa\n\nbbb\n"
+  },
+  {
+   "example": 129,
+   "section": "Fenced code blocks",
+   "markdown": "```\n\n  \n```\n"
+  },
+  {
+   "example": 130,
+   "section": "Fenced code blocks",
+   "markdown": "```\n```\n"
+  },
+  {
+   "example": 131,
+   "section": "Fenced code blocks",
+   "markdown": " ```\n aaa\naaa\n```\n"
+  },
+  {
+   "example": 132,
+   "section": "Fenced code blocks",
+   "markdown": "  ```\naaa\n  aaa\naaa\n  ```\n"
+  },
+  {
+   "example": 133,
+   "section": "Fenced code blocks",
+   "markdown": "   ```\n   aaa\n    aaa\n  aaa\n   ```\n"
+  },
+  {
+   "example": 134,
+   "section": "Fenced code blocks",
+   "markdown": "    ```\n    aaa\n    ```\n"
+  },
+  {
+   "example": 135,
+   "section": "Fenced code blocks",
+   "markdown": "```\naaa\n  ```\n"
+  },
+  {
+   "example": 136,
+   "section": "Fenced code blocks",
+   "markdown": "   ```\naaa\n  ```\n"
+  },
+  {
+   "example": 137,
+   "section": "Fenced code blocks",
+   "markdown": "```\naaa\n    ```\n"
+  },
+  {
+   "example": 138,
+   "section": "Fenced code blocks",
+   "markdown": "``` ```\naaa\n"
+  },
+  {
+   "example": 139,
+   "section": "Fenced code blocks",
+   "markdown": "~~~~~~\naaa\n~~~ ~~\n"
+  },
+  {
+   "example": 140,
+   "section": "Fenced code blocks",
+   "markdown": "foo\n```\nbar\n```\nbaz\n"
+  },
+  {
+   "example": 141,
+   "section": "Fenced code blocks",
+   "markdown": "foo\n---\n~~~\nbar\n~~~\n# baz\n"
+  },
+  {
+   "example": 142,
+   "section": "Fenced code blocks",
+   "markdown": "```ruby\ndef foo(x)\n  return 3\nend\n```\n"
+  },
+  {
+   "example": 143,
+   "section": "Fenced code blocks",
+   "markdown": "~~~~    ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n~~~~~~~\n"
+  },
+  {
+   "example": 144,
+   "section": "Fenced code blocks",
+   "markdown": "````;\n````\n"
+  },
+  {
+   "example": 145,
+   "section": "Fenced code blocks",
+   "markdown": "``` aa ```\nfoo\n"
+  },
+  {
+   "example": 146,
+   "section": "Fenced code blocks",
+   "markdown": "~~~ aa ``` ~~~\nfoo\n~~~\n"
+  },
+  {
+   "example": 147,
+   "section": "Fenced code blocks",
+   "markdown": "```\n``` aaa\n```\n"
+  }
+ ]
+}

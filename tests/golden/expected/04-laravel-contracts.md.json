@@ -1,0 +1,413 @@
+[
+ {
+  "chunk_id": "e658db2b9d7e270b",
+  "content_types": [
+   "header",
+   "list",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts\n\n# Contracts\n\n- [Introduction](#introduction)\n    - [Contracts vs. Facades](#contracts-vs-facades)\n- [When to Use Contracts](#when-to-use-contracts)\n- [How to Use Contracts](#how-to-use-contracts)\n- [Contract Reference](#contract-reference)\n\n<a name=\"introduction\"></a>",
+  "end_char": 268,
+  "end_line": 8,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "09ebc07c62ca85fa",
+  "oversized": false,
+  "position_index": 0,
+  "previous_chunk_id": "",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts"
+  ],
+  "section_title": "Contracts",
+  "start_char": 0,
+  "start_line": 0,
+  "summary": "",
+  "text": "# Contracts\n\n- [Introduction](#introduction)\n    - [Contracts vs. Facades](#contracts-vs-facades)\n- [When to Use Contracts](#when-to-use-contracts)\n- [How to Use Contracts](#how-to-use-contracts)\n- [Contract Reference](#contract-reference)\n\n<a name=\"introduction\"></a>",
+  "title": "",
+  "token_count": 70
+ },
+ {
+  "chunk_id": "09ebc07c62ca85fa",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Introduction\n\n## Introduction\n\nLaravel's \"contracts\" are a set of interfaces that define the core services provided by the framework. For example, an `Illuminate\\Contracts\\Queue\\Queue` contract defines the methods needed for queueing jobs, while the `Illuminate\\Contracts\\Mail\\Mailer` contract defines the methods needed for sending e-mail.\n\nEach contract has a corresponding implementation provided by the framework. For example, Laravel provides a queue implementation with a variety of drivers, and a mailer implementation that is powered by [Symfony Mailer](https://symfony.com/doc/7.0/mailer.html).\n\nAll of the Laravel contracts live in [their own GitHub repository](https://github.com/illuminate/contracts). This provides a quick reference point for all available contracts, as well as a single, decoupled package that may be utilized when building packages that interact with Laravel services.\n\n<a name=\"contracts-vs-facades\"></a>",
+  "end_char": 1192,
+  "end_line": 17,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "aba8c9a9a4aa5d19",
+  "oversized": false,
+  "position_index": 1,
+  "previous_chunk_id": "e658db2b9d7e270b",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Introduction"
+  ],
+  "section_title": "Contracts > Introduction",
+  "start_char": 269,
+  "start_line": 9,
+  "summary": "",
+  "text": "## Introduction\n\nLaravel's \"contracts\" are a set of interfaces that define the core services provided by the framework. For example, an `Illuminate\\Contracts\\Queue\\Queue` contract defines the methods needed for queueing jobs, while the `Illuminate\\Contracts\\Mail\\Mailer` contract defines the methods needed for sending e-mail.\n\nEach contract has a corresponding implementation provided by the framework. For example, Laravel provides a queue implementation with a variety of drivers, and a mailer implementation that is powered by [Symfony Mailer](https://symfony.com/doc/7.0/mailer.html).\n\nAll of the Laravel contracts live in [their own GitHub repository](https://github.com/illuminate/contracts). This provides a quick reference point for all available contracts, as well as a single, decoupled package that may be utilized when building packages that interact with Laravel services.\n\n<a name=\"contracts-vs-facades\"></a>",
+  "title": "",
+  "token_count": 238
+ },
+ {
+  "chunk_id": "aba8c9a9a4aa5d19",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Introduction > Contracts vs. Facades\n\n### Contracts vs. Facades\n\nLaravel's [facades](/docs/{{version}}/facades) and helper functions provide a simple way of utilizing Laravel's services without needing to type-hint and resolve contracts out of the service container. In most cases, each facade has an equivalent contract.\n\nUnlike facades, which do not require you to require them in your class' constructor, contracts allow you to define explicit dependencies for your classes. Some developers prefer to explicitly define their dependencies in this way and therefore prefer to use contracts, while other developers enjoy the convenience of facades. **In general, most applications can use facades without issue during development.**\n\n<a name=\"when-to-use-contracts\"></a>",
+  "end_char": 1925,
+  "end_line": 24,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "28a950437478e52e",
+  "oversized": false,
+  "position_index": 2,
+  "previous_chunk_id": "09ebc07c62ca85fa",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Introduction",
+   "Contracts vs. Facades"
+  ],
+  "section_title": "Contracts > Introduction > Contracts vs. Facades",
+  "start_char": 1193,
+  "start_line": 18,
+  "summary": "",
+  "text": "### Contracts vs. Facades\n\nLaravel's [facades](/docs/{{version}}/facades) and helper functions provide a simple way of utilizing Laravel's services without needing to type-hint and resolve contracts out of the service container. In most cases, each facade has an equivalent contract.\n\nUnlike facades, which do not require you to require them in your class' constructor, contracts allow you to define explicit dependencies for your classes. Some developers prefer to explicitly define their dependencies in this way and therefore prefer to use contracts, while other developers enjoy the convenience of facades. **In general, most applications can use facades without issue during development.**\n\n<a name=\"when-to-use-contracts\"></a>",
+  "title": "",
+  "token_count": 196
+ },
+ {
+  "chunk_id": "28a950437478e52e",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > When to Use Contracts\n\n## When to Use Contracts\n\nThe decision to use contracts or facades will come down to personal taste and the tastes of your development team. Both contracts and facades can be used to create robust, well-tested Laravel applications. Contracts and facades are not mutually exclusive. Some parts of your applications may use facades while others depend on contracts. As long as you are keeping your class' responsibilities focused, you will notice very few practical differences between using contracts and facades.\n\nIn general, most applications can use facades without issue during development. If you are building a package that integrates with multiple PHP frameworks you may wish to use the `illuminate/contracts` package to define your integration with Laravel's services without the need to require Laravel's concrete implementations in your package's `composer.json` file.\n\n<a name=\"how-to-use-contracts\"></a>",
+  "end_char": 2840,
+  "end_line": 31,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "1766e1aa5c104dbe",
+  "oversized": false,
+  "position_index": 3,
+  "previous_chunk_id": "aba8c9a9a4aa5d19",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "When to Use Contracts"
+  ],
+  "section_title": "Contracts > When to Use Contracts",
+  "start_char": 1926,
+  "start_line": 25,
+  "summary": "",
+  "text": "## When to Use Contracts\n\nThe decision to use contracts or facades will come down to personal taste and the tastes of your development team. Both contracts and facades can be used to create robust, well-tested Laravel applications. Contracts and facades are not mutually exclusive. Some parts of your applications may use facades while others depend on contracts. As long as you are keeping your class' responsibilities focused, you will notice very few practical differences between using contracts and facades.\n\nIn general, most applications can use facades without issue during development. If you are building a package that integrates with multiple PHP frameworks you may wish to use the `illuminate/contracts` package to define your integration with Laravel's services without the need to require Laravel's concrete implementations in your package's `composer.json` file.\n\n<a name=\"how-to-use-contracts\"></a>",
+  "title": "",
+  "token_count": 238
+ },
+ {
+  "chunk_id": "1766e1aa5c104dbe",
+  "content_types": [
+   "header",
+   "list",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > How to Use Contracts\n\n## How to Use Contracts\n\nSo, how do you get an implementation of a contract? It's actually quite simple.\n\nMany types of classes in Laravel are resolved through the [service container](/docs/{{version}}/container), including controllers, event listeners, middleware, queued jobs, and even route closures. So, to get an implementation of a contract, you can just \"type-hint\" the interface in the constructor of the class being resolved.\n\nFor example, take a look at this event listener:\n\n    <?php\n\n    namespace App\\Listeners;\n\n    use App\\Events\\OrderWasPlaced;\n    use App\\Models\\User;\n    use Illuminate\\Contracts\\Redis\\Factory;\n\n    class CacheOrderInformation\n    {\n        /**\n\n         * Create a new event handler instance.\n\n         */\n        public function __construct(\n            protected Factory $redis,\n        ) {}\n\n        /**\n\n         * Handle the event.\n\n         */\n        public function handle(OrderWasPlaced $event): void\n        {\n            // ...\n        }\n    }\n\nWhen the event listener is resolved, the service container will read the type-hints on the constructor of the class, and inject the appropriate value. To learn more about registering things in the service container, check out [its documentation](/docs/{{version}}/container).\n\n<a name=\"contract-reference\"></a>",
+  "end_char": 4141,
+  "end_line": 68,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "561ddd379462f821",
+  "oversized": false,
+  "position_index": 4,
+  "previous_chunk_id": "28a950437478e52e",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "How to Use Contracts"
+  ],
+  "section_title": "Contracts > How to Use Contracts",
+  "start_char": 2841,
+  "start_line": 32,
+  "summary": "",
+  "text": "## How to Use Contracts\n\nSo, how do you get an implementation of a contract? It's actually quite simple.\n\nMany types of classes in Laravel are resolved through the [service container](/docs/{{version}}/container), including controllers, event listeners, middleware, queued jobs, and even route closures. So, to get an implementation of a contract, you can just \"type-hint\" the interface in the constructor of the class being resolved.\n\nFor example, take a look at this event listener:\n\n    <?php\n\n    namespace App\\Listeners;\n\n    use App\\Events\\OrderWasPlaced;\n    use App\\Models\\User;\n    use Illuminate\\Contracts\\Redis\\Factory;\n\n    class CacheOrderInformation\n    {\n        /**\n\n         * Create a new event handler instance.\n\n         */\n        public function __construct(\n            protected Factory $redis,\n        ) {}\n\n        /**\n\n         * Handle the event.\n\n         */\n        public function handle(OrderWasPlaced $event): void\n        {\n            // ...\n        }\n    }\n\nWhen the event listener is resolved, the service container will read the type-hints on the constructor of the class, and inject the appropriate value. To learn more about registering things in the service container, check out [its documentation](/docs/{{version}}/container).\n\n<a name=\"contract-reference\"></a>",
+  "title": "",
+  "token_count": 335
+ },
+ {
+  "chunk_id": "561ddd379462f821",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n## Contract Reference\n\nThis table provides a quick reference to all of the Laravel contracts and their equivalent facades:\n\n<div class=\"overflow-auto\">",
+  "end_char": 4293,
+  "end_line": 73,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "8b7535419086f324",
+  "oversized": false,
+  "position_index": 5,
+  "previous_chunk_id": "1766e1aa5c104dbe",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 4142,
+  "start_line": 69,
+  "summary": "",
+  "text": "## Contract Reference\n\nThis table provides a quick reference to all of the Laravel contracts and their equivalent facades:\n\n<div class=\"overflow-auto\">",
+  "title": "",
+  "token_count": 46
+ },
+ {
+  "chunk_id": "8b7535419086f324",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Auth\\Access\\Authorizable](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Authorizable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\Access\\Gate](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Gate.php) | `Gate` |\n| [Illuminate\\Contracts\\Auth\\Authenticatable](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Authenticatable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\CanResetPassword](https://github.com/illuminate/contracts/blob/{{version}}/Auth/CanResetPassword.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Factory.php) | `Auth` |\n| [Illuminate\\Contracts\\Auth\\Guard](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Guard.php) | `Auth::guard()` |\n| [Illuminate\\Contracts\\Auth\\PasswordBroker](https://github.com/illuminate/contracts/blob/{{version}}/Auth/PasswordBroker.php) | `Password::broker()` |\n| [Illuminate\\Contracts\\Auth\\PasswordBrokerFactory](https://github.com/illuminate/contracts/blob/{{version}}/Auth/PasswordBrokerFactory.php) | `Password` |\n| [Illuminate\\Contracts\\Auth\\StatefulGuard](https://github.com/illuminate/contracts/blob/{{version}}/Auth/StatefulGuard.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\SupportsBasicAuth](https://github.com/illuminate/contracts/blob/{{version}}/Auth/SupportsBasicAuth.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\UserProvider](https://github.com/illuminate/contracts/blob/{{version}}/Auth/UserProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Broadcasting\\Broadcaster](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/Broadcaster.php) | `Broadcast::connection()` |\n| [Illuminate\\Contracts\\Broadcasting\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/Factory.php) | `Broadcast` |",
+  "end_char": 6190,
+  "end_line": 89,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "73d3cf33cd024ac5",
+  "oversized": true,
+  "position_index": 6,
+  "previous_chunk_id": "561ddd379462f821",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 4295,
+  "start_line": 75,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Auth\\Access\\Authorizable](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Authorizable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\Access\\Gate](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Gate.php) | `Gate` |\n| [Illuminate\\Contracts\\Auth\\Authenticatable](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Authenticatable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\CanResetPassword](https://github.com/illuminate/contracts/blob/{{version}}/Auth/CanResetPassword.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Factory.php) | `Auth` |\n| [Illuminate\\Contracts\\Auth\\Guard](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Guard.php) | `Auth::guard()` |\n| [Illuminate\\Contracts\\Auth\\PasswordBroker](https://github.com/illuminate/contracts/blob/{{version}}/Auth/PasswordBroker.php) | `Password::broker()` |\n| [Illuminate\\Contracts\\Auth\\PasswordBrokerFactory](https://github.com/illuminate/contracts/blob/{{version}}/Auth/PasswordBrokerFactory.php) | `Password` |\n| [Illuminate\\Contracts\\Auth\\StatefulGuard](https://github.com/illuminate/contracts/blob/{{version}}/Auth/StatefulGuard.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\SupportsBasicAuth](https://github.com/illuminate/contracts/blob/{{version}}/Auth/SupportsBasicAuth.php) | &nbsp; |\n| [Illuminate\\Contracts\\Auth\\UserProvider](https://github.com/illuminate/contracts/blob/{{version}}/Auth/UserProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Broadcasting\\Broadcaster](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/Broadcaster.php) | `Broadcast::connection()` |\n| [Illuminate\\Contracts\\Broadcasting\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/Factory.php) | `Broadcast` |",
+  "title": "",
+  "token_count": 482
+ },
+ {
+  "chunk_id": "73d3cf33cd024ac5",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Broadcasting\\ShouldBroadcast](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/ShouldBroadcast.php) | &nbsp; |\n| [Illuminate\\Contracts\\Broadcasting\\ShouldBroadcastNow](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/ShouldBroadcastNow.php) | &nbsp; |\n| [Illuminate\\Contracts\\Bus\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Bus/Dispatcher.php) | `Bus` |\n| [Illuminate\\Contracts\\Bus\\QueueingDispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Bus/QueueingDispatcher.php) | `Bus::dispatchToQueue()` |\n| [Illuminate\\Contracts\\Cache\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Factory.php) | `Cache` |\n| [Illuminate\\Contracts\\Cache\\Lock](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Lock.php) | &nbsp; |\n| [Illuminate\\Contracts\\Cache\\LockProvider](https://github.com/illuminate/contracts/blob/{{version}}/Cache/LockProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Cache\\Repository](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Repository.php) | `Cache::driver()` |\n| [Illuminate\\Contracts\\Cache\\Store](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Store.php) | &nbsp; |\n| [Illuminate\\Contracts\\Config\\Repository](https://github.com/illuminate/contracts/blob/{{version}}/Config/Repository.php) | `Config` |\n| [Illuminate\\Contracts\\Console\\Application](https://github.com/illuminate/contracts/blob/{{version}}/Console/Application.php) | &nbsp; |\n| [Illuminate\\Contracts\\Console\\Kernel](https://github.com/illuminate/contracts/blob/{{version}}/Console/Kernel.php) | `Artisan` |\n| [Illuminate\\Contracts\\Container\\Container](https://github.com/illuminate/contracts/blob/{{version}}/Container/Container.php) | `App` |\n| [Illuminate\\Contracts\\Cookie\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Cookie/Factory.php) | `Cookie` |",
+  "end_char": 8117,
+  "end_line": 103,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "b77a9d04a95799c5",
+  "oversized": true,
+  "position_index": 7,
+  "previous_chunk_id": "8b7535419086f324",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 6191,
+  "start_line": 90,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Broadcasting\\ShouldBroadcast](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/ShouldBroadcast.php) | &nbsp; |\n| [Illuminate\\Contracts\\Broadcasting\\ShouldBroadcastNow](https://github.com/illuminate/contracts/blob/{{version}}/Broadcasting/ShouldBroadcastNow.php) | &nbsp; |\n| [Illuminate\\Contracts\\Bus\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Bus/Dispatcher.php) | `Bus` |\n| [Illuminate\\Contracts\\Bus\\QueueingDispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Bus/QueueingDispatcher.php) | `Bus::dispatchToQueue()` |\n| [Illuminate\\Contracts\\Cache\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Factory.php) | `Cache` |\n| [Illuminate\\Contracts\\Cache\\Lock](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Lock.php) | &nbsp; |\n| [Illuminate\\Contracts\\Cache\\LockProvider](https://github.com/illuminate/contracts/blob/{{version}}/Cache/LockProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Cache\\Repository](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Repository.php) | `Cache::driver()` |\n| [Illuminate\\Contracts\\Cache\\Store](https://github.com/illuminate/contracts/blob/{{version}}/Cache/Store.php) | &nbsp; |\n| [Illuminate\\Contracts\\Config\\Repository](https://github.com/illuminate/contracts/blob/{{version}}/Config/Repository.php) | `Config` |\n| [Illuminate\\Contracts\\Console\\Application](https://github.com/illuminate/contracts/blob/{{version}}/Console/Application.php) | &nbsp; |\n| [Illuminate\\Contracts\\Console\\Kernel](https://github.com/illuminate/contracts/blob/{{version}}/Console/Kernel.php) | `Artisan` |\n| [Illuminate\\Contracts\\Container\\Container](https://github.com/illuminate/contracts/blob/{{version}}/Container/Container.php) | `App` |\n| [Illuminate\\Contracts\\Cookie\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Cookie/Factory.php) | `Cookie` |",
+  "title": "",
+  "token_count": 502
+ },
+ {
+  "chunk_id": "b77a9d04a95799c5",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Cookie\\QueueingFactory](https://github.com/illuminate/contracts/blob/{{version}}/Cookie/QueueingFactory.php) | `Cookie::queue()` |\n| [Illuminate\\Contracts\\Database\\ModelIdentifier](https://github.com/illuminate/contracts/blob/{{version}}/Database/ModelIdentifier.php) | &nbsp; |\n| [Illuminate\\Contracts\\Debug\\ExceptionHandler](https://github.com/illuminate/contracts/blob/{{version}}/Debug/ExceptionHandler.php) | &nbsp; |\n| [Illuminate\\Contracts\\Encryption\\Encrypter](https://github.com/illuminate/contracts/blob/{{version}}/Encryption/Encrypter.php) | `Crypt` |\n| [Illuminate\\Contracts\\Events\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Events/Dispatcher.php) | `Event` |\n| [Illuminate\\Contracts\\Filesystem\\Cloud](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Cloud.php) | `Storage::cloud()` |\n| [Illuminate\\Contracts\\Filesystem\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Factory.php) | `Storage` |\n| [Illuminate\\Contracts\\Filesystem\\Filesystem](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Filesystem.php) | `Storage::disk()` |\n| [Illuminate\\Contracts\\Foundation\\Application](https://github.com/illuminate/contracts/blob/{{version}}/Foundation/Application.php) | `App` |\n| [Illuminate\\Contracts\\Hashing\\Hasher](https://github.com/illuminate/contracts/blob/{{version}}/Hashing/Hasher.php) | `Hash` |\n| [Illuminate\\Contracts\\Http\\Kernel](https://github.com/illuminate/contracts/blob/{{version}}/Http/Kernel.php) | &nbsp; |\n| [Illuminate\\Contracts\\Mail\\Mailable](https://github.com/illuminate/contracts/blob/{{version}}/Mail/Mailable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Mail\\Mailer](https://github.com/illuminate/contracts/blob/{{version}}/Mail/Mailer.php) | `Mail` |\n| [Illuminate\\Contracts\\Mail\\MailQueue](https://github.com/illuminate/contracts/blob/{{version}}/Mail/MailQueue.php) | `Mail::queue()` |",
+  "end_char": 10054,
+  "end_line": 117,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "0ba4c274f59ab516",
+  "oversized": true,
+  "position_index": 8,
+  "previous_chunk_id": "73d3cf33cd024ac5",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 8118,
+  "start_line": 104,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Cookie\\QueueingFactory](https://github.com/illuminate/contracts/blob/{{version}}/Cookie/QueueingFactory.php) | `Cookie::queue()` |\n| [Illuminate\\Contracts\\Database\\ModelIdentifier](https://github.com/illuminate/contracts/blob/{{version}}/Database/ModelIdentifier.php) | &nbsp; |\n| [Illuminate\\Contracts\\Debug\\ExceptionHandler](https://github.com/illuminate/contracts/blob/{{version}}/Debug/ExceptionHandler.php) | &nbsp; |\n| [Illuminate\\Contracts\\Encryption\\Encrypter](https://github.com/illuminate/contracts/blob/{{version}}/Encryption/Encrypter.php) | `Crypt` |\n| [Illuminate\\Contracts\\Events\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Events/Dispatcher.php) | `Event` |\n| [Illuminate\\Contracts\\Filesystem\\Cloud](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Cloud.php) | `Storage::cloud()` |\n| [Illuminate\\Contracts\\Filesystem\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Factory.php) | `Storage` |\n| [Illuminate\\Contracts\\Filesystem\\Filesystem](https://github.com/illuminate/contracts/blob/{{version}}/Filesystem/Filesystem.php) | `Storage::disk()` |\n| [Illuminate\\Contracts\\Foundation\\Application](https://github.com/illuminate/contracts/blob/{{version}}/Foundation/Application.php) | `App` |\n| [Illuminate\\Contracts\\Hashing\\Hasher](https://github.com/illuminate/contracts/blob/{{version}}/Hashing/Hasher.php) | `Hash` |\n| [Illuminate\\Contracts\\Http\\Kernel](https://github.com/illuminate/contracts/blob/{{version}}/Http/Kernel.php) | &nbsp; |\n| [Illuminate\\Contracts\\Mail\\Mailable](https://github.com/illuminate/contracts/blob/{{version}}/Mail/Mailable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Mail\\Mailer](https://github.com/illuminate/contracts/blob/{{version}}/Mail/Mailer.php) | `Mail` |\n| [Illuminate\\Contracts\\Mail\\MailQueue](https://github.com/illuminate/contracts/blob/{{version}}/Mail/MailQueue.php) | `Mail::queue()` |",
+  "title": "",
+  "token_count": 504
+ },
+ {
+  "chunk_id": "0ba4c274f59ab516",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Notifications\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Notifications/Dispatcher.php) | `Notification`|\n| [Illuminate\\Contracts\\Notifications\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Notifications/Factory.php) | `Notification` |\n| [Illuminate\\Contracts\\Pagination\\LengthAwarePaginator](https://github.com/illuminate/contracts/blob/{{version}}/Pagination/LengthAwarePaginator.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pagination\\Paginator](https://github.com/illuminate/contracts/blob/{{version}}/Pagination/Paginator.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pipeline\\Hub](https://github.com/illuminate/contracts/blob/{{version}}/Pipeline/Hub.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pipeline\\Pipeline](https://github.com/illuminate/contracts/blob/{{version}}/Pipeline/Pipeline.php) | `Pipeline` |\n| [Illuminate\\Contracts\\Queue\\EntityResolver](https://github.com/illuminate/contracts/blob/{{version}}/Queue/EntityResolver.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Factory.php) | `Queue` |\n| [Illuminate\\Contracts\\Queue\\Job](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Job.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\Monitor](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Monitor.php) | `Queue` |\n| [Illuminate\\Contracts\\Queue\\Queue](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Queue.php) | `Queue::connection()` |\n| [Illuminate\\Contracts\\Queue\\QueueableCollection](https://github.com/illuminate/contracts/blob/{{version}}/Queue/QueueableCollection.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\QueueableEntity](https://github.com/illuminate/contracts/blob/{{version}}/Queue/QueueableEntity.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\ShouldQueue](https://github.com/illuminate/contracts/blob/{{version}}/Queue/ShouldQueue.php) | &nbsp; |",
+  "end_char": 11998,
+  "end_line": 131,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "eab4e0119aa835da",
+  "oversized": true,
+  "position_index": 9,
+  "previous_chunk_id": "b77a9d04a95799c5",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 10055,
+  "start_line": 118,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Notifications\\Dispatcher](https://github.com/illuminate/contracts/blob/{{version}}/Notifications/Dispatcher.php) | `Notification`|\n| [Illuminate\\Contracts\\Notifications\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Notifications/Factory.php) | `Notification` |\n| [Illuminate\\Contracts\\Pagination\\LengthAwarePaginator](https://github.com/illuminate/contracts/blob/{{version}}/Pagination/LengthAwarePaginator.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pagination\\Paginator](https://github.com/illuminate/contracts/blob/{{version}}/Pagination/Paginator.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pipeline\\Hub](https://github.com/illuminate/contracts/blob/{{version}}/Pipeline/Hub.php) | &nbsp; |\n| [Illuminate\\Contracts\\Pipeline\\Pipeline](https://github.com/illuminate/contracts/blob/{{version}}/Pipeline/Pipeline.php) | `Pipeline` |\n| [Illuminate\\Contracts\\Queue\\EntityResolver](https://github.com/illuminate/contracts/blob/{{version}}/Queue/EntityResolver.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Factory.php) | `Queue` |\n| [Illuminate\\Contracts\\Queue\\Job](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Job.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\Monitor](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Monitor.php) | `Queue` |\n| [Illuminate\\Contracts\\Queue\\Queue](https://github.com/illuminate/contracts/blob/{{version}}/Queue/Queue.php) | `Queue::connection()` |\n| [Illuminate\\Contracts\\Queue\\QueueableCollection](https://github.com/illuminate/contracts/blob/{{version}}/Queue/QueueableCollection.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\QueueableEntity](https://github.com/illuminate/contracts/blob/{{version}}/Queue/QueueableEntity.php) | &nbsp; |\n| [Illuminate\\Contracts\\Queue\\ShouldQueue](https://github.com/illuminate/contracts/blob/{{version}}/Queue/ShouldQueue.php) | &nbsp; |",
+  "title": "",
+  "token_count": 506
+ },
+ {
+  "chunk_id": "eab4e0119aa835da",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Redis\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Redis/Factory.php) | `Redis` |\n| [Illuminate\\Contracts\\Routing\\BindingRegistrar](https://github.com/illuminate/contracts/blob/{{version}}/Routing/BindingRegistrar.php) | `Route` |\n| [Illuminate\\Contracts\\Routing\\Registrar](https://github.com/illuminate/contracts/blob/{{version}}/Routing/Registrar.php) | `Route` |\n| [Illuminate\\Contracts\\Routing\\ResponseFactory](https://github.com/illuminate/contracts/blob/{{version}}/Routing/ResponseFactory.php) | `Response` |\n| [Illuminate\\Contracts\\Routing\\UrlGenerator](https://github.com/illuminate/contracts/blob/{{version}}/Routing/UrlGenerator.php) | `URL` |\n| [Illuminate\\Contracts\\Routing\\UrlRoutable](https://github.com/illuminate/contracts/blob/{{version}}/Routing/UrlRoutable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Session\\Session](https://github.com/illuminate/contracts/blob/{{version}}/Session/Session.php) | `Session::driver()` |\n| [Illuminate\\Contracts\\Support\\Arrayable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Arrayable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Htmlable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Htmlable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Jsonable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Jsonable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\MessageBag](https://github.com/illuminate/contracts/blob/{{version}}/Support/MessageBag.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\MessageProvider](https://github.com/illuminate/contracts/blob/{{version}}/Support/MessageProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Renderable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Renderable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Responsable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Responsable.php) | &nbsp; |",
+  "end_char": 13933,
+  "end_line": 145,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "4137610963cf4c3c",
+  "oversized": true,
+  "position_index": 10,
+  "previous_chunk_id": "0ba4c274f59ab516",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 11999,
+  "start_line": 132,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Redis\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Redis/Factory.php) | `Redis` |\n| [Illuminate\\Contracts\\Routing\\BindingRegistrar](https://github.com/illuminate/contracts/blob/{{version}}/Routing/BindingRegistrar.php) | `Route` |\n| [Illuminate\\Contracts\\Routing\\Registrar](https://github.com/illuminate/contracts/blob/{{version}}/Routing/Registrar.php) | `Route` |\n| [Illuminate\\Contracts\\Routing\\ResponseFactory](https://github.com/illuminate/contracts/blob/{{version}}/Routing/ResponseFactory.php) | `Response` |\n| [Illuminate\\Contracts\\Routing\\UrlGenerator](https://github.com/illuminate/contracts/blob/{{version}}/Routing/UrlGenerator.php) | `URL` |\n| [Illuminate\\Contracts\\Routing\\UrlRoutable](https://github.com/illuminate/contracts/blob/{{version}}/Routing/UrlRoutable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Session\\Session](https://github.com/illuminate/contracts/blob/{{version}}/Session/Session.php) | `Session::driver()` |\n| [Illuminate\\Contracts\\Support\\Arrayable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Arrayable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Htmlable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Htmlable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Jsonable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Jsonable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\MessageBag](https://github.com/illuminate/contracts/blob/{{version}}/Support/MessageBag.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\MessageProvider](https://github.com/illuminate/contracts/blob/{{version}}/Support/MessageProvider.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Renderable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Renderable.php) | &nbsp; |\n| [Illuminate\\Contracts\\Support\\Responsable](https://github.com/illuminate/contracts/blob/{{version}}/Support/Responsable.php) | &nbsp; |",
+  "title": "",
+  "token_count": 504
+ },
+ {
+  "chunk_id": "4137610963cf4c3c",
+  "content_types": [
+   "table"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Translation\\Loader](https://github.com/illuminate/contracts/blob/{{version}}/Translation/Loader.php) | &nbsp; |\n| [Illuminate\\Contracts\\Translation\\Translator](https://github.com/illuminate/contracts/blob/{{version}}/Translation/Translator.php) | `Lang` |\n| [Illuminate\\Contracts\\Validation\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Validation/Factory.php) | `Validator` |\n| [Illuminate\\Contracts\\Validation\\ValidatesWhenResolved](https://github.com/illuminate/contracts/blob/{{version}}/Validation/ValidatesWhenResolved.php) | &nbsp; |\n| [Illuminate\\Contracts\\Validation\\ValidationRule](https://github.com/illuminate/contracts/blob/{{version}}/Validation/ValidationRule.php) | &nbsp; |\n| [Illuminate\\Contracts\\Validation\\Validator](https://github.com/illuminate/contracts/blob/{{version}}/Validation/Validator.php) | `Validator::make()` |\n| [Illuminate\\Contracts\\View\\Engine](https://github.com/illuminate/contracts/blob/{{version}}/View/Engine.php) | &nbsp; |\n| [Illuminate\\Contracts\\View\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/View/Factory.php) | `View` |\n| [Illuminate\\Contracts\\View\\View](https://github.com/illuminate/contracts/blob/{{version}}/View/View.php) | `View::make()` |",
+  "end_char": 15193,
+  "end_line": 154,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "b73dd16e7f040a17",
+  "oversized": true,
+  "position_index": 11,
+  "previous_chunk_id": "eab4e0119aa835da",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 13934,
+  "start_line": 146,
+  "summary": "",
+  "text": "| Contract | References Facade |\n| --- | --- |\n| [Illuminate\\Contracts\\Translation\\Loader](https://github.com/illuminate/contracts/blob/{{version}}/Translation/Loader.php) | &nbsp; |\n| [Illuminate\\Contracts\\Translation\\Translator](https://github.com/illuminate/contracts/blob/{{version}}/Translation/Translator.php) | `Lang` |\n| [Illuminate\\Contracts\\Validation\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/Validation/Factory.php) | `Validator` |\n| [Illuminate\\Contracts\\Validation\\ValidatesWhenResolved](https://github.com/illuminate/contracts/blob/{{version}}/Validation/ValidatesWhenResolved.php) | &nbsp; |\n| [Illuminate\\Contracts\\Validation\\ValidationRule](https://github.com/illuminate/contracts/blob/{{version}}/Validation/ValidationRule.php) | &nbsp; |\n| [Illuminate\\Contracts\\Validation\\Validator](https://github.com/illuminate/contracts/blob/{{version}}/Validation/Validator.php) | `Validator::make()` |\n| [Illuminate\\Contracts\\View\\Engine](https://github.com/illuminate/contracts/blob/{{version}}/View/Engine.php) | &nbsp; |\n| [Illuminate\\Contracts\\View\\Factory](https://github.com/illuminate/contracts/blob/{{version}}/View/Factory.php) | `View` |\n| [Illuminate\\Contracts\\View\\View](https://github.com/illuminate/contracts/blob/{{version}}/View/View.php) | `View::make()` |",
+  "title": "",
+  "token_count": 335
+ },
+ {
+  "chunk_id": "b73dd16e7f040a17",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "04-laravel-contracts.md",
+  "embed_text": "Contracts > Contract Reference\n\n</div>",
+  "end_char": 15201,
+  "end_line": 156,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "",
+  "oversized": false,
+  "position_index": 12,
+  "previous_chunk_id": "4137610963cf4c3c",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Contracts",
+   "Contract Reference"
+  ],
+  "section_title": "Contracts > Contract Reference",
+  "start_char": 15195,
+  "start_line": 156,
+  "summary": "",
+  "text": "</div>",
+  "title": "",
+  "token_count": 10
+ }
+]
