@@ -23,7 +23,7 @@ N_PAPERS = 10
 
 def main() -> None:
     data = Path(os.environ["MDK_STUDY_DATA"])
-    papers = json.loads((data / "qasper_v2.json").read_text())
+    papers = json.loads((data / "qasper_v2.json").read_text(encoding="utf-8"))
 
     def has_cache(pid: str) -> bool:
         return all((data / "cache" / "base" / v / f"{pid}.json").exists()
@@ -38,7 +38,7 @@ def main() -> None:
         sets = {}
         for v in ("struct", "fixed512"):
             path = data / "cache" / "base" / v / f"{p['id']}.json"
-            raw = json.loads(path.read_text())["chunks"]
+            raw = json.loads(path.read_text(encoding="utf-8"))["chunks"]
             sets[v] = [{"text": c["text"], "section": c.get("section", "")} for c in raw]
         out.append({"id": p["id"], "title": p["title"], "markdown": p["markdown"],
                     "questions": [{"qid": q["qid"], "question": q["question"],
@@ -48,7 +48,7 @@ def main() -> None:
     body = {"source": "Qasper (Dasigi et al., 2021), CC BY 4.0; "
                       "subset of the v4 study's 300 papers",
             "seed": SEED, "pool_size": len(pool), "papers": out}
-    OUT.write_text(json.dumps(body, ensure_ascii=False, indent=0) + "\n")
+    OUT.write_text(json.dumps(body, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
     nq = sum(len(p["questions"]) for p in out)
     print(f"pool={len(pool)} papers={len(out)} questions={nq} bytes={OUT.stat().st_size}")
 

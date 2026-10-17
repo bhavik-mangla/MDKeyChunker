@@ -59,7 +59,7 @@ def arm_chunks(paper: dict, arm: str) -> list[Chunk]:
 
 
 def run(tokenizer: str | None) -> dict:
-    papers = json.loads((HERE / "qasper_ci.json").read_text())["papers"]
+    papers = json.loads((HERE / "qasper_ci.json").read_text(encoding="utf-8"))["papers"]
     per: dict[str, dict[str, float]] = {a: {} for a in ARMS}
     for p in papers:
         for arm in ARMS:
@@ -81,9 +81,9 @@ def main() -> int:
     print(json.dumps({k: v for k, v in res.items() if k != "per_question"}, indent=1))
     if args.write:
         path = HERE / "golden.json"
-        golden = json.loads(path.read_text()) if path.exists() else {}
+        golden = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
         golden[args.tokenizer] = res
-        path.write_text(json.dumps(golden, indent=1, sort_keys=True) + "\n")
+        path.write_text(json.dumps(golden, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     return 0
 
 

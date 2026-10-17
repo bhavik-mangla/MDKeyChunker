@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 BENCH = Path(__file__).resolve().parents[1] / "benchmarks" / "ci_bench"
-GOLDEN = json.loads((BENCH / "golden.json").read_text())
+GOLDEN = json.loads((BENCH / "golden.json").read_text(encoding="utf-8"))
 TOLERANCE = 0.01  # +/-1 point on the mean (RESEARCH.md sec. 4)
 
 
