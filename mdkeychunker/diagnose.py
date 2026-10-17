@@ -115,18 +115,12 @@ def _to_chunks(corpus: Any) -> list[Chunk]:
         from .chunking import chunk
 
         return [c for doc_id, md in corpus.items() for c in chunk(md, doc_id=str(doc_id))]
-    out = []
-    for c in corpus:
-        if isinstance(c, Chunk):
-            out.append(c)
-        elif isinstance(c, Mapping) and "text" in c:
-            out.append(Chunk(text=str(c["text"]), doc_id=str(c.get("doc_id", "")),
-                             chunk_id=str(c.get("chunk_id", c.get("id", ""))),
-                             embed_text=str(c.get("embed_text", ""))))
-        else:
-            raise TypeError(f"cannot read a chunk from {type(c).__name__}; pass Chunk objects, "
-                            "dicts with 'text', or {doc_id: markdown}")
-    return out
+    from .integrations import to_chunks
+
+    try:
+        return to_chunks(corpus)
+    except TypeError as e:
+        raise TypeError(f"{e}; or pass {{doc_id: markdown}}") from None
 
 
 def _label(embedder: EmbedderLike, default: str) -> str:
@@ -234,14 +228,24 @@ def _mde(c: stats.Comparison) -> str:
 Ranked = list[Chunk]
 
 
-def _resolve(item: RetrievedItem, lookup: Mapping[str, Chunk]) -> Chunk | None:
+def _resolve(item: Any, lookup: Mapping[str, Chunk]) -> Chunk | None:
+    """A retrieved item as a Chunk: Hit, Chunk, a chunk id (str), or any object
+    ``integrations.to_chunks`` understands (LangChain Document, LlamaIndex node, Chonkie
+    chunk, dict). A coerced item whose id is in the corpus resolves to the corpus chunk."""
     if isinstance(item, Hit):
         return item.chunk
     if isinstance(item, Chunk):
         return item
     if isinstance(item, str):
         return lookup.get(item)
-    raise TypeError(f"a retriever returned {type(item).__name__}; expected Hit, Chunk or id")
+    from .integrations import to_chunks
+
+    try:
+        c = to_chunks([item])[0]
+    except TypeError:
+        raise TypeError(f"a retriever returned {type(item).__name__}; expected Hit, Chunk, a "
+                        "chunk id, or a LangChain/LlamaIndex/Chonkie chunk") from None
+    return lookup.get(c.chunk_id, c)
 
 
 def _call(r: Retriever | SearchFn, query: str, k: int) -> Sequence[RetrievedItem]:
@@ -404,12 +408,14 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
     """Diagnose a retrieval stack on your documents and labelled questions.
 
     Args:
-        corpus: ``Chunk`` objects (or dicts with ``text``/``doc_id``), ``{doc_id: markdown}``
+        corpus: chunks (``Chunk``, LangChain ``Document``, LlamaIndex node, Chonkie chunk, dict
+            or string; see ``mdkeychunker.integrations.to_chunks``), ``{doc_id: markdown}``
             (chunked with ``mk.chunk``), or one Markdown string.
         qa: labelled questions: dicts ``{"question", "gold": [span text | GoldSpan |
             (doc_id, start, end)], "doc_id"?}``, ``(question, gold[, doc_id])`` tuples, or ``QA``.
         retrievers: your own retrievers, ``{name: Retriever or search(query, k) function}``,
-            returning ``Hit``/``Chunk``/chunk ids. One of them becomes the baseline.
+            returning ``Hit``/``Chunk``/chunk ids or framework objects (LangChain documents,
+            LlamaIndex nodes, ...; matched to the corpus by id). One becomes the baseline.
         check: any of ``"fusion"``, ``"embedder"``, ``"rerank"``, ``"enrich"``. Default:
             the first three, plus ``"enrich"`` when ``enriched`` or ``llm`` is given.
         compare: extra ``(a, b)`` pairs of arm names to compare.
