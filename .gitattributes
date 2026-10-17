@@ -1,0 +1,4 @@
+# Golden-test inputs and snapshots are byte-exact: keep their line endings as committed on every
+# platform (Windows checkouts with core.autocrlf would otherwise shift character offsets).
+# CRLF handling itself is covered by tests/test_chunking.py.
+tests/golden/** -text
