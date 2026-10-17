@@ -50,6 +50,27 @@ def resolve_dense(model: str) -> DensePreset:
     return DENSE_PRESETS.get(model) or DensePreset(model)
 
 
+def load_embedder(model: str, *, device: str | None = None, batch_size: int = 32,
+                  max_seq_length: int | None = None) -> EmbedFn:
+    """Load a sentence-transformers model once and return it as an ``embed_fn``.
+
+    Pass the result to several ``DenseRetriever`` objects (with the same ``model`` name, so
+    the preset's prefixes apply) to embed many document groups without reloading the model.
+    """
+    preset = resolve_dense(model)
+    st = require("sentence_transformers", "dense")
+    enc = st.SentenceTransformer(preset.model_id, device=device,
+                                 trust_remote_code=preset.trust_remote_code)
+    seq = max_seq_length or preset.max_seq_length
+    if seq:
+        enc.max_seq_length = seq
+
+    def embed(texts: list[str]) -> Any:
+        return enc.encode(texts, batch_size=batch_size, show_progress_bar=False,
+                          convert_to_numpy=True, normalize_embeddings=True)
+    return embed
+
+
 class DenseRetriever(BaseRetriever):
     """Cosine similarity between query and chunk embeddings (``embed_text`` or ``text``).
 
@@ -84,18 +105,8 @@ class DenseRetriever(BaseRetriever):
         self.doc_prefix = preset.doc_prefix if doc_prefix is None else doc_prefix
         self.batch_size = batch_size
         if embed_fn is None:
-            st = require("sentence_transformers", "dense")
-            enc = st.SentenceTransformer(preset.model_id, device=device,
-                                         trust_remote_code=preset.trust_remote_code)
-            seq = max_seq_length or preset.max_seq_length
-            if seq:
-                enc.max_seq_length = seq
-            self._model: Any = enc
-
-            def st_embed(texts: list[str]) -> Any:
-                return enc.encode(texts, batch_size=self.batch_size, show_progress_bar=False,
-                                  convert_to_numpy=True, normalize_embeddings=True)
-            embed_fn = st_embed
+            embed_fn = load_embedder(model, device=device, batch_size=batch_size,
+                                     max_seq_length=max_seq_length)
         self._embed = embed_fn
         self.doc_embeddings = self._encode([self.doc_prefix + index_text(c) for c in self.chunks])
 
