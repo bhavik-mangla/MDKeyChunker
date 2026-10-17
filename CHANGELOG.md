@@ -25,6 +25,13 @@
   traceback (3,896 chunks, nomic + qwen3, 24 GB). The batch size and token cap can now be set
   (see Added).
 
+- The `[dense]` / `[rerank]` lower bounds did not work together: the lowest allowed versions
+  could not load a model (torch 2.0 lacks `torch.compiler`; transformers 4.51.0 fails with
+  `NameError: init_empty_weights`; torch < 2.3 cannot hand results to numpy 2). The floors
+  are now `sentence-transformers>=3.0.0`, `transformers>=4.51.1`, `torch>=2.3.0` (and
+  `einops>=0.7.0` for `[dense]`), and CI's lowest-direct job loads two tiny models through
+  `load_embedder`, `DenseRetriever` and `Reranker` to prove it.
+
 ### Added
 - `mk.diagnose(..., embed_batch_size=, max_seq_length=)` and the CLI's `--embed-batch-size` /
   `--max-seq-length`, for the built-in embedders (defaults unchanged; e.g. 4 and 2048 on a

@@ -68,6 +68,10 @@ jobs:
       - run: >-
           uv run --resolution lowest-direct --extra retrieval --extra tokens --with pytest
           pytest -q tests
+      # the floors must load and run real models, not just import: two tiny public models
+      - run: >-
+          uv run --resolution lowest-direct --extra retrieval --extra tokens
+          python tests/smoke_tiny_models.py
 
   lint:
     runs-on: ubuntu-latest
