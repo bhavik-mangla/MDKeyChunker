@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.0 — unreleased
+## 0.4.0 — 2026-10-17
 
 Rebuilt around the findings of the v4 study (arXiv:2603.23533 v4, *Upgrade the Retriever First:
 What an LLM Call per Chunk Buys in RAG*): free structure first, a strong retriever, and LLM
