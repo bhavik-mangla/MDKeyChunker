@@ -8,6 +8,13 @@ paper, and scored with ``evidence_recall`` within 512 tokens:
   S      header-led chunks              (study arm S)
   S+T    header-led chunks + free prefix (study arm S+T, indexed text = section path + text)
 
+and the library's own chunkers on each paper's Markdown (regression guard for mk.chunk /
+mk.window; chunking always uses the zero-dependency token estimate):
+
+  chunk           mk.chunk(max_tokens=512, prefix=True)   (the 0.4 default)
+  chunk-noprefix  mk.chunk(max_tokens=512, prefix=False)
+  window          mk.window(size=256, overlap=32)
+
 ``--tokenizer core`` uses the zero-dependency chars/4 estimate; ``--tokenizer cl100k_base``
 (needs tiktoken) is the study's tokenizer, and then every per-question value must equal the
 study's. ``--write`` refreezes golden.json (only after an intended change; say why in the PR).
@@ -20,18 +27,27 @@ import argparse
 import json
 from pathlib import Path
 
+from mdkeychunker.chunking import chunk, window
 from mdkeychunker.evaluate import evidence_recall
-
 from mdkeychunker.models import Chunk
 from mdkeychunker.retrieval import BM25Retriever
 
 HERE = Path(__file__).parent
 
 BUDGET = 512
-ARMS = ("F512c", "S", "S+T")
+STUDY_ARMS = ("F512c", "S", "S+T")
+LIBRARY_ARMS = ("chunk", "chunk-noprefix", "window")
+ARMS = STUDY_ARMS + LIBRARY_ARMS
 
 
 def arm_chunks(paper: dict, arm: str) -> list[Chunk]:
+    md, pid = paper["markdown"], paper["id"]
+    if arm == "chunk":
+        return chunk(md, doc_id=pid, max_tokens=512, prefix=True)
+    if arm == "chunk-noprefix":
+        return chunk(md, doc_id=pid, max_tokens=512, prefix=False)
+    if arm == "window":
+        return window(md, size=256, overlap=32, doc_id=pid)
     sets = paper["study_chunks"]
     raw = sets["fixed512"] if arm == "F512c" else sets["struct"]
     out = []

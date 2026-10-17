@@ -23,6 +23,7 @@ def _run(tokenizer):
 
 
 def _check(res, golden):
+    assert set(res["mean"]) == set(golden["mean"]), "arms changed: refreeze golden.json"
     assert (res["n_papers"], res["n_questions"]) == (golden["n_papers"], golden["n_questions"])
     for arm, want in golden["mean"].items():
         assert abs(res["mean"][arm] - want) <= TOLERANCE, (arm, res["mean"][arm], want)

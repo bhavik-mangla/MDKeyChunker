@@ -15,12 +15,18 @@ questions the study found no detectable S+T - S difference under BM25 (+0.2 poin
 - `run.py`: BM25 (`method="study"`, bit-identical to the study's rank-bm25) within each paper,
   recall of gold evidence within 512 tokens, for three arms: `F512c` (512-character windows),
   `S` (header-led chunks) and `S+T` (header-led chunks with the section-path prefix).
+- Library arms on each paper's Markdown: `chunk` (`mk.chunk`, 512-token cap, prefix),
+  `chunk-noprefix` and `window` (`mk.window`, 256 tokens, overlap 32). They guard the
+  chunker itself. When frozen, `chunk` and `chunk-noprefix` gave the same per-question values
+  as the study's `S+T` and `S` on all 39 questions, for both tokenizers. That is a property of
+  these papers, not a guarantee: `mk.chunk`'s prefix uses the first-body-line section path,
+  which can differ from the study's for chunks merged across headers.
 - `golden.json`: frozen results for the zero-dependency tokenizer (`core`) and for tiktoken
   `cl100k_base`. With `cl100k_base`, all 117 per-question values (39 questions x 3 arms)
   equal the study's `results/v2/qasper_per_question.json`.
 
-`tests/test_ci_bench.py` asserts the means within +/-1 point and every per-question value
-unchanged. To refreeze after an intended change: `uv run python benchmarks/ci_bench/run.py
+`tests/test_ci_bench.py` asserts the same arms, the means within +/-1 point and every
+per-question value unchanged. To refreeze after an intended change: `uv run python benchmarks/ci_bench/run.py
 --tokenizer core --write` (and `--tokenizer cl100k_base --write` with tiktoken installed), and
 say why in the PR.
 

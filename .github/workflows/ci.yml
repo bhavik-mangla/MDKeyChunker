@@ -18,7 +18,7 @@ concurrency:
 # Paths held to ruff and mypy --strict (new 0.4 modules; legacy modules are not yet clean).
 env:
   TYPED_PATHS: >-
-    mdkeychunker/evaluate.py mdkeychunker/retrieval
+    mdkeychunker/evaluate.py mdkeychunker/stats.py mdkeychunker/diagnose.py mdkeychunker/retrieval
 
 jobs:
   core:
@@ -77,7 +77,7 @@ jobs:
           python-version: "3.12"
           enable-cache: true
       - run: uvx ruff check $TYPED_PATHS benchmarks/ci_bench tests/conftest.py
-      - run: uv run --extra retrieval --with mypy mypy --strict --follow-imports=silent $TYPED_PATHS
+      - run: uv run --extra retrieval --extra tokens --with mypy mypy --strict --follow-imports=silent $TYPED_PATHS
 
   package:
     name: build, check, install wheel
