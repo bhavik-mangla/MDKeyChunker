@@ -14,7 +14,7 @@ keywords:
   - retrieval-augmented generation
 preferred-citation:
   type: article
-  title: "MDKeyChunker: What Does One LLM Call per Chunk Buy for Markdown Retrieval?"
+  title: "Upgrade the Retriever First: What an LLM Call per Chunk Buys in RAG"
   authors:
     - family-names: Mangla
       given-names: Bhavik

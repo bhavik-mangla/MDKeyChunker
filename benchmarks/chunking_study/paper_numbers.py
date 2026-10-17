@@ -344,7 +344,7 @@ def write_grids(out: Path, pm: dict) -> None:
             L.append(_tex(a) + " & " + " & ".join(cell(ds, "hybrid", a, m) for m in mets) + " \\\\")
         L += ["\\bottomrule", "\\end{tabular}",
               f"\\caption{{{DS_NAME[ds]}: secondary metrics ($\\times$100) under the hybrid retriever, "
-              "including the mechanism arms (M$-$K: merged E$-$K; E(meta+key): keys and entities also indexed). RM is averaged over five seeds"
+              "including the add-on arms (M$-$K: merged E$-$K; E(meta+key): keys and entities also indexed). RM is averaged over five seeds"
               + ("; PF covers 100 papers." if ds == "qasper" else ".") + "}",
               f"\\label{{tab:grid2-{ds}}}", "\\end{table*}", ""]
     out.write_text("\n".join(L) + "\n")
