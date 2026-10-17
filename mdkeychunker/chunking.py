@@ -43,8 +43,9 @@ if TYPE_CHECKING:
 __all__ = ["chunk", "chunk_file", "window", "HeaderlessWarning", "Tokenizer"]
 
 Tokenizer = Union[None, str, Callable[[str], int], Any]
-"""``None`` (chars/4 estimate), ``"tiktoken"`` / ``"tiktoken:<encoding>"``, a tiktoken
-``Encoding``, an object with ``encode(text)``, or a function returning a token count."""
+"""``None`` (chars/4 estimate), a tiktoken encoding name (``"cl100k_base"``, the spelling
+``mk.evidence_recall`` takes), ``"tiktoken"`` (= cl100k_base) / ``"tiktoken:<encoding>"``, a
+tiktoken ``Encoding``, an object with ``encode(text)``, or a function returning a count."""
 
 Headerless = Literal["auto", "window", "structure"]
 
@@ -123,20 +124,38 @@ class _TiktokenTok(_Tok):
         return units
 
 
+# tiktoken's encoding names (cl100k_base, o200k_base, p50k_edit, o200k_harmony, gpt2, ...)
+_ENCODING_NAME = re.compile(r"^(gpt2|[a-z0-9]+_(base|edit|harmony))$")
+
+
+def _other_encoding(name: str) -> Any:
+    """Any other string: accepted if an installed tiktoken knows it, else a clear error."""
+    try:
+        import tiktoken
+        return tiktoken.get_encoding(name)
+    except (ImportError, ValueError, KeyError) as e:
+        raise ValueError(f"unknown tokenizer {name!r}; use None, a tiktoken encoding name "
+                         "('cl100k_base'), 'tiktoken' or 'tiktoken:<encoding>', an encoder "
+                         "object or a count function") from e
+
+
 def _resolve_tokenizer(tokenizer: Tokenizer) -> _Tok:
     if tokenizer is None or tokenizer == "estimate":
         return _Tok()
     if isinstance(tokenizer, str):
         name, _, encoding = tokenizer.partition(":")
-        if name != "tiktoken":
-            raise ValueError(f"unknown tokenizer {tokenizer!r}; use None, 'tiktoken' or "
-                             "'tiktoken:<encoding>', an encoder object or a count function")
+        if name == "tiktoken":
+            enc_name = encoding or "cl100k_base"
+        elif _ENCODING_NAME.match(tokenizer):
+            enc_name = tokenizer  # a bare encoding name, as mk.evidence_recall accepts
+        else:
+            return _TiktokenTok(_other_encoding(tokenizer))
         try:
             import tiktoken
         except ImportError as e:
             raise ImportError(
-                'tokenizer="tiktoken" needs: pip install "mdkeychunker[tokens]"') from e
-        return _TiktokenTok(tiktoken.get_encoding(encoding or "cl100k_base"))
+                f'tokenizer={tokenizer!r} needs: pip install "mdkeychunker[tokens]"') from e
+        return _TiktokenTok(tiktoken.get_encoding(enc_name))
     if hasattr(tokenizer, "decode_with_offsets") and hasattr(tokenizer, "encode"):
         return _TiktokenTok(tokenizer)
     if hasattr(tokenizer, "encode"):
