@@ -59,6 +59,7 @@ def test_openai_client_initialized():
 
 
 def test_openai_compatible_provider():
+    pytest.importorskip("openai")
     config = _config(
         llm_provider="openai_compatible",
         llm_base_url="http://localhost:11434/v1",
