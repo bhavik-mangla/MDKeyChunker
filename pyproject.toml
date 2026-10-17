@@ -35,7 +35,7 @@ bm25 = ["bm25s>=0.2.0", "PyStemmer>=2.2.0.3"]  # first with cp310-cp313 wheels
 dense = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]   # 4.51: Qwen3 models
 rerank = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]  # CrossEncoder, Qwen3 seq-cls
 retrieval = ["mdkeychunker[bm25,dense,rerank]"]
-langchain = ["langchain-core>=0.3.0"]
+langchain = ["langchain-text-splitters>=0.3.0"]   # TextSplitter; pulls in langchain-core
 llamaindex = ["llama-index-core>=0.12.0"]
 spacy = ["spacy>=3.0.0"]           # experimental, not covered by the study; also run:
                                    # python -m spacy download en_core_web_md
