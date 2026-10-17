@@ -393,6 +393,35 @@ def test_window_with_tiktoken_matches_token_budget():
 # chunk_file                                                                  #
 # --------------------------------------------------------------------------- #
 
+def test_tokenizer_spellings_agree_with_each_other_and_evidence_recall():
+    tiktoken = pytest.importorskip("tiktoken")
+    from mdkeychunker.evaluate import get_tokenizer
+    text = DOC * 10 + " 日本語のテキスト" * 20
+    counts = {}
+    for spelling in ("cl100k_base", "tiktoken", "tiktoken:cl100k_base",
+                     tiktoken.get_encoding("cl100k_base")):
+        cs = chunk(text, max_tokens=64, tokenizer=spelling)
+        ws = window(text, size=64, overlap=8, tokenizer=spelling)
+        counts[str(spelling)] = ([c.token_count for c in cs], [(c.start_char, c.token_count)
+                                                              for c in ws])
+    assert len({repr(v) for v in counts.values()}) == 1
+    enc = get_tokenizer("cl100k_base")  # the same string in mk.evidence_recall
+    for c in chunk(text, max_tokens=64, tokenizer="cl100k_base"):
+        assert c.token_count == len(enc.encode(c.embed_text))
+    o200 = chunk(text, max_tokens=64, tokenizer="o200k_base")
+    o200k = tiktoken.get_encoding("o200k_base")
+    assert o200[0].token_count == len(o200k.encode(o200[0].embed_text))
+
+
+def test_encoding_name_without_tiktoken_names_the_extra(monkeypatch):
+    import sys
+    monkeypatch.setitem(sys.modules, "tiktoken", None)
+    with pytest.raises(ImportError, match=r"mdkeychunker\[tokens\]"):
+        chunk(DOC, tokenizer="cl100k_base")
+    with pytest.raises(ValueError, match="unknown tokenizer"):
+        chunk(DOC, tokenizer="sentencepiece")
+
+
 def test_chunk_file_reads_markdown_and_sets_doc_id(tmp_path):
     p = tmp_path / "guide.md"
     p.write_text(DOC, encoding="utf-8")
