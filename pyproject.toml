@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdkeychunker"
-version = "0.3.0"
-description = "Markdown chunking with LLM enrichment for RAG pipelines"
+version = "0.4.0"
+description = "Header-aware chunking for RAG and a retrieval diagnostic that tells you whether to spend on the retriever, chunking or LLM enrichment"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "Bhavik Mangla"}
 ]
-keywords = ["markdown", "chunking", "rag", "llm", "retrieval-augmented-generation"]
+keywords = ["rag", "retrieval-augmented-generation", "chunking", "text-splitter", "markdown", "retrieval", "evaluation", "hybrid-search", "bm25", "reranker", "embeddings", "contextual-retrieval", "llm", "langchain", "llamaindex"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -22,6 +22,11 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 
 # Core: chunk, window, evidence metrics, fusion maths, diagnose report logic. No dependencies.
@@ -66,7 +71,9 @@ mdkeychunker = "mdkeychunker.cli_v2:main"  # subcommands; bare FILE and `legacy`
 Homepage = "https://github.com/bhavik-mangla/MDKeyChunker"
 Repository = "https://github.com/bhavik-mangla/MDKeyChunker"
 Issues = "https://github.com/bhavik-mangla/MDKeyChunker/issues"
-Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/releases"
+Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/blob/main/CHANGELOG.md"
+Paper = "https://arxiv.org/abs/2603.23533"
+Dataset = "https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study"
 
 [tool.setuptools.packages.find]
 where = ["."]
