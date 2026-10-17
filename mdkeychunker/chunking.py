@@ -264,7 +264,8 @@ def _split_text(text: str, lo: int, hi: int, budget: int, tok: _Tok,
     if tok.count(text[lo:hi]) <= budget:
         return [(lo, hi)]
     for n, sep in enumerate(seps):
-        cuts = [m.end() for m in sep.finditer(text, lo, hi) if lo < m.start() and m.end() < hi]
+        cuts = [m.end() for m in sep.finditer(text, lo, hi)
+                if lo < m.start() and m.end() < hi and not _after_marker(text, m.start())]
         if not cuts:
             continue
         parts: list[tuple[int, int]] = []
@@ -272,6 +273,19 @@ def _split_text(text: str, lo: int, hi: int, budget: int, tok: _Tok,
             parts.extend(_split_text(text, a, b, budget, tok, seps[n + 1:]))
         return _pack_adjacent(text, parts, budget, tok)
     return _hard_cut(text, lo, hi, budget, tok)
+
+
+_MARKER = re.compile(r"[-*+>]|\d{1,9}[.)]")
+
+
+def _after_marker(text: str, pos: int) -> bool:
+    """True if ``pos`` follows a bare list or quote marker at the start of a line.
+
+    Cutting there would leave a line holding only ``-`` (a setext underline or an empty
+    item once re-joined); the marker stays with its first word instead.
+    """
+    start = text.rfind("\n", 0, pos) + 1
+    return bool(_MARKER.fullmatch(text[start:pos].strip()))
 
 
 def _pack_adjacent(text: str, spans: list[tuple[int, int]], budget: int,
