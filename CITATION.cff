@@ -7,7 +7,7 @@ authors:
     given-names: Bhavik
 license: MIT
 repository-code: "https://github.com/bhavik-mangla/MDKeyChunker"
-version: 0.4.0
+version: 0.4.1
 date-released: 2026-10-17
 keywords:
   - markdown

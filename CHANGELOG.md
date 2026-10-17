@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.4.1 — 2026-10-17
+
+### Fixed
+- `nomic` dense preset: the `[dense]` extra now installs `einops`, which the model's remote code
+  (`nomic-ai/nomic-bert-2048`) imports. Before, `diagnose(..., embedder="nomic")` failed with
+  `ImportError: ... einops`.
+- `nomic` preset on transformers 5: its remote code crashes there
+  (`'NomicBertModel' object has no attribute 'get_extended_attention_mask'`; an upstream fix is
+  pending in nomic-ai/nomic-bert-2048#23). Loading it now fails at once with
+  `ImportError: the 'nomic' embedder needs transformers<5 ... pip install 'transformers<5'`, for the
+  preset name and for its Hugging Face id, instead of a traceback at the first encode.
+  `qwen3-embedding-0.6b`, `mxbai` and both reranker presets work on transformers 5.
+- Scores no longer depend on the transformers version. Transformers 5 loads a model in its
+  config's dtype, so `qwen3-embedding-0.6b` ran in bfloat16 there (float32 on transformers 4)
+  and its scores moved by up to 3e-3 (mxbai: 9e-5), which changed `diagnose` numbers. Dense and
+  reranker presets now load in float32 by default, and give bit-identical scores on
+  transformers 4.57 and 5.20 on the same machine. Pass `dtype=None` (the model's default, faster)
+  or `model_kwargs=` to `DenseRetriever`, `load_embedder` or `Reranker` to override. The
+  reranker's cache key is unchanged for float32, so existing caches stay valid.
+
+- `mk.diagnose` on a large corpus could exhaust a laptop's memory: the built-in embedders
+  encode in batches of 32 at up to 8,192 tokens, and the OS killed the process without a
+  traceback (3,896 chunks, nomic + qwen3, 24 GB). The batch size and token cap can now be set
+  (see Added).
+
+- The `[dense]` / `[rerank]` lower bounds did not work together: the lowest allowed versions
+  could not load a model (torch 2.0 lacks `torch.compiler`; transformers 4.51.0 fails with
+  `NameError: init_empty_weights`; torch < 2.3 cannot hand results to numpy 2). The floors
+  are now `sentence-transformers>=3.0.0`, `transformers>=4.51.1`, `torch>=2.3.0` (and
+  `einops>=0.7.0` for `[dense]`), and CI's lowest-direct job loads two tiny models through
+  `load_embedder`, `DenseRetriever` and `Reranker` to prove it.
+
+### Added
+- `mk.diagnose(..., embed_batch_size=, max_seq_length=)` and the CLI's `--embed-batch-size` /
+  `--max-seq-length`, for the built-in embedders (defaults unchanged; e.g. 4 and 2048 on a
+  laptop). `embedder=load_embedder("nomic", batch_size=4, max_seq_length=2048)` also works and
+  keeps the preset's prefixes.
+- `dtype=` and `model_kwargs=` on `DenseRetriever`, `load_embedder` and `Reranker`.
+- Slow tests that load every dense and reranker preset and check a toy retrieval. The weekly
+  CI job runs them with the default dependency resolution and with transformers 4, then checks
+  that both give the same preset scores (to 1e-6), so a preset that breaks or drifts on a new
+  transformers release is caught there.
+
 ## 0.4.0 — 2026-10-17
 
 Rebuilt around the findings of the v4 study (arXiv:2603.23533 v4, *Upgrade the Retriever First:

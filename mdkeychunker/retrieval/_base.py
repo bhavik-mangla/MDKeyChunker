@@ -10,6 +10,38 @@ from typing import Any
 from ..models import Chunk, Hit
 from .fusion import Ranking
 
+DEFAULT_DTYPE = "float32"
+
+
+def model_dtype_kwargs(dtype: str | None) -> dict[str, Any]:
+    """``from_pretrained`` kwargs that load the weights in ``dtype`` on any transformers.
+
+    Presets load in float32 by default so scores do not depend on the transformers version
+    (transformers 5 otherwise uses a model's config dtype, e.g. bfloat16 for Qwen3).
+    ``None`` keeps the model's own default. The keyword is ``dtype`` from transformers 4.56,
+    ``torch_dtype`` before.
+    """
+    if dtype is None:
+        return {}
+    from importlib.metadata import version
+
+    torch = require("torch", "dense")
+    value = dtype if dtype == "auto" else getattr(torch, dtype)
+    major, minor = (int(x) for x in version("transformers").split(".")[:2])
+    return {"dtype" if (major, minor) >= (4, 56) else "torch_dtype": value}
+
+
+def kwargs_param(cls: Any, *names: str) -> str:
+    """The first of ``names`` that ``cls.__init__`` accepts (the name changed across
+    sentence-transformers versions, e.g. CrossEncoder ``automodel_args`` -> ``model_kwargs``)."""
+    import inspect
+
+    params = inspect.signature(cls.__init__).parameters
+    for n in names:
+        if n in params:
+            return n
+    raise TypeError(f"{cls.__name__} accepts none of {names}; unsupported sentence-transformers")
+
 
 def index_text(chunk: Chunk) -> str:
     """The text a retriever indexes: ``embed_text`` (prefix + text) when set, else ``text``."""

@@ -57,6 +57,11 @@ That is the paper's result, reproduced to the last digit. With too few questions
 a winner. If your token budget covers whole documents, so that every retriever finds the
 evidence, it says so.
 
+On a laptop with a large corpus, lower the built-in embedders' memory use with
+`mk.diagnose(..., embed_batch_size=4, max_seq_length=2048)` (CLI: `--embed-batch-size 4
+--max-seq-length 2048`). The defaults (batch 32, up to 8,192 tokens per chunk for qwen3 and
+nomic) can exhaust memory, and the OS then kills the process without a traceback.
+
 Bring your own retriever as a function `search(query, k) -> hits | chunks | chunk ids`,
 or pass LangChain / LlamaIndex outputs. `diagnose` scores gold *evidence text*, not chunk
 ids, so you can compare different chunkers on the same questions.
