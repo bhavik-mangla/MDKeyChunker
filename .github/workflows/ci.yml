@@ -18,7 +18,8 @@ concurrency:
 # Paths held to ruff and mypy --strict (new 0.4 modules; legacy modules are not yet clean).
 env:
   TYPED_PATHS: >-
-    mdkeychunker/evaluate.py mdkeychunker/stats.py mdkeychunker/diagnose.py mdkeychunker/retrieval
+    mdkeychunker/evaluate.py mdkeychunker/stats.py mdkeychunker/diagnose.py mdkeychunker/cli_v2.py
+    mdkeychunker/retrieval
 
 jobs:
   core:
