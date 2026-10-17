@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdkeychunker"
-version = "0.3.0"
-description = "Markdown chunking with LLM enrichment for RAG pipelines"
+version = "0.4.0"
+description = "Header-aware chunking for RAG and a retrieval diagnostic that tells you whether to spend on the retriever, chunking or LLM enrichment"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "Bhavik Mangla"}
 ]
-keywords = ["markdown", "chunking", "rag", "llm", "retrieval-augmented-generation"]
+keywords = ["rag", "retrieval-augmented-generation", "chunking", "text-splitter", "markdown", "retrieval", "evaluation", "hybrid-search", "bm25", "reranker", "embeddings", "contextual-retrieval", "llm", "langchain", "llamaindex"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -22,22 +22,38 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 
-dependencies = [
-    "openai>=1.0.0",        # Works with OpenAI, Ollama, vLLM, LM Studio, etc.
-    "python-dotenv>=1.0.0", # .env config
-    "tiktoken>=0.5.0",      # Token counting
-]
+# Core: chunk, window, evidence metrics, fusion maths, diagnose report logic. No dependencies.
+dependencies = []
 
 [project.optional-dependencies]
-anthropic = ["anthropic>=0.18.0"]  # Native Anthropic support
-spacy = ["spacy>=3.0.0"]           # Local enrichment; also run: python -m spacy download en_core_web_md
+llm = ["openai>=1.0.0"]                        # OpenAI and compatible servers (Ollama, vLLM, ...)
+anthropic = ["anthropic>=0.40.0"]
+tokens = ["tiktoken>=0.8.0"]                   # exact token counts (cl100k_base, the study's)
+bm25 = ["bm25s>=0.2.0", "PyStemmer>=2.2.0.3"]  # first with cp310-cp313 wheels
+dense = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]   # 4.51: Qwen3 models
+rerank = ["sentence-transformers>=3.0.0", "transformers>=4.51.0"]  # CrossEncoder, Qwen3 seq-cls
+retrieval = ["mdkeychunker[bm25,dense,rerank]"]
+langchain = ["langchain-text-splitters>=0.3.0"]   # TextSplitter; pulls in langchain-core
+llamaindex = ["llama-index-core>=0.12.0"]
+spacy = ["spacy>=3.0.0"]           # experimental, not covered by the study; also run:
+                                   # python -m spacy download en_core_web_md
+cli = ["python-dotenv>=1.0.0"]     # .env support for the CLI
+all = ["mdkeychunker[llm,anthropic,tokens,retrieval,langchain,llamaindex,cli]"]
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
+    "hypothesis>=6.100.0",
     "mypy>=1.5.0",
     "ruff>=0.1.0",
+    "markdown-it-py>=3.0.0",
+    "pytest-examples>=0.0.10",
 ]
 benchmark = [
     "sentence-transformers>=2.2.0",
@@ -49,17 +65,22 @@ benchmark = [
 ]
 
 [project.scripts]
-mdkeychunker = "mdkeychunker.cli:main"
+mdkeychunker = "mdkeychunker.cli_v2:main"  # subcommands; bare FILE and `legacy` keep 0.3
 
 [project.urls]
 Homepage = "https://github.com/bhavik-mangla/MDKeyChunker"
 Repository = "https://github.com/bhavik-mangla/MDKeyChunker"
 Issues = "https://github.com/bhavik-mangla/MDKeyChunker/issues"
-Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/releases"
+Changelog = "https://github.com/bhavik-mangla/MDKeyChunker/blob/main/CHANGELOG.md"
+Paper = "https://arxiv.org/abs/2603.23533"
+Dataset = "https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["mdkeychunker*"]
+
+[tool.setuptools.package-data]
+mdkeychunker = ["py.typed"]
 
 [tool.mypy]
 python_version = "3.10"

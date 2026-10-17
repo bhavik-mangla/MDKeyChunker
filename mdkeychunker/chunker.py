@@ -6,11 +6,13 @@ without breaking semantic units.
 """
 
 import re
-from typing import List, Tuple, Optional
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, List, Optional, Tuple
 
 from .models import Chunk
-from .config import Config
+
+if TYPE_CHECKING:
+    from .config import Config
 
 
 _THEMATIC_BREAK = re.compile(r"^ {0,3}(?:(?:\*[ \t]*){3,}|(?:-[ \t]*){3,}|(?:_[ \t]*){3,})$")
@@ -38,6 +40,7 @@ class _Block:
     end_line: int
     level: int = 0  # For headers
     section_title: str = ""
+    section_path: List[str] = field(default_factory=list)  # header stack as a list
 
 
 class MarkdownChunker:
@@ -52,7 +55,7 @@ class MarkdownChunker:
     - Blockquotes mid-paragraph
     """
 
-    def __init__(self, config: Config):
+    def __init__(self, config: "Config"):
         self.config = config
         self.min_chunk_size = config.min_chunk_size
         self.max_chunk_size = config.max_chunk_size
@@ -74,6 +77,7 @@ class MarkdownChunker:
         lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
         i = 0
         current_section = ""
+        current_path: List[str] = []
         self._header_stack = []
 
         while i < len(lines):
@@ -90,13 +94,14 @@ class MarkdownChunker:
             # Fenced code blocks (a backtick info string may not contain backticks)
             if _fence_open(line):
                 block, consumed = self._parse_code_block(lines, i)
-                block.section_title = current_section
+                block.section_title, block.section_path = current_section, list(current_path)
                 blocks.append(block)
                 i += consumed
                 continue
 
             # Headers
-            header_match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$", line)
+            # CommonMark allows up to 3 spaces of indentation before an ATX header
+            header_match = re.match(r"^ {0,3}(#{1,6})\s+(.+?)(?:\s+#+)?\s*$", line)
             setext_match = (
                 not header_match
                 and line.strip()
@@ -117,6 +122,7 @@ class MarkdownChunker:
                     content, end = line + "\n" + lines[i + 1], i + 1
                 self._update_header_stack(level, title)
                 current_section = self._get_current_section()
+                current_path = [t for _, t in self._header_stack]
                 blocks.append(_Block(
                     type="header",
                     content=content,
@@ -124,6 +130,7 @@ class MarkdownChunker:
                     end_line=end,
                     level=level,
                     section_title=current_section,
+                    section_path=list(current_path),
                 ))
                 i = end + 1
                 continue
@@ -131,7 +138,7 @@ class MarkdownChunker:
             # Tables
             if self._is_table_line(line, lines, i):
                 block, consumed = self._parse_table(lines, i)
-                block.section_title = current_section
+                block.section_title, block.section_path = current_section, list(current_path)
                 blocks.append(block)
                 i += consumed
                 continue
@@ -139,7 +146,7 @@ class MarkdownChunker:
             # Lists
             if self._is_list_line(line):
                 block, consumed = self._parse_list(lines, i)
-                block.section_title = current_section
+                block.section_title, block.section_path = current_section, list(current_path)
                 blocks.append(block)
                 i += consumed
                 continue
@@ -147,7 +154,7 @@ class MarkdownChunker:
             # Blockquotes
             if line.strip().startswith(">"):
                 block, consumed = self._parse_blockquote(lines, i)
-                block.section_title = current_section
+                block.section_title, block.section_path = current_section, list(current_path)
                 blocks.append(block)
                 i += consumed
                 continue
@@ -160,6 +167,7 @@ class MarkdownChunker:
                     start_line=i,
                     end_line=i,
                     section_title=current_section,
+                    section_path=list(current_path),
                 ))
                 i += 1
                 continue
@@ -167,7 +175,7 @@ class MarkdownChunker:
             # Paragraphs
             if line.strip():
                 block, consumed = self._parse_paragraph(lines, i)
-                block.section_title = current_section
+                block.section_title, block.section_path = current_section, list(current_path)
                 blocks.append(block)
                 i += consumed
                 continue

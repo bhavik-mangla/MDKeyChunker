@@ -1,7 +1,9 @@
 """CLI for MDKeyChunker."""
 import argparse
+import logging
 import sys
 from pathlib import Path
+
 from .config import Config
 from .pipeline import Pipeline
 
@@ -28,7 +30,14 @@ def main() -> int:
         print(f"Error: {args.input} not found", file=sys.stderr)
         return 1
 
-    config = Config.from_env(args.env)
+    # Side effects live here, not in the library: .env loading and logging setup
+    env_file = args.env or (".env" if Path(".env").exists() else None)
+    try:
+        config = Config.from_env(env_file)
+    except ImportError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+    logging.basicConfig(level=getattr(logging, config.log_level.upper(), logging.INFO))
 
     if args.no_merge:
         config.merge_by_keys = False

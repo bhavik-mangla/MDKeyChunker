@@ -1,0 +1,255 @@
+[
+ {
+  "chunk_id": "feb9f1e1e7698a5c",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes\n\n# Change detection with pipes\n\nPipes are often used with data-bound values that might change based on user actions.\nIf the data is a primitive input value, such as `String` or `Number`, or an object reference as input, such as `Date` or `Array`, Angular executes the pipe whenever it detects a change for the value.\n\n<docs-code-multifile path=\"adev/src/content/examples/pipes/src/app/power-booster.component.ts\">\n  <docs-code header=\"src/app/exponential-strength.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/exponential-strength.pipe.ts\"\n             highlight=\"[16]\" visibleRegion=\"pipe-class\" />\n  <docs-code header=\"src/app/power-booster.component.ts\" path=\"adev/src/content/examples/pipes/src/app/power-booster.component.ts\"/>\n</docs-code-multifile>\n\nThe `exponentialStrength` pipe executes every time the user changes the value or the exponent. See the highlighted line above.\n\nAngular detects each change and immediately runs the pipe.\nThis is fine for primitive input values.\nHowever, if you change something *inside* a composite object (such as the month of a date, an element of an array, or an object property), you need to understand how change detection works, and how to use an `impure` pipe.",
+  "end_char": 1215,
+  "end_line": 15,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "93a3cac4b3269807",
+  "oversized": false,
+  "position_index": 0,
+  "previous_chunk_id": "",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes"
+  ],
+  "section_title": "Change detection with pipes",
+  "start_char": 0,
+  "start_line": 0,
+  "summary": "",
+  "text": "# Change detection with pipes\n\nPipes are often used with data-bound values that might change based on user actions.\nIf the data is a primitive input value, such as `String` or `Number`, or an object reference as input, such as `Date` or `Array`, Angular executes the pipe whenever it detects a change for the value.\n\n<docs-code-multifile path=\"adev/src/content/examples/pipes/src/app/power-booster.component.ts\">\n  <docs-code header=\"src/app/exponential-strength.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/exponential-strength.pipe.ts\"\n             highlight=\"[16]\" visibleRegion=\"pipe-class\" />\n  <docs-code header=\"src/app/power-booster.component.ts\" path=\"adev/src/content/examples/pipes/src/app/power-booster.component.ts\"/>\n</docs-code-multifile>\n\nThe `exponentialStrength` pipe executes every time the user changes the value or the exponent. See the highlighted line above.\n\nAngular detects each change and immediately runs the pipe.\nThis is fine for primitive input values.\nHowever, if you change something *inside* a composite object (such as the month of a date, an element of an array, or an object property), you need to understand how change detection works, and how to use an `impure` pipe.",
+  "title": "",
+  "token_count": 311
+ },
+ {
+  "chunk_id": "93a3cac4b3269807",
+  "content_types": [
+   "header",
+   "paragraph",
+   "table"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > How change detection works\n\n## How change detection works\n\nAngular looks for changes to data-bound values in a change detection process that runs after every DOM event: every keystroke, mouse move, timer tick, and server response.\nThe following example, which doesn't use a pipe, demonstrates how Angular uses its default change detection strategy to monitor and update its display of every hero in the `heroes` array.\nThe example tabs show the following:\n\n| Files                               | Details |\n|:---                                 |:---     |\n| `flying-heroes.component.html (v1)` | The `*ngFor` repeater displays the hero names.                     |\n| `flying-heroes.component.ts (v1)`   | Provides heroes, adds heroes into the array, and resets the array. |\n\n<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.component.html (v1)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.html\" visibleRegion=\"template-1\"/>\n    <docs-code header=\"src/app/flying-heroes.component.ts (v1)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.ts\" visibleRegion=\"v1\"/>\n</docs-code-multifile>\n\nAngular updates the display every time the user adds a hero.\nIf the user clicks the **Reset** button, Angular replaces `heroes` with a new array of the original heroes and updates the display.\nIf you add the ability to remove or change a hero, Angular would detect those changes and update the display as well.",
+  "end_char": 2651,
+  "end_line": 35,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "901c62a4b319127a",
+  "oversized": false,
+  "position_index": 1,
+  "previous_chunk_id": "feb9f1e1e7698a5c",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "How change detection works"
+  ],
+  "section_title": "Change detection with pipes > How change detection works",
+  "start_char": 1217,
+  "start_line": 17,
+  "summary": "",
+  "text": "## How change detection works\n\nAngular looks for changes to data-bound values in a change detection process that runs after every DOM event: every keystroke, mouse move, timer tick, and server response.\nThe following example, which doesn't use a pipe, demonstrates how Angular uses its default change detection strategy to monitor and update its display of every hero in the `heroes` array.\nThe example tabs show the following:\n\n| Files                               | Details |\n|:---                                 |:---     |\n| `flying-heroes.component.html (v1)` | The `*ngFor` repeater displays the hero names.                     |\n| `flying-heroes.component.ts (v1)`   | Provides heroes, adds heroes into the array, and resets the array. |\n\n<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.component.html (v1)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.html\" visibleRegion=\"template-1\"/>\n    <docs-code header=\"src/app/flying-heroes.component.ts (v1)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.ts\" visibleRegion=\"v1\"/>\n</docs-code-multifile>\n\nAngular updates the display every time the user adds a hero.\nIf the user clicks the **Reset** button, Angular replaces `heroes` with a new array of the original heroes and updates the display.\nIf you add the ability to remove or change a hero, Angular would detect those changes and update the display as well.",
+  "title": "",
+  "token_count": 373
+ },
+ {
+  "chunk_id": "901c62a4b319127a",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > How change detection works\n\nHowever, executing a pipe to update the display with every change would slow down your application's performance.\nSo Angular uses a faster change-detection algorithm for executing a pipe, as described in the next section.",
+  "end_char": 2874,
+  "end_line": 38,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "973f7962ea75cf59",
+  "oversized": false,
+  "position_index": 2,
+  "previous_chunk_id": "93a3cac4b3269807",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "How change detection works"
+  ],
+  "section_title": "Change detection with pipes > How change detection works",
+  "start_char": 2653,
+  "start_line": 37,
+  "summary": "",
+  "text": "However, executing a pipe to update the display with every change would slow down your application's performance.\nSo Angular uses a faster change-detection algorithm for executing a pipe, as described in the next section.",
+  "title": "",
+  "token_count": 70
+ },
+ {
+  "chunk_id": "973f7962ea75cf59",
+  "content_types": [
+   "header",
+   "paragraph",
+   "table"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > Detecting pure changes to primitives and object references\n\n## Detecting pure changes to primitives and object references\n\nBy default, pipes are defined as *pure* so that Angular executes the pipe only when it detects a *pure change* to the input value or parameters.\nA pure change is either a change to a primitive input value \\(such as `String`, `Number`, `Boolean`, or `Symbol`\\), or a changed object reference \\(such as `Date`, `Array`, `Function`, or `Object`\\).\n\nA pure pipe must use a pure function, which is one that processes inputs and returns values without side effects.\nIn other words, given the same input, a pure function should always return the same output.\n\nWith a pure pipe, Angular ignores changes within objects and arrays because checking a primitive value or object reference is much faster than performing a deep check for differences within objects.\nAngular can quickly determine if it can skip executing the pipe and updating the view.\n\nHowever, a pure pipe with an array as input might not work the way you want.\nTo demonstrate this issue, change the previous example to filter the list of heroes to just those heroes who can fly.\n\nFor this, consider we use the `FlyingHeroesPipe` in the `*ngFor` repeater as shown in the following code.\nThe tabs for the example show the following:\n\n| Files                          | Details |\n|:---                            |:---     |\n| flying-heroes.component.html   | Template with the new pipe used. |\n| flying-heroes.pipe.ts          | File with custom pipe that filters flying heroes. |",
+  "end_char": 4373,
+  "end_line": 60,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "8c9cbddde7922b25",
+  "oversized": false,
+  "position_index": 3,
+  "previous_chunk_id": "901c62a4b319127a",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "Detecting pure changes to primitives and object references"
+  ],
+  "section_title": "Change detection with pipes > Detecting pure changes to primitives and object references",
+  "start_char": 2876,
+  "start_line": 40,
+  "summary": "",
+  "text": "## Detecting pure changes to primitives and object references\n\nBy default, pipes are defined as *pure* so that Angular executes the pipe only when it detects a *pure change* to the input value or parameters.\nA pure change is either a change to a primitive input value \\(such as `String`, `Number`, `Boolean`, or `Symbol`\\), or a changed object reference \\(such as `Date`, `Array`, `Function`, or `Object`\\).\n\nA pure pipe must use a pure function, which is one that processes inputs and returns values without side effects.\nIn other words, given the same input, a pure function should always return the same output.\n\nWith a pure pipe, Angular ignores changes within objects and arrays because checking a primitive value or object reference is much faster than performing a deep check for differences within objects.\nAngular can quickly determine if it can skip executing the pipe and updating the view.\n\nHowever, a pure pipe with an array as input might not work the way you want.\nTo demonstrate this issue, change the previous example to filter the list of heroes to just those heroes who can fly.\n\nFor this, consider we use the `FlyingHeroesPipe` in the `*ngFor` repeater as shown in the following code.\nThe tabs for the example show the following:\n\n| Files                          | Details |\n|:---                            |:---     |\n| flying-heroes.component.html   | Template with the new pipe used. |\n| flying-heroes.pipe.ts          | File with custom pipe that filters flying heroes. |",
+  "title": "",
+  "token_count": 397
+ },
+ {
+  "chunk_id": "8c9cbddde7922b25",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > Detecting pure changes to primitives and object references\n\n<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.component.html\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.html\" visibleRegion=\"template-flying-heroes\"/>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"pure\"/>\n</docs-code-multifile>\n\nThe application now shows unexpected behavior: When the user adds flying heroes, none of them appear under \"Heroes who fly.\"\nThis happens because the code that adds a hero does so by pushing it onto the `heroes` array that is used as input for the `flyingHeroes` pipe.\n\n<docs-code header=\"src/app/flying-heroes.component.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.ts\" visibleRegion=\"push\"/>\n\nThe change detector ignores changes within elements of an array, so the pipe doesn't run.\nThe reason Angular ignores the changed array element is that the *reference* to the array hasn't changed.\nBecause the array is the same, Angular does not update the display.\n\nOne way to get the behavior you want is to change the object reference itself.\nReplace the array with a new array containing the newly changed elements, and then input the new array to the pipe.\nIn the preceding example, create an array with the new hero appended, and assign that to `heroes`.\nAngular detects the change in the array reference and executes the pipe.",
+  "end_char": 5799,
+  "end_line": 79,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "6e6f1931cc3b2f19",
+  "oversized": false,
+  "position_index": 4,
+  "previous_chunk_id": "973f7962ea75cf59",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "Detecting pure changes to primitives and object references"
+  ],
+  "section_title": "Change detection with pipes > Detecting pure changes to primitives and object references",
+  "start_char": 4375,
+  "start_line": 62,
+  "summary": "",
+  "text": "<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.component.html\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.html\" visibleRegion=\"template-flying-heroes\"/>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"pure\"/>\n</docs-code-multifile>\n\nThe application now shows unexpected behavior: When the user adds flying heroes, none of them appear under \"Heroes who fly.\"\nThis happens because the code that adds a hero does so by pushing it onto the `heroes` array that is used as input for the `flyingHeroes` pipe.\n\n<docs-code header=\"src/app/flying-heroes.component.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.component.ts\" visibleRegion=\"push\"/>\n\nThe change detector ignores changes within elements of an array, so the pipe doesn't run.\nThe reason Angular ignores the changed array element is that the *reference* to the array hasn't changed.\nBecause the array is the same, Angular does not update the display.\n\nOne way to get the behavior you want is to change the object reference itself.\nReplace the array with a new array containing the newly changed elements, and then input the new array to the pipe.\nIn the preceding example, create an array with the new hero appended, and assign that to `heroes`.\nAngular detects the change in the array reference and executes the pipe.",
+  "title": "",
+  "token_count": 379
+ },
+ {
+  "chunk_id": "6e6f1931cc3b2f19",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > Detecting pure changes to primitives and object references\n\nTo summarize, if you mutate the input array, the pure pipe doesn't execute.\nIf you *replace* the input array, the pipe executes and the display is updated.\nAs an alternative, use an *impure* pipe to detect changes within composite objects such as arrays, as described in the next section.",
+  "end_char": 6089,
+  "end_line": 83,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "bcad95f156d04c3c",
+  "oversized": false,
+  "position_index": 5,
+  "previous_chunk_id": "8c9cbddde7922b25",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "Detecting pure changes to primitives and object references"
+  ],
+  "section_title": "Change detection with pipes > Detecting pure changes to primitives and object references",
+  "start_char": 5801,
+  "start_line": 81,
+  "summary": "",
+  "text": "To summarize, if you mutate the input array, the pure pipe doesn't execute.\nIf you *replace* the input array, the pipe executes and the display is updated.\nAs an alternative, use an *impure* pipe to detect changes within composite objects such as arrays, as described in the next section.",
+  "title": "",
+  "token_count": 95
+ },
+ {
+  "chunk_id": "bcad95f156d04c3c",
+  "content_types": [
+   "header",
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > Detecting impure changes within composite objects\n\n## Detecting impure changes within composite objects\n\nTo execute a custom pipe after a change *within* a composite object, such as a change to an element of an array, you need to define your pipe as `impure` to detect impure changes.\nAngular executes an impure pipe every time it detects a change (e.g. every keystroke or mouse event).\n\nIMPORTANT: While an impure pipe can be useful, be careful using one.\nA long-running impure pipe could dramatically slow down your application.\n\nMake a pipe impure by setting its `pure` flag to `false`:\n\n<docs-code header=\"src/app/flying-heroes.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\"\n           visibleRegion=\"pipe-decorator\" highlight=\"[19]\"/>\n\nThe following code shows the complete implementation of `FlyingHeroesImpurePipe`, which extends `FlyingHeroesPipe` to inherit its characteristics.\nThe example shows that you don't have to change anything else—the only difference is setting the `pure` flag as `false` in the pipe metadata.\n\n<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts (FlyingHeroesImpurePipe)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"impure\"/>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts (FlyingHeroesPipe)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"pure\"/>\n</docs-code-multifile>",
+  "end_char": 7484,
+  "end_line": 104,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "4638b23755d3c314",
+  "oversized": false,
+  "position_index": 6,
+  "previous_chunk_id": "6e6f1931cc3b2f19",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "Detecting impure changes within composite objects"
+  ],
+  "section_title": "Change detection with pipes > Detecting impure changes within composite objects",
+  "start_char": 6091,
+  "start_line": 85,
+  "summary": "",
+  "text": "## Detecting impure changes within composite objects\n\nTo execute a custom pipe after a change *within* a composite object, such as a change to an element of an array, you need to define your pipe as `impure` to detect impure changes.\nAngular executes an impure pipe every time it detects a change (e.g. every keystroke or mouse event).\n\nIMPORTANT: While an impure pipe can be useful, be careful using one.\nA long-running impure pipe could dramatically slow down your application.\n\nMake a pipe impure by setting its `pure` flag to `false`:\n\n<docs-code header=\"src/app/flying-heroes.pipe.ts\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\"\n           visibleRegion=\"pipe-decorator\" highlight=\"[19]\"/>\n\nThe following code shows the complete implementation of `FlyingHeroesImpurePipe`, which extends `FlyingHeroesPipe` to inherit its characteristics.\nThe example shows that you don't have to change anything else—the only difference is setting the `pure` flag as `false` in the pipe metadata.\n\n<docs-code-multifile>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts (FlyingHeroesImpurePipe)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"impure\"/>\n    <docs-code header=\"src/app/flying-heroes.pipe.ts (FlyingHeroesPipe)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"pure\"/>\n</docs-code-multifile>",
+  "title": "",
+  "token_count": 369
+ },
+ {
+  "chunk_id": "4638b23755d3c314",
+  "content_types": [
+   "paragraph"
+  ],
+  "doc_id": "05-angular-change-detection.md",
+  "embed_text": "Change detection with pipes > Detecting impure changes within composite objects\n\n`FlyingHeroesImpurePipe` is a reasonable candidate for an impure pipe because the `transform` function is trivial and fast:\n\n<docs-code header=\"src/app/flying-heroes.pipe.ts (filter)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"filter\"/>\n\nYou can derive a `FlyingHeroesImpureComponent` from `FlyingHeroesComponent`.\nAs shown in the following code, only the pipe in the template changes.\n\n<docs-code header=\"src/app/flying-heroes-impure.component.html (excerpt)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes-impure.component.html\" visibleRegion=\"template-flying-heroes\"/>",
+  "end_char": 8111,
+  "end_line": 113,
+  "entities": [],
+  "key": "",
+  "keywords": [],
+  "metadata": {},
+  "next_chunk_id": "",
+  "oversized": false,
+  "position_index": 7,
+  "previous_chunk_id": "bcad95f156d04c3c",
+  "questions": [],
+  "related_keys": [],
+  "section_path": [
+   "Change detection with pipes",
+   "Detecting impure changes within composite objects"
+  ],
+  "section_title": "Change detection with pipes > Detecting impure changes within composite objects",
+  "start_char": 7486,
+  "start_line": 106,
+  "summary": "",
+  "text": "`FlyingHeroesImpurePipe` is a reasonable candidate for an impure pipe because the `transform` function is trivial and fast:\n\n<docs-code header=\"src/app/flying-heroes.pipe.ts (filter)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes.pipe.ts\" visibleRegion=\"filter\"/>\n\nYou can derive a `FlyingHeroesImpureComponent` from `FlyingHeroesComponent`.\nAs shown in the following code, only the pipe in the template changes.\n\n<docs-code header=\"src/app/flying-heroes-impure.component.html (excerpt)\" path=\"adev/src/content/examples/pipes/src/app/flying-heroes-impure.component.html\" visibleRegion=\"template-flying-heroes\"/>",
+  "title": "",
+  "token_count": 177
+ }
+]

@@ -1,0 +1,129 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "release/**"]
+  pull_request:
+  schedule:
+    - cron: "17 4 * * 1"  # weekly: slow tests with real models
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Paths held to ruff and mypy --strict (new 0.4 modules; legacy modules are not yet clean).
+env:
+  TYPED_PATHS: >-
+    mdkeychunker/evaluate.py mdkeychunker/stats.py mdkeychunker/diagnose.py mdkeychunker/cli_v2.py
+    mdkeychunker/retrieval
+
+jobs:
+  core:
+    name: core / py${{ matrix.python-version }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        include:
+          - {os: macos-latest, python-version: "3.12"}
+          - {os: windows-latest, python-version: "3.12"}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+      # core install only: retrieval/model tests skip themselves; the BM25 CI benchmark runs
+      - run: uv run --with pytest pytest -q
+
+  extras:
+    name: extras / py3.12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      # doctests of modules whose examples need optional dependencies run here
+      - run: >-
+          uv run --extra retrieval --extra tokens --with pytest --with rank-bm25
+          pytest -q --doctest-modules mdkeychunker/evaluate.py mdkeychunker/retrieval tests
+
+  lowest:
+    name: lowest-direct deps / py3.10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.10"
+          enable-cache: true
+      - run: >-
+          uv run --resolution lowest-direct --extra retrieval --extra tokens --with pytest
+          pytest -q tests
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - run: uvx ruff check $TYPED_PATHS benchmarks/ci_bench tests/conftest.py
+      - run: uv run --extra retrieval --extra tokens --with mypy mypy --strict --follow-imports=silent $TYPED_PATHS
+
+  package:
+    name: build, check, install wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+      - run: uv build
+      - run: uvx twine check dist/*
+      - name: install the wheel into a clean venv and smoke-test it
+        run: |
+          uv venv /tmp/clean
+          uv pip install --python /tmp/clean dist/*.whl
+          cd /tmp
+          /tmp/clean/bin/python - <<'EOF'
+          import sys
+          import mdkeychunker
+          from mdkeychunker.evaluate import evidence_recall
+          from mdkeychunker.models import Chunk
+          from mdkeychunker.retrieval import BM25Retriever
+          heavy = [m for m in ("torch", "sentence_transformers", "bm25s", "numpy") if m in sys.modules]
+          assert not heavy, f"import pulled in {heavy}"
+          cs = [Chunk(text="Install on Linux with pip.", chunk_id="a"),
+                Chunk(text="Pricing plans for teams.", chunk_id="b")]
+          hits = BM25Retriever(cs, method="study").search("linux install", k=2)
+          assert evidence_recall(hits, ["install on linux"]) == 1.0
+          print("wheel OK", mdkeychunker.__version__)
+          EOF
+
+  slow:
+    name: slow (real models)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-v1
+      - run: >-
+          uv run --extra retrieval --extra tokens --with pytest --with rank-bm25
+          pytest -q --run-slow tests

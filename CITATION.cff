@@ -7,14 +7,15 @@ authors:
     given-names: Bhavik
 license: MIT
 repository-code: "https://github.com/bhavik-mangla/MDKeyChunker"
-version: 0.3.0
+version: 0.4.0
+date-released: 2026-10-17
 keywords:
   - markdown
   - chunking
   - retrieval-augmented generation
 preferred-citation:
   type: article
-  title: "MDKeyChunker: What Does One LLM Call per Chunk Buy for Markdown Retrieval?"
+  title: "Upgrade the Retriever First: What an LLM Call per Chunk Buys in RAG"
   authors:
     - family-names: Mangla
       given-names: Bhavik
