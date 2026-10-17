@@ -22,11 +22,18 @@ calls only where they pay.
   the paper), `DenseRetriever`, `HybridRetriever` with `RRF` or `Convex` fusion, and a Qwen3
   reranker; presets for qwen3-embedding, nomic, mxbai and bge.
 - `mk.enrich()` / `mk.aenrich()`: one call per chunk for all fields, the study's prompt,
-  concurrency across documents, an on-disk cache, fail-fast on authentication errors, and
-  `max_field_tokens` to keep `embed_text` within the cap. `mk.OpenAICompatible` and
+  concurrency across documents, an on-disk cache, fail-fast on authentication errors, one warning when
+  enriched `embed_text` exceeds the cap, and `max_field_tokens` to trim the generated fields
+  (never the chunk text). `mk.OpenAICompatible` and
   `mk.Anthropic` clients.
 - `mk.estimate_cost()`: tokens and dollars for enrichment versus contextual retrieval, with
   optional prompt caching.
+- Framework adapters: `MDKeyChunkerSplitter` (LangChain `TextSplitter`), `MDKeyChunkerNodeParser`
+  (LlamaIndex `NodeParser`), and `mdkeychunker.integrations.to_chunks` to score chunks from
+  LangChain, LlamaIndex, Chonkie, dicts or strings.
+- `mdkeychunker chunk` and `mdkeychunker diagnose` CLI subcommands.
+- `tokenizer=` accepts a tiktoken encoding name (`"cl100k_base"`) in `mk.chunk`, `mk.window`,
+  `mk.enrich` and `mk.evidence_recall` alike.
 - Statistics module (paired cluster bootstrap with BCa intervals, sign-flip test, TOST, Holm).
 - Typed package (`py.typed`), property-based tests of the chunker's invariants, a
   differential test against markdown-it-py, golden-file tests on 11 real documents, and
@@ -38,11 +45,15 @@ calls only where they pay.
   `[langchain]`, `[llamaindex]`, `[all]`.
 - **`merge_by_keys` defaults to off.** The study found no retrieval gain from key-based merging.
 - The library no longer reads `.env` or calls `logging.basicConfig`; `Config.from_env()`
-  reads a file only when you pass `env_file=`. The CLI still loads `./.env`.
+  reads a file only when you pass `env_file=`. `mdkeychunker legacy` still loads `./.env` when `[cli]` is installed.
 - ATX headers indented by 1–3 spaces are recognised (CommonMark).
+- `[langchain]` installs `langchain-text-splitters` (which provides `TextSplitter`).
+- The CLI no longer calls an LLM unless you run `mdkeychunker legacy`; a bare `mdkeychunker FILE`
+  is an alias of `mdkeychunker chunk FILE`.
 
 ### Deprecated
 - `Pipeline` and `min_orphan_size` (removal planned for 0.6). Use `mk.chunk()` and `mk.enrich()`.
+- `Config.from_env()` reading `./.env` without `env_file=` (now warns and skips the file).
 
 ## 0.3.0 — 2026-10-02
 

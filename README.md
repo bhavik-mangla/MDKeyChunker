@@ -61,6 +61,19 @@ Bring your own retriever as a function `search(query, k) -> hits | chunks | chun
 or pass LangChain / LlamaIndex outputs. `diagnose` scores gold *evidence text*, not chunk
 ids, so you can compare different chunkers on the same questions.
 
+## Command line
+
+```bash
+mdkeychunker chunk docs/guide.md -o chunks.jsonl            # header-led chunks with the free prefix
+mdkeychunker chunk notes.txt --windows --size 256           # token windows
+mdkeychunker diagnose --docs docs/ --qa qa.jsonl            # is your retriever leaving recall on the table?
+```
+
+`qa.jsonl` holds one question per line:
+`{"question": "...", "gold": ["evidence text", ...], "doc_id": "guide.md"}`. With `--docs DIR`,
+a document's `doc_id` is its path relative to `DIR`. No command calls an LLM unless you run
+`mdkeychunker legacy` (the 0.3 pipeline).
+
 ## What to use when
 
 From the v4 study. Each row gives the evidence tier: **confirmatory** (pre-planned
@@ -93,7 +106,9 @@ The core has no dependencies. Add extras for what you use:
 | `mdkeychunker[bm25]` | fast BM25 (bm25s); `BM25Retriever(method="study")` needs nothing |
 | `mdkeychunker[dense]`, `[rerank]` | sentence-transformers: qwen3-embedding, nomic, mxbai; Qwen3 and bge rerankers |
 | `mdkeychunker[retrieval]` | all three above, for `mk.diagnose` with built-in retrievers |
-| `mdkeychunker[langchain]`, `[llamaindex]` | framework adapters |
+| `mdkeychunker[langchain]`, `[llamaindex]` | framework adapters (`langchain-text-splitters`, `llama-index-core`) |
+| `mdkeychunker[cli]` | `.env` support for `mdkeychunker legacy` and `Config.from_env` |
+| `mdkeychunker[spacy]` | the legacy spaCy enricher (experimental, not covered by the study) |
 | `mdkeychunker[all]` | everything |
 
 ## Chunking
@@ -102,17 +117,20 @@ The core has no dependencies. Add extras for what you use:
 chunks = mk.chunk(markdown, doc_id="guide",
                   max_tokens=512,    # caps embed_text (prefix included); None = no cap
                   prefix=True,       # prepend the section path to embed_text
-                  tokenizer=None)    # None = chars/4; "tiktoken" = cl100k_base (needs [tokens])
+                  tokenizer=None)    # None = chars/4 estimate; "cl100k_base" or any tiktoken encoding name (needs [tokens])
 chunks = mk.chunk_file("docs/guide.md")       # .md / .txt; convert PDFs first (see below)
 windows = mk.window(text, size=256, overlap=32)
 ```
 
-- Blocks are never split mid-way: code fences, tables, lists and paragraphs stay whole
-  unless one alone exceeds `max_tokens`. Then code splits by lines and tables by rows,
-  with the fence or header row repeated, and the chunk is marked `oversized=True`.
-- Documents with no Markdown structure (plain text, many PDF conversions) fall back to
-  256-token windows with a warning. Force either mode with `headerless="structure"` or
-  `headerless="window"`.
+- Chunks follow headers. A chunk over `max_tokens` is re-packed at block boundaries, so
+  code fences, tables, lists and paragraphs stay whole. Only a block that alone exceeds the
+  cap is split: code by lines and tables by rows (the fence or header row is repeated in
+  each piece), prose by paragraph, line, sentence, then word. Those pieces are marked
+  `oversized=True`.
+- Documents with no Markdown structure (no headers, or a single header and no code, tables
+  or lists, as in plain text and many PDF conversions) fall back to 256-token windows with a
+  `HeaderlessWarning`. Code blocks and tables are never cut by windows. Force either mode
+  with `headerless="structure"` or `headerless="window"`.
 - `chunk.text` is the raw text, `chunk.embed_text` is what you index,
   `chunk.section_path` is the header stack, and `chunk.start_char` / `chunk.end_char`
   point into the original input.
@@ -122,22 +140,44 @@ PDFs and Word files: convert them to Markdown first, for example with
 
 ## Enrichment (optional)
 
-One LLM call per chunk writes a title, summary, keywords and likely questions, which are
-added to `embed_text`. Use it when BM25 drives your ranking, or when you want the
-metadata itself.
+One LLM call per chunk writes a title, summary, keywords and likely questions. `embed_text`
+becomes those fields, a blank line, then the chunk text: the layout the study indexed, which
+does not include the section path (`prefix=True` puts it back first). The fields are also
+stored on the chunk (`chunk.title`, `chunk.keywords`, ...). Use it when BM25 drives your
+ranking, or when you want the metadata itself.
 
 ```python
 llm = mk.OpenAICompatible(model="qwen2.5:7b", base_url="http://localhost:11434/v1")  # or mk.Anthropic(...)
 enriched = mk.enrich(chunks, llm, cache_dir=".mk_cache")   # one call per chunk, all fields; reruns are free
+# prices in dollars per million tokens; on short documents contextual retrieval can be the cheaper one
 print(mk.estimate_cost(chunks, method="enrich", price_in=0.15, price_out=0.60))
 print(mk.estimate_cost(chunks, method="contextual", price_in=0.15, price_out=0.60))
 ```
 
 The prompt is the one the study used. Calls are concurrent across documents, cached on
 disk, and stop at the first authentication error. If generated fields push `embed_text`
-over `max_tokens`, you get one warning; `max_field_tokens=` trims the fields, never the
+over `max_tokens` (pass the value you used in `mk.chunk`; default 512), you get one warning; `max_field_tokens=` trims the fields, never the
 chunk text. `rolling_keys=True` shows the model the keys used so far in the document; it
 makes keys more consistent, but did not change retrieval in the study.
+`estimate_cost(..., cached=True)` models prompt caching for contextual retrieval.
+
+## LangChain and LlamaIndex
+
+```python
+from mdkeychunker.integrations.langchain import MDKeyChunkerSplitter      # pip install "mdkeychunker[langchain]"
+docs = MDKeyChunkerSplitter(max_tokens=512).split_documents(loaded_docs)
+# page_content = embed_text; metadata: section, start_index, end_index, chunk_id, ...
+
+from mdkeychunker.integrations.llamaindex import MDKeyChunkerNodeParser   # pip install "mdkeychunker[llamaindex]"
+nodes = MDKeyChunkerNodeParser(max_tokens=512).get_nodes_from_documents(documents)
+# node ids = chunk ids; the embedded text is exactly mk.chunk's embed_text
+```
+
+Both adapters hand the framework `embed_text` by default. Pass `content="text"` for the
+raw chunk text, with the section path in `metadata["section"]`. To score chunks from
+another library with `mk.diagnose` or `mk.evidence_recall`, convert them with
+`mdkeychunker.integrations.to_chunks(...)`. It accepts LangChain documents, LlamaIndex
+nodes, Chonkie chunks, dicts or strings, and needs no extra.
 
 ## Retrievers and metrics
 
@@ -166,10 +206,15 @@ For production search, use your vector database's hybrid search and set it from 
 - **The core has no dependencies.** LLM mode needs `pip install "mdkeychunker[llm]"`.
 - **`merge_by_keys` is off by default.** The study found no retrieval gain from key-based merging.
 - **`Pipeline` is deprecated** (removal in 0.6) and still works. Use `mk.chunk` plus `mk.enrich`.
-- **The library no longer reads `.env` or configures logging on import.** Pass
-  `Config.from_env(env_file=".env")` if you relied on it; the CLI still loads `./.env`.
-- **New chunks get content-stable ids** (`chunk.stable_id()`), which don't change when
-  enrichment runs.
+- **The library no longer reads `.env` or configures logging.** Call
+  `Config.from_env(env_file=".env")` (needs `pip install "mdkeychunker[cli]"`) if you relied
+  on it. `mdkeychunker legacy` still reads `./.env` when `[cli]` is installed.
+- **`mk.chunk` gives content-stable ids** (`chunk_id` = hash of doc_id, start offset and
+  text). They don't change when enrichment runs or a document grows after the chunk.
+  `Pipeline` keeps the 0.3 ids.
+- **`mk.chunk` caps chunks at 512 tokens of `embed_text`** (prefix included); `Pipeline`
+  keeps the 0.3 character sizes.
+- **The CLI no longer calls an LLM** unless you run `mdkeychunker legacy`.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full list.
 
@@ -182,9 +227,11 @@ contextual-retrieval texts are on
 retrieval result can be re-scored without an LLM call. This package's metrics, statistics
 and BM25 reproduce the study's numbers; tests check that against the study data.
 
-`mk.chunk(..., max_tokens=None)` reproduces the study's header-led chunks exactly. Its
-default section-path prefix uses the full header path, which differs from the study's
-prefix on 2.3% of chunks.
+`mk.chunk(..., max_tokens=None)` reproduces the study's header-led chunks exactly (all 677
+cached documents, 14,274 chunks). The default `embed_text` prefix is the header path at the
+chunk's first line. The study's prefix used `chunk.section_title`, which for a small chunk
+merged across a header names the later section. The two differ on 2.3% of chunks;
+`chunk.section_title + "\n\n" + chunk.text` is the study's exact text.
 
 ## Citation
 
