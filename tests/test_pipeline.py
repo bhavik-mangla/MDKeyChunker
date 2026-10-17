@@ -144,7 +144,7 @@ def test_pipeline_token_count_set():
 def test_pipeline_process_file(tmp_path):
     md_file = tmp_path / "test.md"
     md_file.write_text(
-        "# Test\n\nContent for testing pipeline file processing.")
+        "# Test\n\nContent for testing pipeline file processing.", encoding="utf-8")
 
     pipeline = _make_pipeline()
     chunks = pipeline.process_file(str(md_file))
@@ -165,7 +165,7 @@ def test_pipeline_save_jsonl(tmp_path):
     pipeline.save_jsonl(chunks, out_path)
 
     import json
-    lines = (tmp_path / "output.jsonl").read_text().strip().split("\n")
+    lines = (tmp_path / "output.jsonl").read_text(encoding="utf-8").strip().split("\n")
     for line in lines:
         data = json.loads(line)
         assert "text" in data
@@ -177,7 +177,7 @@ def test_pipeline_save_summary(tmp_path):
     out_path = str(tmp_path / "summary.txt")
     pipeline.save_summary(chunks, out_path)
 
-    content = (tmp_path / "summary.txt").read_text()
+    content = (tmp_path / "summary.txt").read_text(encoding="utf-8")
     # If chunks have summaries (from mock), they should appear
     assert isinstance(content, str)
 

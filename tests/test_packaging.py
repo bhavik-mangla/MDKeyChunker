@@ -1,6 +1,7 @@
 """0.4 packaging: zero-dependency core, no import or runtime side effects, deprecations."""
 import json
 import logging
+import os
 import subprocess
 import sys
 import warnings
@@ -20,7 +21,7 @@ HEAVY = ["torch", "openai", "anthropic", "sentence_transformers", "transformers"
 
 def _fresh_python(code: str) -> str:
     out = subprocess.run([sys.executable, "-c", code], cwd=ROOT, capture_output=True,
-                         text=True, check=True)
+                         text=True, encoding="utf-8", check=True)
     return out.stdout
 
 
@@ -31,11 +32,14 @@ def test_import_loads_no_optional_dependency():
 
 
 def test_import_configures_no_logging_and_reads_no_env(tmp_path):
-    (tmp_path / ".env").write_text("LLM_MODEL=from-dotenv\n")
+    (tmp_path / ".env").write_text("LLM_MODEL=from-dotenv\n", encoding="utf-8")
+    # Keep the parent environment (Windows needs SYSTEMROOT to start Python), minus LLM_*
+    env = {**{k: v for k, v in os.environ.items() if not k.startswith("LLM_")},
+           "PYTHONPATH": str(ROOT)}
     code = ("import logging, os, mdkeychunker; "
             "print(len(logging.getLogger().handlers), os.environ.get('LLM_MODEL'))")
     out = subprocess.run([sys.executable, "-c", code], cwd=tmp_path, capture_output=True,
-                         text=True, check=True, env={"PYTHONPATH": str(ROOT)})
+                         text=True, encoding="utf-8", check=True, env=env)
     assert out.stdout.split() == ["0", "None"]
 
 
@@ -60,11 +64,11 @@ def test_planned_names_map_to_modules():
 
 def test_py_typed_marker_is_shipped():
     assert (ROOT / "mdkeychunker" / "py.typed").exists()
-    assert 'mdkeychunker = ["py.typed"]' in (ROOT / "pyproject.toml").read_text()
+    assert 'mdkeychunker = ["py.typed"]' in (ROOT / "pyproject.toml").read_text(encoding="utf-8")
 
 
 def test_core_has_no_dependencies():
-    text = (ROOT / "pyproject.toml").read_text()
+    text = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     assert "\ndependencies = []\n" in text
 
 
@@ -119,7 +123,7 @@ def test_min_orphan_size_is_deprecated():
 def test_from_env_no_longer_reads_dotenv_implicitly(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     monkeypatch.delenv("LLM_MODEL", raising=False)
-    (tmp_path / ".env").write_text("LLM_MODEL=from-dotenv\n")
+    (tmp_path / ".env").write_text("LLM_MODEL=from-dotenv\n", encoding="utf-8")
     with pytest.warns(DeprecationWarning, match="env_file"):
         cfg = Config.from_env()
     assert cfg.llm_model == "gpt-4o-mini"
@@ -130,7 +134,7 @@ def test_from_env_reads_an_explicit_env_file(tmp_path, monkeypatch):
     monkeypatch.delenv("LLM_MODEL", raising=False)
     monkeypatch.delenv("MERGE_BY_KEYS", raising=False)
     f = tmp_path / "custom.env"
-    f.write_text("LLM_MODEL=from-file\nMERGE_BY_KEYS=true\n")
+    f.write_text("LLM_MODEL=from-file\nMERGE_BY_KEYS=true\n", encoding="utf-8")
     cfg = Config.from_env(str(f))
     monkeypatch.delenv("LLM_MODEL", raising=False)  # load_dotenv set it in os.environ
     monkeypatch.delenv("MERGE_BY_KEYS", raising=False)

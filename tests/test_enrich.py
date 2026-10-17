@@ -239,7 +239,7 @@ def test_failures_are_not_cached_and_corrupt_entries_are_ignored(tmp_path):
     assert not list(tmp_path.rglob("*.json"))
     mk.enrich(chunks, Recorder(), cache_dir=tmp_path)
     for f in tmp_path.rglob("*.json"):
-        f.write_text("{corrupt")
+        f.write_text("{corrupt", encoding="utf-8")
     assert mk.enrich(chunks, Recorder(), cache_dir=tmp_path)[0].title == "T"
 
 

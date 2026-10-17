@@ -22,7 +22,7 @@ def _docs(root: Path):
         for d in json.loads((root / name).read_text(encoding="utf-8")):
             cached = root / "cache" / "base" / "struct" / f"{d['id'].replace('/', '__')}.json"
             if cached.exists():
-                yield d["id"], d["markdown"], json.loads(cached.read_text())["chunks"]
+                yield d["id"], d["markdown"], json.loads(cached.read_text(encoding="utf-8"))["chunks"]
 
 
 def test_uncapped_chunks_equal_the_study_struct_chunks():
