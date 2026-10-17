@@ -309,3 +309,48 @@ def test_enrich_is_in_the_default_checks_only_when_enriched_chunks_are_given():
     assert {f.check for f in r.findings} == {"fusion", "rerank", "enrich"}
     r = diagnose(cs, qa(), reranker=ORACLE, upgrade_embedder=flat, **KW)
     assert {f.check for f in r.findings} == {"fusion", "rerank"}
+
+
+# --------------------------------------------------------------------------- embedder memory knobs
+
+def capture_load_embedder(monkeypatch):
+    import mdkeychunker.retrieval.dense as dense
+
+    calls, seen = [], []
+
+    def fake(model, **kwargs):
+        calls.append((model, kwargs))
+
+        def embed(texts):
+            seen.extend(texts)
+            return flat(texts)
+        embed.model = model
+        return embed
+
+    monkeypatch.setattr(dense, "load_embedder", fake)
+    return calls, seen
+
+
+def test_embed_batch_size_and_max_seq_length_reach_load_embedder(monkeypatch):
+    calls, seen = capture_load_embedder(monkeypatch)
+    diagnose(corpus(), qa(), check=("fusion",), bm25="study", embedder="nomic",
+             budget_tokens=BUDGET, n_boot=200, embed_batch_size=4, max_seq_length=2048)
+    assert calls == [("nomic", {"batch_size": 4, "max_seq_length": 2048})]
+    assert any(t.startswith("search_document: ") for t in seen)  # the preset's prefixes
+    calls.clear()
+    diagnose(corpus(), qa(), check=("fusion",), bm25="study", embedder="nomic",
+             budget_tokens=BUDGET, n_boot=200)
+    assert calls == [("nomic", {})]  # defaults unchanged
+
+
+def test_a_load_embedder_result_keeps_its_preset_prefixes(monkeypatch):
+    calls, seen = capture_load_embedder(monkeypatch)
+    import mdkeychunker.retrieval.dense as dense
+
+    fn = dense.load_embedder("nomic", batch_size=4)
+    calls.clear()
+    r = diagnose(corpus(), qa(), check=("fusion",), bm25="study", embedder=fn,
+                 budget_tokens=BUDGET, n_boot=200)
+    assert calls == []  # used as given, not reloaded
+    assert any(t.startswith("search_query: what does") for t in seen)
+    assert r.settings["embedder"] == "nomic"

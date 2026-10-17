@@ -14,7 +14,7 @@ from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
 
-from ._base import require
+from ._base import DEFAULT_DTYPE, kwargs_param, model_dtype_kwargs, require
 
 QWEN3_RERANKER = "tomaarsen/Qwen3-Reranker-0.6B-seq-cls"
 BGE_RERANKER = "BAAI/bge-reranker-v2-m3"
@@ -110,6 +110,9 @@ class Reranker:
         cache_dir: optional on-disk score cache (study layout); ``None`` keeps scores in memory.
         score_fn: bring your own scorer: formatted ``(query, doc)`` pairs -> scores. No
             model is loaded.
+        dtype, model_kwargs: weights dtype, float32 by default so scores do not depend on
+            the transformers version (``None``: the model's default); ``model_kwargs`` go to
+            ``from_pretrained`` and override ``dtype``.
 
     Example (no model download):
         >>> r = Reranker(score_fn=lambda pairs: [float("cat" in d) for _, d in pairs])
@@ -119,8 +122,12 @@ class Reranker:
 
     def __init__(self, model: str = "qwen3-reranker-0.6b", *, max_length: int = 2048,
                  batch_size: int = 16, device: str | None = None,
-                 cache_dir: str | Path | None = None, score_fn: ScoreFn | None = None) -> None:
+                 cache_dir: str | Path | None = None, score_fn: ScoreFn | None = None,
+                 dtype: str | None = DEFAULT_DTYPE,
+                 model_kwargs: dict[str, Any] | None = None) -> None:
         self.model_name = RERANK_PRESETS.get(model, model)
+        self.dtype = dtype
+        self.model_kwargs = model_kwargs
         self.max_length = max_length
         self.batch_size = batch_size
         self.device = device
@@ -132,11 +139,17 @@ class Reranker:
 
     @property
     def model_key(self) -> str:
-        return f"{self.model_name}|tmpl={TEMPLATE_VERSION}|maxlen={self.max_length}"
+        key = f"{self.model_name}|tmpl={TEMPLATE_VERSION}|maxlen={self.max_length}"
+        # float32 (the default) keeps the study's key, so its cached scores stay readable
+        return key if self.dtype == DEFAULT_DTYPE and not self.model_kwargs else (
+            f"{key}|dtype={self.dtype}|kw={sorted((self.model_kwargs or {}).items())!r}")
 
     def _load(self) -> Any:
         st = require("sentence_transformers", "rerank")
-        ce = st.CrossEncoder(self.model_name, device=self.device, max_length=self.max_length)
+        kw = {**model_dtype_kwargs(self.dtype), **(self.model_kwargs or {})}
+        extra = {kwargs_param(st.CrossEncoder, "model_kwargs", "automodel_args"): kw} if kw else {}
+        ce = st.CrossEncoder(self.model_name, device=self.device, max_length=self.max_length,
+                             **extra)
         tok = ce.tokenizer
         if tok.pad_token is None:  # Qwen3 has no pad token; batching needs one
             tok.pad_token = tok.eos_token

@@ -177,6 +177,12 @@ def _diagnose_parser() -> argparse.ArgumentParser:
     p.add_argument("--reranker", default="qwen3-reranker-0.6b",
                    help="reranker preset / model id, or MODULE:ATTR Reranker")
     p.add_argument("--bm25", default="lucene", help="BM25 method: lucene (default) or study")
+    p.add_argument("--embed-batch-size", type=int,
+                   help="encoding batch size for built-in embedders (default 32; lower it, "
+                        "e.g. 4, on a laptop with a large corpus)")
+    p.add_argument("--max-seq-length", type=int,
+                   help="token cap for built-in embedders (default: the preset's, 8192 for "
+                        "qwen3/nomic; e.g. 2048 saves memory)")
     p.add_argument("--scope", choices=("auto", "document", "corpus"), default="auto")
     p.add_argument("--metric", choices=("recall", "precision"), default="recall")
     p.add_argument("--budget", type=int, default=512, help="evidence budget in tokens")
@@ -223,7 +229,9 @@ def _run_diagnose(args: argparse.Namespace) -> int:
                           reranker=_maybe_object(args.reranker), bm25=args.bm25,
                           enriched=enriched, scope=args.scope, metric=args.metric,
                           budget_tokens=args.budget, tokenizer=args.tokenizer,
-                          margin=args.margin, n_boot=args.n_boot, seed=args.seed)
+                          margin=args.margin, n_boot=args.n_boot, seed=args.seed,
+                          embed_batch_size=args.embed_batch_size,
+                          max_seq_length=args.max_seq_length)
     except (FileNotFoundError, ValueError, TypeError, ImportError, AttributeError) as e:
         return _fail(str(e))
     md = report.to_markdown()

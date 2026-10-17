@@ -12,7 +12,15 @@ from importlib.metadata import PackageNotFoundError, version
 from typing import Any
 
 from ..models import Chunk
-from ._base import BaseRetriever, argsort_desc, index_text, require
+from ._base import (
+    DEFAULT_DTYPE,
+    BaseRetriever,
+    argsort_desc,
+    index_text,
+    kwargs_param,
+    model_dtype_kwargs,
+    require,
+)
 from .fusion import Ranking
 
 # Qwen3-Embedding model card: queries get f"Instruct: {task}\nQuery:", documents nothing.
@@ -80,17 +88,26 @@ def _check_transformers(model: str, preset: DensePreset) -> None:
 
 
 def load_embedder(model: str, *, device: str | None = None, batch_size: int = 32,
-                  max_seq_length: int | None = None) -> EmbedFn:
+                  max_seq_length: int | None = None, dtype: str | None = DEFAULT_DTYPE,
+                  model_kwargs: dict[str, Any] | None = None) -> EmbedFn:
     """Load a sentence-transformers model once and return it as an ``embed_fn``.
 
     Pass the result to several ``DenseRetriever`` objects (with the same ``model`` name, so
     the preset's prefixes apply) to embed many document groups without reloading the model.
+
+    ``dtype`` defaults to float32 so scores are the same on every transformers version
+    (``None``: the model's own default, e.g. bfloat16 on transformers 5, faster but not
+    comparable across versions). ``model_kwargs`` are passed to ``from_pretrained`` and
+    override ``dtype``.
     """
     preset = resolve_dense(model)
     _check_transformers(model, preset)
     st = require("sentence_transformers", "dense")
+    kw = {**model_dtype_kwargs(dtype), **(model_kwargs or {})}
     enc = st.SentenceTransformer(preset.model_id, device=device,
-                                 trust_remote_code=preset.trust_remote_code)
+                                 trust_remote_code=preset.trust_remote_code,
+                                 **({kwargs_param(st.SentenceTransformer, "model_kwargs"): kw}
+                                    if kw else {}))
     seq = max_seq_length or preset.max_seq_length
     if seq:
         enc.max_seq_length = seq
@@ -98,6 +115,7 @@ def load_embedder(model: str, *, device: str | None = None, batch_size: int = 32
     def embed(texts: list[str]) -> Any:
         return enc.encode(texts, batch_size=batch_size, show_progress_bar=False,
                           convert_to_numpy=True, normalize_embeddings=True)
+    embed.model = model  # type: ignore[attr-defined]  # lets diagnose apply the preset's prefixes
     return embed
 
 
@@ -112,6 +130,7 @@ class DenseRetriever(BaseRetriever):
             a 2-D array of embeddings. ``model`` is then only a label. Needs numpy.
         query_prefix, doc_prefix: override the preset's prefixes.
         device, batch_size, max_seq_length: passed to sentence-transformers.
+        dtype, model_kwargs: weights dtype (float32 by default; see ``load_embedder``).
 
     Example (no model download; a toy embedder):
         >>> from mdkeychunker.models import Chunk
@@ -126,7 +145,9 @@ class DenseRetriever(BaseRetriever):
     def __init__(self, chunks: Sequence[Chunk], model: str = "qwen3-embedding-0.6b", *,
                  embed_fn: EmbedFn | None = None, query_prefix: str | None = None,
                  doc_prefix: str | None = None, device: str | None = None,
-                 batch_size: int = 32, max_seq_length: int | None = None) -> None:
+                 batch_size: int = 32, max_seq_length: int | None = None,
+                 dtype: str | None = DEFAULT_DTYPE,
+                 model_kwargs: dict[str, Any] | None = None) -> None:
         super().__init__(chunks)
         self._np = require("numpy", "dense")
         preset = resolve_dense(model)
@@ -136,7 +157,8 @@ class DenseRetriever(BaseRetriever):
         self.batch_size = batch_size
         if embed_fn is None:
             embed_fn = load_embedder(model, device=device, batch_size=batch_size,
-                                     max_seq_length=max_seq_length)
+                                     max_seq_length=max_seq_length, dtype=dtype,
+                                     model_kwargs=model_kwargs)
         self._embed = embed_fn
         self.doc_embeddings = self._encode([self.doc_prefix + index_text(c) for c in self.chunks])
 

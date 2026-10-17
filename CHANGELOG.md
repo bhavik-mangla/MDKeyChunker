@@ -12,16 +12,29 @@
   `ImportError: the 'nomic' embedder needs transformers<5 ... pip install 'transformers<5'`, for the
   preset name and for its Hugging Face id, instead of a traceback at the first encode.
   `qwen3-embedding-0.6b`, `mxbai` and both reranker presets work on transformers 5.
+- Scores no longer depend on the transformers version. Transformers 5 loads a model in its
+  config's dtype, so `qwen3-embedding-0.6b` ran in bfloat16 there (float32 on transformers 4)
+  and its scores moved by up to 3e-3 (mxbai: 9e-5), which changed `diagnose` numbers. Dense and
+  reranker presets now load in float32 by default, and give bit-identical scores on
+  transformers 4.57 and 5.20 on the same machine. Pass `dtype=None` (the model's default, faster)
+  or `model_kwargs=` to `DenseRetriever`, `load_embedder` or `Reranker` to override. The
+  reranker's cache key is unchanged for float32, so existing caches stay valid.
 
-### Known
-- On transformers 5, sentence-transformers loads `qwen3-embedding-0.6b` in its config's bfloat16
-  (float32 on transformers 4). Retrieval is unaffected, but scores differ slightly between the two
-  (e.g. 0.7426 vs 0.7439 cosine on a toy query), so pin transformers when you compare runs.
+- `mk.diagnose` on a large corpus could exhaust a laptop's memory: the built-in embedders
+  encode in batches of 32 at up to 8,192 tokens, and the OS killed the process without a
+  traceback (3,896 chunks, nomic + qwen3, 24 GB). The batch size and token cap can now be set
+  (see Added).
 
 ### Added
+- `mk.diagnose(..., embed_batch_size=, max_seq_length=)` and the CLI's `--embed-batch-size` /
+  `--max-seq-length`, for the built-in embedders (defaults unchanged; e.g. 4 and 2048 on a
+  laptop). `embedder=load_embedder("nomic", batch_size=4, max_seq_length=2048)` also works and
+  keeps the preset's prefixes.
+- `dtype=` and `model_kwargs=` on `DenseRetriever`, `load_embedder` and `Reranker`.
 - Slow tests that load every dense and reranker preset and check a toy retrieval. The weekly
-  CI job runs them with the default dependency resolution and with transformers 4, so a
-  preset that breaks on a new transformers release is caught there.
+  CI job runs them with the default dependency resolution and with transformers 4, then checks
+  that both give the same preset scores (to 1e-6), so a preset that breaks or drifts on a new
+  transformers release is caught there.
 
 ## 0.4.0 — 2026-10-17
 

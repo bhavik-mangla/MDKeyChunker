@@ -124,7 +124,7 @@ def _to_chunks(corpus: Any) -> list[Chunk]:
 
 
 def _label(embedder: EmbedderLike, default: str) -> str:
-    return embedder if isinstance(embedder, str) else default
+    return embedder if isinstance(embedder, str) else str(getattr(embedder, "model", default))
 
 
 # --------------------------------------------------------------------------- report
@@ -267,7 +267,8 @@ class _Runner:
     def __init__(self, groups: dict[str, list[int]], chunks_by_group: dict[str, list[Chunk]],
                  qa: list[QA], k: int, bm25_method: str, embedder: EmbedderLike,
                  upgrade: EmbedderLike | None, reranker: Any, rerank_depth: int,
-                 fusion: Any) -> None:
+                 fusion: Any, embed_kwargs: dict[str, Any] | None = None) -> None:
+        self.embed_kwargs = embed_kwargs or {}
         self.groups, self.chunks_by_group, self.qa, self.k = groups, chunks_by_group, qa, k
         self.bm25_method, self.rerank_depth, self.fusion = bm25_method, rerank_depth, fusion
         self.embedders: dict[str, EmbedderLike] = {"dense": embedder}
@@ -279,12 +280,12 @@ class _Runner:
 
     def _embed_fn(self, name: str) -> tuple[str, Any]:
         emb = self.embedders[name]
-        if not isinstance(emb, str):
-            return "custom", emb
+        if not isinstance(emb, str):  # an embed_fn; load_embedder's carry their preset name
+            return str(getattr(emb, "model", "custom")), emb
         if name not in self._embed_fns:
             from .retrieval.dense import load_embedder
 
-            self._embed_fns[name] = load_embedder(emb)
+            self._embed_fns[name] = load_embedder(emb, **self.embed_kwargs)
         return emb, self._embed_fns[name]
 
     def retriever(self, name: str, group: str, chunks: list[Chunk] | None = None) -> Any:
@@ -404,7 +405,8 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
              metric: Literal["recall", "precision"] = "recall",
              budget_tokens: int = 512, tokenizer: Tokenizer | str | None = None,
              margin: float | None = None, n_boot: int = 2000, seed: int = 0,
-             alpha: float = 0.05, search_k: int = 50) -> Report:
+             alpha: float = 0.05, search_k: int = 50, embed_batch_size: int | None = None,
+             max_seq_length: int | None = None) -> Report:
     """Diagnose a retrieval stack on your documents and labelled questions.
 
     Args:
@@ -439,6 +441,13 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
             FreshStack) were set for its sample sizes and are not your thresholds.
         n_boot, seed, alpha: bootstrap resamples, seed and significance level.
         search_k: results requested per query (must cover the budget and the rerank depth).
+        embed_batch_size, max_seq_length: for the built-in (string) embedders: encoding batch
+            size (default 32) and token cap (default: the preset's, 8192 for qwen3 and nomic).
+            On a laptop with a large corpus, lower them (e.g. ``embed_batch_size=4``,
+            ``max_seq_length=2048``): the defaults can exhaust memory and get the process
+            killed without a traceback. To control everything, pass
+            ``embedder=load_embedder("nomic", batch_size=4, max_seq_length=2048)`` (the
+            preset's prefixes still apply), or your own retriever via ``retrievers=``.
 
     Returns:
         A ``Report``. A finding is "better"/"worse" only when its 95% BCa CI excludes zero
@@ -490,8 +499,11 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
         raise ValueError("check='rerank' needs a reranker")
     same_upgrade = (isinstance(upgrade_embedder, str) and upgrade_embedder == embedder) or (
         upgrade_embedder is embedder)
+    embed_kwargs = {k_: v for k_, v in (("batch_size", embed_batch_size),
+                                        ("max_seq_length", max_seq_length)) if v is not None}
     runner = _Runner(groups, chunks_by_group, qs, k, bm25, embedder,
-                     None if same_upgrade else upgrade_embedder, reranker, rerank_depth, fusion)
+                     None if same_upgrade else upgrade_embedder, reranker, rerank_depth, fusion,
+                     embed_kwargs)
 
     lookup = {c.chunk_id: c for c in chunks if c.chunk_id}
     results: dict[str, list[Ranked]] = {}

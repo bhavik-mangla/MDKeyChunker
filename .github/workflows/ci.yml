@@ -134,3 +134,26 @@ jobs:
       - run: >-
           uv run --extra retrieval --extra tokens --with pytest --with rank-bm25
           ${{ matrix.deps.with }} pytest -q --run-slow tests
+        env:
+          MDK_PRESET_SCORES_OUT: preset-scores-${{ matrix.deps.name }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preset-scores-${{ matrix.deps.name }}
+          path: preset-scores-${{ matrix.deps.name }}.json
+
+  slow-compare:
+    name: slow / presets identical across transformers versions
+    needs: slow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: preset-scores-*
+          merge-multiple: true
+      - run: uv run --with pytest pytest -q tests/test_presets.py -k across_transformers_versions
+        env:
+          MDK_PRESET_SCORES_COMPARE: preset-scores-default.json,preset-scores-transformers-4.json

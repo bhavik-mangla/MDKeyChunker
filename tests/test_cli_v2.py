@@ -145,3 +145,26 @@ def test_diagnose_errors_are_reported_not_raised(docs, tmp_path, capsys):
         assert "check='fusion' needs a dense embedder" in capsys.readouterr().err
     with pytest.raises(SystemExit):  # argparse: --qa is required
         cli_v2.main(["diagnose", "--docs", str(docs)])
+
+
+def test_diagnose_memory_flags_are_passed_through(docs, tmp_path, monkeypatch):
+    import mdkeychunker.diagnose as diag
+
+    seen = {}
+
+    class FakeReport:
+        def to_markdown(self):
+            return "# Retrieval diagnosis\n"
+
+        def to_dict(self):
+            return {}
+
+    def fake(corpus, qa, **kw):
+        seen.update(kw)
+        return FakeReport()
+
+    monkeypatch.setattr(diag, "diagnose", fake)
+    qa = write_qa(tmp_path, [{"question": "q", "gold": ["g"], "doc_id": "guide.md"}])
+    assert cli_v2.main(["diagnose", "--docs", str(docs), "--qa", str(qa),
+                        "--embed-batch-size", "4", "--max-seq-length", "2048"]) == 0
+    assert (seen["embed_batch_size"], seen["max_seq_length"]) == (4, 2048)
