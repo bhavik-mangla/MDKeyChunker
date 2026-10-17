@@ -114,6 +114,7 @@ def test_default_tokenizer_is_chars_over_four():
     assert evidence_recall([mk_chunk(TEN)], [TEN], budget_tokens=4,
                            tokenizer=CharTokenizer(chars_per_token=8)) == 1.0
     assert isinstance(get_tokenizer(None), CharTokenizer)
+    assert isinstance(get_tokenizer("estimate"), CharTokenizer)
     with pytest.raises(TypeError):
         get_tokenizer(42)  # type: ignore[arg-type]
 
@@ -122,6 +123,12 @@ def test_tiktoken_by_name():
     pytest.importorskip("tiktoken")
     enc = get_tokenizer("cl100k_base")
     assert enc.decode(enc.encode("hello world")) == "hello world"
+    # the same spellings as mk.chunk
+    for spec in ("tiktoken", "tiktoken:cl100k_base"):
+        assert get_tokenizer(spec).name == "cl100k_base"
+    assert get_tokenizer("tiktoken:o200k_base").name == "o200k_base"
+    with pytest.raises(ValueError, match="unknown tokenizer"):
+        get_tokenizer("hf:bert")
 
 
 # --------------------------------------------------------------------------- result types

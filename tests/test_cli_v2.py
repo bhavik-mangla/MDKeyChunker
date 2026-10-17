@@ -5,6 +5,9 @@ import pytest
 
 from mdkeychunker import cli_v2
 
+# the fixture's plain-text file has no Markdown structure: mk.chunk says so, by design
+pytestmark = pytest.mark.filterwarnings("ignore::mdkeychunker.chunking.HeaderlessWarning")
+
 GUIDE = ("# Guide\n\n## Install\n\nRun pip install foo on Linux.\n\n"
          "## Pricing\n\nTen dollars a month.\n")
 

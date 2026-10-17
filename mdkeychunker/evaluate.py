@@ -111,21 +111,35 @@ def _cut(tok: AnyTokenizer, text: str, n_tokens: int) -> tuple[str, int]:
 
 
 def get_tokenizer(tokenizer: Tokenizer | CharTokenizer | str | None = None) -> AnyTokenizer:
-    """Resolve ``None`` (chars/4 estimate), a tiktoken encoding name, or a tokenizer object.
+    """Resolve a tokenizer spec, accepting the same strings as ``mk.chunk``.
+
+    ``None`` or ``"estimate"``: the chars/4 estimate. ``"tiktoken"``: tiktoken
+    ``cl100k_base`` (the study's). ``"tiktoken:<encoding>"`` or a bare ``"<encoding>"``
+    (e.g. ``"cl100k_base"``): that tiktoken encoding. Or a tokenizer object.
 
     Example:
         >>> isinstance(get_tokenizer(None), CharTokenizer)
         True
+        >>> isinstance(get_tokenizer("estimate"), CharTokenizer)
+        True
     """
-    if tokenizer is None:
+    if tokenizer is None or tokenizer == "estimate":
         return CharTokenizer()
     if isinstance(tokenizer, str):
+        name, sep, encoding = tokenizer.partition(":")
+        if name == "tiktoken":
+            encoding = encoding or "cl100k_base"
+        elif sep:
+            raise ValueError(f"unknown tokenizer {tokenizer!r}; use None, 'estimate', "
+                             "'tiktoken', 'tiktoken:<encoding>' or '<encoding>'")
+        else:
+            encoding = tokenizer
         try:
             import tiktoken
         except ImportError as e:  # pragma: no cover - depends on the environment
             raise ImportError(f'tokenizer={tokenizer!r} needs tiktoken: '
                               'pip install "mdkeychunker[tokens]"') from e
-        enc: Tokenizer = tiktoken.get_encoding(tokenizer)
+        enc: Tokenizer = tiktoken.get_encoding(encoding)
         return enc
     if isinstance(tokenizer, CharTokenizer):
         return tokenizer
