@@ -22,6 +22,10 @@ STUDY = Path(__file__).resolve().parents[1] / "benchmarks" / "chunking_study"
 pytestmark = pytest.mark.skipif(not DATA, reason="set MDK_STUDY_DATA to run study parity tests")
 
 
+def _json(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 @pytest.fixture(scope="module")
 def study():
     for mod in ("tiktoken", "numpy", "requests", "rank_bm25"):
@@ -36,14 +40,14 @@ def study():
 
 
 def _chunks(path: Path) -> tuple[list[dict], list[Chunk]]:
-    raw = json.loads(path.read_text())["chunks"]
+    raw = _json(path)["chunks"]
     return raw, [Chunk(text=c["text"], chunk_id=str(i)) for i, c in enumerate(raw)]
 
 
 def test_qasper_recall_matches_harness(study):
     study_eval, _ = study
     data = Path(DATA)
-    papers = json.loads((data / "qasper_v2.json").read_text())
+    papers = _json(data / "qasper_v2.json")
     rng = random.Random(0)
     checked = 0
     for p in papers[:25]:
@@ -72,15 +76,15 @@ def test_qasper_recall_matches_harness(study):
 def test_freshstack_precision_matches_harness(study):
     study_eval, study_corpus = study
     data = Path(DATA)
-    sel = json.loads((data / "selection.json").read_text())["freshstack"]["laravel"]
-    qs = [q for q in json.loads((data / "freshstack_laravel.json").read_text())["questions"]
+    sel = _json(data / "selection.json")["freshstack"]["laravel"]
+    qs = [q for q in _json(data / "freshstack_laravel.json")["questions"]
           if q["qid"] in set(sel["qids"])][:20]
     assert qs, "no selected FreshStack questions"
     raw: list[dict] = []
     for d in sel["doc_ids"][:40]:
         path = data / "cache" / "base" / "struct" / f"{d}.json"
         if path.exists():
-            raw += json.loads(path.read_text())["chunks"]
+            raw += _json(path)["chunks"]
     chunks = [Chunk(text=c["text"], chunk_id=str(i)) for i, c in enumerate(raw)]
     assert raw, "no FreshStack chunks found in the cache"
     rng = random.Random(1)

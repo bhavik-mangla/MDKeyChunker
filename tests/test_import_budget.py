@@ -9,7 +9,8 @@ HEAVY = ("numpy", "torch", "sentence_transformers", "transformers", "bm25s", "St
 def _imported_after(stmt: str) -> list[str]:
     code = (f"import sys\n{stmt}\n"
             f"print(','.join(m for m in {HEAVY!r} if m in sys.modules))")
-    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True)
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                         encoding="utf-8", check=True)
     return [m for m in out.stdout.strip().split(",") if m]
 
 
@@ -34,5 +35,6 @@ def test_study_bm25_runs_without_numpy_or_bm25s():
             "from mdkeychunker.retrieval import BM25Retriever\n"
             "cs = [Chunk(text='install on linux'), Chunk(text='pricing plans')]\n"
             "print(BM25Retriever(cs, method='study').search('linux', k=1)[0].chunk.text)")
-    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True)
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                         encoding="utf-8", check=True)
     assert out.stdout.strip() == "install on linux"

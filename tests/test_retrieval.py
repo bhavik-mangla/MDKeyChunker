@@ -168,7 +168,7 @@ def test_reranker_memoises_and_disk_cache(tmp_path):
                      cache_dir=tmp_path)
     assert again.scores("q", ["xyz"]) == [3.0]
     key = (tmp_path / RerankCache(tmp_path, disk.model_key).root.name / "model_key.txt")
-    assert key.read_text() == "BAAI/bge-reranker-v2-m3|tmpl=v1|maxlen=2048"
+    assert key.read_text(encoding="utf-8") == "BAAI/bge-reranker-v2-m3|tmpl=v1|maxlen=2048"
 
 
 # --------------------------------------------------------------------------- hybrid

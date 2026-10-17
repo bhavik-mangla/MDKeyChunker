@@ -13,14 +13,14 @@ GUIDE = ("# Guide\n\n## Install\n\nRun pip install foo on Linux.\n\n"
 def docs(tmp_path):
     d = tmp_path / "docs"
     (d / "sub").mkdir(parents=True)
-    (d / "guide.md").write_text(GUIDE)
-    (d / "sub" / "notes.txt").write_text("plain text " * 200)
+    (d / "guide.md").write_text(GUIDE, encoding="utf-8")
+    (d / "sub" / "notes.txt").write_text("plain text " * 200, encoding="utf-8")
     (d / "image.png").write_bytes(b"\x89PNG")
     return d
 
 
 def read_jsonl(path):
-    return [json.loads(x) for x in path.read_text().splitlines() if x.strip()]
+    return [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
 
 
 def test_help_and_no_args(capsys):
@@ -85,7 +85,7 @@ def test_llm_flags_route_to_the_legacy_pipeline(docs, monkeypatch, capsys):
 
 def write_qa(tmp_path, rows):
     p = tmp_path / "qa.jsonl"
-    p.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+    p.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
     return p
 
 
@@ -106,7 +106,7 @@ def test_diagnose_from_docs_dir_with_byo_objects(docs, tmp_path, capsys):
     assert code == 0
     md = capsys.readouterr().out
     assert md.startswith("# Retrieval diagnosis") and "| mine |" in md
-    report = json.loads(out_json.read_text())
+    report = json.loads(out_json.read_text(encoding="utf-8"))
     pairs = {(f["a"], f["b"]) for f in report["findings"]}
     assert {("hybrid", "dense"), ("mine+rerank", "mine"), ("mine", "bm25")} <= pairs
     assert report["settings"]["baseline"] == "mine"
@@ -120,12 +120,12 @@ def test_diagnose_from_chunks_jsonl_and_markdown_output(docs, tmp_path, capsys):
     out_md = tmp_path / "r.md"
     assert cli_v2.main(["diagnose", "--chunks", str(chunks), "--qa", str(qa), "--checks", "none",
                         "--retriever", "mine=tests.cli_fixtures:never", "-o", str(out_md)]) == 0
-    assert "| mine | 0.0 |" in out_md.read_text()
+    assert "| mine | 0.0 |" in out_md.read_text(encoding="utf-8")
 
 
 def test_diagnose_errors_are_reported_not_raised(docs, tmp_path, capsys):
     bad = tmp_path / "bad.jsonl"
-    bad.write_text("{not json}\n")
+    bad.write_text("{not json}\n", encoding="utf-8")
     assert cli_v2.main(["diagnose", "--docs", str(docs), "--qa", str(bad)]) == 2
     assert "not valid JSON" in capsys.readouterr().err
     qa = write_qa(tmp_path, [{"question": "q", "gold": ["g"], "doc_id": "guide.md"}])
