@@ -148,12 +148,12 @@ PRIMARY = [("qasper", "rec@512t", 0.05), ("freshstack", "prec@1024t", 0.04)]
 
 
 def _primary_rows():
-    rows = json.loads((RESULTS / "stats.json").read_text())["primary"]
+    rows = json.loads((RESULTS / "stats.json").read_text(encoding="utf-8"))["primary"]
     return {(r["dataset"], r["a"], r["b"]): r for r in rows}
 
 
 def _per_question(ds):
-    raw = json.loads((RESULTS / f"{ds}_per_question.json").read_text())
+    raw = json.loads((RESULTS / f"{ds}_per_question.json").read_text(encoding="utf-8"))
     return raw["values"], raw.get("strata")
 
 

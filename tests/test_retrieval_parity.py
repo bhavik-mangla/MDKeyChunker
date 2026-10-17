@@ -31,10 +31,10 @@ def render_tc(c: dict) -> str:  # the study's "free prefix" index text (evaluate
 
 def qasper_struct():
     data = Path(DATA)
-    for p in json.loads((data / "qasper_v2.json").read_text()):
+    for p in json.loads((data / "qasper_v2.json").read_text(encoding="utf-8")):
         path = data / "cache" / "base" / "struct" / f"{p['id']}.json"
         if path.exists():
-            yield p, json.loads(path.read_text())["chunks"]
+            yield p, json.loads(path.read_text(encoding="utf-8"))["chunks"]
 
 
 def test_study_bm25_is_bit_identical_to_rank_bm25_on_random_corpora():

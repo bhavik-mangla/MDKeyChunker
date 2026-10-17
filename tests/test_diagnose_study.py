@@ -19,6 +19,10 @@ RESULTS = Path(__file__).resolve().parents[1] / "benchmarks" / "chunking_study" 
 pytestmark = pytest.mark.skipif(not DATA, reason="set MDK_STUDY_DATA to run study parity tests")
 
 
+def _json(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def render_meta(c: dict) -> str:  # the study's evaluate.render(c, "meta")
     head = [c.get("title", ""), c.get("summary", ""), ", ".join(c.get("keywords", [])),
             " ".join(c.get("questions", []))]
@@ -31,13 +35,13 @@ def test_diagnose_reproduces_bm25_enrichment_gain_on_qasper():
     from mdkeychunker.diagnose import diagnose
 
     data = Path(DATA)
-    sel = set(json.loads((data / "selection.json").read_text())["qasper"]["paper_ids"])
+    sel = set(_json(data / "selection.json")["qasper"]["paper_ids"])
     base, enr, qa = [], [], []
-    for p in json.loads((data / "qasper_v2.json").read_text()):
+    for p in _json(data / "qasper_v2.json"):
         if p["id"] not in sel:
             continue
-        s = json.loads((data / "cache/base/struct" / f"{p['id']}.json").read_text())["chunks"]
-        e = json.loads((data / "cache/local/enr" / f"{p['id']}.json").read_text())["chunks"]
+        s = _json(data / "cache/base/struct" / f"{p['id']}.json")["chunks"]
+        e = _json(data / "cache/local/enr" / f"{p['id']}.json")["chunks"]
         base += [Chunk(text=c["text"], doc_id=p["id"], chunk_id=f"{p['id']}:{i}",
                        embed_text=f"{c.get('section', '')}\n\n{c['text']}")
                  for i, c in enumerate(s)]
@@ -47,7 +51,7 @@ def test_diagnose_reproduces_bm25_enrichment_gain_on_qasper():
                for q in p["questions"] if q["evidence"]]
     r = diagnose(base, qa, check=(), compare=[("bm25@enriched", "bm25")], enriched=enr,
                  bm25="study", tokenizer="cl100k_base", n_boot=10_000, seed=0, search_k=10_000)
-    want = next(x for x in json.loads((RESULTS / "stats.json").read_text())["exploratory"]
+    want = next(x for x in _json(RESULTS / "stats.json")["exploratory"]
                 if (x["dataset"], x["retriever"], x["metric"], x["a"], x["b"])
                 == ("qasper", "bm25", "rec@512t", "E", "S+T"))
     got = r.findings[0].comparison

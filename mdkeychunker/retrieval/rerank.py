@@ -85,7 +85,7 @@ class RerankCache:
         qh = self.query_hash(query)
         if qh not in self._mem:
             p = self._path(qh)
-            self._mem[qh] = json.loads(p.read_text()) if p.exists() else {}
+            self._mem[qh] = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
         return self._mem[qh]
 
     def save(self, query: str, scores: dict[str, float]) -> None:
@@ -95,9 +95,9 @@ class RerankCache:
         p.parent.mkdir(parents=True, exist_ok=True)
         key_file = self.root / "model_key.txt"
         if not key_file.exists():
-            key_file.write_text(self.model_key)
+            key_file.write_text(self.model_key, encoding="utf-8")
         tmp = p.with_suffix(f".tmp{os.getpid()}")
-        tmp.write_text(json.dumps(cur))
+        tmp.write_text(json.dumps(cur), encoding="utf-8")
         tmp.replace(p)
 
 
