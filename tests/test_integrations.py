@@ -74,7 +74,7 @@ def test_integrations_package_imports_no_framework():
             "print(json.dumps([m for m in ('langchain_core', 'langchain_text_splitters', "
             "'llama_index') if m in sys.modules]))")
     out = subprocess.run([sys.executable, "-c", code], cwd=ROOT, capture_output=True,
-                         text=True, check=True)
+                         text=True, encoding="utf-8", check=True)
     assert json.loads(out.stdout) == []
 
 
