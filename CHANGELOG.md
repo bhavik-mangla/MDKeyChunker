@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.1 — unreleased
+## 0.4.1 — 2026-10-17
 
 ### Fixed
 - `nomic` dense preset: the `[dense]` extra now installs `einops`, which the model's remote code
