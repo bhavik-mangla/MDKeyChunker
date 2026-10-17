@@ -56,7 +56,7 @@ __all__ = [
 ]
 
 _N = NormalDist()
-PerCluster = Mapping[Hashable, Sequence[float]]
+PerCluster = Mapping[Any, Sequence[float]]  # Any keys: Mapping is invariant in its key type
 
 
 def _numpy() -> Any:

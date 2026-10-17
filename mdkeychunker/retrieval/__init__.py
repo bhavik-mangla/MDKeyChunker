@@ -5,7 +5,7 @@ when constructed and names the extra to install if it is missing:
 ``pip install "mdkeychunker[bm25]"``, ``[dense]``, ``[rerank]`` or ``[retrieval]`` (all three).
 """
 from .bm25 import BM25Retriever
-from .dense import DENSE_PRESETS, DensePreset, DenseRetriever
+from .dense import DENSE_PRESETS, DensePreset, DenseRetriever, load_embedder
 from .fusion import RRF, Convex, Fusion
 from .hybrid import HybridRetriever
 from .rerank import RERANK_PRESETS, Reranker
@@ -21,4 +21,5 @@ __all__ = [
     "RERANK_PRESETS",
     "RRF",
     "Reranker",
+    "load_embedder",
 ]
