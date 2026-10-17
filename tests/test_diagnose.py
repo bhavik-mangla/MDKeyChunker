@@ -149,17 +149,22 @@ def test_margin_gives_equivalent_and_holm_is_applied():
     per_doc = {d: BM25Retriever([c for c in cs if c.doc_id == f"d{d}"], method="study")
                for d in range(N_DOCS)}
 
-    def same_as_bm25(query, k):  # identical to the built-in BM25 arm
+    def same_as_bm25(query, k):  # the built-in BM25 arm
         d = int(query.split("zq")[1].split("x")[0])
         return per_doc[d].search(query, k)
 
-    r = diagnose(cs, qa(), retrievers={"mine": same_as_bm25}, check=("fusion",),
-                 compare=[("mine", "bm25")], margin=0.05, **KW)
+    def nearly(query, k):  # BM25, except it misses one question of the 30
+        return [] if "zq0x1" in query else same_as_bm25(query, k)
+
+    r = diagnose(cs, qa(), retrievers={"mine": nearly, "same": same_as_bm25},
+                 check=("fusion",), compare=[("mine", "bm25"), ("same", "bm25")],
+                 margin=0.2, **KW)
     eq = by_pair(r)[("mine", "bm25")]
-    assert eq.comparison.diff == 0 and eq.verdict == "equivalent"
-    assert "Equivalent within +/-5.0 points" in eq.message
+    assert eq.comparison.diff == pytest.approx(-1 / 30) and eq.verdict == "equivalent"
+    assert "Equivalent within +/-20.0 points" in eq.message
+    assert by_pair(r)[("same", "bm25")].verdict == "identical"
     assert all(f.p_holm >= f.comparison.p_perm for f in r.findings)
-    r2 = diagnose(cs, qa(), retrievers={"mine": same_as_bm25}, compare=[("mine", "bm25")],
+    r2 = diagnose(cs, qa(), retrievers={"mine": nearly}, compare=[("mine", "bm25")],
                   check=(), **KW)
     assert by_pair(r2)[("mine", "bm25")].verdict == "inconclusive"  # no margin, no claim
 
@@ -232,3 +237,75 @@ def test_offset_gold_spans_work_with_offset_chunks():
     r = diagnose(cs, qs, check=("fusion",), **KW)
     assert r.arms["bm25"].mean == 1.0
     assert evidence_recall([cs[1]], [("d0", 100, 120)]) == 1.0
+
+
+# --------------------------------------------------------------------------- degenerate data
+
+def toy():
+    """The lead's new-user case: 6 short documents, 18 questions, default 512-token budget."""
+    docs = {f"t{d}": "\n\n".join(f"# Part {s}\n\nPart {s} of note {d} is about yy{d}w{s}."
+                                 for s in range(3)) for d in range(6)}
+    qs = [{"question": f"what is yy{d}w{s}?", "gold": [f"Part {s} of note {d} is about yy{d}w{s}."],
+           "doc_id": f"t{d}"} for d in range(6) for s in range(3)]
+    return docs, qs
+
+
+def test_budget_covering_whole_documents_is_flagged_and_identical_arms_say_so():
+    docs, qs = toy()
+    r = diagnose(docs, qs, check=("fusion",), bm25="study", embedder=flat, n_boot=300)
+    assert any("Your budget_tokens (512) covers whole documents for 18 of 18 questions" in w
+               and "scope='corpus'" in w for w in r.warnings)
+    assert all(a.mean == 1.0 for a in r.arms.values())
+    for f in r.findings:
+        assert f.verdict == "identical"
+        assert "No difference: identical on every question" in f.message
+        assert "0.0 points cannot be detected" not in f.message
+    md = r.to_markdown()
+    assert "identical" in md and "covers whole documents" in md
+    # a budget smaller than a document removes the warning
+    r2 = diagnose(docs, qs, check=("fusion",), bm25="study", embedder=flat, n_boot=300,
+                  budget_tokens=8)
+    assert not any("covers whole documents" in w for w in r2.warnings)
+
+
+def test_zero_variation_prints_mde_as_not_available():
+    cs = corpus()
+
+    def perfect(query, k):
+        word = next(w for w in query.replace("?", "").split() if w.startswith("zq"))
+        d, s = word[2:].split("x")
+        return [f"d{d}s{s}"]
+
+    r = diagnose(cs, qa(), retrievers={"perfect": perfect, "empty": lambda q, k: []},
+                 compare=[("perfect", "empty")], check=(), **KW)
+    f = by_pair(r)[("perfect", "empty")]
+    assert f.comparison.mde == 0.0
+    assert "MDE n/a (no variation)" in f.message
+    assert "| n/a (no variation) |" in r.to_markdown()
+
+
+def test_missing_extra_is_reported_with_the_check_that_needs_it(monkeypatch):
+    import importlib.util
+
+    real = importlib.util.find_spec
+    monkeypatch.setattr(importlib.util, "find_spec",
+                        lambda name, *a: None if name in ("sentence_transformers", "bm25s")
+                        else real(name, *a))
+    with pytest.raises(ImportError, match=r"check='fusion' needs a dense embedder.*embedder="):
+        diagnose(corpus(), qa(), check=("fusion",), bm25="study", budget_tokens=BUDGET)
+    with pytest.raises(ImportError, match=r"check='fusion' needs BM25.*bm25='study'"):
+        diagnose(corpus(), qa(), check=("fusion",), embedder=flat, budget_tokens=BUDGET)
+    with pytest.raises(ImportError, match=r"check='rerank' needs a reranker"):
+        diagnose(corpus(), qa(), check=("rerank",), **KW)
+    # a BYO reranker / embedder needs nothing
+    diagnose(corpus(), qa(), check=("rerank",), reranker=ORACLE, **KW)
+
+
+def test_enrich_is_in_the_default_checks_only_when_enriched_chunks_are_given():
+    cs = corpus()
+    enriched = [Chunk(text=c.text, doc_id=c.doc_id, chunk_id=c.chunk_id, embed_text=c.text)
+                for c in cs]
+    r = diagnose(cs, qa(), reranker=ORACLE, upgrade_embedder=flat, enriched=enriched, **KW)
+    assert {f.check for f in r.findings} == {"fusion", "rerank", "enrich"}
+    r = diagnose(cs, qa(), reranker=ORACLE, upgrade_embedder=flat, **KW)
+    assert {f.check for f in r.findings} == {"fusion", "rerank"}

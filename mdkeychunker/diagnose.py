@@ -30,12 +30,15 @@ Example (toy embedder and reranker so nothing is downloaded):
     ...                   reranker=Reranker(score_fn=lambda ps: [0.0 for _ in ps]))
     >>> sorted(report.arms)  # only arms that take part in a comparison are scored
     ['hybrid', 'hybrid+rerank']
-    >>> report.findings[0].verdict
-    'inconclusive'
+    >>> report.findings[0].verdict  # a one-chunk-per-section toy: the reranker changes nothing
+    'identical'
+    >>> report.warnings[0][:47]
+    'Your budget_tokens (512) covers whole documents'
 """
 from __future__ import annotations
 
 import importlib
+import math
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Literal, Union
@@ -149,7 +152,7 @@ class Finding:
     b: str
     comparison: stats.Comparison
     p_holm: float
-    verdict: Literal["better", "worse", "equivalent", "inconclusive"]
+    verdict: Literal["better", "worse", "equivalent", "identical", "inconclusive"]
     message: str
     context: str = ""
 
@@ -202,7 +205,7 @@ class Report:
             for f in self.findings:
                 c = f.comparison
                 lines.append(f"| {f.check} | {f.a} | {f.b} | {_spt(c.diff)} | "
-                             f"[{_spt(c.ci95_bca[0])}, {_spt(c.ci95_bca[1])}] | {_pt(c.mde)} | "
+                             f"[{_spt(c.ci95_bca[0])}, {_spt(c.ci95_bca[1])}] | {_mde(c)} | "
                              f"{c.p_perm:.3g} | {f.p_holm:.3g} | {f.verdict} |")
             ctx = list(dict.fromkeys(f.context for f in self.findings if f.context))
             lines += ["", "## Context from the v4 study", ""] + [f"- {c}" for c in ctx]
@@ -216,6 +219,14 @@ def _pt(x: float) -> str:
 
 def _spt(x: float) -> str:
     return "n/a" if x != x else f"{100 * x:+.1f}"
+
+
+def _mde(c: stats.Comparison) -> str:
+    if c.mde != c.mde:
+        return "n/a (too few clusters)"
+    if c.mde == 0:
+        return "n/a (no variation)"
+    return _pt(c.mde)
 
 
 # --------------------------------------------------------------------------- running arms
@@ -323,8 +334,11 @@ class _Runner:
 
 # --------------------------------------------------------------------------- verdicts
 
-def _verdict(c: stats.Comparison, p_holm: float, alpha: float, margin: float | None
-             ) -> Literal["better", "worse", "equivalent", "inconclusive"]:
+def _verdict(c: stats.Comparison, p_holm: float, alpha: float, margin: float | None,
+             identical: bool
+             ) -> Literal["better", "worse", "equivalent", "identical", "inconclusive"]:
+    if identical:
+        return "identical"
     if c.excludes_zero_95 and p_holm < alpha:
         return "better" if c.diff > 0 else "worse"
     if margin and c.label in ("equivalent", "different_but_equivalent"):
@@ -335,12 +349,18 @@ def _verdict(c: stats.Comparison, p_holm: float, alpha: float, margin: float | N
 def _message(check: str, a: str, b: str, c: stats.Comparison, verdict: str, n_q: int,
              n_clusters: int, margin: float | None) -> str:
     est = f"{_spt(c.diff)} points [{_spt(c.ci95_bca[0])}, {_spt(c.ci95_bca[1])}]"
-    mde = f"MDE ~{_pt(c.mde)} points"
+    mde = f"MDE {_mde(c)}" + (" points" if c.mde == c.mde and c.mde > 0 else "")
+    if verdict == "identical":
+        return (f"**No difference: identical on every question** ({a} vs {b}, n={n_q}). "
+                "See the warnings: the budget may let every retriever find the evidence.")
     if verdict == "inconclusive":
-        reach = ("Too few clusters to estimate the detectable difference"
-                 if c.mde != c.mde else
-                 f"Differences smaller than about {_pt(c.mde)} points cannot be detected with "
-                 "these questions")
+        if c.mde != c.mde:
+            reach = "Too few clusters to estimate the detectable difference"
+        elif c.mde == 0:
+            reach = "The difference does not vary across questions (MDE n/a)"
+        else:
+            reach = (f"Differences smaller than about {_pt(c.mde)} points cannot be detected "
+                     "with these questions")
         return (f"**Inconclusive at n={n_q}** ({n_clusters} clusters): {a} vs {b}: {est}. "
                 f"{reach}; label more questions to decide.")
     if verdict == "equivalent":
@@ -369,7 +389,7 @@ def _message(check: str, a: str, b: str, c: stats.Comparison, verdict: str, n_q:
 def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str, str] | str,
              qa: Iterable[Any], *,
              retrievers: Mapping[str, Retriever | SearchFn] | None = None,
-             check: Sequence[str] = ("fusion", "embedder", "rerank"),
+             check: Sequence[str] | None = None,
              compare: Sequence[tuple[str, str]] = (),
              embedder: EmbedderLike = "qwen3-embedding-0.6b",
              upgrade_embedder: EmbedderLike | None = "qwen3-embedding-0.6b",
@@ -390,7 +410,8 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
             (doc_id, start, end)], "doc_id"?}``, ``(question, gold[, doc_id])`` tuples, or ``QA``.
         retrievers: your own retrievers, ``{name: Retriever or search(query, k) function}``,
             returning ``Hit``/``Chunk``/chunk ids. One of them becomes the baseline.
-        check: any of ``"fusion"``, ``"embedder"``, ``"rerank"``, ``"enrich"``.
+        check: any of ``"fusion"``, ``"embedder"``, ``"rerank"``, ``"enrich"``. Default:
+            the first three, plus ``"enrich"`` when ``enriched`` or ``llm`` is given.
         compare: extra ``(a, b)`` pairs of arm names to compare.
         embedder: the built-in dense half: a preset / model id, or an ``embed_fn``.
         upgrade_embedder: the stronger embedder for ``"embedder"`` (skipped if the same as
@@ -419,6 +440,9 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
         n=..." (or "equivalent" when a margin is given and its 90% CI lies inside it). Every
         finding carries the minimum detectable difference.
     """
+    if check is None:
+        check = ("fusion", "embedder", "rerank") + (
+            ("enrich",) if enriched is not None or llm is not None else ())
     unknown = set(check) - set(CHECKS)
     if unknown:
         raise ValueError(f"unknown check(s) {sorted(unknown)}; choose from {CHECKS}")
@@ -505,6 +529,7 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
 
     # score every arm that appears in a comparison (plus the user's retrievers)
     needed = list(dict.fromkeys([x for _, a, b in pairs for x in (a, b)] + list(byo)))
+    _preflight(pairs, byo, embedder, upgrade_embedder, bm25, reranker)
     clusters = list(groups) if scope == "document" else [q.qid for q in qs]
     cluster_of = [q.doc_id if scope == "document" else q.qid for q in qs]
     score = evidence_recall if metric == "recall" else evidence_precision
@@ -517,6 +542,8 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
         per[name] = vals
 
     n_q, n_c = len(qs), len(clusters)
+    warnings += _ceiling_warnings(qs, groups, chunks_by_group, per, budget_tokens, tokenizer,
+                                  scope)
     if n_q < 20:
         warnings.append(f"Only {n_q} questions: expect most comparisons to be inconclusive.")
     if n_c < 10:
@@ -530,7 +557,7 @@ def diagnose(corpus: Sequence[Chunk] | Sequence[Mapping[str, Any]] | Mapping[str
     p_adj, _ = stats.holm([r[3].p_perm for r in rows], alpha=alpha) if rows else ([], [])
     findings = []
     for (chk, a, b, c), ph in zip(rows, p_adj):
-        v = _verdict(c, ph, alpha, margin)
+        v = _verdict(c, ph, alpha, margin, identical=per[a] == per[b])
         findings.append(Finding(chk, a, b, c, ph, v, _message(chk, a, b, c, v, n_q, n_c, margin),
                                 _CONTEXT.get(chk, "")))
     metric_label = (f"evidence {'recall' if metric == 'recall' else 'precision'} within "
@@ -566,3 +593,65 @@ def _enriched(chunks: list[Chunk], enriched: Sequence[Chunk] | None, llm: Any) -
                           ) from e
     return list(enrich(chunks, llm))
 
+
+def _builtin_base(arm: str) -> str:
+    return arm.split("+rerank")[0].split("@enriched")[0]
+
+
+def _preflight(pairs: list[tuple[str, str, str]], byo: Mapping[str, Any], embedder: Any,
+               upgrade: Any, bm25: str, reranker: Any) -> None:
+    """Fail early, naming the check, when a built-in retriever's optional dependency is missing."""
+    from importlib.util import find_spec
+
+    def missing(mod: str) -> bool:
+        return find_spec(mod) is None
+
+    for chk, a, b in pairs:
+        for arm in (a, b):
+            if arm in byo:
+                continue
+            base = _builtin_base(arm)
+            need_dense = base in ("dense", "hybrid", "dense-upgrade")
+            emb = upgrade if base == "dense-upgrade" else embedder
+            if need_dense and (missing("numpy") or (isinstance(emb, str)
+                                                    and missing("sentence_transformers"))):
+                raise ImportError(f"check='{chk}' needs a dense embedder: "
+                                  'pip install "mdkeychunker[dense]" or pass embedder=your_fn')
+            if base in ("bm25", "hybrid") and bm25 != "study" and missing("bm25s"):
+                raise ImportError(f"check='{chk}' needs BM25: pip install \"mdkeychunker[bm25]\" "
+                                  "or pass bm25='study' (no dependency)")
+            if arm.endswith("+rerank") and getattr(reranker, "score_fn", None) is None and (
+                    missing("sentence_transformers")):
+                raise ImportError(f"check='{chk}' needs a reranker: "
+                                  'pip install "mdkeychunker[rerank]" or pass reranker=Reranker('
+                                  "score_fn=...)")
+
+
+def _ceiling_warnings(qs: list[QA], groups: dict[str, list[int]],
+                      chunks_by_group: dict[str, list[Chunk]],
+                      per: dict[str, dict[str, list[float]]], budget_tokens: int,
+                      tokenizer: Any, scope: str) -> list[str]:
+    """Warn when the budget lets every retriever read (nearly) the whole candidate pool."""
+    from .evaluate import CharTokenizer, get_tokenizer
+
+    tok = get_tokenizer(tokenizer)
+
+    def count(text: str) -> int:
+        return tok.count(text) if isinstance(tok, CharTokenizer) else len(tok.encode(text))
+
+    covered = 0
+    for g, qidx in groups.items():
+        pool = sum(count(c.text) for c in chunks_by_group[g])
+        if pool <= budget_tokens:
+            covered += len(qidx)
+    out = []
+    where = "whole documents" if scope == "document" else "the whole corpus"
+    if covered >= len(qs) / 2:
+        out.append(f"Your budget_tokens ({budget_tokens}) covers {where} for {covered} of "
+                   f"{len(qs)} questions, so every retriever finds the evidence; lower "
+                   "budget_tokens" + (" or use scope='corpus'." if scope == "document" else "."))
+    means = [math.fsum(v for vs in arm.values() for v in vs) / len(qs) for arm in per.values()]
+    if per and min(means) >= 0.99 and not out:
+        out.append("Every retriever scores at least 99%: the questions are too easy to tell "
+                   "retrievers apart at this budget; lower budget_tokens or add harder questions.")
+    return out
