@@ -6,6 +6,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2603.23533-b31b1b.svg)](https://arxiv.org/abs/2603.23533)
 [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-mdkeychunker--study-yellow)](https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bhavik-mangla/MDKeyChunker/blob/main/examples/diagnose_quickstart.ipynb)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23659096.svg)](https://doi.org/10.5281/zenodo.23659096)
 
 **Header-aware chunking for RAG, and a diagnostic that tells you where to spend:
 on the retriever, on chunking, or on LLM calls per chunk.**
