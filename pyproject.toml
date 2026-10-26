@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdkeychunker"
-version = "0.4.1"
+version = "0.4.2"
 description = "Header-aware chunking for RAG and a retrieval diagnostic that tells you whether to spend on the retriever, chunking or LLM enrichment"
 readme = "README.md"
 requires-python = ">=3.10"

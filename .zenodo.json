@@ -1,0 +1,42 @@
+{
+  "title": "mdkeychunker: header-aware chunking and retrieval diagnosis for RAG",
+  "upload_type": "software",
+  "description": "<p>Header-aware Markdown chunking for retrieval-augmented generation, and <code>mk.diagnose</code>, which tests on a team's own documents and labelled questions whether a stronger retriever, a reranker or LLM chunk enrichment would retrieve more of the gold evidence, with paired bootstrap confidence intervals and 'inconclusive' verdicts when the data cannot decide. Zero required dependencies. Companion code for the paper <i>Upgrade the Retriever First: What an LLM Call per Chunk Buys in RAG</i> (arXiv:2603.23533).</p>",
+  "creators": [
+    {
+      "name": "Mangla, Bhavik",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "retrieval-augmented generation",
+    "RAG",
+    "chunking",
+    "retrieval evaluation",
+    "hybrid search",
+    "reranking",
+    "contextual retrieval",
+    "Markdown"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "arXiv:2603.23533",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://pypi.org/project/mdkeychunker/",
+      "relation": "isIdenticalTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ]
+}
