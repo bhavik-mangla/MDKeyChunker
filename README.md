@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![arXiv](https://img.shields.io/badge/arXiv-2603.23533-b31b1b.svg)](https://arxiv.org/abs/2603.23533)
 [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-mdkeychunker--study-yellow)](https://huggingface.co/datasets/bhavikmangla/mdkeychunker-study)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bhavik-mangla/MDKeyChunker/blob/main/examples/diagnose_quickstart.ipynb)
 
 **Header-aware chunking for RAG, and a diagnostic that tells you where to spend:
 on the retriever, on chunking, or on LLM calls per chunk.**
@@ -65,6 +66,9 @@ nomic) can exhaust memory, and the OS then kills the process without a traceback
 Bring your own retriever as a function `search(query, k) -> hits | chunks | chunk ids`,
 or pass LangChain / LlamaIndex outputs. `diagnose` scores gold *evidence text*, not chunk
 ids, so you can compare different chunkers on the same questions.
+
+Try it in one click: the [quickstart notebook](examples/diagnose_quickstart.ipynb) chunks a document, runs
+`diagnose` on 10 real research papers and compares two chunkers on the same questions.
 
 ## Command line
 
