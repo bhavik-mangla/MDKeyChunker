@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.2 — 2026-10-26
+
+Documentation and archiving only; no code changes.
+
+### Added
+- Colab quickstart notebook (`examples/diagnose_quickstart.ipynb`): chunking, `mk.diagnose` on 10 real
+  Qasper papers, and a chunker comparison with `mk.evidence_recall`. README "Open in Colab" badge.
+- Zenodo archiving (`.zenodo.json`): each GitHub release gets a citable DOI.
+
 ## 0.4.1 — 2026-10-17
 
 ### Fixed
