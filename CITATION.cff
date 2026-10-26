@@ -8,6 +8,7 @@ authors:
 license: MIT
 repository-code: "https://github.com/bhavik-mangla/MDKeyChunker"
 version: 0.4.2
+doi: 10.5281/zenodo.23659096
 date-released: 2026-10-26
 keywords:
   - markdown
